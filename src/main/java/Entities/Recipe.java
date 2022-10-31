@@ -1,4 +1,4 @@
-package Recipe;
+package Entities;
 
 public class Recipe {
 }
