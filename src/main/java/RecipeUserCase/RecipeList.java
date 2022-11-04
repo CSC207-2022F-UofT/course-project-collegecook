@@ -1,4 +1,4 @@
 package RecipeUserCase;
 
-public class ViewRecipe {
+public class RecipeList {
 }
