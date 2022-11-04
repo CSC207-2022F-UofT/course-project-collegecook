@@ -23,9 +23,9 @@ public class User {
         return LoginStatus;
     }
 
-    public int GetNumberOfFollowers(){return followed.size();}
+    public int GetNumberOfFollowers(){return followers.size();}
 
-    public int GetNumberOfFollowed(){return followed.size();}
+    public int GetNumberOfFollowed(){return followed.size(); }
 
 
 
