@@ -1,4 +1,4 @@
-package recipeUserCase;
+package RecipeUserCase;
 
 public interface RecipeRepoInt {
 }

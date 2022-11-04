@@ -1,4 +1,4 @@
-package profile;
+package Profile;
 
 public class ProfileCreatedInteractor {
 }
