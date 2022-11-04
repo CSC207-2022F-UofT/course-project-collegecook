@@ -1,4 +1,5 @@
-package Search;
+package search;
 
 public class SearchController {
+
 }
