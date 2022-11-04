@@ -22,4 +22,6 @@ public class User {
         return LoginStatus;
     }
 
+    public int GetNumberOfFollowers(){return size(followers);}
+
 }
