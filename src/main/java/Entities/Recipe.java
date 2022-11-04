@@ -1,4 +1,4 @@
-package entities;
+package Entities;
 
 import java.util.List;
 
@@ -33,6 +33,7 @@ public class Recipe {
     public void set_difficulty(int difficulty){this.difficulty = difficulty;}
 
     public void set_ingredients(List<String> ingredients){this.ingredients = ingredients;}
+
 
 
 
