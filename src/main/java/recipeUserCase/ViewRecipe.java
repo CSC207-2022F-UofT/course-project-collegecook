@@ -1,4 +1,4 @@
-package RecipeUserCase;
+package recipeUserCase;
 
 public class ViewRecipe {
 }

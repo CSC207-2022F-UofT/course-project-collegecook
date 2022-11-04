@@ -1,4 +1,4 @@
-package Profile;
+package profile;
 
 public interface ProfileInputBoundary {
 }
