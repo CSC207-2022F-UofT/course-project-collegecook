@@ -8,7 +8,6 @@ public class User {
     private Profile profile;
     private List<User> UserList;
     private List<User> followers;
-    private List<User> followed;
 
     public User(String username, String password) {
         this.username = username;
@@ -22,11 +21,5 @@ public class User {
     public boolean isLoginStatus() {
         return LoginStatus;
     }
-
-    public int GetNumberOfFollowers(){return followed.size();}
-
-    public int GetNumberOfFollowed(){return followed.size();}
-
-
 
 }
