@@ -5,13 +5,13 @@ public class User {
     private String username;
     private String password;
     private boolean LoginStatus;
-    public Profile profile;
-    public List<User> UserList;
-    public List<User> followers;
+    private Profile profile;
+    private List<User> UserList;
+    private List<User> followers;
 
     public User(String username, String password) {
         this.username = username;
-        this.passward = passward;
+        this.password = password;
     }
 
     public String getUsername() {
