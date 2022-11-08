@@ -27,7 +27,8 @@ public class User {
 
     public int GetNumberOfFollowed(){return followed.size(); }
 
-
-
+    public void setLoginStatus(boolean loginStatus) {
+        LoginStatus = loginStatus;
+    }
 }
 
