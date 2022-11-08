@@ -1,21 +1,33 @@
 package Login;
 
+import Entities.User;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoginInteractor {
-    List AllUser = new ArrayList<>();
+public class UserManager {
+    private List<User> AllUser;
 
+    public UserManager() {
+        AllUser = new ArrayList<>();
+    }
 
-
-    public void setAllUser(String username, ) {
-        AllUser = allUser;
+    public void setAllUser(String username, String password) {
+        for(User person :AllUser){
+            if (person.getUsername() == username){
+                return something
+            } else{
+                User UserName = new User(username, password);
+                AllUser.add(UserName);
+            }
+        }
     }
 
 
     // method to add user to the allUsers when user created the account,need to check if the username already in the list
 
     // method to find the user in the allUsers and change the status to logged in
+    // method to find the user in the allUsers and change the status to logged out
 
     // method to find the user in the allUsers and add the other user in to the followed list(attribute of user),need to
     //check if the other user is already followed,also find the other user and add the user from the following list(attribute of user)

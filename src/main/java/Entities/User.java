@@ -4,6 +4,7 @@ public class User {
 
     private String username;
     private String password;
+
     private boolean LoginStatus;
     private Profile profile;
     private List<User> UserList;
@@ -13,6 +14,7 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+
     }
 
     public String getUsername() {
