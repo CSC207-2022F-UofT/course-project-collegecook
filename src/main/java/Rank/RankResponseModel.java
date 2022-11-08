@@ -1,4 +1,4 @@
-package rank;
+package Rank;
 
 public class RankResponseModel {
 }

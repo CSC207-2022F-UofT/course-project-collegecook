@@ -1,4 +1,6 @@
-package rank;
+package Rank;
+
+import java.util.ArrayList;
 
 public class RankRequestModel {
     private String ranking;

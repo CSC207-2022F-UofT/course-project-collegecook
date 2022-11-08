@@ -1,4 +1,6 @@
-package rank;
+package Rank;
+
+
 
 public class RankController {
     final RankInputBoundary rankInput;
