@@ -1,4 +1,4 @@
-package RecipeUserCase;
+package recipeUserCase;
 
 import java.util.List;
 

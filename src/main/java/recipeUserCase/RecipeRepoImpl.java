@@ -1,4 +1,4 @@
-package RecipeUserCase;
+package recipeUserCase;
 
 import Entities.Recipe;
 import Entities.RecipeList;
