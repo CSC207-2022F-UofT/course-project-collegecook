@@ -42,6 +42,10 @@ public class User {
         this.followed.add((User) followed);
     }
 
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
     public void RemoveFollowers(List<User> followers) {
         this.followers.remove((User) followers);
     }
