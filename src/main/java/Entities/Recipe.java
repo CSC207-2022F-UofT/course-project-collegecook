@@ -1,8 +1,9 @@
 package Entities;
 
 import java.util.List;
+import java.io.Serializable;
 
-public class Recipe {
+public class Recipe implements Serializable{
     private String recipe_name;
     private String procedure;
     private String cuisine;
@@ -10,11 +11,18 @@ public class Recipe {
     private int calories;
     private int time;
     private int difficulty;
+    private User creator;
 
 
-    public Recipe(String recipe_name, String procedure){
+    public Recipe(String recipe_name, String procedure, String cuisine, List<String> ingredients,
+                  int calories, int time, int difficulty){
         this.procedure = procedure;
         this.recipe_name = recipe_name;
+        this.cuisine = cuisine;
+        this.ingredients = ingredients;
+        this.calories = calories;
+        this.time = time;
+        this.difficulty = difficulty;
     }
 
     public String get_procedure(){return this.procedure;}
