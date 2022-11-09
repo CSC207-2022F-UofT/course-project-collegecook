@@ -1,4 +1,4 @@
-package Profile;
+package Profile.Controller;
 
 public class ProfileController {
 }
