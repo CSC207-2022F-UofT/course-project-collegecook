@@ -4,6 +4,7 @@ import Entities.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class UserManager {
     private List<User> AllUser;
@@ -14,7 +15,7 @@ public class UserManager {
 
     public void setAllUser(String username, String password) {
         for(User person :AllUser){
-            if (person.getUsername() == username){
+            if (Objects.equals(person.getUsername(), username)){
                 return something
             } else{
                 User UserName = new User(username, password);
