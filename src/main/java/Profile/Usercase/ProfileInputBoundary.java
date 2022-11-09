@@ -1,4 +1,4 @@
-package Profile;
+package Profile.Usercase;
 
 public interface ProfileInputBoundary {
 }

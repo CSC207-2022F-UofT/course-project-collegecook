@@ -1,4 +1,4 @@
-package Profile;
+package Profile.Presenter;
 
 public interface ProfilePresenter {
 }
