@@ -29,6 +29,7 @@ public class UserManager {
 
     // method to find the user in the allUsers and change the status to logged in
     // method to find the user in the allUsers and change the status to logged out
+    // method to find the user in the allUsers and add profile
 
     // method to find the user in the allUsers and add the other user in to the followed list(attribute of user),need to
     //check if the other user is already followed,also find the other user and add the user from the following list(attribute of user)
