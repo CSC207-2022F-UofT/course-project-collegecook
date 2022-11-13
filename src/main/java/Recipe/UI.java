@@ -50,7 +50,14 @@ public class UI {
 
     public static void main(String[] args) {
         UI ui = new UI();
-        ui.read();
+        Scanner myObj = new Scanner(System.in);
+        System.out.println("Create or Read?");
+        String step = myObj.nextLine();
+        if (step == "create"){
+            ui.create();
+        }else{
+            ui.read();
+        }
 
     }
 }
