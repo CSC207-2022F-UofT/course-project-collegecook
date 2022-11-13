@@ -1,7 +1,6 @@
 package Recipe;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+
 public class UI {
     public UI(){};
 
@@ -16,8 +15,10 @@ public class UI {
         System.out.println("Enter cuisine type");
         String cuisine = myObj.nextLine();
 
-//        System.out.println("Enter ingredients");
-//        String ingredients = myObj.nextLine();
+        System.out.println("Enter ingredients");
+        String ingredient = myObj.nextLine();
+        String[] ingredients_list = ingredient.split(",");
+        List<String> ingredients = new ArrayList<>(Arrays.asList(ingredients_list));
 
         System.out.println("Enter calories");
         int calories = myObj.nextInt();
@@ -27,9 +28,6 @@ public class UI {
 
         System.out.println("Enter difficulty");
         int difficulty = myObj.nextInt();
-
-        List<String> ingredients = new ArrayList<>();
-        ingredients.add("aa");
 
         RecipeController recipeController = new RecipeController();
         recipeController.performCreateRecipe(recipeName, procedure, cuisine , ingredients, calories, time, difficulty);
@@ -42,8 +40,8 @@ public class UI {
         Scanner myObj = new Scanner(System.in);
         System.out.println("Enter name");
         String name = myObj.nextLine();
-        RecipeInteractor recipeInteractor = new RecipeInteractor();
-        System.out.println(recipeInteractor.readRecipe(name));
+        RecipeController recipeController = new RecipeController();
+        recipeController.performReadRecipe(name);
     }
 
 
@@ -53,7 +51,7 @@ public class UI {
         Scanner myObj = new Scanner(System.in);
         System.out.println("Create or Read?");
         String step = myObj.nextLine();
-        if (step == "create"){
+        if (Objects.equals(step, "create")){
             ui.create();
         }else{
             ui.read();

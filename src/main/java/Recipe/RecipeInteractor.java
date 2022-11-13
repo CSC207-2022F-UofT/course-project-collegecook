@@ -5,6 +5,8 @@ import Entities.RecipeList;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
+import java.util.Scanner;
 
 public class RecipeInteractor {
     private RecipeRepoGateway srg = new RecipeRepoImpl();
@@ -34,11 +36,27 @@ public class RecipeInteractor {
     }
 
     public String readRecipe(String recipeName){
-        return this.recipeList.get_recipe(recipeName).get_procedure();
+        Recipe recipe = this.getRecipe(recipeName);
+        String procedure = "Procedure: " + recipe.get_procedure() + "\n";
+        String cuisine = "Cuisine: " + recipe.get_cuisine() + "\n";
+        String ingredients = "Ingredients: " + recipe.get_ingredients().toString() + "\n";
+        String calories = "Calories: " + recipe.get_calories() + "\n";
+        String time = "Time Required: " + recipe.get_time() + " minutes \n";
+        String difficulties = "Difficulty (out of 5): " + recipe.get_difficulty() + "\n";
+        return procedure + cuisine + ingredients + calories + time + difficulties;
+
     }
      public Recipe getRecipe(String recipeName){
             return this.recipeList.get_recipe(recipeName);
         }
 
+    public static void main(String[] args) {
+        RecipeInteractor recipeInteractor = new RecipeInteractor();
+        System.out.println(recipeInteractor.readRecipe("apple"));
 
+    }
 }
+
+
+
+
