@@ -24,7 +24,7 @@ public class ReviewDatabase {
     public static ArrayList<Review> getUserReviews(User user) {
         ArrayList<Review> answer = new ArrayList<>();
         for (Review review : reviews) {
-            if (review.getUser().getUsername().equals(user.getUsername())) {
+            if (review.getUser().equals(user)) {
                 answer.add(review);
             }
         }
@@ -40,7 +40,7 @@ public class ReviewDatabase {
     public static ArrayList<Review> getRecipeReviews(Recipe recipe) {
         ArrayList<Review> answer = new ArrayList<>();
         for (Review review : reviews) {
-            if (review.getRecipe() == recipe) {
+            if (review.getRecipe().equals(recipe)) {
                 answer.add(review);
             }
         }
