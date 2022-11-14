@@ -41,11 +41,13 @@ public class User {
         LoginStatus = loginStatus;
     }
 
-    public void addFollowers(List<User> followers) {
-        this.followers.add((User) followers);
+    public void addFollowers(User Other) {
+
+        this.followers.add(Other);
     }
-    public void addFollowed(List<User> followed) {
-        this.followed.add((User) followed);
+    public void addFollowed(User Other) {
+
+        this.followed.add(Other);
     }
 
     public void setProfile(Profile profile) {
@@ -58,6 +60,14 @@ public class User {
 
     public void RemoveFollowed(List<User> followed) {
         this.followed.remove((User) followed);
+    }
+
+    public List<User> getFollowers() {
+        return followers;
+    }
+
+    public List<User> getFollowed() {
+        return followed;
     }
 
     @Override
