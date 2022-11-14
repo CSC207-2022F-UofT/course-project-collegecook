@@ -57,8 +57,8 @@ public class RecipeInteractor implements RecipeInputBoundry {
         }
     }
 
-    public String getAll(){
-        return this.recipeList.get_all_name();
+    public RecipeList getAll(){
+        return this.recipeList;
     }
      public Recipe getRecipe(String recipeName){
             return this.recipeList.get_recipe(recipeName);

@@ -1,5 +1,7 @@
 package Recipe;
 
+import Entities.RecipeList;
+
 import java.util.List;
 
 public interface RecipeInputBoundry {
@@ -8,6 +10,6 @@ public interface RecipeInputBoundry {
 
     void readRecipe(String recipeName);
 
-    String getAll();
+    RecipeList getAll();
 
 }
