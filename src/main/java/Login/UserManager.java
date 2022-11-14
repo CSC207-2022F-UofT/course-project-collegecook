@@ -33,6 +33,14 @@ public class UserManager {
 
 
 
+    public boolean CheckLogin(String username, String password){
+        for(User person :AllUser){
+            if(Objects.equals(person.getUsername(), username) && Objects.equals(person.getPassword(), password)){
+                return true;}
+
+        }return false;
+    }
+
     // method to find the user in the allUsers and change the status to logged in
     public void Login(String username, String password){
         for(User person :AllUser){
@@ -40,9 +48,9 @@ public class UserManager {
                 person.setLoginStatus(true);}else{return something;}
 
             }
-
-
         }
+
+
 
     // method to find the user in the allUsers and change the status to logged out
     public void Logout(String username){

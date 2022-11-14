@@ -1,6 +1,8 @@
 package Entities;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 public class User {
 
     private String username;
@@ -58,7 +60,17 @@ public class User {
         this.followed.remove((User) followed);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return getUsername().equals(user.getUsername());
+    }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(getUsername());
+    }
 }
 
