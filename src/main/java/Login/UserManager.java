@@ -16,7 +16,7 @@ public class UserManager {
     public void setAllUser(String username, String password) {
         for(User person :AllUser){
             if (Objects.equals(person.getUsername(), username)){
-                return something
+                continue;
             } else{
                 User UserName = new User(username, password);
                 AllUser.add(UserName);
