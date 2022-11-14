@@ -12,5 +12,8 @@ public interface LoginOutputBound {
     void FollowedSuccess();
     void FollowedFail();
 
+    void UnFollowedSuccess();
+    void UnFollowedFail();
+
 
 }

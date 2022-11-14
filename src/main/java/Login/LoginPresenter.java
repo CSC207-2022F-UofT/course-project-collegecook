@@ -38,15 +38,26 @@ public class LoginPresenter implements LoginOutputBound{
 
     @Override
     public void FollowedSuccess() {
-        System.out.println("You have followed");
+        System.out.println("Followed successfully");
 
     }
 
     @Override
     public void FollowedFail() {
+        System.out.println("You have already followed this user");
 
     }
 
-// sent user message to re-enter a username when creating account
+    @Override
+    public void UnFollowedSuccess() {
+        System.out.println("Unfollowed successfully");
+
+    }
+
+    @Override
+    public void UnFollowedFail() {
+        System.out.println("Unfollow fail,You did not follow this user");
+
+    }
 
 }
