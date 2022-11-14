@@ -30,7 +30,7 @@ public class Review {
      * @param user the User that created this review
      * @param recipe the Recipe being reviewed
      * @param content the content of the review
-     * @param rating the reviews rating.
+     * @param rating the reviews rating
      */
 
     public Review (User user, Recipe recipe, String content, int rating) {
