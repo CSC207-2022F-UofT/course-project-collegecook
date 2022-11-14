@@ -16,6 +16,9 @@ public class UserManager {
         AllUser = new ArrayList<>();
     }
 
+    public List<User> getAllUser() {
+        return AllUser;
+    }
 
     public boolean CheckAllUser(String username) {
         for (User person : AllUser) {
@@ -72,7 +75,7 @@ public class UserManager {
     public void follow(String username, User other){
         for(User person :AllUser){
             if(Objects.equals(person.getUsername(), username)){
-                person.addFollowers(person.getFollowed());}else{return something;}
+                person.addFollowed(other);}else{return something;}
 
         }
 
