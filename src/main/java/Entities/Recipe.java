@@ -2,6 +2,7 @@ package Entities;
 
 import java.util.List;
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Recipe implements Serializable{
     private String recipe_name;
@@ -42,16 +43,16 @@ public class Recipe implements Serializable{
 
     public void set_ingredients(List<String> ingredients){this.ingredients = ingredients;}
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Recipe recipe = (Recipe) o;
+        return recipe_name.equals(recipe.recipe_name);
+    }
 
-
-
-
-
-
-
-
-
-
-
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(recipe_name);
+    }
 }

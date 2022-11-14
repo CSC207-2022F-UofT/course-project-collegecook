@@ -23,16 +23,17 @@ public class UI {
         System.out.println("Enter calories");
         int calories = myObj.nextInt();
 
+
         System.out.println("Enter time in minutes");
         int time = myObj.nextInt();
 
         System.out.println("Enter difficulty");
         int difficulty = myObj.nextInt();
 
-        RecipeController recipeController = new RecipeController();
+        RecipePresenter recipePresenter = new RecipePresenter();
+        RecipeInputBoundry recipeInputBoundry = new RecipeInteractor(recipePresenter);
+        RecipeController recipeController = new RecipeController(recipeInputBoundry);
         recipeController.performCreateRecipe(recipeName, procedure, cuisine , ingredients, calories, time, difficulty);
-        System.out.println(recipeController.result);
-
 
     }
 
@@ -40,7 +41,9 @@ public class UI {
         Scanner myObj = new Scanner(System.in);
         System.out.println("Enter name");
         String name = myObj.nextLine();
-        RecipeController recipeController = new RecipeController();
+        RecipePresenter recipePresenter = new RecipePresenter();
+        RecipeInputBoundry recipeInputBoundry = new RecipeInteractor(recipePresenter);
+        RecipeController recipeController = new RecipeController(recipeInputBoundry);
         recipeController.performReadRecipe(name);
     }
 

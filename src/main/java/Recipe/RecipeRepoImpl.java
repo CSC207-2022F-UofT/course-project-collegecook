@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.Map;
 
 public class RecipeRepoImpl implements RecipeRepoGateway{
-    private static final String file = "recipe.ser";
+    private static final String file = "recipe.sav";
 
     @Override
     public RecipeList getRecipeList() throws IOException {
