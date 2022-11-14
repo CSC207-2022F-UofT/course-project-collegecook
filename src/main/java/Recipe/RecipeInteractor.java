@@ -1,7 +1,7 @@
 package Recipe;
 
-import Entities.Recipe;
-import Entities.RecipeList;
+import entities.Recipe;
+import entities.RecipeList;
 
 import java.io.IOException;
 import java.util.List;

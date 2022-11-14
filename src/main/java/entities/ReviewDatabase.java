@@ -1,7 +1,6 @@
-package Entities;
+package entities;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class ReviewDatabase {
     private static ArrayList<Review> reviews = new ArrayList<Review>();

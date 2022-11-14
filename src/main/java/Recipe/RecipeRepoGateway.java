@@ -1,10 +1,8 @@
 package Recipe;
 
-import Entities.Recipe;
-import Entities.RecipeList;
+import entities.RecipeList;
 
 import java.io.IOException;
-import java.util.Map;
 
 public interface RecipeRepoGateway {
 

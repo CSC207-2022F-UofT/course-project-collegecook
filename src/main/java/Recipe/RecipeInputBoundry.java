@@ -1,6 +1,6 @@
 package Recipe;
 
-import Entities.RecipeList;
+import entities.RecipeList;
 
 import java.util.List;
 
