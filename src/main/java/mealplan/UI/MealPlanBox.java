@@ -1,4 +1,4 @@
-package Mealplan.UI;
+package mealplan.UI;
 
 import javax.swing.*;
 import java.awt.*;

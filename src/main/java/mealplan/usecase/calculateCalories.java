@@ -1,4 +1,4 @@
-package Mealplan.usecase;
+package mealplan.usecase;
 
 public class calculateCalories {
 }

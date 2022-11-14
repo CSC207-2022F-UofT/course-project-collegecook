@@ -2,7 +2,7 @@ package Recipe;
 import java.util.*;
 
 public class UI {
-    public UI(){};
+    public UI(){}
 
     public void create(){
         Scanner myObj = new Scanner(System.in);

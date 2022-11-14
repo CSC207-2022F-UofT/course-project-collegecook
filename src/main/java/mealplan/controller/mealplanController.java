@@ -1,4 +1,4 @@
-package Mealplan.controller;
+package mealplan.controller;
 
 public class mealplanController {
 }
