@@ -2,8 +2,9 @@ package Entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.io.Serializable;
 
-public class Mealplan {
+public class Mealplan implements Serializable{
 
     ArrayList<ArrayList<Recipe>> mealplan;
 
@@ -22,10 +23,12 @@ public class Mealplan {
     }
 
     public void deleteMealPlan(int meal){
+
         mealplan.set(meal, new ArrayList<Recipe>());
     }
 
-    public void computeTotalCalories(){
-
+    public int computeTotalCalories(){
+        int calories = 0;
+        return calories;
     }
 }
