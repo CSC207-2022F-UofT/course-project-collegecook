@@ -12,4 +12,6 @@ public interface RecipeInputBoundry {
 
     RecipeList getAll();
 
+    String getAllName();
+
 }
