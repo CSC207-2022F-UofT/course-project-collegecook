@@ -1,6 +1,6 @@
 package recipe;
 
-public class RecipePresenter implements RecipeOutputBoundry{
+public class RecipePresenter implements RecipeOutputBoundary{
     @Override
     public void createSuccessView() {
         System.out.println("Your recipe is created successfully!");

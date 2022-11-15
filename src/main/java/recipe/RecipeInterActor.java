@@ -5,23 +5,22 @@ import entities.RecipeList;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 
-public class RecipeInteractor implements RecipeInputBoundry {
+public class RecipeInterActor implements RecipeInputBoundary {
     private final RecipeRepoGateway rrg = new RecipeRepoImpl();
     private RecipeList recipeList;
-    final RecipeOutputBoundry recipeOutputBoundry;
+    final RecipeOutputBoundary recipeOutputBoundary;
 
 
-    public RecipeInteractor(RecipeOutputBoundry recipeOutputBoundry) {
-        this.recipeOutputBoundry = recipeOutputBoundry;
+    public RecipeInterActor(RecipeOutputBoundary recipeOutputBoundary) {
+        this.recipeOutputBoundary = recipeOutputBoundary;
 
         try {
             recipeList = rrg.getRecipeList();
         } catch (IOException e) {
             recipeList = new RecipeList();
-            System.out.println("Readfile failed.....");
+            System.out.println("Read file failed.....");
         }
     }
 
@@ -29,12 +28,12 @@ public class RecipeInteractor implements RecipeInputBoundry {
     public void createRecipe (String recipe_name, String procedure, String cuisine, ArrayList<String> ingredients,
                               int calories, int time, int difficulty){
         if (recipeList.contain(recipe_name)) {
-            recipeOutputBoundry.createFailureView();
+            recipeOutputBoundary.createFailureView();
         }else {
             recipeList.add_recipe(recipe_name, procedure, cuisine, ingredients, calories, time, difficulty);
             try {
                 rrg.saveRecipe(recipeList);
-                recipeOutputBoundry.createSuccessView();
+                recipeOutputBoundary.createSuccessView();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -52,9 +51,9 @@ public class RecipeInteractor implements RecipeInputBoundry {
             String time = "Time Required: " + recipe.get_time() + " minutes \n";
             String difficulties = "Difficulty (out of 5): " + recipe.get_difficulty() + "\n";
             String result = name + procedure + cuisine + ingredients + calories + time + difficulties;
-            recipeOutputBoundry.readSuccessView(result);
+            recipeOutputBoundary.readSuccessView(result);
         }else{
-            recipeOutputBoundry.readFailureView();
+            recipeOutputBoundary.readFailureView();
         }
     }
 

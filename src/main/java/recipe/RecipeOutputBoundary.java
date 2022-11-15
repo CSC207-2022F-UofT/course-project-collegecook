@@ -1,6 +1,6 @@
 package recipe;
 
-public interface RecipeOutputBoundry {
+public interface RecipeOutputBoundary {
     void createSuccessView();
     void createFailureView();
     void readSuccessView(String result);

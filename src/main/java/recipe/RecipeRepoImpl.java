@@ -12,8 +12,7 @@ public class RecipeRepoImpl implements RecipeRepoGateway{
         FileInputStream f = new FileInputStream(file);
         ObjectInputStream inputStream = new ObjectInputStream(f);
         try{
-            RecipeList newRecipe = (RecipeList) inputStream.readObject();
-            return newRecipe;
+            return (RecipeList) inputStream.readObject();
         } catch (ClassNotFoundException e){
             e.printStackTrace();
         }

@@ -31,8 +31,8 @@ public class UI {
         int difficulty = myObj.nextInt();
 
         RecipePresenter recipePresenter = new RecipePresenter();
-        RecipeInputBoundry recipeInputBoundry = new RecipeInteractor(recipePresenter);
-        RecipeController recipeController = new RecipeController(recipeInputBoundry);
+        RecipeInputBoundary recipeInputBoundary = new RecipeInterActor(recipePresenter);
+        RecipeController recipeController = new RecipeController(recipeInputBoundary);
         recipeController.performCreateRecipe(recipeName, procedure, cuisine , ingredients, calories, time, difficulty);
 
     }
@@ -42,8 +42,8 @@ public class UI {
         System.out.println("Enter name");
         String name = myObj.nextLine();
         RecipePresenter recipePresenter = new RecipePresenter();
-        RecipeInputBoundry recipeInputBoundry = new RecipeInteractor(recipePresenter);
-        RecipeController recipeController = new RecipeController(recipeInputBoundry);
+        RecipeInputBoundary recipeInputBoundary = new RecipeInterActor(recipePresenter);
+        RecipeController recipeController = new RecipeController(recipeInputBoundary);
         recipeController.performReadRecipe(name);
     }
 

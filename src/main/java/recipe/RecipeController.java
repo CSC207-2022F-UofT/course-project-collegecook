@@ -1,37 +1,27 @@
 package recipe;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class RecipeController {
 
-    String result;
-    RecipeInputBoundry recipeInputBoundry;
+    RecipeInputBoundary recipeInputBoundary;
 
-    public RecipeController(RecipeInputBoundry recipeInputBoundry) {
-        this.recipeInputBoundry = recipeInputBoundry;
+    public RecipeController(RecipeInputBoundary recipeInputBoundary) {
+        this.recipeInputBoundary = recipeInputBoundary;
     }
 
-    public String getResult() {
-        return this.result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
-    }
 
     public void performCreateRecipe(String recipe_name, String procedure, String cuisine, ArrayList<String> ingredients,
                                     int calories, int time, int difficulty) {
-        recipeInputBoundry.createRecipe(recipe_name, procedure, cuisine, ingredients, calories, time, difficulty);
+        recipeInputBoundary.createRecipe(recipe_name, procedure, cuisine, ingredients, calories, time, difficulty);
     }
 
     public void performReadRecipe(String recipeName) {
-        recipeInputBoundry.readRecipe(recipeName);
+        recipeInputBoundary.readRecipe(recipeName);
     }
 
-    public void performReadAllName() {
-        System.out.println(recipeInputBoundry.getAll());
-    }
+
 
 
 }
