@@ -4,9 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class MealPlanBox {
+public class MealPlanBoxUI {
     MealplanController mealplanController;
-    public MealPlanBox(){
+    public MealPlanBoxUI(){
         this.mealplanController = new MealplanController();
 
         JFrame mealplanbox = new JFrame("Meal Plan");
