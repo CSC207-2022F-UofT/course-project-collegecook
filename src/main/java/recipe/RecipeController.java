@@ -1,5 +1,6 @@
 package recipe;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeController {
@@ -19,7 +20,7 @@ public class RecipeController {
         this.result = result;
     }
 
-    public void performCreateRecipe(String recipe_name, String procedure, String cuisine, List<String> ingredients,
+    public void performCreateRecipe(String recipe_name, String procedure, String cuisine, ArrayList<String> ingredients,
                                     int calories, int time, int difficulty) {
         recipeInputBoundry.createRecipe(recipe_name, procedure, cuisine, ingredients, calories, time, difficulty);
     }

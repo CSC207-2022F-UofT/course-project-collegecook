@@ -4,6 +4,7 @@ import entities.Recipe;
 import entities.RecipeList;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,7 +26,7 @@ public class RecipeInteractor implements RecipeInputBoundry {
     }
 
 
-    public void createRecipe (String recipe_name, String procedure, String cuisine, List<String> ingredients,
+    public void createRecipe (String recipe_name, String procedure, String cuisine, ArrayList<String> ingredients,
                               int calories, int time, int difficulty){
         if (recipeList.contain(recipe_name)) {
             recipeOutputBoundry.createFailureView();

@@ -18,7 +18,7 @@ public class UI {
         System.out.println("Enter ingredients");
         String ingredient = myObj.nextLine();
         String[] ingredients_list = ingredient.split(",");
-        List<String> ingredients = new ArrayList<>(Arrays.asList(ingredients_list));
+        ArrayList<String> ingredients = new ArrayList<>(Arrays.asList(ingredients_list));
 
         System.out.println("Enter calories");
         int calories = myObj.nextInt();

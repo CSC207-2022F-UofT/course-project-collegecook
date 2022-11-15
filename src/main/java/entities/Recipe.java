@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
 import java.util.Objects;
@@ -8,14 +9,14 @@ public class Recipe implements Serializable{
     private String recipe_name;
     private String procedure;
     private String cuisine;
-    private List<String> ingredients;
+    private ArrayList<String> ingredients;
     private int calories;
     private int time;
     private int difficulty;
     private User creator;
 
 
-    public Recipe(String recipe_name, String procedure, String cuisine, List<String> ingredients,
+    public Recipe(String recipe_name, String procedure, String cuisine, ArrayList      <String> ingredients,
                   int calories, int time, int difficulty){
         this.procedure = procedure;
         this.recipe_name = recipe_name;
@@ -34,7 +35,7 @@ public class Recipe implements Serializable{
     public int get_time(){return this.time;}
     public int get_difficulty(){return this.difficulty;}
 
-    public List<String> get_ingredients(){return this.ingredients;}
+    public ArrayList<String> get_ingredients(){return this.ingredients;}
 
 
     @Override

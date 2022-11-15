@@ -6,7 +6,7 @@ import java.util.*;
 public class RecipeList implements Serializable{
     private final Map<String, Recipe> all_recipe = new HashMap<>() ;
 
-    public void add_recipe(String recipe_name, String procedure, String cuisine, List<String> ingredients,
+    public void add_recipe(String recipe_name, String procedure, String cuisine, ArrayList<String> ingredients,
                            int calories, int time, int difficulty){
         Recipe recipe = new Recipe(recipe_name, procedure, cuisine, ingredients, calories, time, difficulty);
         this.all_recipe.put(recipe_name, recipe);
@@ -18,10 +18,6 @@ public class RecipeList implements Serializable{
 
     public Boolean contain(String recipeName){
         return all_recipe.containsKey(recipeName);
-    }
-
-    public String get_all_name(){
-        return all_recipe.keySet().toString();
     }
 
 }
