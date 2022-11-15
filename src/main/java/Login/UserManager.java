@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static com.sun.tools.doclint.Entity.and;
-
 public class UserManager {
     private List<User> AllUser;
 
-    public UserManager() {
-        AllUser = new ArrayList<>();
+    final LoginOutputBound LoginOutputBound;
+
+    public UserManager(LoginOutputBound loginOutputBound) {
+        this.LoginOutputBound = loginOutputBound;
     }
 
     public List<User> getAllUser() {
@@ -41,7 +41,11 @@ public class UserManager {
     public void Login(String username, String password){
         for(User person :AllUser){
             if(Objects.equals(person.getUsername(), username) && Objects.equals(person.getPassword(), password)){
-                person.setLoginStatus(true);}else{return something;}
+                person.setLoginStatus(true);
+                LoginOutputBound.LoginSuccess();
+            }else{
+                LoginOutputBound.LoginFailed();
+                }
 
             }
         }
