@@ -29,7 +29,7 @@ public class RecipeController {
     }
 
     public void performReadAllName() {
-        System.out.println(recipeInputBoundry.getAll());
+        System.out.println(recipeInputBoundry.getAllName());
     }
 
 
