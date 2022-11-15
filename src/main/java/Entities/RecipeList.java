@@ -1,27 +1,18 @@
 package Entities;
 
+
 import java.io.Serializable;
-<<<<<<< HEAD
-import java.util.HashMap;
-import java.util.Map;
-=======
 import java.util.*;
->>>>>>> e753dc391b5bd7aff111f4a1a626ee89c178afb9
 
-public class RecipeList implements Serializable{
+public class RecipeList implements Serializable, Iterable<Recipe>{
     private final Map<String, Recipe> all_recipe = new HashMap<>() ;
+    private int recipe_size;
 
-<<<<<<< HEAD
-    public void add_recipe(Recipe recipe){
-        this.all_recipe.put(recipe.get_recipe_name(), recipe);
-    }
-    public Recipe get_recipe(String recipename){
-        return all_recipe.get(recipename);
-=======
     public void add_recipe(String recipe_name, String procedure, String cuisine, List<String> ingredients,
                            int calories, int time, int difficulty){
         Recipe recipe = new Recipe(recipe_name, procedure, cuisine, ingredients, calories, time, difficulty);
         this.all_recipe.put(recipe_name, recipe);
+        this.recipe_size = all_recipe.size();
     }
     public Recipe get_recipe(String recipeName){
 
@@ -34,7 +25,27 @@ public class RecipeList implements Serializable{
 
     public String get_all_name(){
         return all_recipe.keySet().toString();
->>>>>>> e753dc391b5bd7aff111f4a1a626ee89c178afb9
     }
 
+    @Override
+    public Iterator<Recipe> iterator() {
+        return new RecipeIterator();
+    }
+
+    private class RecipeIterator implements Iterator<Recipe>{
+        int curr = 0;
+        int max = recipe_size;
+        Recipe[] recipes = all_recipe.values().toArray(new Recipe[max]);
+
+        @Override
+        public boolean hasNext() {
+            return curr < recipe_size;
+        }
+
+        @Override
+        public Recipe next() {
+            return recipes[curr++];
+        }
+    }
 }
+
