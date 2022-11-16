@@ -2,8 +2,8 @@ package Entities;
 
 public class UserCalories {
 
-    public static int getUserCalories(){
-        Profile pro = new Profile(new User("hi","tyy"));
+    public static int getUserCalories(User user){
+        Profile pro = new Profile(user);
         int weight = pro.getWeight();
         int height = pro.getHeight();
         boolean gender = pro.getGender();

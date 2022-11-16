@@ -1,23 +1,30 @@
 package Mealplan;
 
-import Entities.Recipe;
+import Entities.*;
+
+import java.io.IOException;
 
 public class MealplanController {
+    MealplanInputBoundary mealplanInputBoundary;
+    public MealplanController(MealplanInputBoundary mealplanInputBoundary) {
+        this.mealplanInputBoundary=mealplanInputBoundary;
+    }
 
-    MealplanInteractor mealplaninteractor = new MealplanInteractor();
 
-    public String getCalories(){
-        String result;
-        result = "Recommended:" + mealplaninteractor.computeCalories().get(0) + "cal; " +
-        "Total:" + mealplaninteractor.computeCalories().get(1);
-        return result;
+    public void getCalories(){
+        mealplanInputBoundary.computeCalories();
     }
 
     public void addMealplan(Recipe r, int meal){
-        mealplaninteractor.addMealplan(r, meal);
+        mealplanInputBoundary.addMealplan(r, meal);
     }
 
     public void deleteMealplan(int meal){
-        mealplaninteractor.deleteMealplan(meal);
+        mealplanInputBoundary.deleteMealplan(meal);
     }
+
+    public void saveMealplan() throws IOException {
+        mealplanInputBoundary.saveMealplan();
+    }
+
 }

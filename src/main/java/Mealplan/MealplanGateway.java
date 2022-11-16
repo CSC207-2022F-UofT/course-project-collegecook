@@ -3,7 +3,7 @@ import Entities.MealplanList;
 
 import java.io.IOException;
 
-public interface MealPlanGateway {
+public interface MealplanGateway {
     /**
      * @param filepath location of ser file
      * @param o object to be serialized

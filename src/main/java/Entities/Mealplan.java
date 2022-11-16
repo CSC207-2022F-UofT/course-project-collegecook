@@ -1,7 +1,6 @@
 package Entities;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.io.Serializable;
 
 public class Mealplan implements Serializable{
@@ -28,7 +27,12 @@ public class Mealplan implements Serializable{
     }
 
     public int computeTotalCalories(){
-        int calories = 0;
-        return calories;
+        int cal = 0;
+        for (ArrayList<Recipe> l : mealplan){
+            for (Recipe r : l){
+                cal = cal + r.get_calories();
+            }
+        }
+        return cal;
     }
 }

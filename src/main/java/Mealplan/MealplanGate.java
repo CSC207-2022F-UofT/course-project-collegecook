@@ -4,7 +4,7 @@ import Entities.MealplanList;
 
 import java.io.*;
 
-public class MealplanGate implements MealPlanGateway {
+public class MealplanGate implements MealplanGateway {
     String filePath = "C:\\Users\\lucia\\Desktop";
 
 

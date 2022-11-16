@@ -3,20 +3,26 @@ package Mealplan;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+import Recipe.*;
 
-public class MealPlanBoxUI {
+import Entities.*;
+
+public class MealplanBoxUI {
     MealplanController mealplanController;
-    public MealPlanBoxUI(){
-        this.mealplanController = new MealplanController();
 
-        JFrame mealplanbox = new JFrame("Meal Plan");
-        JPanel panel_b = new JPanel();
-        JPanel panel_l = new JPanel();
-        JPanel panel_d = new JPanel();
-        JPanel panel_cal = new JPanel();
-        JLabel label_b = new JLabel("Breakfast");
-        JLabel label_l = new JLabel("Lunch");
-        JLabel label_d = new JLabel("Dinner");
+    JFrame mealplanbox = new JFrame("Meal Plan");
+    JPanel panel_b = new JPanel();
+    JPanel panel_l = new JPanel();
+    JPanel panel_d = new JPanel();
+    JPanel panel_s = new JPanel();
+    JPanel panel_cal = new JPanel();
+    JLabel label_b = new JLabel("Breakfast");
+    JLabel label_l = new JLabel("Lunch");
+    JLabel label_d = new JLabel("Dinner");
+    public MealplanBoxUI(MealplanController mealplanController){
+        this.mealplanController = mealplanController;
+
         JButton button_b = new JButton( new AbstractAction("delete") {
             @Override
             public void actionPerformed( ActionEvent e ) {
@@ -41,8 +47,18 @@ public class MealPlanBoxUI {
         JButton button_cal = new JButton( new AbstractAction("calculate calories") {
             @Override
             public void actionPerformed( ActionEvent e ) {
-                JLabel label_cal = new JLabel(mealplanController.getCalories());
-                panel_cal.add(label_cal);
+                mealplanController.getCalories();
+            }
+        });
+
+        JButton button_save = new JButton( new AbstractAction("Save") {
+            @Override
+            public void actionPerformed( ActionEvent e ) {
+                try {
+                    mealplanController.saveMealplan();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 
@@ -57,7 +73,8 @@ public class MealPlanBoxUI {
         panel_b.add(button_b);
         panel_l.add(button_l);
         panel_d.add(button_d);
-        panel_d.add(button_cal);
+        panel_s.add(button_cal);
+        panel_s.add(button_save);
 
         mealplanbox.add(panel_b);
         mealplanbox.add(panel_l);
@@ -70,7 +87,24 @@ public class MealPlanBoxUI {
         mealplanbox.setVisible(true);
     }
 
+    public void setMealplan(String recipe, int meal){
 
+        JButton button_m = new JButton( new AbstractAction(recipe) {
+            @Override
+            public void actionPerformed( ActionEvent e ) {
+
+            }
+        });
+
+        if (meal == 0){
+            panel_b.add(button_m);
+
+        } else if (meal == 1) {
+            panel_l.add(button_m);
+        } else {
+            panel_d.add(button_m);
+        }
+    }
 
 
 }
