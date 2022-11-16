@@ -3,10 +3,10 @@ package Mealplan;
 import Entities.Recipe;
 
 import java.io.IOException;
-import java.util.List;
+import Recipe.*;
 
 public interface MealplanInputBoundary {
-    void addMealplan(Recipe r, int meal);
+    void addMealplan(Recipe r, int meal,RecipeController recipeController);
 
     void computeCalories();
 

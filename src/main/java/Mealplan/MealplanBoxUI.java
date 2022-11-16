@@ -87,12 +87,12 @@ public class MealplanBoxUI {
         mealplanbox.setVisible(true);
     }
 
-    public void setMealplan(String recipe, int meal){
+    public void setMealplan(String recipe, int meal, RecipeController recipeController){
 
         JButton button_m = new JButton( new AbstractAction(recipe) {
             @Override
             public void actionPerformed( ActionEvent e ) {
-
+                recipeController.performReadRecipe(recipe);
             }
         });
 

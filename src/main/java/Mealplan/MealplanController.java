@@ -1,6 +1,7 @@
 package Mealplan;
 
 import Entities.*;
+import Recipe.*;
 
 import java.io.IOException;
 
@@ -15,8 +16,8 @@ public class MealplanController {
         mealplanInputBoundary.computeCalories();
     }
 
-    public void addMealplan(Recipe r, int meal){
-        mealplanInputBoundary.addMealplan(r, meal);
+    public void addMealplan(Recipe r, int meal, RecipeController recipeController){
+        mealplanInputBoundary.addMealplan(r, meal, recipeController);
     }
 
     public void deleteMealplan(int meal){

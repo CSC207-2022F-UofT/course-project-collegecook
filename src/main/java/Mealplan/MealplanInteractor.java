@@ -4,6 +4,7 @@ import Entities.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import Recipe.*;
 
 public class MealplanInteractor implements MealplanInputBoundary{
     String filePath = "C:\\Users\\lucia\\Desktop";
@@ -34,9 +35,9 @@ public class MealplanInteractor implements MealplanInputBoundary{
     }
 
 
-    public void addMealplan(Recipe r, int meal){
+    public void addMealplan(Recipe r, int meal, RecipeController recipeController){
         this.mealplan.addMealPlan(r, meal);
-        mealplanout.addRecipe(r.get_recipe_name(),meal);
+        mealplanout.addRecipe(r.get_recipe_name(), meal, recipeController);
     }
 
     public void computeCalories(){
