@@ -54,12 +54,12 @@ public class User {
         this.profile = profile;
     }
 
-    public void RemoveFollowers(List<User> followers) {
-        this.followers.remove((User) followers);
+    public void RemoveFollowers(User other) {
+        this.followers.remove(other);
     }
 
-    public void RemoveFollowed(List<User> followed) {
-        this.followed.remove((User) followed);
+    public void RemoveFollowed(User other) {
+        this.followed.remove(other);
     }
 
     public List<User> getFollowers() {

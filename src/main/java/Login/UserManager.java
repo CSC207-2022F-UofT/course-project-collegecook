@@ -105,10 +105,35 @@ public class UserManager {
 
     }
 
-
     // method to find the user in the allUsers and remove the other user in to the followed list(attribute of user),need to
     //check if the other user is already followed,also find the other user and remove the user from the following list(attribute of user)
+    public boolean CheckUnFollow(String username, User other){
+        for(User person :AllUser){
+            if(Objects.equals(person.getUsername(), username)){
+                if (person.getFollowed().contains(other)){
+                    return true;
+                }
+            }
+        }
+        LoginOutputBound.UnFollowedFail();
+        return false;
 
+    }
+
+    // remove Other from user.followed
+    //remove user from other.following
+    public void Unfollow(String username, User other){
+        for(User person :AllUser){
+            if(Objects.equals(person.getUsername(), username)){
+                person.RemoveFollowed(other);
+                other.RemoveFollowers(person);
+                LoginOutputBound.UnFollowedSuccess();
+            }
+
+        }
+
+
+    }
 
 
 }
