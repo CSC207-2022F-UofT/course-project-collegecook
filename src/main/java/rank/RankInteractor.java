@@ -2,6 +2,7 @@ package rank;
 
 public class RankInteractor implements RankInputBoundary{
 
+    // The only input accepted are "Average Rating" , "Total Followers", "Total Number of Recipe"
     final RankOutputBoundary rankOutputBoundary;
     public RankInteractor(RankOutputBoundary rankOutputBoundary) {
         this.rankOutputBoundary = rankOutputBoundary;
