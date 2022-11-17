@@ -24,6 +24,7 @@ public class UserManager {
     public boolean CheckAllUser(String username) {
         for (User person : AllUser) {
             if (Objects.equals(person.getUsername(), username)) {
+                LoginOutputBound.CreatAccountFail();
                 return false;
             }
         }return true;
@@ -34,6 +35,7 @@ public class UserManager {
 
         User CollegeCook = new User(username, password);
         AllUser.add(CollegeCook);
+        LoginOutputBound.CreatAccountSuccess();
     }
 
 
