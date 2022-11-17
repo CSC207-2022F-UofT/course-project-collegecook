@@ -1,4 +1,4 @@
-    package Rank;
+    package rank;
 
 public class RankController {
     final RankInputBoundary rankInput;
@@ -7,6 +7,7 @@ public class RankController {
     }
 
     RankResponseModel sort(String ranking) {
+        ranking = ranking.toLowerCase().strip();
         RankRequestModel requestModel = new RankRequestModel(ranking);
 
         return rankInput.sort(requestModel);

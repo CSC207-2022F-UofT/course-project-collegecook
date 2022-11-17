@@ -1,4 +1,4 @@
-package Rank;
+package rank;
 
 public class RankRequestModel {
     private String ranking;

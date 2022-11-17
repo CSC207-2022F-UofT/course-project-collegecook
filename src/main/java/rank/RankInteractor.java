@@ -1,10 +1,10 @@
-package Rank;
+package rank;
 
 public class RankInteractor implements RankInputBoundary{
 
-    final RankPresenter rankPresenter;
-    public RankInteractor(RankPresenter rankPresenter) {
-        this.rankPresenter = rankPresenter;
+    final RankOutputBoundary rankOutputBoundary;
+    public RankInteractor(RankOutputBoundary rankOutputBoundary) {
+        this.rankOutputBoundary = rankOutputBoundary;
     }
     @Override
     public RankResponseModel sort(RankRequestModel requestModel) {
@@ -28,7 +28,7 @@ public class RankInteractor implements RankInputBoundary{
             // RankResponseModel rankResponseModel = new RankResponseModel(requestModel.getRanking(), sortedUsers;
             // return rankPresenter.prepareSuccessView(rankResponseModel);
         }
-        return rankPresenter.prepareFailView("Can not identify this rank. Please choose one of the following options: Average Rating, Total Followers, Total Number of Recipe");
+        return rankOutputBoundary.prepareFailView("Can not identify this rank. Please choose one of the following options: Average Rating, Total Followers, Total Number of Recipe");
 
 
     }
