@@ -20,6 +20,7 @@ public class UserManager {
         return AllUser;
     }
 
+    //Used refactoring (design pattern) to factor out check method to make sure no users has same username when creating new account
     public boolean CheckAllUser(String username) {
         for (User person : AllUser) {
             if (Objects.equals(person.getUsername(), username)) {
@@ -51,12 +52,12 @@ public class UserManager {
         }
 
 
-
     // method to find the user in the allUsers and change the status to logged out
     public void Logout(String username){
         for(User person :AllUser){
             if(Objects.equals(person.getUsername(), username)){
-                person.setLoginStatus(false);}else{return something;}
+                person.setLoginStatus(false);
+            }else{LoginOutputBound.LogoutFail();}
 
         }
 
@@ -67,28 +68,43 @@ public class UserManager {
     public void AddProfile(String username, Profile profile){
         for(User person :AllUser){
             if(Objects.equals(person.getUsername(), username)){
-                person.setProfile(profile);}else{return something;}
+                person.setProfile(profile);}else{LoginOutputBound.AddProfile();}
 
         }
 
-
     }
+
+    //Check if user already followed this other user(refactoring)
+    public boolean CheckFollow(String username, User other){
+        for(User person :AllUser){
+            if(Objects.equals(person.getUsername(), username)){
+                if (person.getFollowed().contains(other)){
+                    LoginOutputBound.FollowedFail();
+                    return false;
+                }
+            }
+            }return true;
+
+        }
+
     //a user want to follow another user
+    // add other to user.followed
+    //other.follower add user
     // method to find the user in the allUsers and add the other user in to the followed list(attribute of user),need to
     //check if the other user is already followed,also find the other user and add the user from the following list(attribute of user)
     public void follow(String username, User other){
         for(User person :AllUser){
             if(Objects.equals(person.getUsername(), username)){
-                person.addFollowed(other);}else{return something;}
+                person.addFollowed(other);
+                other.addFollowers(person);
+                LoginOutputBound.FollowedSuccess();
+            }
 
         }
 
 
     }
 
-
-    // method to find the user in the allUsers and add the other user in to the followed list(attribute of user),need to
-    //check if the other user is already followed,also find the other user and add the user from the following list(attribute of user)
 
     // method to find the user in the allUsers and remove the other user in to the followed list(attribute of user),need to
     //check if the other user is already followed,also find the other user and remove the user from the following list(attribute of user)

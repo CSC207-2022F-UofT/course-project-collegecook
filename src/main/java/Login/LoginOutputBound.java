@@ -6,7 +6,6 @@ public interface LoginOutputBound {
     void CreatAccountSuccess();
     void CreatAccountFail();
 
-    void LogoutSuccess();
     void LogoutFail();
 
     void FollowedSuccess();
@@ -14,6 +13,7 @@ public interface LoginOutputBound {
 
     void UnFollowedSuccess();
     void UnFollowedFail();
+    void AddProfile();
 
 
 }
