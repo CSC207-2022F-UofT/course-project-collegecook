@@ -16,8 +16,8 @@ public class MealplanController {
         mealplanInputBoundary.computeCalories();
     }
 
-    public void addMealplan(Recipe r, int meal, RecipeController recipeController){
-        mealplanInputBoundary.addMealplan(r, meal, recipeController);
+    public void addMealplan(Recipe r, int meal, RecipeInteractor recipeInteractor){
+        mealplanInputBoundary.addMealplan(r, meal, recipeInteractor);
     }
 
     public void deleteMealplan(int meal){

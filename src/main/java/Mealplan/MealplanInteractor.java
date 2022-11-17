@@ -35,9 +35,9 @@ public class MealplanInteractor implements MealplanInputBoundary{
     }
 
 
-    public void addMealplan(Recipe r, int meal, RecipeController recipeController){
+    public void addMealplan(Recipe r, int meal, RecipeInteractor recipeInteractor){
         this.mealplan.addMealPlan(r, meal);
-        mealplanout.addRecipe(r.get_recipe_name(), meal, recipeController);
+        mealplanout.addRecipe(r.get_recipe_name(), meal, recipeInteractor);
     }
 
     public void computeCalories(){

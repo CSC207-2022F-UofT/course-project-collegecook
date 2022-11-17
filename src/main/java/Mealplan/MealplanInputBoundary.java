@@ -6,7 +6,7 @@ import java.io.IOException;
 import Recipe.*;
 
 public interface MealplanInputBoundary {
-    void addMealplan(Recipe r, int meal,RecipeController recipeController);
+    void addMealplan(Recipe r, int meal, RecipeInteractor recipeInteractor);
 
     void computeCalories();
 

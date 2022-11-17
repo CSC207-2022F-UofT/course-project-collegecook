@@ -8,7 +8,7 @@ import Recipe.*;
 
 import Entities.*;
 
-public class MealplanBoxUI {
+public class MealplanBoxUI implements MealplanBox{
     MealplanController mealplanController;
 
     JFrame mealplanbox = new JFrame("Meal Plan");
@@ -87,12 +87,12 @@ public class MealplanBoxUI {
         mealplanbox.setVisible(true);
     }
 
-    public void setMealplan(String recipe, int meal, RecipeController recipeController){
+    public void setMealplan(String recipe, int meal, RecipeInteractor recipeInteractor){
 
         JButton button_m = new JButton( new AbstractAction(recipe) {
             @Override
             public void actionPerformed( ActionEvent e ) {
-                recipeController.performReadRecipe(recipe);
+                recipeInteractor.readRecipe(recipe);
             }
         });
 

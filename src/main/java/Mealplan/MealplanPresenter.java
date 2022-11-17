@@ -1,12 +1,13 @@
 package Mealplan;
 
 import Recipe.RecipeController;
+import Recipe.RecipeInteractor;
 
 import java.util.List;
 
 public class MealplanPresenter implements MealplanOutputBoundary{
-    private final MealplanBoxUI UI;
-    public MealplanPresenter(MealplanBoxUI UI){
+    private final MealplanBox UI;
+    public MealplanPresenter(MealplanBox UI){
         this.UI = UI;
     }
     @Override
@@ -16,8 +17,8 @@ public class MealplanPresenter implements MealplanOutputBoundary{
     }
 
     @Override
-    public void addRecipe(String recipe, int meal, RecipeController recipeController) {
-        UI.setMealplan(recipe, meal, recipeController);
+    public void addRecipe(String recipe, int meal, RecipeInteractor recipeInteractor) {
+        UI.setMealplan(recipe, meal, recipeInteractor);
     }
 
 
