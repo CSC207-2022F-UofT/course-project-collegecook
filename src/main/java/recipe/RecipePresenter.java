@@ -1,20 +1,30 @@
 package recipe;
 
+import ui.CreateRecipeUI;
+import ui.ViewRecipeUI;
+
 public class RecipePresenter implements RecipeOutputBoundary{
+    CreateRecipeUI createRecipeUI;
+    ViewRecipeUI viewRecipeUI;
+
+    public RecipePresenter(CreateRecipeUI createRecipeUI) {
+        this.createRecipeUI = createRecipeUI;
+    }
+
+    public RecipePresenter(){}
+
+
     @Override
     public void createSuccessView() {
-        System.out.println("Your recipe is created successfully!");
+        createRecipeUI.success();
     }
 
     @Override
-    public void createFailureView() {
-        System.out.println("The recipe's name is already existed.");
-    }
+    public void createFailureView() {createRecipeUI.failure();}
 
     @Override
     public void readSuccessView(String result) {
-        System.out.println("This is the recipe you are looking for.");
-        System.out.println(result);
+        viewRecipeUI = new ViewRecipeUI(result);
     }
 
     @Override
