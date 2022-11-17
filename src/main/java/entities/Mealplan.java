@@ -24,7 +24,13 @@ public class Mealplan {
         mealplan.set(meal, new ArrayList<Recipe>());
     }
 
-    public void computeTotalCalories(){
-
+    public int computeTotalCalories(){
+        int cal = 0;
+        for (ArrayList<Recipe> l : mealplan){
+            for (Recipe r : l){
+                cal = cal + r.get_calories();
+            }
+        }
+        return cal;
     }
 }

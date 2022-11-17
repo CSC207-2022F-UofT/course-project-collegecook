@@ -6,13 +6,17 @@ public class Profile {
 
     private ArrayList<Recipe> reviewed;
     private ArrayList<Recipe> created;
+    private String username;
     private int age;
     private int height;
     private int weight;
+    private boolean gender;
 
-    public Profile() {
+
+    public Profile(String username) {
         this.reviewed = new ArrayList<>();
         this.created = new ArrayList<>();
+        this.username = username;
     }
 
     public int getAge() {
@@ -27,11 +31,17 @@ public class Profile {
         return weight;
     }
 
+    public boolean getGender() {
+        return gender;
+    }
+
     public void setAge(int age) { this.age = age; }
 
     public void setHeight(int height) { this.height = height; }
 
     public void setWeight(int weight) { this.weight = weight; }
+
+    public void setGender(boolean gender) { this.gender = gender; }
 
     public void storeallreviewed(){
         //get all reviewed recipes from somewhere in Review,
