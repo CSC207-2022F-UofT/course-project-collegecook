@@ -5,7 +5,7 @@ public class Review {
     private final String username;
     private final Recipe reviewedRecipe;
     private String reviewContent = "";
-    private int rating;
+    private final int rating;
 
     /**
      * Construct a Review, with the
