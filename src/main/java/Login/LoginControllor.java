@@ -1,7 +1,12 @@
 package Login;
 
 public class LoginControllor {
-    public UserManager userManager;
+    UserManager userManager;
+
+    public boolean PerformCheckAllUser(String username){
+        userManager.CheckAllUser(username);
+
+    }
 
 
 
