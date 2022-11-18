@@ -1,6 +1,6 @@
 package sort;
 
-import Entities.Recipe;
+import entities.Recipe;
 
 import java.util.Comparator;
 
