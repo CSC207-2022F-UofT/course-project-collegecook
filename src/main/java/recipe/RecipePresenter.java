@@ -11,7 +11,9 @@ public class RecipePresenter implements RecipeOutputBoundary{
         this.createRecipeUI = createRecipeUI;
     }
 
-    public RecipePresenter(){}
+    public RecipePresenter(ViewRecipeUI viewRecipeUI){
+        this.viewRecipeUI = viewRecipeUI;
+    }
 
 
     @Override
@@ -24,11 +26,9 @@ public class RecipePresenter implements RecipeOutputBoundary{
 
     @Override
     public void readSuccessView(String result) {
-        viewRecipeUI = new ViewRecipeUI(result);
+        viewRecipeUI.success(result);
     }
 
     @Override
-    public void readFailureView() {
-        System.out.println("Sorry, the recipe doesn't exist.");
-    }
+    public void readFailureView(){viewRecipeUI.failure();}
 }

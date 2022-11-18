@@ -10,11 +10,14 @@ import java.awt.event.ActionListener;
 public class ViewRecipeUI extends JFrame {
     JPanel view = new JPanel();
     JLabel all;
-    JButton read = new JButton("Read");
-    RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();
+    JLabel user;
+    RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter(this);
 
-    public ViewRecipeUI(String result){
+    public ViewRecipeUI(){
         view.setLayout(new BoxLayout(view, BoxLayout.Y_AXIS));
+    }
+
+    public void success(String result){
         all = new JLabel(result);
         all.setText("<html>" + result.replaceAll("<","&lt;").replaceAll(">", "&gt;").
                 replaceAll("\n", "<br/>") + "</html>");
@@ -28,11 +31,17 @@ public class ViewRecipeUI extends JFrame {
         buttonPanel.add(review);
         buttonPanel.add(mealPlan);
         view.add(buttonPanel);
-
         this.add(view);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.pack();
         this.setVisible(true);
     }
 
+    public void failure(){
+        JOptionPane.showMessageDialog(null,"Sorry, the recipe doesn't exist");
+    }
+    public static void main(String[] args){
+        ViewRecipeUI m = new ViewRecipeUI();
+        m.success("a");
+    }
 }
