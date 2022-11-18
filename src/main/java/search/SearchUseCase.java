@@ -2,11 +2,13 @@ package search;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.ToDoubleFunction;
 
 public class SearchUseCase {
-    List<String> searchResults = new ArrayList<String>();
+    static List<String> searchResults = new ArrayList<String>();
 
-    public List<String> getSearchResults(){
+    // #TODO: implement searchForRecipes: get matching recipes from RecipeList
+    public static List<String> getSearchResults(){
         return searchResults;
     }
 }
