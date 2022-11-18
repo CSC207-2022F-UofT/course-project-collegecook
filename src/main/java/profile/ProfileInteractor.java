@@ -41,7 +41,7 @@ public class ProfileInteractor implements ProfileInputBoundary{
         outputboundary.view_created(result);
     }
 
-    private Profile check_profile(String username) throws IOException {
+    public Profile check_profile(String username) throws IOException {
         for (Profile p: profile_list){
             if (p.getUsername().equals(username)){
                 return p;

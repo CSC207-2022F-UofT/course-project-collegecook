@@ -3,10 +3,20 @@ package recipe;
 import entities.RecipeList;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class RecipeRepoImpl implements RecipeRepoGateway{
     private static final String file = "recipe.sav";
+    private static RecipeRepoImpl recipeRepoImpl;
 
+    private RecipeRepoImpl(){}
+
+    public static RecipeRepoImpl getRecipeRepoImpl(){
+        if (recipeRepoImpl == null){
+            recipeRepoImpl = new RecipeRepoImpl();
+        }
+        return recipeRepoImpl;
+    }
     @Override
     public RecipeList getRecipeList() throws IOException {
         FileInputStream f = new FileInputStream(file);
@@ -27,4 +37,5 @@ public class RecipeRepoImpl implements RecipeRepoGateway{
         outputStream.writeObject(recipeList);
         f2.close();
     }
+
 }

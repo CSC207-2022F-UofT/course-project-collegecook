@@ -1,4 +1,6 @@
 package recipe;
+import ui.CreateRecipeUI;
+
 import java.util.*;
 
 public class UI {
@@ -30,10 +32,10 @@ public class UI {
         System.out.println("Enter difficulty");
         int difficulty = myObj.nextInt();
 
-        RecipePresenter recipePresenter = new RecipePresenter();
-        RecipeInputBoundary recipeInputBoundary = new RecipeInterActor(recipePresenter);
+        RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter(new CreateRecipeUI(""));
+        RecipeInputBoundary recipeInputBoundary = new RecipeInterActor(recipeOutputBoundary);
         RecipeController recipeController = new RecipeController(recipeInputBoundary);
-        recipeController.performCreateRecipe(recipeName, procedure, cuisine , ingredients, calories, time, difficulty);
+        recipeController.performCreateRecipe(recipeName, procedure, cuisine , ingredients, calories, time, difficulty,"");
 
     }
 
@@ -41,7 +43,7 @@ public class UI {
         Scanner myObj = new Scanner(System.in);
         System.out.println("Enter name");
         String name = myObj.nextLine();
-        RecipePresenter recipePresenter = new RecipePresenter();
+        RecipePresenter recipePresenter = new RecipePresenter(new CreateRecipeUI(""));
         RecipeInputBoundary recipeInputBoundary = new RecipeInterActor(recipePresenter);
         RecipeController recipeController = new RecipeController(recipeInputBoundary);
         recipeController.performReadRecipe(name);
