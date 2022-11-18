@@ -11,11 +11,11 @@ public class ProfileController {
         this.inputBoundary = inputBoundary;
     }
 
-    public void performAllCreated(String username) {
+    public void performAllCreated(String username) throws IOException {
         inputBoundary.all_created(username);
     }
 
-    public void performAllReviewed(String username) {
+    public void performAllReviewed(String username) throws IOException {
         inputBoundary.all_reviewed(username);
     }
 
