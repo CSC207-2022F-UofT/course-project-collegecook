@@ -1,4 +1,4 @@
 package review;
 
-public class createReview {
+public class CreateReview {
 }
