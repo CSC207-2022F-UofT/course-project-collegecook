@@ -1,4 +1,4 @@
-package Review;
+package review;
 
 public interface reviewOutputBoundary {
 }
