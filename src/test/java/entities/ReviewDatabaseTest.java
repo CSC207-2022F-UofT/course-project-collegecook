@@ -1,10 +1,8 @@
 package entities;
 
-import org.junit.BeforeClass;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
@@ -48,6 +46,7 @@ class ReviewDatabaseTest {
         ReviewDatabase.addReview(rev4);
         ReviewDatabase.addReview(rev5);
         }
+
 
     @Test
     public void TestGetUserReviews() {
