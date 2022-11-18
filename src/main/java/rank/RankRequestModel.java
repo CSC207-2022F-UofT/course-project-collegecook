@@ -13,6 +13,7 @@ public class RankRequestModel {
     public RankRequestModel(String ranking) {
         this.ranking = ranking;
     }
+
     /**
      * A getter function that returns the variable chosen by
      * the user.
