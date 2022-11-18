@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ReviewTest {
     Review rev;
     Recipe sampleRecipe;
-    User sampleUser;
 
     @BeforeEach
     public void setUp(){
@@ -19,8 +18,7 @@ public class ReviewTest {
         ingredients.add("sauce");
         sampleRecipe = new Recipe("spaghetti", "Just cook it",
                 "italy", ingredients, 500, 10, 3);
-        sampleUser = new User("Bob", "123456");
-        rev = new Review(sampleUser, sampleRecipe, "tasted terrible", 1);
+        rev = new Review("bob", sampleRecipe, "tasted terrible", 1);
     }
 
     @AfterEach
@@ -37,8 +35,8 @@ public class ReviewTest {
 
     @Test
     public void TestGetUser() {
-        User expected = sampleUser;
-        User actual = rev.getUser();
+        String expected = "bob";
+        String actual = rev.getUser();
         assertEquals(expected, actual);
     }
 
@@ -58,7 +56,7 @@ public class ReviewTest {
 
     @Test
     public void TestToString() {
-        String expected = "Reviewer: Bob" + System.lineSeparator() + "Rating: 1/5" +
+        String expected = "Reviewer: bob" + System.lineSeparator() + "Rating: 1/5" +
                 System.lineSeparator() + "\"tasted terrible\"";
         System.out.println(expected);
         String actual = rev.toString();
