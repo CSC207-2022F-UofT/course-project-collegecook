@@ -5,8 +5,12 @@ import entities.MealplanList;
 import java.io.*;
 
 public class MealplanGate implements MealplanGateway {
-    String filePath = "C:\\Users";
+    String filePath;
+    private static MealplanGate mealplanGate;
 
+    private MealplanGate(){
+        this.filePath = "C:\\Users";
+    }
 
     @Override
     public void saveToFile(String filepath, Object mealplans) throws IOException {
@@ -30,5 +34,14 @@ public class MealplanGate implements MealplanGateway {
         MealplanList mealplans = (MealplanList) input.readObject();
         input.close();
         return mealplans;
+    }
+
+    // Static method to create instance of Singleton class
+    public static MealplanGate getInstance()
+    {
+        if (mealplanGate == null)
+            mealplanGate = new MealplanGate();
+
+        return mealplanGate;
     }
 }

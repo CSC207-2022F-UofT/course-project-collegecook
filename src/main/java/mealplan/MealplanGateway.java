@@ -14,4 +14,5 @@ public interface MealplanGateway {
      * @param filepath location of ser file
      */
     MealplanList readFromFile(String filepath) throws IOException, ClassNotFoundException;
+
 }
