@@ -4,47 +4,81 @@ import java.util.ArrayList;
 
 public class Profile {
 
-    private ArrayList<Recipe> reviewed;
+    private ArrayList<Review> reviewed;
     private ArrayList<Recipe> created;
     private int age;
-    private int height;
-    private int weight;
+    private float height;
+    private float weight;
+    private String username;
+    private String gender;
 
-    public Profile() {
+    public Profile(String username) {
         this.reviewed = new ArrayList<>();
         this.created = new ArrayList<>();
+        this.username = username;
     }
 
     public int getAge() {
         return age;
     }
 
-    public int getHeight() {
+    public float getHeight() {
         return height;
     }
 
-    public int getWeight() {
+    public float getWeight() {
         return weight;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public void setAge(int age) { this.age = age; }
 
-    public void setHeight(int height) { this.height = height; }
+    public void setHeight(float height) { this.height = height; }
 
-    public void setWeight(int weight) { this.weight = weight; }
+    public void setWeight(float weight) { this.weight = weight; }
 
-    public void storeallreviewed(){
-        //get all reviewed recipes from somewhere in Review,
-        //and add them in reviewed.
+    public String soutReviewed() {
+        String result = new String("");
+        for (Review r : reviewed){
+            result = result + r.toString() + "\n";
+        }
+        return result;
+    }
+
+    public String soutCreated() {
+        String result = new String("");
+        for (Recipe r : created){
+            result = result + r.toString() + "\n";
+        }
+        return result;
+    }
+
+    public ArrayList<Review> getReviewed() {
+        return reviewed;
+    }
+
+    public ArrayList<Recipe> getCreated() {
+        return created;
+    }
+
+    public void setReviewed(ArrayList<Review> reviewed) {
+        this.reviewed = reviewed;
     }
 
 
-    public void storeallcreated(){
-        //get all created recipes from somewhere in Recipe,
-        //and add them in created.
+    public void setCreated(ArrayList<Recipe> created) {
+        this.created = created;
     }
 
-    public ArrayList<Recipe> getReviewed() { return reviewed; }
-
-    public ArrayList<Recipe> getCreated() { return created; }
 }
