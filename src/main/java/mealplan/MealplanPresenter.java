@@ -13,8 +13,8 @@ public class MealplanPresenter implements MealplanOutputBoundary{
     }
 
     @Override
-    public void addRecipe(String recipe, int meal, RecipeInterActor recipeInteractor) {
-        mealplanBox.setMealplan(recipe, meal, recipeInteractor);
+    public void addRecipe(String recipe, int meal) {
+        mealplanBox.setMealplan(recipe, meal);
     }
     @Override
     public void setUI (MealplanBox mealplanbox) {

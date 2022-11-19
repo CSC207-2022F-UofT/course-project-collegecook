@@ -9,7 +9,7 @@ import entities.RecipeList;
 import recipe.*;
 
 public interface MealplanInputBoundary {
-    void addMealplan(String recipe, int meal,RecipeInterActor recipeInteractor);
+    void addMealplan(String recipe, int meal);
 
     void computeCalories(Profile pro, RecipeList recipeList);
 

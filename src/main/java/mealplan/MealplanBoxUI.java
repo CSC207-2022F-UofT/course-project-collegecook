@@ -91,12 +91,12 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
         mealplanbox.setSize(600,600);
     }
 
-    public void setMealplan(String recipe, int meal, RecipeInterActor recipeInteractor){
+    public void setMealplan(String recipe, int meal){
 
         JButton button_m = new JButton( new AbstractAction(recipe) {
             @Override
             public void actionPerformed( ActionEvent e ) {
-                recipeInteractor.readRecipe(recipe);
+                mealplanController.displayRecipe(recipe);
             }
         });
 

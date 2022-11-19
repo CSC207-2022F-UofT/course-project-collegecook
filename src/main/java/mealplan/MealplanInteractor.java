@@ -12,17 +12,17 @@ public class MealplanInteractor implements MealplanInputBoundary{
     String filePath = "C:\\Users";
     private Mealplan mealplan;
     private String username;
-    private MealplanGateway rrg;
+    private MealplanGateway mrg;
     private MealplanList mealplans;
     final MealplanOutputBoundary mealplanout;
 
-    public MealplanInteractor(MealplanOutputBoundary mealplanout, String username, MealplanGateway rrg){
+    public MealplanInteractor(MealplanOutputBoundary mealplanout, String username, MealplanGateway mrg){
         this.mealplanout = mealplanout;
         this.username = username;
-        this.rrg = rrg;
+        this.mrg = mrg;
 
         try {
-            mealplans= rrg.readFromFile(filePath);
+            mealplans= mrg.readFromFile(filePath);
         } catch (IOException | ClassNotFoundException e) {
             mealplans = new MealplanList();
             System.out.println("Readfile failed.....");
@@ -37,9 +37,9 @@ public class MealplanInteractor implements MealplanInputBoundary{
     }
 
 
-    public void addMealplan(String recipe, int meal, RecipeInterActor recipeInteractor){
+    public void addMealplan(String recipe, int meal){
         this.mealplan.addMealPlan(recipe, meal);
-        mealplanout.addRecipe(recipe, meal, recipeInteractor);
+        mealplanout.addRecipe(recipe, meal);
     }
 
     public void computeCalories(Profile pro, RecipeList recipeList){
@@ -75,7 +75,7 @@ public class MealplanInteractor implements MealplanInputBoundary{
 
     public void saveMealplan() throws IOException {
         mealplans.add(username, mealplan);
-        rrg.saveToFile(filePath,mealplans);
+        mrg.saveToFile(filePath,mealplans);
     }
 
     public String getUsername() {
