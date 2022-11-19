@@ -1,9 +1,6 @@
 package entities;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +18,7 @@ class RecipeTest {
         ArrayList<String> ingredients = new ArrayList<>();
         ingredients.add("food");
         r = new Recipe("name", "procedure",
-                "cuisine", ingredients, 1, 2, 3);
+                "cuisine", ingredients, 1, 2, 3, "Brenden");
     }
 
     @AfterEach
@@ -35,6 +32,7 @@ class RecipeTest {
         String actual = r.get_procedure();
         assertEquals(expected, actual);
     }
+
 
     @Test
     void get_recipe_name() {
@@ -84,7 +82,7 @@ class RecipeTest {
         ArrayList<String> ingredients = new ArrayList<>();
         ingredients.add("foods");
         Recipe r2 = new Recipe("name", "procedure2",
-                "cuisine2", ingredients, 2, 2, 4);
+                "cuisine2", ingredients, 2, 2, 4, "Brenden");
         assertEquals(r, r2);
 
 
