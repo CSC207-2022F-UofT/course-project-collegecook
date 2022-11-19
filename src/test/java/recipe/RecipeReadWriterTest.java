@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class RecipeRepoImplTest {
+class RecipeReadWriterTest {
 
     @BeforeEach
     void setUp() {

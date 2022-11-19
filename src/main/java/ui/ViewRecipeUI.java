@@ -12,6 +12,9 @@ public class ViewRecipeUI extends JFrame {
     JLabel all;
     JLabel user;
     RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter(this);
+    JPanel buttonPanel = new JPanel();
+    JButton review = new JButton("Review");
+    JButton mealPlan = new JButton("Add to My Meal Plan");
 
     public ViewRecipeUI(){
         view.setLayout(new BoxLayout(view, BoxLayout.Y_AXIS));
@@ -25,9 +28,6 @@ public class ViewRecipeUI extends JFrame {
         all.setFont(new Font("Monaco", Font.PLAIN, 15));
         view.add(all);
 
-        JPanel buttonPanel = new JPanel();
-        JButton review = new JButton("Review");
-        JButton mealPlan = new JButton("Add to My Meal Plan");
         buttonPanel.add(review);
         buttonPanel.add(mealPlan);
         view.add(buttonPanel);

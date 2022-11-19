@@ -4,20 +4,17 @@ import entities.Recipe;
 import entities.RecipeList;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Scanner;
 
 
 public class RecipeInterActor implements RecipeInputBoundary {
-    private final RecipeRepoGateway rrg = RecipeRepoImpl.getRecipeRepoImpl();
+    private final RecipeRepoGateway rrg;
     private RecipeList recipeList;
     final RecipeOutputBoundary recipeOutputBoundary;
 
 
-    public RecipeInterActor(RecipeOutputBoundary recipeOutputBoundary) {
+    public RecipeInterActor(RecipeOutputBoundary recipeOutputBoundary, RecipeRepoGateway recipeRepoGateway) {
         this.recipeOutputBoundary = recipeOutputBoundary;
-
+        this.rrg = recipeRepoGateway;
         try {
             recipeList = rrg.getRecipeList();
         } catch (IOException e) {
