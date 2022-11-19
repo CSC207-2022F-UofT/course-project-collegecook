@@ -1,17 +1,15 @@
 package profile;
 
 import entities.*;
-import recipe.RecipeInterActor;
-import recipe.RecipeOutputBoundary;
 import recipe.RecipeRepoGateway;
-import recipe.RecipeRepoImpl;
+import recipe.RecipeReadWriter;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class ProfileInteractor implements ProfileInputBoundary{
     private final ProfileRepoGateway prg =  ProfileRepoImpl.getPrl();
-    private final RecipeRepoGateway rrg = RecipeRepoImpl.getRecipeRepoImpl();
+    private final RecipeRepoGateway rrg = RecipeReadWriter.getRecipeRepo();
     private ArrayList<Profile> profile_list;
     final ProfileOutputBoundary outputboundary;
 

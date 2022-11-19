@@ -6,13 +6,13 @@ import entities.RecipeList;
 import java.io.IOException;
 
 
-public class RecipeInterActor implements RecipeInputBoundary {
+public class RecipeInteractor implements RecipeInputBoundary {
     private final RecipeRepoGateway rrg;
     private RecipeList recipeList;
     final RecipeOutputBoundary recipeOutputBoundary;
 
 
-    public RecipeInterActor(RecipeOutputBoundary recipeOutputBoundary, RecipeRepoGateway recipeRepoGateway) {
+    public RecipeInteractor(RecipeOutputBoundary recipeOutputBoundary, RecipeRepoGateway recipeRepoGateway) {
         this.recipeOutputBoundary = recipeOutputBoundary;
         this.rrg = recipeRepoGateway;
         try {
