@@ -4,9 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.util.List;
+
 import recipe.*;
 
-public class MealplanBoxUI implements MealplanBox{
+public class MealplanBoxUI extends JFrame implements MealplanBox{
     MealplanController mealplanController;
 
     JFrame mealplanbox = new JFrame("Meal Plan");
@@ -86,8 +88,7 @@ public class MealplanBoxUI implements MealplanBox{
 
         mealplanbox.setLayout(new GridLayout(4,0));
 
-        mealplanbox.setSize(400,400);
-        mealplanbox.setVisible(true);
+        mealplanbox.setSize(600,600);
     }
 
     public void setMealplan(String recipe, int meal, RecipeInterActor recipeInteractor){
@@ -109,5 +110,11 @@ public class MealplanBoxUI implements MealplanBox{
         }
     }
 
+    public void setCalories(List<Integer> cal){
+        JLabel label_cal = new JLabel("Recommended:" + cal.get(0) + "cal; " +
+                "Total:" + cal.get(1));
+
+        panel_s.add(label_cal);
+    }
 
 }

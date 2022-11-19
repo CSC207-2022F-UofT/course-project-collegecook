@@ -9,8 +9,7 @@ public class MealplanPresenter implements MealplanOutputBoundary{
 
     @Override
     public void createCaloriesView(List<Integer> cal) {
-        System.out.println("Recommended:" + cal.get(0) + "cal; " +
-                "Total:" + cal.get(1));
+         mealplanBox.setCalories(cal);
     }
 
     @Override
