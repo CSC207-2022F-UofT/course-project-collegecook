@@ -92,4 +92,22 @@ class RecipeTest {
     void testHashCode() {
         assertEquals(Objects.hash(r.get_recipe_name()), r.hashCode());
     }
+
+    @Test
+    void get_creator() {
+        assertEquals("Brenden", r.get_creator());
+    }
+
+    @Test
+    void testToString() {
+        String expected = "Recipe: name\n"  +
+                "Creator: Brenden\n" +
+                "Procedure: procedure\n" +
+                "Cuisine: cuisine\n" +
+                "Ingredients: [food]\n" +
+                "Calories: 1\n" +
+                "Time Required: 2 minutes \n" +
+                "Difficulty (out of 5): 3\n";
+        assertEquals(expected, r.toString());
+    }
 }

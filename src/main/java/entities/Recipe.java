@@ -27,16 +27,16 @@ public class Recipe implements Serializable{
         this.creator = creator;
     }
 
-    public String get_procedure(){return this.procedure;}
-    public String get_recipe_name(){return this.recipe_name;
+    public String getProcedure(){return this.procedure;}
+    public String getRecipeName(){return this.recipe_name;
     }
-    public String get_cuisine(){return this.cuisine;}
-    public int get_calories(){return this.calories;}
-    public int get_time(){return this.time;}
-    public int get_difficulty(){return this.difficulty;}
-    public String get_creator(){return this.creator;}
+    public String getCuisine(){return this.cuisine;}
+    public int getCalories(){return this.calories;}
+    public int getTime(){return this.time;}
+    public int getDifficulty(){return this.difficulty;}
+    public String getCreator(){return this.creator;}
 
-    public ArrayList<String> get_ingredients(){return this.ingredients;}
+    public ArrayList<String> getIngredients(){return this.ingredients;}
 
 
     @Override

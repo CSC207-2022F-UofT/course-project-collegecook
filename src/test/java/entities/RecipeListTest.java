@@ -16,7 +16,7 @@ class RecipeListTest {
         rl = new RecipeList();
         ArrayList<String> ingredients = new ArrayList<>();
         rl.add_recipe("name", "procedure",
-                "cuisine", ingredients, 1, 2, 3);
+                "cuisine", ingredients, 1, 2, 3, "Brenden");
     }
 
     @AfterEach
@@ -28,7 +28,7 @@ class RecipeListTest {
     void add_recipe() {
         ArrayList<String> ingredients = new ArrayList<>();
         rl.add_recipe("name2", "procedure",
-                "cuisine", ingredients, 1, 2, 3);
+                "cuisine", ingredients, 1, 2, 3, "Brenden");
         Boolean actual = rl.contain("name2");
         assertTrue(actual);
 
@@ -39,7 +39,7 @@ class RecipeListTest {
         ArrayList<String> ingredients = new ArrayList<>();
         Recipe actual = rl.get_recipe("name");
         Recipe expected = new Recipe("name", "procedure",
-                "cuisine", ingredients, 1, 2, 3);
+                "cuisine", ingredients, 1, 2, 3, "Brenden");
         assertEquals(expected, actual);
     }
 
@@ -56,7 +56,7 @@ class RecipeListTest {
         assertTrue(rl.iterator().hasNext());
         Recipe actual = rl.iterator().next();
         Recipe expected = new Recipe("name", "procedure",
-                "cuisine", ingredients, 1, 2, 3);
+                "cuisine", ingredients, 1, 2, 3, "Brenden");
         assertEquals(expected, actual);
     }
 }

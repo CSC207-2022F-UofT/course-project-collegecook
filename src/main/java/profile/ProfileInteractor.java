@@ -30,7 +30,7 @@ public class ProfileInteractor implements ProfileInputBoundary{
         RecipeList all_recipe = rrg.getRecipeList();
         ArrayList<Recipe> recipeList = new ArrayList<>();
         for (Recipe r: all_recipe){
-            if (r.get_creator().equals(username)){
+            if (r.getCreator().equals(username)){
                 recipeList.add(r);
             }
         }
@@ -52,9 +52,9 @@ public class ProfileInteractor implements ProfileInputBoundary{
 
     //need jason to modify getUserReviews to be worked.
     public void all_reviewed(String username) throws IOException {
-        ArrayList<Review> all = ReviewDatabase.getUserReviews(user);
+        //ArrayList<Review> all = ReviewDatabase.getUserReviews(user);
         Profile result = check_profile(username);
-        result.setReviewed(all);
+        //result.setReviewed(all);
         outputboundary.view_reviewed(result);
     }
 
