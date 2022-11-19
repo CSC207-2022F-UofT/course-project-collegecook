@@ -5,7 +5,7 @@ import entities.MealplanList;
 import java.io.*;
 
 public class MealplanGate implements MealplanGateway {
-    String filePath = "C:\\Users\\lucia\\Desktop";
+    String filePath = "C:\\Users";
 
 
     @Override

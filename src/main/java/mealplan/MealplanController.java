@@ -1,23 +1,31 @@
 package mealplan;
 
 import entities.*;
+import profile.ProfileInteractor;
 import recipe.*;
 
 import java.io.IOException;
-
+import profile.*;
 public class MealplanController {
     MealplanInputBoundary mealplanInputBoundary;
-    public MealplanController(MealplanInputBoundary mealplanInputBoundary) {
+    ProfileInputBoundary profileInputBoundary;
+    RecipeInputBoundary recipeInputBoundary;
+    public MealplanController(MealplanInputBoundary mealplanInputBoundary, ProfileInputBoundary profileInputBoundary,
+                              RecipeInterActor recipeInputBoundary) {
         this.mealplanInputBoundary=mealplanInputBoundary;
+        this.profileInputBoundary = profileInputBoundary;
+        this.recipeInputBoundary = recipeInputBoundary;
     }
 
 
-    public void getCalories(){
-        mealplanInputBoundary.computeCalories();
+    public void getCalories() throws IOException {
+        Profile profile = profileInputBoundary.check_profile(mealplanInputBoundary.getUsername());
+        RecipeList recipeList = recipeInputBoundary.getAll();
+        mealplanInputBoundary.computeCalories(profile, recipeList);
     }
 
-    public void addMealplan(Recipe r, int meal, RecipeInterActor recipeInteractor){
-        mealplanInputBoundary.addMealplan(r, meal, recipeInteractor);
+    public void addMealplan(String recipe, int meal, RecipeInterActor recipeInteractor){
+        mealplanInputBoundary.addMealplan(recipe, meal, recipeInteractor);
     }
 
     public void deleteMealplan(int meal){

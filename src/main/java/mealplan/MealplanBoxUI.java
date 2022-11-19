@@ -45,7 +45,11 @@ public class MealplanBoxUI implements MealplanBox{
         JButton button_cal = new JButton( new AbstractAction("calculate calories") {
             @Override
             public void actionPerformed( ActionEvent e ) {
-                mealplanController.getCalories();
+                try {
+                    mealplanController.getCalories();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 
