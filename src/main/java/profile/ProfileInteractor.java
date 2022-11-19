@@ -3,35 +3,35 @@ package profile;
 import entities.*;
 import recipe.RecipeInterActor;
 import recipe.RecipeOutputBoundary;
+import recipe.RecipeRepoGateway;
+import recipe.RecipeRepoImpl;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class ProfileInteractor implements ProfileInputBoundary{
-    private final ProfileRepoGateway prg = new ProfileRepoImpl();
+    private final ProfileRepoGateway prg =  ProfileRepoImpl.getPrl();
+    private final RecipeRepoGateway rrg = RecipeRepoImpl.getRecipeRepoImpl();
     private ArrayList<Profile> profile_list;
     final ProfileOutputBoundary outputboundary;
-    final RecipeOutputBoundary recipeOut;
 
 
-    public ProfileInteractor(ProfileOutputBoundary outputboundary, RecipeOutputBoundary recipeOut) {
+    public ProfileInteractor(ProfileOutputBoundary outputboundary) {
         this.outputboundary = outputboundary;
-        this.recipeOut = recipeOut;
 
         try{
             profile_list = prg.getProfile();
         }
         catch(IOException e ){
-            profile_list = new ArrayList<Profile>();
+            profile_list = new ArrayList<>();
             System.out.println("Read file failed.....");
         }
     }
 
     public void all_created(String username) throws IOException {
-        RecipeInterActor ri = new RecipeInterActor(recipeOut);
-        RecipeList rl = ri.getAll();
+        RecipeList all_recipe = rrg.getRecipeList();
         ArrayList<Recipe> recipeList = new ArrayList<>();
-        for (Recipe r: rl){
+        for (Recipe r: all_recipe){
             if (r.get_creator().equals(username)){
                 recipeList.add(r);
             }
@@ -60,16 +60,20 @@ public class ProfileInteractor implements ProfileInputBoundary{
         outputboundary.view_reviewed(result);
     }
 
-    public void set_info(String username, int age, float height, float weight, String gender) throws IOException {
+    public void set_info(String username, ProfileRequestModel prm) {
         for (Profile p: profile_list){
             if (p.getUsername().equals(username)){
-               set_all(age, height, weight, gender, p);
-               outputboundary.set_info_success();
+                set_all(prm, p);
+                outputboundary.set_info_success();
             }
         }
     }
 
-    private void set_all(int age, float height, float weight, String gender, Profile p) {
+    private void set_all(ProfileRequestModel prm, Profile p) {
+        int age = prm.getAge();
+        float height = prm.getHeight();
+        float weight = prm.getWeight();
+        String gender = prm.getGender();
         p.setAge(age);
         p.setHeight(height);
         p.setWeight(weight);
