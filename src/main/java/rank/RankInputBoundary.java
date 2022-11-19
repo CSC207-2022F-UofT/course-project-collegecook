@@ -8,5 +8,5 @@ public interface RankInputBoundary {
      *
      * @param requestModel contains the choice of vari
      */
-    RankResponseModel sort(RankRequestModel requestModel);
+    RankResponseModel sorting(RankRequestModel requestModel);
 }
