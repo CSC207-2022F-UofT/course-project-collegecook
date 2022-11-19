@@ -1,7 +1,5 @@
 package mealplan;
-
 import entities.*;
-import profile.ProfileInteractor;
 import recipe.*;
 
 import java.io.IOException;
