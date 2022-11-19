@@ -6,7 +6,7 @@ public class LoginControllor {
     UserManager userManager;
 
     public void PerformCheckAllUser(String username,String password){
-        UserList.CreateAccount(username,password);
+        userManager.CheckAllUser(username,password);
 
     }
 
