@@ -39,7 +39,7 @@ public class LoginPresenter implements LoginOutputBound{
 
     @Override
     public void FollowedFail() {
-        System.out.println("You have already followed this user");
+        System.out.println("You have already followed this user or the user doesn't exist");
 
     }
 

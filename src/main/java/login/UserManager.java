@@ -66,17 +66,19 @@ public class UserManager {
     }
 
     //Check if user already followed this other user(refactoring)
-    public boolean CheckFollow(String username, User other){
+    public boolean CheckFollow(String username, String other){
         for(User person :AllUser.getAllUser()){
             if(Objects.equals(person.getUsername(), username)){
-                if (person.getFollowed().contains(other)){
+                if(!AllUser.contains(other)){
                     LoginOutputBound.FollowedFail();
                     return false;
+                }else if (person.getFollowed().contains(AllUser.getUser(other))){
+                    LoginOutputBound.FollowedFail();
+                    return false;}
                 }
-            }
             }return true;
-
         }
+
 
     //a user want to follow another user
     // add other to user.followed

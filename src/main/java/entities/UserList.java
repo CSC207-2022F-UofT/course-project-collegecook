@@ -28,6 +28,23 @@ public class UserList implements Serializable {
         AllUser.add(CollegeCook);
     }
 
+    public Boolean contains(String username) {
+        for (User person : AllUser) {
+            if (Objects.equals(person.getUsername(),username)){
+                return true;
+            }
+        }return false;
+    }
+
+    public User getUser(String username) {
+        for (User person : AllUser) {
+            if (Objects.equals(person.getUsername(), username)) {
+                return person;
+            }
+        }
+        return null;
+    }
+
     public List<User> getAllUser() {
         return AllUser;
     }
