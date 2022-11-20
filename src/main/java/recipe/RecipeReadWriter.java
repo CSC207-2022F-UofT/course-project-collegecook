@@ -3,19 +3,18 @@ package recipe;
 import entities.RecipeList;
 
 import java.io.*;
-import java.util.ArrayList;
 
-public class RecipeRepoImpl implements RecipeRepoGateway{
+public class RecipeReadWriter implements RecipeRepoGateway{
     private static final String file = "recipe.sav";
-    private static RecipeRepoImpl recipeRepoImpl;
+    private static RecipeReadWriter recipeReadWriter;
 
-    private RecipeRepoImpl(){}
+    private RecipeReadWriter(){}
 
-    public static RecipeRepoImpl getRecipeRepoImpl(){
-        if (recipeRepoImpl == null){
-            recipeRepoImpl = new RecipeRepoImpl();
+    public static RecipeReadWriter getRecipeRepo(){
+        if (recipeReadWriter == null){
+            recipeReadWriter = new RecipeReadWriter();
         }
-        return recipeRepoImpl;
+        return recipeReadWriter;
     }
     @Override
     public RecipeList getRecipeList() throws IOException {
