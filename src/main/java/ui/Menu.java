@@ -31,8 +31,8 @@ public class Menu extends JFrame {
         create_recipe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CreateRecipeUI createRecipeUI = new CreateRecipeUI(user);
-                createRecipeUI.setVisible(true);
+//                CreateRecipeUI createRecipeUI = new CreateRecipeUI(user);
+//                createRecipeUI.setVisible(true);
             }
         });
 
@@ -42,8 +42,8 @@ public class Menu extends JFrame {
         search_recipe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SearchRecipeUI searchRecipeUI = new SearchRecipeUI();
-                searchRecipeUI.setVisible(true);
+                // SearchRecipeUI searchRecipeUI = new SearchRecipeUI();
+                // searchRecipeUI.setVisible(true);
             }
         });
         menu.add(search_recipe);

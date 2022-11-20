@@ -1,12 +1,21 @@
 package profile;
 
 import entities.Profile;
+import recipe.RecipeReadWriter;
 
 import java.io.*;
 import java.util.ArrayList;
 
 public class ProfileRepoImpl implements ProfileRepoGateway{
     private static final String file = "Profile.sav";
+    private static ProfileRepoImpl prl;
+
+    public static ProfileRepoImpl getPrl(){
+        if (prl == null){
+            prl = new ProfileRepoImpl();
+        }
+        return prl;
+    }
 
     @Override
     public ArrayList<Profile> getProfile() throws IOException {

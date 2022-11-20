@@ -2,22 +2,22 @@ package entities;
 
 public class Review {
 
-    private final User user;
+    private final String username;
     private final Recipe reviewedRecipe;
     private String reviewContent = "";
-    private int rating;
+    private final int rating;
 
     /**
      * Construct a Review, with the
      * given user, recipe, and rating.
      * The rating must be between 0 and 5, inclusive.
      *
-     * @param user the User that created this review
+     * @param username the username of the User that created this review
      * @param recipe the Recipe being reviewed
      * @param rating the reviews rating.
      */
-    public Review (User user, Recipe recipe, int rating) {
-        this.user = user;
+    public Review (String username, Recipe recipe, int rating) {
+        this.username = username;
         this.reviewedRecipe = recipe;
         this.rating = rating;
     }
@@ -27,22 +27,22 @@ public class Review {
      * given user, recipe, review content and rating.
      * The rating must be between 0 and 5, inclusive.
      *
-     * @param user the User that created this review
+     * @param username the User that created this review
      * @param recipe the Recipe being reviewed
      * @param content the content of the review
      * @param rating the reviews rating
      */
 
-    public Review (User user, Recipe recipe, String content, int rating) {
-        this(user, recipe, rating);
+    public Review (String username, Recipe recipe, String content, int rating) {
+        this(username, recipe, rating);
         this.reviewContent = content;
     }
 
     /**
      * Get the user who made this review.
      */
-    public User getUser() {
-        return this.user;
+    public String getUser() {
+        return this.username;
     }
 
     /**
@@ -68,7 +68,7 @@ public class Review {
 
     @Override
     public String toString(){
-        return "Reviewer: " + user.getUsername() + System.lineSeparator() + "Rating: " + rating + "/5" +
+        return "Reviewer: " + username + System.lineSeparator() + "Rating: " + rating + "/5" +
                 System.lineSeparator() + "\"" + reviewContent + "\"";
     }
 
