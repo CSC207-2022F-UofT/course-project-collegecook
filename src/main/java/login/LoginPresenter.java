@@ -8,7 +8,7 @@ public class LoginPresenter implements LoginOutputBound{
 
     @Override
     public void LoginFailed() {
-        System.out.println("Username or password fail");
+        System.out.println("Username or password failed");
 
     }
 
