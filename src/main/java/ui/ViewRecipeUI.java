@@ -34,8 +34,7 @@ public class ViewRecipeUI extends JFrame implements RecipeViewBox {
             public void actionPerformed(ActionEvent e) {
                 String readRecipe = appController.getRecipeController().getReadingRecipe();
                 String creator = appController.getRecipeController().getRecipe(readRecipe).getCreator();
-                String User =
-                appController.getLoginControllor().PerformCheckFollow();
+
             }
         });
         buttonPanel.add(review);
