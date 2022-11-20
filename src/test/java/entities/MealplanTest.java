@@ -35,7 +35,7 @@ public class MealplanTest {
         expected.add(new ArrayList<>());
         assertEquals(mp.returnMealPlan(),expected);
     }
-
+    @Test
     void deleteMealPlan() {
        mp.deleteMealPlan(0);
        ArrayList<ArrayList<String>> expected = new ArrayList<>();
