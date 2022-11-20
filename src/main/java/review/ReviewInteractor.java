@@ -10,6 +10,7 @@ public class ReviewInteractor {
 
     private RecipeList recipeList;
     private ReviewDatabase reviewDatabase;
+    ReviewDatabaseReadWriter rdrw = new ReviewDatabaseReadWriter();
 
 
     /**
@@ -25,7 +26,6 @@ public class ReviewInteractor {
         }
 
         try {
-            ReviewDatabaseReadWriter rdrw = new ReviewDatabaseReadWriter();
             reviewDatabase = rdrw.readFromFile("reviews.sav");
         } catch (IOException e) {
             reviewDatabase = new ReviewDatabase();
@@ -70,6 +70,11 @@ public class ReviewInteractor {
 
     private void createHelper(String username, Review review) {
         reviewDatabase.addReview(review);
+        try {
+            rdrw.saveToFile("reviews.sav", reviewDatabase);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         UpdateAverageRating.updateAverage(username, reviewDatabase);
     }
 }

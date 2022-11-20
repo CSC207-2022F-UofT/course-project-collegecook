@@ -2,6 +2,7 @@ package review;
 
 import entities.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class UpdateAverageRating {
@@ -14,8 +15,18 @@ public class UpdateAverageRating {
      */
 
     public static void updateAverage(String username, ReviewDatabase database){
-        AverageRatings averageRating = new AverageRatings();
         ArrayList<Review> reviews = database.getUserReviews(username);
+        AverageRatingReadWriter arrw = new AverageRatingReadWriter();
+        AverageRatings averageRating = new AverageRatings();
+        try {
+            AverageRatingReadWriter rdrw = new AverageRatingReadWriter();
+            averageRating = rdrw.readFromFile("ratings.sav");
+        } catch (IOException e) {
+            averageRating = new AverageRatings();
+            System.out.println("Read file failed.....");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         if (reviews.size() != 0) {
             int sum = 0;
             for (Review r : reviews) {
@@ -23,6 +34,11 @@ public class UpdateAverageRating {
             }
             Double average = (double) sum / reviews.size();
             averageRating.addAverageRating(username, average);
+            try {
+                arrw.saveToFile("ratings.sav", averageRating);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
