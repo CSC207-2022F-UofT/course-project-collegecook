@@ -2,8 +2,6 @@ package search;
 
 import java.util.ArrayList;
 
-// Use case layer
-// input data: get and set name, cuisine, ingredients, timeInMin, sortType
 public class SearchRequestModel {
     String name;
     String cuisine;
@@ -13,6 +11,15 @@ public class SearchRequestModel {
 
     boolean sortByAscending;
 
+    /**
+     * Input data to search for matching recipes with
+     * @param name keyword in recipe
+     * @param cuisine type of cuisine
+     * @param ingredients list of ingredients
+     * @param timeInMin time it takes
+     * @param sortType the way recipes are sorted by (i.e. average rating, number of reviews, time it takes)
+     * @param sortByAscending sort by ascending or descending
+     */
     public SearchRequestModel(String name, String cuisine, ArrayList<String> ingredients, int timeInMin, String sortType, boolean sortByAscending){
         this.name = name;
         this.cuisine = cuisine;
@@ -22,6 +29,7 @@ public class SearchRequestModel {
         this.sortByAscending = sortByAscending;
     }
 
+    //TODO: write javadoc for all get/set methods in response & request models
     public String getName(){
         return this.name;
     }

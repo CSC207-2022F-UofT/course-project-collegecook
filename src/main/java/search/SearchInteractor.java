@@ -9,18 +9,18 @@ public class SearchInteractor implements SearchInputBoundary{
 
     final SearchPresenter searchPresenter;
 
+    /**
+     * Constructs a SearchInteractor object
+     * @param searchPresenter a SearchPresenter object
+     */
     public SearchInteractor(SearchPresenter searchPresenter) {
         this.searchPresenter = searchPresenter;
     }
 
-    /**
-     * Searches for recipes that match the given search criteria, in the order of the chosen sort
-     * @param requestModel the search criteria given
-     * @return search results or no results
-     */
     @Override
     public SearchResponseModel getSearchResults(SearchRequestModel requestModel){
-        //TODO: Implement details for searching for recipes, then sorting them
+        //TODO: Implement searching for recipes with matching criteria
+        //TODO: Implement communicating with SortInteractor to sort recipes found
         return searchPresenter.prepareResultsView(new SearchResponseModel(new ArrayList<Recipe>()));
     }
 }
