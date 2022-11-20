@@ -57,7 +57,7 @@ public class WelcomeUI extends JFrame {
     public static void main(String[] args){
         UserGateWay userGateWay = UserRepoImpl.getUserRepoImpl();
         LoginOutputBound loginOutputBound = new LoginPresenter();
-        UserManager userManager = new UserManager(loginOutputBound);
+        UserManager userManager = new UserManager(loginOutputBound, userGateWay);
         LoginControllor loginControllor = new LoginControllor(userManager);
 
         RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();
@@ -66,8 +66,16 @@ public class WelcomeUI extends JFrame {
         RecipeController recipeController = new RecipeController(recipeInputBoundary);
 
         AppController appController1 = new AppController(recipeController, loginControllor);
-        WelcomeUI m = new WelcomeUI(appController1);
-        m.setVisible(true);
+        RecipeCreateBox recipeCreateBox = new CreateRecipeUI(appController1);
+        RecipeViewBox recipeViewBox = new ViewRecipeUI(appController1);
+        WelcomeUI welcomeUI = new WelcomeUI(appController1);
+        LoginBox loginBox = new LoginUI(appController1);
+        SignUpBox signUpBox = new SignUpUI(appController1);
+        loginOutputBound.setUI(loginBox);
+        loginOutputBound.setUI(signUpBox);
+        recipeOutputBoundary.setUI(recipeCreateBox);
+        recipeOutputBoundary.setUI(recipeViewBox);
+        welcomeUI.setVisible(true);
 
     }
 }

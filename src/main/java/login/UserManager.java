@@ -3,6 +3,7 @@ package login;
 import entities.*;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 public class UserManager {
@@ -40,17 +41,21 @@ public class UserManager {
 
     // method to find the user in the allUsers and change the status to logged in
     public void Login(String username, String password){
-        for(User person :AllUser.getAllUser()){
-            if(Objects.equals(person.getUsername(), username) && Objects.equals(person.getPassword(), password)){
-                person.setLoginStatus(true);
-                this.loggedInUser = username;
-                LoginOutputBound.LoginSuccess();
-            }else{
-                LoginOutputBound.LoginFailed();
-                }
-
-            }
+        List<User> allUser = AllUser.getAllUser();
+        if (allUser.size() == 0){
+            LoginOutputBound.LoginFailed();
         }
+        else {
+            for (User person : AllUser.getAllUser()) {
+                if (Objects.equals(person.getUsername(), username) && Objects.equals(person.getPassword(), password)) {
+                    this.loggedInUser = username;
+                    LoginOutputBound.LoginSuccess();
+                    return;
+                }
+            }
+            LoginOutputBound.LoginFailed();
+        }
+    }
 
 
     // method to find the user in the allUsers and change the status to logged out

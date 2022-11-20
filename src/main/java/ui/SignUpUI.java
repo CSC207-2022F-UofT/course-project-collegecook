@@ -7,8 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
-public class SignUpUI extends JFrame {
+public class SignUpUI extends JFrame implements SignUpBox {
     JPanel login = new JPanel();
     JButton loginButton = new JButton("Sign Up");
     JPasswordField passwordField = new JPasswordField(15);
@@ -40,14 +41,13 @@ public class SignUpUI extends JFrame {
 
 
         loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-//        loginButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                dispose();
-//                Menu menu = new Menu(userName.getText());
-//                menu.setVisible(true);
-//            }
-//        });
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                appController.getLoginControllor().PerformCreateAllUser(userName.getText(),
+                        Arrays.toString(passwordField.getPassword()));
+            }
+        });
         login.add(userNamePanel);
         login.add(passwordPanel);
         login.add(loginButton);
@@ -58,20 +58,32 @@ public class SignUpUI extends JFrame {
         this.pack();
     }
 
+    public void createSuccess(){
+        this.dispose();
+        JOptionPane.showMessageDialog(null,
+                "Successfully created a new account");
+        LoginUI loginUI = new LoginUI(appController);
+        loginUI.setVisible(true);
+    }
+
+    public void createFailed(){
+        JOptionPane.showMessageDialog(null,
+                "Please choose another username");
+    }
 
     public static void main(String[] args){
-        UserGateWay userGateWay = UserRepoImpl.getUserRepoImpl();
-        LoginOutputBound loginOutputBound = new LoginPresenter();
-        UserManager userManager = new UserManager(loginOutputBound);
-        LoginControllor loginControllor = new LoginControllor(userManager);
-
-        RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();
-        RecipeRepoGateway recipeRepoGateway = RecipeReadWriter.getRecipeRepo();
-        RecipeInputBoundary recipeInputBoundary = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
-        RecipeController recipeController = new RecipeController(recipeInputBoundary);
-
-        AppController appController1 = new AppController(recipeController, loginControllor);
-        SignUpUI m = new SignUpUI(appController1);
-        m.setVisible(true);
+//        UserGateWay userGateWay = UserRepoImpl.getUserRepoImpl();
+//        LoginOutputBound loginOutputBound = new LoginPresenter();
+//        UserManager userManager = new UserManager(loginOutputBound, userGateWay);
+//        LoginControllor loginControllor = new LoginControllor(userManager);
+//
+//        RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();
+//        RecipeRepoGateway recipeRepoGateway = RecipeReadWriter.getRecipeRepo();
+//        RecipeInputBoundary recipeInputBoundary = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
+//        RecipeController recipeController = new RecipeController(recipeInputBoundary);
+//
+//        AppController appController1 = new AppController(recipeController, loginControllor);
+//        SignUpUI m = new SignUpUI(appController1);
+//        m.setVisible(true);
     }
 }

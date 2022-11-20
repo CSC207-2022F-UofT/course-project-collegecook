@@ -4,6 +4,8 @@ import recipe.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ViewRecipeUI extends JFrame implements RecipeViewBox {
     JPanel view = new JPanel();
@@ -12,6 +14,7 @@ public class ViewRecipeUI extends JFrame implements RecipeViewBox {
     JPanel buttonPanel = new JPanel();
     JButton review = new JButton("Review");
     JButton mealPlan = new JButton("Add to My Meal Plan");
+    JButton folllow = new JButton("follow");
     AppController appController;
 
     public ViewRecipeUI(AppController appController){
@@ -26,9 +29,18 @@ public class ViewRecipeUI extends JFrame implements RecipeViewBox {
         all.setAlignmentX(Component.CENTER_ALIGNMENT);
         all.setFont(new Font("Monaco", Font.PLAIN, 15));
         view.add(all);
-
+        folllow.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String readRecipe = appController.getRecipeController().getReadingRecipe();
+                String creator = appController.getRecipeController().getRecipe(readRecipe).getCreator();
+                String User =
+                appController.getLoginControllor().PerformCheckFollow();
+            }
+        });
         buttonPanel.add(review);
         buttonPanel.add(mealPlan);
+        buttonPanel.add(folllow);
         view.add(buttonPanel);
         this.add(view);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
