@@ -10,9 +10,15 @@ import java.util.List;
 public class RankInteractor implements RankInputBoundary{
     // The only input accepted are "Average Rating" , "Total Followers", "Total Number of Recipe"
     final RankOutputBoundary rankOutputBoundary;
-    UserList userList;
+    UserList userList = new UserList();
     List<User> users = userList.getAllUser();
-
+    /**
+     *
+     * Returns a list of the sorted Users based on the variable chosen
+     * by the user.
+     *
+     * @param rankOutputBoundary contains the requirements needed for the model to work
+     */
     public RankInteractor(RankOutputBoundary rankOutputBoundary) {
         this.rankOutputBoundary = rankOutputBoundary;
     }
