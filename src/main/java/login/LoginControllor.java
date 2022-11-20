@@ -33,10 +33,15 @@ public class LoginControllor {
         userManager.Unfollow(username,other);
     }
 
+    public String preformGetLoggedInUser(){
+        return userManager.getLoggedInUser();
+    }
+    }
 
 
 
 
 
 
-}
+
+
