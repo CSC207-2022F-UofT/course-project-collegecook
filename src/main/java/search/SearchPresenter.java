@@ -1,21 +1,30 @@
 package search;
 
-import java.util.List;
+import entities.Recipe;
 
-public class SearchPresenter {
+import java.util.ArrayList;
+
+public class SearchPresenter implements SearchOutputBoundary{
+    /**
+     * Success view for recipes found
+     * @param searchResults matching recipes found
+     * @return view that shows the recipes found
+     */
+    @Override
+    public SearchResponseModel prepareResultsView(SearchResponseModel searchResults){
+        //TODO: delete and fill out implementation details for results view
+        return new SearchResponseModel(new ArrayList<Recipe>());
+    };
 
     /**
-     * Presenting search results to user
+     * Failure view for no recipes found
+     * @param error error message
+     * @return error that shows no recipes were found
      */
-
-    // Show list of names of the recipes found
-    public void showSearchResults(){
-        System.out.println("These were the recipes found matching your criteria:" + SearchUseCase.getSearchResults());
-    }
-
-    // Show message if there were no matching recipes found
-    public void showNoResults(){
-        System.out.println("No Results Found");
-    }
+    @Override
+    public SearchResponseModel prepareNoResultsView(String error){
+        //TODO: delete and fill out implementation details for no results view
+        return new SearchResponseModel(new ArrayList<Recipe>());
+    };
 
 }
