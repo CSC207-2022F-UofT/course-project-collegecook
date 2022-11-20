@@ -1,13 +1,13 @@
 package login;
 
-import entities.RecipeList;
+import entities.UserList;
 
 import java.io.IOException;
 
 public interface UserGateWay {
 
-    UserManager getAllUser() throws IOException;
+   UserList getAllUser() throws IOException;
 
-    void saveRecipe(RecipeList recipeList) throws IOException;
+    void saveUser(UserList User) throws IOException;
 }
 
