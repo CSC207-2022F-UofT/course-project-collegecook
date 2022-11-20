@@ -11,6 +11,7 @@ public class UserManager {
     private final UserGateWay rrg = UserRepoImpl.getUserRepoImpl();
 
     final login.LoginOutputBound LoginOutputBound;
+    private String loggedInUser;
 
     public UserManager(login.LoginOutputBound loginOutputBound) {
 
@@ -42,6 +43,7 @@ public class UserManager {
         for(User person :AllUser.getAllUser()){
             if(Objects.equals(person.getUsername(), username) && Objects.equals(person.getPassword(), password)){
                 person.setLoginStatus(true);
+                this.loggedInUser = username;
                 LoginOutputBound.LoginSuccess();
             }else{
                 LoginOutputBound.LoginFailed();
@@ -122,6 +124,10 @@ public class UserManager {
         }
 
 
+    }
+
+    public String getLoggedInUser(){
+        return this.loggedInUser;
     }
 
 
