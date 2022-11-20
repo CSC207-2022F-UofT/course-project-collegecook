@@ -1,6 +1,6 @@
 package mealplan;
 
-import recipe.RecipeInterActor;
+import recipe.RecipeInteractor;
 
 
 import java.util.List;
