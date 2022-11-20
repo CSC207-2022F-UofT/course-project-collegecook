@@ -1,18 +1,15 @@
 package entities;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
     public class RankTest {
-    @BeforeAll
-    public static void setUp(){
 
-    }
     @Test
     public void TestUserFollowerComparator() {
         User user1 = new User("Krutika", "CSC207");
@@ -30,11 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         user2.addFollowers(folloUser2);
         // Testing
         UserList userList = new UserList();
-        userList.AddAllUser("Krutika", "CSC207");
-        userList.AddAllUser("Krutika1", "CSC207");
-        userList.AddAllUser("Krutika2", "CSC207");
-        userList.AddAllUser("Krutika3", "CSC207");
         List<User> users = userList.getAllUser();
-
+        Rank rank = new Rank(users);
     }
 }
