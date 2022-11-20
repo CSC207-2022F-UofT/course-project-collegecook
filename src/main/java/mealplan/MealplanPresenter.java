@@ -1,7 +1,5 @@
 package mealplan;
 
-import recipe.RecipeInteractor;
-
 import java.util.List;
 
 public class MealplanPresenter implements MealplanOutputBoundary{
