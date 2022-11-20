@@ -31,10 +31,8 @@ public class CreateRecipeUI extends JFrame implements RecipeCreateBox{
     JButton create = new JButton("Create");
 
 
-    public CreateRecipeUI(RecipeController recipeController, RecipeOutputBoundary recipePresenter) {
+    public CreateRecipeUI(RecipeController recipeController) {
         this.recipeController = recipeController;
-        this.recipeOutputBoundary = recipePresenter;
-        recipePresenter.setUI(this);
 
         check.setLayout(new BoxLayout(check, BoxLayout.Y_AXIS));
         nameQ.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -112,6 +110,10 @@ public class CreateRecipeUI extends JFrame implements RecipeCreateBox{
                 "Sorry, the recipe's name already exists.");
     }
 
+    @Override
+    public void setV(boolean vision) {
+        this.setVisible(vision);
+    }
 
 
     public static void main(String[] args){
@@ -119,8 +121,9 @@ public class CreateRecipeUI extends JFrame implements RecipeCreateBox{
         RecipeRepoGateway recipeRepoGateway = RecipeReadWriter.getRecipeRepo();
         RecipeInputBoundary recipeInputBoundary = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
         RecipeController recipeController = new RecipeController(recipeInputBoundary);
-        CreateRecipeUI m = new CreateRecipeUI(recipeController, recipeOutputBoundary);
-        m.setVisible(true);
+        RecipeCreateBox m = new CreateRecipeUI(recipeController);
+        recipeOutputBoundary.setUI(m);
+        m.setV(true);
     }
 
 }
