@@ -1,5 +1,7 @@
 package ui;
 
+import profile.ProfileFrame;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -53,6 +55,14 @@ public class Menu extends JFrame {
         menu.add(ranking);
         profile.setAlignmentX(Component.CENTER_ALIGNMENT);
         menu.add(profile);
+
+        profile.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ProfileFrame profileFrame = new ProfileFrame(user);
+                profileFrame.setVisible(true);
+            }
+        });
 
 
 

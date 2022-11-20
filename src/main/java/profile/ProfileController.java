@@ -1,5 +1,6 @@
 package profile;
 
+import entities.Profile;
 import entities.User;
 
 import java.io.IOException;
@@ -12,15 +13,15 @@ public class ProfileController {
     }
 
     public void performAllCreated(String username) throws IOException {
-        inputBoundary.all_created(username);
+        inputBoundary.allCreated(username);
     }
 
     public void performAllReviewed(String username) throws IOException {
-        inputBoundary.all_reviewed(username);
+        inputBoundary.allReviewed(username);
     }
 
     public void performSetInfo(String username, int age, float height, float weight, String gender) throws IOException {
         ProfileRequestModel prm = new ProfileRequestModel(age, height, weight, gender);
-        inputBoundary.set_info(username, prm);
+        inputBoundary.setInfo(username, prm);
     }
 }
