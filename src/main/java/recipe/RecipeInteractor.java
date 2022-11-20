@@ -10,6 +10,7 @@ public class RecipeInteractor implements RecipeInputBoundary {
     private final RecipeRepoGateway rrg;
     private RecipeList recipeList;
     final RecipeOutputBoundary recipeOutputBoundary;
+    private String readingRecipe = null;
 
 
     public RecipeInteractor(RecipeOutputBoundary recipeOutputBoundary, RecipeRepoGateway recipeRepoGateway) {
@@ -43,6 +44,7 @@ public class RecipeInteractor implements RecipeInputBoundary {
     public void readRecipe(String recipeName){
         if (this.recipeList.contain(recipeName)){
             Recipe recipe = this.getRecipe(recipeName);
+            this.readingRecipe = recipeName;
             recipeOutputBoundary.readSuccessView(recipe.toString());
         }else{
             recipeOutputBoundary.readFailureView();
@@ -54,6 +56,9 @@ public class RecipeInteractor implements RecipeInputBoundary {
     }
      public Recipe getRecipe(String recipeName){
             return this.recipeList.get_recipe(recipeName);
+        }
+        public String getReadingRecipe(){
+        return this.readingRecipe;
         }
 
 

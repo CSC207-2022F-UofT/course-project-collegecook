@@ -16,8 +16,10 @@ public class Menu extends JFrame {
 
     JPanel buttonPanel = new JPanel();
     JLabel userName;
+    AppController appController
 
-    public Menu(String user){
+    public Menu(AppController appController){
+        this.appController = appController;
         menu.setLayout(new BoxLayout(menu, BoxLayout.Y_AXIS));
 
         title.setAlignmentX(Component.CENTER_ALIGNMENT);

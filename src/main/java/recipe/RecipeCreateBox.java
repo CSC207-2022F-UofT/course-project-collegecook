@@ -8,7 +8,15 @@ public interface RecipeCreateBox {
      * Present the interface of success in creating recipe.
      */
     void success();
+
+    /**
+     * Present the failure interface of creating a recipe
+     */
     void fail();
 
+    /**
+     *
+     * @param vision Whether to set the UI visible or not
+     */
     void setV(boolean vision);
 }

@@ -15,9 +15,8 @@ public class SearchRecipeUI extends JFrame {
     JTextField name = new JTextField();
     JButton read = new JButton("Read");
 
-    public SearchRecipeUI(RecipeController recipeController, RecipeOutputBoundary recipeOutputBoundary){
-        this.recipeController = recipeController;
-        this.recipeOutputBoundary = recipeOutputBoundary;
+    public SearchRecipeUI(AppController appController){
+        this.recipeController = appController.getRecipeController();
         view.setLayout(new BoxLayout(view, BoxLayout.Y_AXIS));
         name.setAlignmentX(Component.CENTER_ALIGNMENT);
         view.add(name);
@@ -39,12 +38,13 @@ public class SearchRecipeUI extends JFrame {
 
     public static void main(String[] args){
         RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();
-        RecipeViewBox recipeViewBox = new ViewRecipeUI();
-        recipeOutputBoundary.setUI(recipeViewBox);
         RecipeRepoGateway recipeRepoGateway = RecipeReadWriter.getRecipeRepo();
         RecipeInputBoundary recipeInputBoundary = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
         RecipeController recipeController = new RecipeController(recipeInputBoundary);
-        SearchRecipeUI m = new SearchRecipeUI(recipeController, recipeOutputBoundary);
+        AppController appController = new AppController(recipeController);
+        RecipeViewBox recipeViewBox = new ViewRecipeUI(appController);
+        recipeOutputBoundary.setUI(recipeViewBox);
+        SearchRecipeUI m = new SearchRecipeUI(appController);
         m.setVisible(true);
 
     }

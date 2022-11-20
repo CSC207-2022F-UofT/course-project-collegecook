@@ -12,8 +12,10 @@ public class ViewRecipeUI extends JFrame implements RecipeViewBox {
     JPanel buttonPanel = new JPanel();
     JButton review = new JButton("Review");
     JButton mealPlan = new JButton("Add to My Meal Plan");
+    AppController appController;
 
-    public ViewRecipeUI(){
+    public ViewRecipeUI(AppController appController){
+        this.appController = appController;
         view.setLayout(new BoxLayout(view, BoxLayout.Y_AXIS));
     }
     @Override

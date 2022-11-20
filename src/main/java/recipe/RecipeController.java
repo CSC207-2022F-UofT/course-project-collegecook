@@ -49,6 +49,8 @@ public class RecipeController {
         recipeInputBoundary.readRecipe(recipeName);
     }
 
+    public String getReadingRecipe(){return recipeInputBoundary.getReadingRecipe();}
+
 
 
 
