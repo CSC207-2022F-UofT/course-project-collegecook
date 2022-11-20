@@ -5,7 +5,11 @@ import entities.UserList;
 public class LoginControllor {
     UserManager userManager;
 
-    public void PerformCreateAllUser(String username,String password){
+    public LoginControllor(UserManager userManager) {
+        this.userManager = userManager;
+    }
+
+    public void PerformCreateAllUser(String username, String password){
         userManager.CheckAllUser(username,password);
 
     }
