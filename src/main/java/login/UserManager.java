@@ -1,20 +1,25 @@
 package login;
 
-import entities.Profile;
-import entities.User;
-import entities.UserList;
+import entities.*;
 
-
-import java.util.List;
+import java.io.IOException;
 import java.util.Objects;
 
 public class UserManager {
     private UserList AllUser;
 
+    private final UserGateWay rrg = UserRepoImpl.getUserRepoImpl();
+
     final login.LoginOutputBound LoginOutputBound;
 
     public UserManager(login.LoginOutputBound loginOutputBound) {
+
         this.LoginOutputBound = loginOutputBound;
+        try {
+            AllUser = rrg.getAllUser();
+        } catch (IOException e) {
+            AllUser = new UserList();
+        }
     }
 
 
@@ -22,10 +27,14 @@ public class UserManager {
     public void CheckAllUser(String username,String password){
         if (AllUser.CheckAllUser(username)){
             AllUser.AddAllUser(username,password);
-            LoginOutputBound.CreatAccountSuccess();
+            try {
+                rrg.saveUser(AllUser);
+                LoginOutputBound.CreatAccountSuccess();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }else{LoginOutputBound.CreatAccountFail();}
     }
-
 
 
     // method to find the user in the allUsers and change the status to logged in

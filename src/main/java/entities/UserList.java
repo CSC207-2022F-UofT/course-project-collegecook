@@ -11,7 +11,7 @@ public class UserList {
     public UserList() {
         this.AllUser = new ArrayList<>();
     }
-    //Used refactoring (design pattern) to factor out check method to make sure no users has same username when creating new account
+    //Used refactoring to factor out check method to make sure no users has same username when creating new account
     public boolean CheckAllUser(String username) {
         for (User person : AllUser) {
             if (Objects.equals(person.getUsername(), username)) {
