@@ -1,26 +1,33 @@
 package login;
 
+import ui.SignUpUI;
+
 public class LoginPresenter implements LoginOutputBound{
+
+    LoginBox loginBox;
+    SignUpBox signUpBox;
+
     @Override
     public void LoginSuccess() {
-        System.out.println("You have logged in");
+        loginBox.loginSuccess();
     }
 
     @Override
     public void LoginFailed() {
-        System.out.println("Username or password fail");
+        loginBox.loginFailed();
+
 
     }
 
     @Override
     public void CreatAccountSuccess() {
-        System.out.println("You have created a new account");
+        signUpBox.createSuccess();
 
     }
 
     @Override
     public void CreatAccountFail() {
-        System.out.println("Please choose another username");
+        signUpBox.createFailed();
 
     }
 
@@ -59,5 +66,12 @@ public class LoginPresenter implements LoginOutputBound{
     public void AddProfile() {
         System.out.println("Please Check Username");
 
+    }
+
+    public void setUI(LoginBox loginBox){
+        this.loginBox = loginBox;
+    }
+    public void setUI(SignUpBox signUpBox){
+        this.signUpBox = signUpBox;
     }
 }

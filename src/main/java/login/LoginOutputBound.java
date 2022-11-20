@@ -1,5 +1,7 @@
 package login;
 
+import ui.LoginUI;
+
 public interface LoginOutputBound {
     void LoginSuccess();
     void LoginFailed();
@@ -14,6 +16,7 @@ public interface LoginOutputBound {
     void UnFollowedSuccess();
     void UnFollowedFail();
     void AddProfile();
-
+    void setUI(LoginBox loginBox);
+    void setUI(SignUpBox signUpBox);
 
 }

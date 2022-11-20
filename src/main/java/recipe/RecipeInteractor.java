@@ -61,7 +61,12 @@ public class RecipeInteractor implements RecipeInputBoundary {
         return this.readingRecipe;
         }
 
-
+    public static void main(String[] arg){
+        RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();
+        RecipeRepoGateway recipeRepoGateway = RecipeReadWriter.getRecipeRepo();
+        RecipeInputBoundary recipeInputBoundary = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
+        recipeInputBoundary.getRecipe("apple pie");
+    }
 }
 
 

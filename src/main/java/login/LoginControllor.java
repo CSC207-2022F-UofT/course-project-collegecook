@@ -40,7 +40,17 @@ public class LoginControllor {
     public String preformGetLoggedInUser(){
         return userManager.getLoggedInUser();
     }
+
+    public static void main(String[] arg){
+        UserGateWay userGateWay = UserRepoImpl.getUserRepoImpl();
+        LoginOutputBound loginOutputBound = new LoginPresenter();
+        UserManager userManager1 = new UserManager(loginOutputBound, userGateWay);
+        LoginControllor loginControllor = new LoginControllor(userManager1);
+        loginControllor.PerformLogin("Brenden", "12345");
     }
+    }
+
+
 
 
 
