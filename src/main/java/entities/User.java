@@ -10,7 +10,6 @@ public class User implements Serializable {
     private String password;
 
     private boolean LoginStatus;
-    private Profile profile;
     private List<User> followers;
     private List<User> followed;
 
@@ -51,9 +50,6 @@ public class User implements Serializable {
         this.followed.add(Other);
     }
 
-    public void setProfile(Profile profile) {
-        this.profile = profile;
-    }
 
     public void RemoveFollowers(User other) {
         this.followers.remove(other);

@@ -62,16 +62,6 @@ public class UserManager {
 
 
     }
-    // method to find the user in the allUsers and add profile
-
-    public void AddProfile(String username, Profile profile){
-        for(User person :AllUser.getAllUser()){
-            if(Objects.equals(person.getUsername(), username)){
-                person.setProfile(profile);}else{LoginOutputBound.AddProfile();}
-
-        }
-
-    }
 
     //Check if user already followed this other user(refactoring)
     public boolean CheckFollow(String username, User other){
