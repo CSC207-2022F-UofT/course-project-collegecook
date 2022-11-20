@@ -17,7 +17,7 @@ public class ReviewTest {
         ingredients.add("pasta");
         ingredients.add("sauce");
         sampleRecipe = new Recipe("spaghetti", "Just cook it",
-                "italy", ingredients, 500, 10, 3);
+                "italy", ingredients, 500, 10, 3, "Ben");
         rev = new Review("bob", sampleRecipe, "tasted terrible", 1);
     }
 

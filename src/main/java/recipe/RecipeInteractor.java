@@ -4,20 +4,18 @@ import entities.Recipe;
 import entities.RecipeList;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Scanner;
 
 
-public class RecipeInterActor implements RecipeInputBoundary {
-    private final RecipeRepoGateway rrg = RecipeRepoImpl.getRecipeRepoImpl();
+public class RecipeInteractor implements RecipeInputBoundary {
+    private final RecipeRepoGateway rrg;
     private RecipeList recipeList;
     final RecipeOutputBoundary recipeOutputBoundary;
+    private String readingRecipe = null;
 
 
-    public RecipeInterActor(RecipeOutputBoundary recipeOutputBoundary) {
+    public RecipeInteractor(RecipeOutputBoundary recipeOutputBoundary, RecipeRepoGateway recipeRepoGateway) {
         this.recipeOutputBoundary = recipeOutputBoundary;
-
+        this.rrg = recipeRepoGateway;
         try {
             recipeList = rrg.getRecipeList();
         } catch (IOException e) {
@@ -27,13 +25,13 @@ public class RecipeInterActor implements RecipeInputBoundary {
 
 
     public void createRecipe (RecipeRequestModel recipeRequestModel){
-        if (recipeList.contain(recipeRequestModel.get_recipe_name())) {
+        if (recipeList.contain(recipeRequestModel.getRecipeName())) {
             recipeOutputBoundary.createFailureView();
         }else {
-            recipeList.add_recipe(recipeRequestModel.get_recipe_name(), recipeRequestModel.get_procedure(),
-                    recipeRequestModel.get_cuisine(), recipeRequestModel.get_ingredients(),
-                    recipeRequestModel.get_calories(), recipeRequestModel.get_time(),
-                    recipeRequestModel.get_difficulty(), recipeRequestModel.get_creator());
+            recipeList.add_recipe(recipeRequestModel.getRecipeName(), recipeRequestModel.getProcedure(),
+                    recipeRequestModel.getCuisine(), recipeRequestModel.getIngredients(),
+                    recipeRequestModel.getCalories(), recipeRequestModel.getTime(),
+                    recipeRequestModel.getDifficulty(), recipeRequestModel.getCreator());
             try {
                 rrg.saveRecipe(recipeList);
                 recipeOutputBoundary.createSuccessView();
@@ -46,6 +44,7 @@ public class RecipeInterActor implements RecipeInputBoundary {
     public void readRecipe(String recipeName){
         if (this.recipeList.contain(recipeName)){
             Recipe recipe = this.getRecipe(recipeName);
+            this.readingRecipe = recipeName;
             recipeOutputBoundary.readSuccessView(recipe.toString());
         }else{
             recipeOutputBoundary.readFailureView();
@@ -57,6 +56,9 @@ public class RecipeInterActor implements RecipeInputBoundary {
     }
      public Recipe getRecipe(String recipeName){
             return this.recipeList.get_recipe(recipeName);
+        }
+        public String getReadingRecipe(){
+        return this.readingRecipe;
         }
 
 
