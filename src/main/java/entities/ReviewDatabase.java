@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class ReviewDatabase {
+
+    private boolean loaded = false;
     private static ArrayList<Review> reviews = new ArrayList<Review>();
 
     /**
@@ -46,5 +48,4 @@ public class ReviewDatabase {
         }
         return answer;
     }
-
 }
