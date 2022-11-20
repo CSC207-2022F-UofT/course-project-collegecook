@@ -1,7 +1,7 @@
 package profile;
 
 import entities.*;
-import recipe.RecipeInterActor;
+import recipe.RecipeInteractor;
 import recipe.RecipeOutputBoundary;
 
 import java.io.IOException;
@@ -28,7 +28,7 @@ public class ProfileInteractor implements ProfileInputBoundary{
     }
 
     public void all_created(String username) throws IOException {
-        RecipeInterActor ri = new RecipeInterActor(recipeOut);
+        RecipeInteractor ri = new RecipeInteractor(recipeOut);
         RecipeList rl = ri.getAll();
         ArrayList<Recipe> recipeList = new ArrayList<>();
         for (Recipe r: rl){

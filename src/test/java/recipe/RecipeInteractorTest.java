@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class RecipeInterActorTest {
+class RecipeInteractorTest {
 
     @BeforeEach
     void setUp() {
