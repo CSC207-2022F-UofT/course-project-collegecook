@@ -1,60 +1,67 @@
 package profile;
 
-import entities.Profile;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class ProfileFrame extends JFrame {
+public class ProfileFrame extends JFrame implements InfoViewBox {
 
     JPanel p_panel = new JPanel();
-    JButton createdButton = new JButton("View Your Created Recipes");
-    JButton  reviewedButton = new JButton("View Your Reviewed Recipes");
+    JButton recipeButton = new JButton("View Your Related Recipes");
     JButton infoButton = new JButton("information");
+    JLabel infoLabel;
     ProfileController pc;
 
     public ProfileFrame(String username) {
         p_panel.setLayout(new BorderLayout());
-        p_panel.add(createdButton, BorderLayout.NORTH);
-        p_panel.add(reviewedButton, BorderLayout.CENTER);
-        p_panel.add(infoButton, BorderLayout.SOUTH);
+        p_panel.add(recipeButton, BorderLayout.NORTH);
+        p_panel.add(infoButton, BorderLayout.CENTER);
 
-        this.add(p_panel);
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.pack();
-
-        createdButton.addActionListener(new ActionListener() {
+        recipeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    pc.performAllCreated(username);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        });
-
-        reviewedButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    pc.performAllReviewed(username);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+                ViewRecipeFrame recipeFrame = new ViewRecipeFrame(username);
+                recipeFrame.setVisible(true);
             }
         });
 
         infoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                InfoFrame infoFrame = new InfoFrame(username);
-                infoFrame.setVisible(true);
+                boolean status = false;
+                try {
+                    status = pc.performCheckInfo(username);
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null,
+                            "Oops! There is something wrong with your profile. ");
+                }
+                if (status) {
+                    try {
+                        pc.performViewInfo(username);
+                    } catch (IOException ex) {
+                        JOptionPane.showMessageDialog(null,
+                                "Oops! There is something wrong with your profile. ");
+                    }
+                } else {
+                    InfoFrame infoFrame = new InfoFrame(username);
+                    infoFrame.setVisible(true);
+                }
             }
         });
     }
 
+    @Override
+    public void viewInfoSuccess(String result) {
+        infoLabel = new JLabel(result);
+        infoLabel.setText("<html>" + result.replaceAll("<","&lt;").replaceAll(">", "&gt;").
+                replaceAll("\n", "<br/>") + "</html>");
+        infoLabel.setFont(new Font("Monaco", Font.PLAIN, 15));
+        p_panel.add(infoLabel, BorderLayout.SOUTH);
+
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.pack();
+        this.setVisible(true);
+    }
 }

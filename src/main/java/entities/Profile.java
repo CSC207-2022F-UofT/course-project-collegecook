@@ -64,6 +64,15 @@ public class Profile {
         return result;
     }
 
+    public String soutInfo(){
+        String result = new String("");
+        return "Age: " + age + "\n" +
+                "Height: " + height + "\n" +
+                "Weight: " + weight + "\n" +
+                "Gender: " + gender + "\n";
+    }
+
+
     public ArrayList<Review> getReviewed() {
         return reviewed;
     }

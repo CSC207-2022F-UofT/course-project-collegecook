@@ -1,31 +1,37 @@
 package profile;
 
-import entities.Profile;
-
 public class ProfilePresenter implements ProfileOutputBoundary{
+    ProfileBox pb;
+    InfoViewBox ivb;
+    InfoSetBox isb;
 
     @Override
-    public void view_created(Profile p) {
-        if (p.getCreated().isEmpty()){
-            System.out.println("You have no created recipes. ");
-        }
-        else{
-            System.out.println(p.soutCreated());
-        }
+    public void viewCreated(String result) {
+        pb.hasCreated(result);
     }
 
     @Override
-    public void view_reviewed(Profile p) {
-        if (p.getReviewed().isEmpty()){
-            System.out.println("You have no reviewed recipes. ");
-        }
-        else{
-            System.out.println(p.soutReviewed());
-        }
+    public void noCreated() {
+        pb.noCreated();
     }
 
     @Override
-    public void set_info_success() {
-        System.out.println("You have successfully set your information. ");
+    public void viewReviewed(String result) {
+        pb.hasReviewed(result);
+    }
+
+    @Override
+    public void noReviewed() {
+        pb.noReviewed();
+    }
+
+    @Override
+    public void setInfoResult() {
+        isb.setInfoSuccess();
+    }
+
+    @Override
+    public void viewInfo(String result) {
+        ivb.viewInfoSuccess(result);
     }
 }

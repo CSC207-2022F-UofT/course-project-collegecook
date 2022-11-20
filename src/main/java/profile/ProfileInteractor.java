@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class ProfileInteractor implements ProfileInputBoundary{
     private final ProfileRepoGateway prg =  ProfileRepoImpl.getPrl();
     private final RecipeRepoGateway rrg = RecipeReadWriter.getRecipeRepo();
-    private ArrayList<Profile> profile_list;
+    private ArrayList<Profile> profileList;
     final ProfileOutputBoundary outputboundary;
 
 
@@ -18,29 +18,35 @@ public class ProfileInteractor implements ProfileInputBoundary{
         this.outputboundary = outputboundary;
 
         try{
-            profile_list = prg.getProfile();
+            profileList = prg.getProfile();
         }
         catch(IOException e ){
-            profile_list = new ArrayList<>();
+            profileList = new ArrayList<>();
             System.out.println("Read file failed.....");
         }
     }
 
-    public void all_created(String username) throws IOException {
-        RecipeList all_recipe = rrg.getRecipeList();
+    public void allCreated(String username) throws IOException {
+        RecipeList allRecipe = rrg.getRecipeList();
         ArrayList<Recipe> recipeList = new ArrayList<>();
-        for (Recipe r: all_recipe){
+        for (Recipe r: allRecipe){
             if (r.getCreator().equals(username)){
                 recipeList.add(r);
             }
         }
-        Profile result = check_profile(username);
-        result.setCreated(recipeList);
-        outputboundary.view_created(result);
+        Profile p = checkProfile(username);
+        p.setCreated(recipeList);
+        if (p.getCreated().isEmpty()){
+            outputboundary.noCreated();
+        }
+        else{
+            String result = p.soutCreated();
+            outputboundary.viewCreated(result);
+        }
     }
 
-    public Profile check_profile(String username) throws IOException {
-        for (Profile p: profile_list){
+    public Profile checkProfile(String username) throws IOException {
+        for (Profile p: profileList){
             if (p.getUsername().equals(username)){
                 return p;
             }
@@ -51,23 +57,41 @@ public class ProfileInteractor implements ProfileInputBoundary{
     }
 
     //need jason to modify getUserReviews to be worked.
-    public void all_reviewed(String username) throws IOException {
-        //ArrayList<Review> all = ReviewDatabase.getUserReviews(user);
-        Profile result = check_profile(username);
-        //result.setReviewed(all);
-        outputboundary.view_reviewed(result);
-    }
-
-    public void set_info(String username, ProfileRequestModel prm) {
-        for (Profile p: profile_list){
-            if (p.getUsername().equals(username)){
-                set_all(prm, p);
-                outputboundary.set_info_success();
-            }
+    public void allReviewed(String username) throws IOException {
+        ArrayList<Review> all = ReviewDatabase.getUserReviews(username);
+        Profile p = checkProfile(username);
+        p.setReviewed(all);
+        if (p.getReviewed().isEmpty()){
+            outputboundary.noReviewed();
+        }
+        else{
+            String result = p.soutReviewed();
+            outputboundary.viewReviewed(result);
         }
     }
 
-    private void set_all(ProfileRequestModel prm, Profile p) {
+    public void setInfo(String username, ProfileRequestModel prm) throws IOException {
+        Profile p = checkProfile(username);
+        setAll(prm, p);
+        outputboundary.setInfoResult();
+    }
+
+    public void viewInfo(String username) throws IOException {
+        Profile p = checkProfile(username);
+        String result = p.soutInfo();
+        outputboundary.viewInfo(result);
+    }
+
+    public boolean checkInfo(String username) throws IOException {
+        Profile p = checkProfile(username);
+        int age = p.getAge();
+        float height = p.getHeight();
+        float weight = p.getWeight();
+        String gender = p.getGender();
+        return age != 0 || height != 0 || weight != 0 || !gender.isEmpty();
+    }
+
+    private void setAll(ProfileRequestModel prm, Profile p) {
         int age = prm.getAge();
         float height = prm.getHeight();
         float weight = prm.getWeight();

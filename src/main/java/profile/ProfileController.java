@@ -1,8 +1,5 @@
 package profile;
 
-import entities.Profile;
-import entities.User;
-
 import java.io.IOException;
 
 public class ProfileController {
@@ -23,5 +20,13 @@ public class ProfileController {
     public void performSetInfo(String username, int age, float height, float weight, String gender) throws IOException {
         ProfileRequestModel prm = new ProfileRequestModel(age, height, weight, gender);
         inputBoundary.setInfo(username, prm);
+    }
+
+    public void performViewInfo(String username) throws IOException {
+        inputBoundary.viewInfo(username);
+    }
+
+    public boolean performCheckInfo(String username)throws IOException{
+        return inputBoundary.checkInfo(username);
     }
 }
