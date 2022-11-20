@@ -90,7 +90,8 @@ public class CreateRecipeUI extends JFrame implements RecipeCreateBox{
                 ArrayList<String> ingredients = new ArrayList<>(Arrays.asList(ingredients_list));
                 recipeController.performCreateRecipe(name.getText(), procedure.getText(), cuisine.getText(),
                         ingredients, Integer.parseInt(calories.getText()), Integer.parseInt(time.getText()),
-                        Integer.parseInt(difficulty.getText()), "Brenden");
+                        Integer.parseInt(difficulty.getText()),
+                        appController.getLoginControllor().preformGetLoggedInUser());
             }
         });
         check.add(create);
