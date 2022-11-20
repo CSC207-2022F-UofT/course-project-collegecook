@@ -8,16 +8,16 @@ import java.util.Objects;
 public class UserManager {
     private UserList AllUser;
 
-    private final UserGateWay rrg = UserRepoImpl.getUserRepoImpl();
+    private final UserGateWay urg;
 
     final login.LoginOutputBound LoginOutputBound;
     private String loggedInUser;
 
-    public UserManager(login.LoginOutputBound loginOutputBound) {
-
+    public UserManager(login.LoginOutputBound loginOutputBound, UserGateWay userGateWay) {
+        this.urg = userGateWay;
         this.LoginOutputBound = loginOutputBound;
         try {
-            AllUser = rrg.getAllUser();
+            AllUser = urg.getAllUser();
         } catch (IOException e) {
             AllUser = new UserList();
         }
@@ -29,7 +29,7 @@ public class UserManager {
         if (AllUser.CheckAllUser(username)){
             AllUser.AddAllUser(username,password);
             try {
-                rrg.saveUser(AllUser);
+                urg.saveUser(AllUser);
                 LoginOutputBound.CreatAccountSuccess();
             } catch (IOException e) {
                 e.printStackTrace();
