@@ -1,14 +1,20 @@
 package sort;
 
+import entities.Recipe;
+
+import java.util.ArrayList;
+
 public class SortController {
     // Sort by time, averageRating, difficulty, number of ingredients
-    String sortType;
+    SortInputBoundary userInput;
 
-    public void setSortType(String sortType) {
-        this.sortType = sortType;
+    public SortController(SortInputBoundary userInput){
+        this.userInput = userInput;
     }
 
-    public String getSortType(){
-        return this.sortType;
+    public SortResponseModel sortRecipes(ArrayList<Recipe> recipesToBeSorted, String sortType, boolean sortByAscending){
+        SortRequestModel requestModel = new SortRequestModel(recipesToBeSorted, sortType, sortByAscending);
+        //TODO: Figure out what call here
+        return userInput.sortRecipesByTimeNeeded(requestModel);
     }
 }

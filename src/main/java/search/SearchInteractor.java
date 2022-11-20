@@ -1,6 +1,8 @@
 package search;
 
 import entities.Recipe;
+import recipe.RecipeInterActor;
+
 import java.util.ArrayList;
 
 public class SearchInteractor implements SearchInputBoundary{

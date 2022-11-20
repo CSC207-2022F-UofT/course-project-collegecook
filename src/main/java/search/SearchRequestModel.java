@@ -11,12 +11,15 @@ public class SearchRequestModel {
     int timeInMin;
     String sortType;
 
-    public SearchRequestModel(String name, String cuisine, ArrayList<String> ingredients, int timeInMin, String sortType){
+    boolean sortByAscending;
+
+    public SearchRequestModel(String name, String cuisine, ArrayList<String> ingredients, int timeInMin, String sortType, boolean sortByAscending){
         this.name = name;
         this.cuisine = cuisine;
         this.ingredients = ingredients;
         this.timeInMin = timeInMin;
         this.sortType = sortType;
+        this.sortByAscending = sortByAscending;
     }
 
     public String getName(){
@@ -57,5 +60,13 @@ public class SearchRequestModel {
 
     public void setSortType(String sortType) {
         this.sortType = sortType;
+    }
+
+    public void setSortByAscending(boolean sortByAscending) {
+        this.sortByAscending = sortByAscending;
+    }
+
+    public boolean isSortByAscending() {
+        return sortByAscending;
     }
 }

@@ -1,16 +1,16 @@
 package sort;
 
-import entities.Recipe;
+public class SortPresenter implements SortOutputBoundary{
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
+    @Override
+    public SortResponseModel prepareSuccessView(SortResponseModel sortedRecipes){
+        //TODO
+        return null;
+    }
 
-public class SortPresenter {
-
-    public void showSortedRecipes(){
-//        ArrayList<Recipe> recipes = new ArrayList<>();
-        String sortType = "averageRating";
-        System.out.println("These were the sorted recipes:" + SortUseCase.sortRecipesBySortType(recipes, sortType));
+    @Override
+    public SortResponseModel prepareErrorView(SortResponseModel responseModel) {
+        //TODO
+        return null;
     }
 }

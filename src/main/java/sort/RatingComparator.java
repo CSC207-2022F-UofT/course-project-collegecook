@@ -23,7 +23,6 @@ public class RatingComparator implements Comparator<Recipe> {
         float r1avRating =  0;
         float r2avRating = 1;
         float recipeRatingDiff = r1avRating - r2avRating;
-        int diff = int((recipeRatingDiff >= 0) ? Math.ceil(recipeRatingDiff) : Math.floor(recipeRatingDiff));
-        return diff;
+        return (int) ((recipeRatingDiff >= 0) ? Math.ceil(recipeRatingDiff) : Math.floor(recipeRatingDiff));
     }
 }
