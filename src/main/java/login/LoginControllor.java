@@ -2,6 +2,8 @@ package login;
 
 import entities.UserList;
 
+import java.io.IOException;
+
 public class LoginControllor {
     UserManager userManager;
 
@@ -22,7 +24,7 @@ public class LoginControllor {
     }
 
 
-    public void PreformFollow(String username, String other){
+    public void PreformFollow(String username, String other) throws IOException {
         if (userManager.CheckFollow(username,other)){
             userManager.follow(username,other);
         }

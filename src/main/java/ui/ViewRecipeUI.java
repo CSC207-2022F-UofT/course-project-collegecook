@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class ViewRecipeUI extends JFrame implements RecipeViewBox {
     JPanel view = new JPanel();
@@ -35,7 +36,11 @@ public class ViewRecipeUI extends JFrame implements RecipeViewBox {
                 String readRecipe = appController.getRecipeController().getReadingRecipe();
                 String creator = appController.getRecipeController().getRecipe(readRecipe).getCreator();
                 String user = appController.getLoginControllor().preformGetLoggedInUser();
-                appController.getLoginControllor().PreformFollow(user,creator);
+                try {
+                    appController.getLoginControllor().PreformFollow(user,creator);
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null,"You have followed the creator.");;
+                }
             }
         });
         buttonPanel.add(review);
