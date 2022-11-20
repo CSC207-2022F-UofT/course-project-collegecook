@@ -21,12 +21,11 @@ public class LoginControllor {
         userManager.Logout(username);
     }
 
-    public void PerformCheckFollow(String username, String other){
-        userManager.CheckFollow(username,other);
-    }
 
     public void PreformFollow(String username, String other){
-        userManager.follow(username,other);
+        if (userManager.CheckFollow(username,other)){
+            userManager.follow(username,other);
+        }
     }
 
     public void PreformCheckUnFollow(String username, String other){
@@ -34,8 +33,9 @@ public class LoginControllor {
     }
 
     public void PreformUnFollow(String username, String other){
-        userManager.Unfollow(username,other);
-    }
+        if(userManager.CheckUnFollow(username,other)){
+            userManager.Unfollow(username,other);}
+             }
 
     public String preformGetLoggedInUser(){
         return userManager.getLoggedInUser();
