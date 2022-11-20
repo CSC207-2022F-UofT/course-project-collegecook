@@ -85,11 +85,11 @@ public class UserManager {
     //other.follower add user
     // method to find the user in the allUsers and add the other user in to the followed list(attribute of user),need to
     //check if the other user is already followed,also find the other user and add the user from the following list(attribute of user)
-    public void follow(String username, User other){
+    public void follow(String username, String other){
         for(User person :AllUser.getAllUser()){
             if(Objects.equals(person.getUsername(), username)){
-                person.addFollowed(other);
-                other.addFollowers(person);
+                person.addFollowed(AllUser.getUser(other));
+                AllUser.getUser(other).addFollowers(person);
                 LoginOutputBound.FollowedSuccess();
             }
 
@@ -100,26 +100,29 @@ public class UserManager {
 
     // method to find the user in the allUsers and remove the other user in to the followed list(attribute of user),need to
     //check if the other user is already followed,also find the other user and remove the user from the following list(attribute of user)
-    public boolean CheckUnFollow(String username, User other){
-        for(User person :AllUser.getAllUser()){
-            if(Objects.equals(person.getUsername(), username)){
-                if (person.getFollowed().contains(other)){
+    public boolean CheckUnFollow(String username, String other) {
+        for (User person : AllUser.getAllUser()) {
+            if (!AllUser.contains(other)) {
+                LoginOutputBound.UnFollowedFail();
+                return false;
+            }
+            if (Objects.equals(person.getUsername(), username)) {
+                if (person.getFollowed().contains(AllUser.getUser(other))) {
                     return true;
                 }
             }
         }
         LoginOutputBound.UnFollowedFail();
         return false;
-
     }
 
     // remove Other from user.followed
     //remove user from other.following
-    public void Unfollow(String username, User other){
+    public void Unfollow(String username, String other){
         for(User person :AllUser.getAllUser()){
             if(Objects.equals(person.getUsername(), username)){
-                person.RemoveFollowed(other);
-                other.RemoveFollowers(person);
+                person.RemoveFollowed(AllUser.getUser(other));
+                AllUser.getUser(other).RemoveFollowers(person);
                 LoginOutputBound.UnFollowedSuccess();
             }
 

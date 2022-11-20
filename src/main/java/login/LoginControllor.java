@@ -17,11 +17,21 @@ public class LoginControllor {
         userManager.Logout(username);
     }
 
-    public void PerformCheckFollow(String username){
-        userManager.Logout(username);
+    public void PerformCheckFollow(String username, String other){
+        userManager.CheckFollow(username,other);
     }
 
+    public void PreformFollow(String username, String other){
+        userManager.follow(username,other);
+    }
 
+    public void PreformCheckUnFollow(String username, String other){
+        userManager.CheckUnFollow(username,other);
+    }
+
+    public void PreformUnFollow(String username, String other){
+        userManager.Unfollow(username,other);
+    }
 
 
 
