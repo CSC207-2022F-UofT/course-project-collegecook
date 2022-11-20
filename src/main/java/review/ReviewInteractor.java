@@ -8,7 +8,6 @@ import java.io.IOException;
 
 public class ReviewInteractor {
 
-    private final RecipeRepoGateway rrg = new RecipeRepoImpl();
     private RecipeList recipeList;
     private ReviewDatabase reviewDatabase;
 
@@ -18,10 +17,21 @@ public class ReviewInteractor {
      */
     public ReviewInteractor() {
         try {
+            RecipeRepoGateway rrg = new RecipeRepoImpl();
             recipeList = rrg.getRecipeList();
         } catch (IOException e) {
             recipeList = new RecipeList();
             System.out.println("Read file failed.....");
+        }
+
+        try {
+            ReviewDatabaseReadWriter rdrw = new ReviewDatabaseReadWriter();
+            reviewDatabase = rdrw.readFromFile("reviews.sav");
+        } catch (IOException e) {
+            reviewDatabase = new ReviewDatabase();
+            System.out.println("Read file failed.....");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
