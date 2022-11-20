@@ -73,6 +73,7 @@ public class WelcomeUI extends JFrame {
         SignUpBox signUpBox = new SignUpUI(appController1);
         loginOutputBound.setUI(loginBox);
         loginOutputBound.setUI(signUpBox);
+        loginOutputBound.setUI(recipeViewBox);
         recipeOutputBoundary.setUI(recipeCreateBox);
         recipeOutputBoundary.setUI(recipeViewBox);
         welcomeUI.setVisible(true);

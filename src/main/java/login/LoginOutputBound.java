@@ -1,5 +1,7 @@
 package login;
 
+import recipe.RecipeCreateBox;
+import recipe.RecipeViewBox;
 import ui.LoginUI;
 
 public interface LoginOutputBound {
@@ -18,5 +20,6 @@ public interface LoginOutputBound {
     void AddProfile();
     void setUI(LoginBox loginBox);
     void setUI(SignUpBox signUpBox);
+    void setUI(RecipeViewBox recipeViewBox);
 
 }

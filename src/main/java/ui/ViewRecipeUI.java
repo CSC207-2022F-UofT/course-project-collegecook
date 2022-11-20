@@ -34,7 +34,8 @@ public class ViewRecipeUI extends JFrame implements RecipeViewBox {
             public void actionPerformed(ActionEvent e) {
                 String readRecipe = appController.getRecipeController().getReadingRecipe();
                 String creator = appController.getRecipeController().getRecipe(readRecipe).getCreator();
-
+                String user = appController.getLoginControllor().preformGetLoggedInUser();
+                appController.getLoginControllor().PreformFollow(user,creator);
             }
         });
         buttonPanel.add(review);
@@ -49,6 +50,16 @@ public class ViewRecipeUI extends JFrame implements RecipeViewBox {
     @Override
     public void failure(){
         JOptionPane.showMessageDialog(null,"Sorry, the recipe doesn't exist");
+    }
+
+    @Override
+    public void followSuccess() {
+        JOptionPane.showMessageDialog(null,"You have followed the creator.");
+    }
+
+    @Override
+    public void followFailure() {
+        JOptionPane.showMessageDialog(null,"You have already followed the creator.");
     }
 
 }

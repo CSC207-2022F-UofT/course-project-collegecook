@@ -19,4 +19,5 @@ public interface RecipeCreateBox {
      * @param vision Whether to set the UI visible or not
      */
     void setV(boolean vision);
+
 }

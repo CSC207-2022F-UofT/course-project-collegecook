@@ -1,11 +1,14 @@
 package login;
 
+import recipe.RecipeCreateBox;
+import recipe.RecipeViewBox;
 import ui.SignUpUI;
 
 public class LoginPresenter implements LoginOutputBound{
 
     LoginBox loginBox;
     SignUpBox signUpBox;
+    RecipeViewBox recipeViewBox;
 
     @Override
     public void LoginSuccess() {
@@ -40,13 +43,13 @@ public class LoginPresenter implements LoginOutputBound{
 
     @Override
     public void FollowedSuccess() {
-        System.out.println("Followed successfully");
+        recipeViewBox.followSuccess();
 
     }
 
     @Override
     public void FollowedFail() {
-        System.out.println("You have already followed this user or the user doesn't exist");
+        recipeViewBox.followFailure();
 
     }
 
@@ -74,4 +77,5 @@ public class LoginPresenter implements LoginOutputBound{
     public void setUI(SignUpBox signUpBox){
         this.signUpBox = signUpBox;
     }
+    public void setUI(RecipeViewBox recipeViewBox){this.recipeViewBox = recipeViewBox;}
 }
