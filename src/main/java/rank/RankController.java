@@ -23,9 +23,9 @@ public class RankController {
      *
      * @param ranking variable chosen by the user to sort other Users
      */
-    public void sorting(String ranking) {
+    public String sorting(String ranking) {
         ranking = ranking.toLowerCase().strip();
         RankRequestModel requestModel = new RankRequestModel(ranking);
-        rankInput.sortUsers(requestModel);
+        return rankInput.sortUsers(requestModel);
     }
 }

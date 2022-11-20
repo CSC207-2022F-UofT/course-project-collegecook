@@ -12,7 +12,6 @@ public class RankInteractor implements RankInputBoundary{
     final RankOutputBoundary rankOutputBoundary;
     UserList userList;
     List<User> users = userList.getAllUser();
-    Rank rankobj = new Rank(users);
 
     public RankInteractor(RankOutputBoundary rankOutputBoundary) {
         this.rankOutputBoundary = rankOutputBoundary;
