@@ -54,7 +54,7 @@ public class ProfileInteractor implements ProfileInputBoundary{
 
     //need jason to modify getUserReviews to be worked.
     public void all_reviewed(String username) throws IOException {
-       //ArrayList<Review> all = ReviewDatabase.getUserReviews(user);
+        //ArrayList<Review> all = ReviewDatabase.getUserReviews(user);
         Profile result = check_profile(username);
         //result.setReviewed(all);
         outputboundary.view_reviewed(result);
