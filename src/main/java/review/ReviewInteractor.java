@@ -59,7 +59,6 @@ public class ReviewInteractor {
 
     private static void createHelper(String username, Review review) {
         ReviewDatabase.addReview(review);
-        UpdateAverageRating ratingupdate = new UpdateAverageRating();
-        ratingupdate.updateAverage(username, review);
+        UpdateAverageRating.updateAverage(username);
     }
 }
