@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class SearchRecipeUI extends JFrame {
     RecipeController recipeController;
@@ -45,5 +46,6 @@ public class SearchRecipeUI extends JFrame {
         RecipeController recipeController = new RecipeController(recipeInputBoundary);
         SearchRecipeUI m = new SearchRecipeUI(recipeController, recipeOutputBoundary);
         m.setVisible(true);
+
     }
 }

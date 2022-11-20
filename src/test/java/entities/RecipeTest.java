@@ -29,7 +29,7 @@ class RecipeTest {
     @Test
     void get_procedure() {
         String expected = "procedure";
-        String actual = r.get_procedure();
+        String actual = r.getProcedure();
         assertEquals(expected, actual);
     }
 
@@ -37,35 +37,35 @@ class RecipeTest {
     @Test
     void get_recipe_name() {
         String expected = "name";
-        String actual = r.get_recipe_name();
+        String actual = r.getRecipeName();
         assertEquals(expected, actual);
     }
 
     @Test
     void get_cuisine() {
         String expected = "cuisine";
-        String actual = r.get_cuisine();
+        String actual = r.getCuisine();
         assertEquals(expected, actual);
     }
 
     @Test
     void get_calories() {
         int expected = 1;
-        int actual = r.get_calories();
+        int actual = r.getCalories();
         assertEquals(expected, actual);
     }
 
     @Test
     void get_time() {
         int expected = 2;
-        int actual = r.get_time();
+        int actual = r.getTime();
         assertEquals(expected, actual);
     }
 
     @Test
     void get_difficulty() {
         int expected = 3;
-        int actual = r.get_difficulty();
+        int actual = r.getDifficulty();
         assertEquals(expected, actual);
     }
 
@@ -73,7 +73,7 @@ class RecipeTest {
     void get_ingredients() {
         ArrayList<String> expected = new ArrayList<>();
         expected.add("food");
-        ArrayList<String> actual = r.get_ingredients();
+        ArrayList<String> actual = r.getIngredients();
         assertArrayEquals(expected.toArray(), actual.toArray());
     }
 
@@ -90,12 +90,12 @@ class RecipeTest {
 
     @Test
     void testHashCode() {
-        assertEquals(Objects.hash(r.get_recipe_name()), r.hashCode());
+        assertEquals(Objects.hash(r.getRecipeName()), r.hashCode());
     }
 
     @Test
     void get_creator() {
-        assertEquals("Brenden", r.get_creator());
+        assertEquals("Brenden", r.getCreator());
     }
 
     @Test

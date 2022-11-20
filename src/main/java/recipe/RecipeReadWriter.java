@@ -1,8 +1,10 @@
 package recipe;
 
+import entities.Recipe;
 import entities.RecipeList;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class RecipeReadWriter implements RecipeRepoGateway{
     private static final String file = "recipe.sav";
@@ -35,6 +37,20 @@ public class RecipeReadWriter implements RecipeRepoGateway{
         ObjectOutputStream outputStream = new ObjectOutputStream(f2);
         outputStream.writeObject(recipeList);
         f2.close();
+    }
+
+    public static void main(String[] args) throws IOException {
+        RecipeReadWriter r = RecipeReadWriter.getRecipeRepo();
+        RecipeList recipeList = new RecipeList();
+//        ArrayList<String> a = new ArrayList<>();
+//        a.add("apple");
+//        recipeList.add_recipe("apple pie", "Cut apples and make it a pie",
+//                "dessert", a, 1, 2, 3, "Brenden");
+//        r.saveRecipe(recipeList);
+
+        for(Recipe recipe : r.getRecipeList()){
+            System.out.println(recipe.getRecipeName());
+        };
     }
 
 }
