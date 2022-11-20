@@ -58,7 +58,7 @@ public class MealplanInteractor implements MealplanInputBoundary{
 
         for (ArrayList<String> l : mealplan.returnMealPlan()){
             for (String r : l){
-                cal = cal + recipeList.get_recipe(r).get_calories();
+                cal = cal + recipeList.get_recipe(r).getCalories();
             }
         }
 
