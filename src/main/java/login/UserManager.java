@@ -92,10 +92,7 @@ public class UserManager {
                 AllUser.getUser(other).addFollowers(person);
                 LoginOutputBound.FollowedSuccess();
             }
-
         }
-
-
     }
 
     // method to find the user in the allUsers and remove the other user in to the followed list(attribute of user),need to
@@ -125,15 +122,10 @@ public class UserManager {
                 AllUser.getUser(other).RemoveFollowers(person);
                 LoginOutputBound.UnFollowedSuccess();
             }
-
         }
-
-
     }
 
     public String getLoggedInUser(){
         return this.loggedInUser;
     }
-
-
 }
