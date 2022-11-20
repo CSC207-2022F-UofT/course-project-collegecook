@@ -1,5 +1,6 @@
 package recipe;
 
+import entities.Recipe;
 import entities.RecipeList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,13 +23,13 @@ class RecipeInteractorTest {
         recipeRepoGateway = RecipeReadWriter.getRecipeRepo();
         recipeInteractor = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
         RecipeController recipeController = new RecipeController(recipeInteractor);
-        RecipeCreateBox createBox = new CreateRecipeUI(recipeController, recipeOutputBoundary);
+        RecipeCreateBox createBox = new CreateRecipeUI(recipeController);
         recipeOutputBoundary.setUI(createBox);
         RecipeViewBox recipeViewBox = new ViewRecipeUI();
         recipeOutputBoundary.setUI(recipeViewBox);
         temp = recipeRepoGateway.getRecipeList();
         ArrayList<String> ta = new ArrayList<>();
-        RecipeRequestModel recipeRequestModel = new RecipeRequestModel("Test2", "Procedure",
+        RecipeRequestModel recipeRequestModel = new RecipeRequestModel("Test3", "Procedure",
                 "cuisine", ta, 1, 2, 3, "Tester");
         recipeInteractor.createRecipe(recipeRequestModel);
     }
@@ -43,7 +44,7 @@ class RecipeInteractorTest {
     @Test
     void createRecipe() throws IOException {
         ArrayList<String> ta = new ArrayList<>();
-        RecipeRequestModel recipeRequestModel = new RecipeRequestModel("Test2", "Procedure",
+        RecipeRequestModel recipeRequestModel = new RecipeRequestModel("Test4", "Procedure",
                 "cuisine", ta, 1, 2, 3, "Tester");
         recipeInteractor.createRecipe(recipeRequestModel);
         assertTrue(recipeRepoGateway.getRecipeList().contain("Test2"));
@@ -51,13 +52,24 @@ class RecipeInteractorTest {
 
     @Test
     void readRecipe() {
+
     }
 
     @Test
     void getAll() {
+        assertTrue(recipeInteractor.getAll().contain("Test3"));
+        for (Recipe r : temp){
+            assertTrue(recipeInteractor.getAll().contain(r.getRecipeName()));
+        }
     }
 
     @Test
     void getRecipe() {
+        Recipe actual = recipeInteractor.getRecipe("Test3");
+        ArrayList<String> ta = new ArrayList<>();
+        Recipe expected = new Recipe("Test3", "Procedure",
+                "cuisine", ta, 1, 2, 3, "Tester");
+        assertEquals(expected, actual);
+
     }
 }

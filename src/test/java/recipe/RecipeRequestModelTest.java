@@ -24,42 +24,42 @@ class RecipeRequestModelTest {
 
     @Test
     void get_procedure() {
-        assertEquals("name", recipeRequestModel.get_recipe_name());
+        assertEquals("name", recipeRequestModel.getRecipeName());
     }
 
     @Test
     void get_recipe_name() {
-        assertEquals("procedure", recipeRequestModel.get_procedure());
+        assertEquals("procedure", recipeRequestModel.getProcedure());
     }
 
     @Test
     void get_cuisine() {
-        assertEquals("cuisine", recipeRequestModel.get_cuisine());
+        assertEquals("cuisine", recipeRequestModel.getCuisine());
     }
 
     @Test
     void get_calories() {
-        assertEquals(1, recipeRequestModel.get_calories());
+        assertEquals(1, recipeRequestModel.getCalories());
     }
 
     @Test
     void get_time() {
-        assertEquals(2, recipeRequestModel.get_time());
+        assertEquals(2, recipeRequestModel.getTime());
     }
 
     @Test
     void get_difficulty() {
-        assertEquals(3, recipeRequestModel.get_difficulty());
+        assertEquals(3, recipeRequestModel.getDifficulty());
     }
 
     @Test
     void get_ingredients() {
         ArrayList<String> test = new ArrayList<>();
-        assertEquals(test, recipeRequestModel.get_ingredients());
+        assertEquals(test, recipeRequestModel.getIngredients());
     }
 
     @Test
     void get_creator() {
-        assertEquals("Creator", recipeRequestModel.get_creator());
+        assertEquals("Creator", recipeRequestModel.getCreator());
     }
 }
