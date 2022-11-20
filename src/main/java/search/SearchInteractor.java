@@ -22,6 +22,7 @@ public class SearchInteractor implements SearchInputBoundary{
     @Override
     public SearchResponseModel getSearchResults(SearchRequestModel requestModel){
         //TODO: Implement searching for recipes with matching criteria
+
         //TODO: Implement communicating with SortInteractor to sort recipes found
         return searchPresenter.prepareResultsView(new SearchResponseModel(new ArrayList<Recipe>()));
     }
