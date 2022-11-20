@@ -42,13 +42,4 @@ public class MealPlanGatewayTest {
         assertSame(mealplanGate.readFromFile().getMealplan("user2"), mpTest);
     }
 
-    @Test
-    void saveRecipe() throws IOException {
-        ArrayList<String> ta = new ArrayList<>();
-        rl.add_recipe("Test3", "Procedure",
-                "cuisine", ta, 1, 2, 3, "Tester");
-        recipeReadWriter.saveRecipe(rl);
-        assertTrue(recipeReadWriter.getRecipeList().contain("Test3"));
-
-    }
 }
