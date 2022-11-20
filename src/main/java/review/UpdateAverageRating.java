@@ -14,6 +14,7 @@ public class UpdateAverageRating {
      */
 
     public static void updateAverage(String username, ReviewDatabase database){
+        AverageRatings averageRating = new AverageRatings();
         ArrayList<Review> reviews = database.getUserReviews(username);
         if (reviews.size() != 0) {
             int sum = 0;
@@ -21,7 +22,7 @@ public class UpdateAverageRating {
                 sum += r.getRating();
             }
             Double average = (double) sum / reviews.size();
-            AverageRatings.addAverageRating(username, average);
+            averageRating.addAverageRating(username, average);
         }
     }
 }
