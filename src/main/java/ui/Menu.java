@@ -26,7 +26,7 @@ public class Menu extends JFrame {
         title.setFont(new Font("Serif", Font.PLAIN, 100));
         menu.add(title);
         menu.add(new JLabel(""));
-        userName = new JLabel("User: " + user);
+        userName = new JLabel("User: " + a);
         userName.setAlignmentX(Component.CENTER_ALIGNMENT);
         menu.add(userName);
         create_recipe.setAlignmentX(Component.CENTER_ALIGNMENT);
