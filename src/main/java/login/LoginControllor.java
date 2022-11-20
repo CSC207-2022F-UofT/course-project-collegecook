@@ -28,9 +28,7 @@ public class LoginControllor {
         }
     }
 
-    public void PreformCheckUnFollow(String username, String other){
-        userManager.CheckUnFollow(username,other);
-    }
+
 
     public void PreformUnFollow(String username, String other){
         if(userManager.CheckUnFollow(username,other)){
