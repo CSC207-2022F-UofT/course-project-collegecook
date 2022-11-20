@@ -1,7 +1,9 @@
 package search;
 
 import entities.Recipe;
+import entities.RecipeList;
 import recipe.RecipeInterActor;
+import recipe.RecipeOutputBoundary;
 
 import java.util.ArrayList;
 
