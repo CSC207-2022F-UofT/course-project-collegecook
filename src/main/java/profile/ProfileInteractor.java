@@ -1,18 +1,16 @@
 package profile;
 
 import entities.*;
-import recipe.RecipeInterActor;
-import recipe.RecipeOutputBoundary;
 import recipe.RecipeRepoGateway;
-import recipe.RecipeRepoImpl;
+import recipe.RecipeReadWriter;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class ProfileInteractor implements ProfileInputBoundary{
     private final ProfileRepoGateway prg =  ProfileRepoImpl.getPrl();
-    private final RecipeRepoGateway rrg = RecipeRepoImpl.getRecipeRepoImpl();
-    private ArrayList<Profile> profileList;
+    private final RecipeRepoGateway rrg = RecipeReadWriter.getRecipeRepo();
+    private ArrayList<Profile> profile_list;
     final ProfileOutputBoundary outputboundary;
 
 
@@ -20,29 +18,29 @@ public class ProfileInteractor implements ProfileInputBoundary{
         this.outputboundary = outputboundary;
 
         try{
-            profileList = prg.getProfile();
+            profile_list = prg.getProfile();
         }
         catch(IOException e ){
-            profileList = new ArrayList<>();
+            profile_list = new ArrayList<>();
             System.out.println("Read file failed.....");
         }
     }
 
-    public void allCreated(String username) throws IOException {
-        RecipeList allRecipe = rrg.getRecipeList();
+    public void all_created(String username) throws IOException {
+        RecipeList all_recipe = rrg.getRecipeList();
         ArrayList<Recipe> recipeList = new ArrayList<>();
-        for (Recipe r: allRecipe){
-            if (r.get_creator().equals(username)){
+        for (Recipe r: all_recipe){
+            if (r.getCreator().equals(username)){
                 recipeList.add(r);
             }
         }
-        Profile result = checkProfile(username);
+        Profile result = check_profile(username);
         result.setCreated(recipeList);
         outputboundary.view_created(result);
     }
 
-    public Profile checkProfile(String username) throws IOException {
-        for (Profile p: profileList){
+    public Profile check_profile(String username) throws IOException {
+        for (Profile p: profile_list){
             if (p.getUsername().equals(username)){
                 return p;
             }
@@ -53,16 +51,15 @@ public class ProfileInteractor implements ProfileInputBoundary{
     }
 
     //need jason to modify getUserReviews to be worked.
-    public void allReviewed(String username) throws IOException {
-        ArrayList<Review> all = ReviewDatabase.getUserReviews(username);
-        Profile result = checkProfile(username);
-        result.setReviewed(all);
+    public void all_reviewed(String username) throws IOException {
+        //ArrayList<Review> all = ReviewDatabase.getUserReviews(user);
+        Profile result = check_profile(username);
+        //result.setReviewed(all);
         outputboundary.view_reviewed(result);
     }
 
-
-    public void setInfo(String username, ProfileRequestModel prm) {
-        for (Profile p: profileList){
+    public void set_info(String username, ProfileRequestModel prm) {
+        for (Profile p: profile_list){
             if (p.getUsername().equals(username)){
                 set_all(prm, p);
                 outputboundary.set_info_success();

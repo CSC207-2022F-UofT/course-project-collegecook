@@ -1,6 +1,7 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ReviewDatabase {
     private static ArrayList<Review> reviews = new ArrayList<Review>();
@@ -17,13 +18,13 @@ public class ReviewDatabase {
     /**
      * Get all the Reviews made by the specified user
      *
-     * @param user the user who made the reviews to be fetched
+     * @param username the username of the user who made the reviews to be fetched
      */
 
-    public static ArrayList<Review> getUserReviews(User user) {
+    public static ArrayList<Review> getUserReviews(String username) {
         ArrayList<Review> answer = new ArrayList<>();
         for (Review review : reviews) {
-            if (review.getUser().equals(user)) {
+            if (Objects.equals(review.getUser(), username)) {
                 answer.add(review);
             }
         }

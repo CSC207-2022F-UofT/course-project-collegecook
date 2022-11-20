@@ -6,4 +6,7 @@ public interface RecipeOutputBoundary {
 
     void readSuccessView(String result);
     void readFailureView();
+    void setUI(RecipeCreateBox recipeCreateBox);
+
+    void setUI(RecipeViewBox recipeViewBox);
 }
