@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ReviewDatabaseTest {
     static ArrayList<Recipe> recipes = new ArrayList<Recipe>();
     static ArrayList<Review> reviews = new ArrayList<Review>();
+    static ReviewDatabase database = new ReviewDatabase();
 
     @BeforeAll
     public static void setUp(){
@@ -40,11 +41,11 @@ class ReviewDatabaseTest {
         reviews.add(rev4);
         Review rev5 = new Review ("Rob", recipe2, 4);
         reviews.add(rev5);
-        ReviewDatabase.addReview(rev1);
-        ReviewDatabase.addReview(rev2);
-        ReviewDatabase.addReview(rev3);
-        ReviewDatabase.addReview(rev4);
-        ReviewDatabase.addReview(rev5);
+        database.addReview(rev1);
+        database.addReview(rev2);
+        database.addReview(rev3);
+        database.addReview(rev4);
+        database.addReview(rev5);
         }
 
 
@@ -52,19 +53,19 @@ class ReviewDatabaseTest {
     public void TestGetUserReviews() {
         ArrayList<Review> expected1 = new ArrayList<>();
         expected1.add(reviews.get(0));
-        ArrayList<Review> actual1 = ReviewDatabase.getUserReviews("bob");
+        ArrayList<Review> actual1 = database.getUserReviews("bob");
         assertEquals(expected1, actual1);
 
         ArrayList<Review> expected2 = new ArrayList<>();
         expected2.add(reviews.get(1));
         expected2.add(reviews.get(2));
-        ArrayList<Review> actual2 = ReviewDatabase.getUserReviews("Robert");
+        ArrayList<Review> actual2 = database.getUserReviews("Robert");
         assertEquals(expected2, actual2);
 
         ArrayList<Review> expected3 = new ArrayList<>();
         expected3.add(reviews.get(3));
         expected3.add(reviews.get(4));
-        ArrayList<Review> actual3 = ReviewDatabase.getUserReviews("Rob");
+        ArrayList<Review> actual3 = database.getUserReviews("Rob");
         assertEquals(expected3, actual3);
 
     }
@@ -74,18 +75,18 @@ class ReviewDatabaseTest {
         ArrayList<Review> expected1 = new ArrayList<>();
         expected1.add(reviews.get(0));
         expected1.add(reviews.get(2));
-        ArrayList<Review> actual1 = ReviewDatabase.getRecipeReviews(recipes.get(0));
+        ArrayList<Review> actual1 = database.getRecipeReviews(recipes.get(0));
         assertEquals(expected1, actual1);
 
         ArrayList<Review> expected2 = new ArrayList<>();
         expected2.add(reviews.get(1));
         expected2.add(reviews.get(4));
-        ArrayList<Review> actual2 = ReviewDatabase.getRecipeReviews(recipes.get(1));
+        ArrayList<Review> actual2 = database.getRecipeReviews(recipes.get(1));
         assertEquals(expected2, actual2);
 
         ArrayList<Review> expected3 = new ArrayList<>();
         expected3.add(reviews.get(3));
-        ArrayList<Review> actual3 = ReviewDatabase.getRecipeReviews(recipes.get(2));
+        ArrayList<Review> actual3 = database.getRecipeReviews(recipes.get(2));
         assertEquals(expected3, actual3);
 
     }

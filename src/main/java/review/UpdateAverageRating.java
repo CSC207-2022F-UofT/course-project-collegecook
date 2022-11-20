@@ -13,8 +13,8 @@ public class UpdateAverageRating {
 
      */
 
-    public static void updateAverage(String username){
-        ArrayList<Review> reviews = ReviewDatabase.getUserReviews(username);
+    public static void updateAverage(String username, ReviewDatabase database){
+        ArrayList<Review> reviews = database.getUserReviews(username);
         if (reviews.size() != 0) {
             int sum = 0;
             for (Review r : reviews) {

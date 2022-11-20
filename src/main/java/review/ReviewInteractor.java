@@ -10,6 +10,7 @@ public class ReviewInteractor {
 
     private final RecipeRepoGateway rrg = new RecipeRepoImpl();
     private RecipeList recipeList;
+    private ReviewDatabase reviewDatabase;
 
 
     /**
@@ -57,8 +58,8 @@ public class ReviewInteractor {
         return review.toString();
     }
 
-    private static void createHelper(String username, Review review) {
-        ReviewDatabase.addReview(review);
-        UpdateAverageRating.updateAverage(username);
+    private void createHelper(String username, Review review) {
+        reviewDatabase.addReview(review);
+        UpdateAverageRating.updateAverage(username, reviewDatabase);
     }
 }
