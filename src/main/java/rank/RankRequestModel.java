@@ -18,7 +18,7 @@ public class RankRequestModel {
      * A getter function that returns the variable chosen by
      * the user.
      */
-    String getRanking() {
+    public String getRanking() {
         return ranking;
     }
 }

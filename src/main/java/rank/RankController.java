@@ -7,11 +7,11 @@ public class RankController {
      * Constructor for RankController. Takes in a RankInputBoundary
      * to set the boundaries for the input.
      *
-     * @param accountGateway contains the sort function that needs
+     * @param rankInputBoundary contains the sort function that needs
      *                       to be implemented
      */
-    public RankController(RankInputBoundary accountGateway) {
-        this.rankInput = accountGateway;
+    public RankController(RankInputBoundary rankInputBoundary) {
+        this.rankInput = rankInputBoundary;
     }
 
     /**
@@ -23,10 +23,9 @@ public class RankController {
      *
      * @param ranking variable chosen by the user to sort other Users
      */
-    RankResponseModel sorting(String ranking) {
+    public void sorting(String ranking) {
         ranking = ranking.toLowerCase().strip();
         RankRequestModel requestModel = new RankRequestModel(ranking);
-
-        return rankInput.sorting(requestModel);
+        rankInput.sortUsers(requestModel);
     }
 }

@@ -1,6 +1,5 @@
 package rank;
 
-import entities.AverageRatings;
 import entities.User;
 import entities.UserList;
 import java.util.List;
@@ -13,7 +12,7 @@ public class RankInteractor implements RankInputBoundary{
         this.rankOutputBoundary = rankOutputBoundary;
     }
     @Override
-    public RankResponseModel sorting(RankRequestModel requestModel) {
+    public String sortUsers(RankRequestModel requestModel) {
         List<User> users = userList.getAllUser();
         // import all users for user
         switch (requestModel.getRanking()) {
@@ -36,7 +35,7 @@ public class RankInteractor implements RankInputBoundary{
                 return rankOutputBoundary.prepareSuccessView(rankResponseModel);
             }
         }
-        return rankOutputBoundary.prepareFailView("Can not identify this rank. Please choose one of the following options: Average Rating, Total Followers, Total Number of Recipe");
+        return rankOutputBoundary.prepareFailView(requestModel.getRanking());
     }
 }
 
