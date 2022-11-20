@@ -1,34 +1,33 @@
 package recipe;
 
-import ui.CreateRecipeUI;
-import ui.ViewRecipeUI;
-
 public class RecipePresenter implements RecipeOutputBoundary{
-    CreateRecipeUI createRecipeUI;
-    ViewRecipeUI viewRecipeUI;
-
-    public RecipePresenter(CreateRecipeUI createRecipeUI) {
-        this.createRecipeUI = createRecipeUI;
-    }
-
-    public RecipePresenter(ViewRecipeUI viewRecipeUI){
-        this.viewRecipeUI = viewRecipeUI;
-    }
-
+    RecipeCreateBox recipeCreateBox;
+    RecipeViewBox recipeViewBox;
 
     @Override
     public void createSuccessView() {
-        createRecipeUI.success();
+        recipeCreateBox.success();
     }
 
     @Override
-    public void createFailureView() {createRecipeUI.failure();}
+    public void createFailureView() {
+        recipeCreateBox.fail();
+    }
 
     @Override
     public void readSuccessView(String result) {
-        viewRecipeUI.success(result);
+        recipeViewBox.success(result);
     }
 
     @Override
-    public void readFailureView(){viewRecipeUI.failure();}
+    public void readFailureView(){
+        recipeViewBox.failure();
+    }
+
+    @Override
+    public void setUI(RecipeCreateBox recipeCreateBox){
+        this.recipeCreateBox = recipeCreateBox;
+    }
+    @Override
+    public void setUI(RecipeViewBox recipeViewBox){this.recipeViewBox = recipeViewBox;}
 }

@@ -7,8 +7,8 @@ import java.awt.event.ActionListener;
 
 public class WelcomeUI extends JFrame {
     JPanel welcome = new JPanel();
-    JButton login = new JButton("Create Recipe");
-    JButton signUp = new JButton("Search Recipe");
+    JButton login = new JButton("Log In" );
+    JButton signUp = new JButton("Sign Up");
     JLabel title = new JLabel("CollegeCook");
 
 
@@ -24,8 +24,9 @@ public class WelcomeUI extends JFrame {
         login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CreateRecipeUI createRecipeUI = new CreateRecipeUI(user);
-                createRecipeUI.setVisible(true);
+                dispose();
+                LoginUI loginUI = new LoginUI();
+                loginUI.setVisible(true);
             }
         });
 
@@ -35,10 +36,12 @@ public class WelcomeUI extends JFrame {
         signUp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SearchRecipeUI searchRecipeUI = new SearchRecipeUI();
-                searchRecipeUI.setVisible(true);
+                dispose();
+                SignUpUI signUpUI = new SignUpUI();
+                signUpUI.setVisible(true);
             }
         });
+        welcome.add(signUp);
 
 
         this.add(welcome);
