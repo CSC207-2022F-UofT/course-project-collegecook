@@ -8,14 +8,14 @@ public class MealplanGate implements MealplanGateway {
     String filePath;
     private static MealplanGate mealplanGate;
 
-    private MealplanGate(){
-        this.filePath = "C:\\Users";
+    MealplanGate(){
+        this.filePath = "mealplan.sav";
     }
 
     @Override
-    public void saveToFile(String filepath, Object mealplans) throws IOException {
+    public void saveToFile(MealplanList mealplans) throws IOException {
 
-        OutputStream file = new FileOutputStream(filepath);
+        OutputStream file = new FileOutputStream(this.filePath);
         OutputStream buffer = new BufferedOutputStream(file);
         ObjectOutput output = new ObjectOutputStream(buffer);
 
@@ -25,8 +25,8 @@ public class MealplanGate implements MealplanGateway {
     }
 
     @Override
-    public MealplanList readFromFile(String filepath) throws IOException, ClassNotFoundException {
-        InputStream file = new FileInputStream(filePath);
+    public MealplanList readFromFile() throws IOException, ClassNotFoundException {
+        InputStream file = new FileInputStream(this.filePath);
         InputStream buffer = new BufferedInputStream(file);
         ObjectInput input = new ObjectInputStream(buffer);
 

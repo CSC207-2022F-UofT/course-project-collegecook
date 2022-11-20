@@ -6,6 +6,10 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.List;
 
+import entities.Mealplan;
+import profile.ProfileInputBoundary;
+import profile.ProfileInteractor;
+import profile.ProfilePresenter;
 import recipe.*;
 
 public class MealplanBoxUI extends JFrame implements MealplanBox{
@@ -116,5 +120,6 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
 
         panel_s.add(label_cal);
     }
+
 
 }

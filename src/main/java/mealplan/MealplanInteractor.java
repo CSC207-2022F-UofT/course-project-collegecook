@@ -8,7 +8,6 @@ import java.util.Objects;
 
 
 public class MealplanInteractor implements MealplanInputBoundary{
-    String filePath = "C:\\Users";
     private Mealplan mealplan;
     private String username;
     private MealplanGateway mrg;
@@ -21,10 +20,10 @@ public class MealplanInteractor implements MealplanInputBoundary{
         this.mrg = mrg;
 
         try {
-            mealplans= mrg.readFromFile(filePath);
+            mealplans= mrg.readFromFile();
         } catch (IOException | ClassNotFoundException e) {
             mealplans = new MealplanList();
-            System.out.println("Readfile failed.....");
+
         }
 
         try {
@@ -74,7 +73,7 @@ public class MealplanInteractor implements MealplanInputBoundary{
 
     public void saveMealplan() throws IOException {
         mealplans.add(username, mealplan);
-        mrg.saveToFile(filePath,mealplans);
+        mrg.saveToFile(mealplans);
     }
 
     public String getUsername() {

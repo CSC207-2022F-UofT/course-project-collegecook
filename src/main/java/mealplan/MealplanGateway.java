@@ -5,14 +5,11 @@ import java.io.IOException;
 
 public interface MealplanGateway {
     /**
-     * @param filepath location of ser file
-     * @param o object to be serialized
+     * @param mealplans mealplan list to be serialized
      */
-    void saveToFile(String filepath, Object o) throws IOException;
+    void saveToFile(MealplanList mealplans) throws IOException;
 
-    /**
-     * @param filepath location of ser file
-     */
-    MealplanList readFromFile(String filepath) throws IOException, ClassNotFoundException;
+
+    MealplanList readFromFile() throws IOException, ClassNotFoundException;
 
 }
