@@ -1,7 +1,11 @@
 package search;
 
 import entities.Recipe;
+import entities.Review;
+import entities.ReviewDatabase;
+import review.ReviewInteractor;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 
 public class AverageRatingComparator implements Comparator<Recipe> {
@@ -19,10 +23,15 @@ public class AverageRatingComparator implements Comparator<Recipe> {
      */
     @Override
     public int compare(Recipe r1, Recipe r2) {
-        // TODO: calculate averageRating for each recipe. Get all reviews where reviewedRecipe == r1. Sum up ratings, divide by number of reviews.
-        float r1avRating =  0;
-        float r2avRating = 1;
-        float recipeRatingDiff = r1avRating - r2avRating;
-        return (int) ((recipeRatingDiff >= 0) ? Math.ceil(recipeRatingDiff) : Math.floor(recipeRatingDiff));
+        ReviewDatabase reviewDatabase = ReviewInteractor.loadReviewDatabase();
+        ArrayList<Review> reviews1 = reviewDatabase.getRecipeReviews(r1);
+        ArrayList<Review> reviews2 = reviewDatabase.getRecipeReviews(r2);
+
+
+        int r1avgRating = (reviews1.stream().mapToInt(Review::getRating).sum())/ reviews1.size();
+        int r2avgRating = (reviews2.stream().mapToInt(Review::getRating).sum())/ reviews2.size();
+        return r1avgRating - r2avgRating;
+
+//        return (int) ((recipeRatingDiff >= 0) ? Math.ceil(recipeRatingDiff) : Math.floor(recipeRatingDiff));
     }
 }

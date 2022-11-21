@@ -22,12 +22,9 @@ public class SearchRecipeUI extends JFrame {
         view.add(name);
 
         read.setAlignmentX(Component.CENTER_ALIGNMENT);
-<<<<<<< HEAD
         RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter(new ViewRecipeUI());
         RecipeInputBoundary recipeInputBoundary = new RecipeInteractor(recipeOutputBoundary);
         RecipeController recipeController = new RecipeController(recipeInputBoundary);
-=======
->>>>>>> view-recipes-3
         read.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

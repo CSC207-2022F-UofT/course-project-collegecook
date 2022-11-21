@@ -29,7 +29,6 @@ public class SearchRequestModel {
         this.sortByAscending = sortByAscending;
     }
 
-    //TODO: write javadoc for all get/set methods in response & request models
     public String getName(){
         return this.name;
     }

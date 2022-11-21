@@ -1,7 +1,11 @@
 package search;
 
 import entities.Recipe;
+import entities.Review;
+import entities.ReviewDatabase;
+import review.ReviewInteractor;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 
 public class NumReviewsComparator implements Comparator<Recipe> {
@@ -18,9 +22,9 @@ public class NumReviewsComparator implements Comparator<Recipe> {
      */
     @Override
     public int compare(Recipe r1, Recipe r2) {
-        //TODO: get all reviews for a given recipe
-        int n1 = 2;
-        int n2 = 3;
-        return n1 - n2;
+        ReviewDatabase reviewDatabase = ReviewInteractor.loadReviewDatabase();
+        ArrayList<Review> reviews1 = reviewDatabase.getRecipeReviews(r1);
+        ArrayList<Review> reviews2 = reviewDatabase.getRecipeReviews(r2);
+        return reviews1.size() - reviews2.size();
     }
 }
