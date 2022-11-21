@@ -1,5 +1,7 @@
 package ui;
 
+import mealplan.MealplanBoxUI;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -50,6 +52,15 @@ public class Menu extends JFrame {
         });
         menu.add(search_recipe);
         mealPlan.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        mealPlan.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MealplanBoxUI mealplanBoxUI = new MealplanBoxUI(appController);
+                mealplanBoxUI.setVisible(true);
+            }
+        });
+
         menu.add(mealPlan);
         ranking.setAlignmentX(Component.CENTER_ALIGNMENT);
         menu.add(ranking);
