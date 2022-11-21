@@ -1,5 +1,6 @@
 package mealplan;
 
+import entities.Mealplan;
 import entities.MealplanList;
 
 import java.io.*;
@@ -44,4 +45,5 @@ public class MealplanGate implements MealplanGateway {
 
         return mealplanGate;
     }
+
 }

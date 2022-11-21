@@ -24,12 +24,14 @@ public class ViewRecipeUI extends JFrame implements RecipeViewBox {
     }
     @Override
     public void success(String result){
-        all = new JLabel(result);
-        all.setText("<html>" + result.replaceAll("<","&lt;").replaceAll(">", "&gt;").
-                replaceAll("\n", "<br/>") + "</html>");
-        all.setAlignmentX(Component.CENTER_ALIGNMENT);
-        all.setFont(new Font("Monaco", Font.PLAIN, 15));
-        view.add(all);
+        if (all == null) {
+            all = new JLabel(result);
+            all.setText("<html>" + result.replaceAll("<", "&lt;").replaceAll(">", "&gt;").
+                    replaceAll("\n", "<br/>") + "</html>");
+            all.setAlignmentX(Component.CENTER_ALIGNMENT);
+            all.setFont(new Font("Monaco", Font.PLAIN, 15));
+            view.add(all);
+        }
         folllow.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -43,8 +45,17 @@ public class ViewRecipeUI extends JFrame implements RecipeViewBox {
                 }
             }
         });
+         mealPlan.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddMealplanUI addMealplanUI = new AddMealplanUI(appController,
+                        appController.getRecipeController().getReadingRecipe());
+                addMealplanUI.setVisible(true);
+            }
+        });
         buttonPanel.add(review);
         buttonPanel.add(mealPlan);
+
         buttonPanel.add(folllow);
         view.add(buttonPanel);
         this.add(view);

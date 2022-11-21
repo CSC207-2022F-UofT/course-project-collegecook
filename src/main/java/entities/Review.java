@@ -1,6 +1,8 @@
 package entities;
 
-public class Review {
+import java.io.Serializable;
+
+public class Review implements Serializable {
 
     private final String username;
     private final Recipe reviewedRecipe;
