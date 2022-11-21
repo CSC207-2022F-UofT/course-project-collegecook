@@ -34,4 +34,20 @@ public class ProfilePresenter implements ProfileOutputBoundary{
     public void viewInfo(String result) {
         ivb.viewInfoSuccess(result);
     }
+
+    @Override
+    public void setUI(ProfileBox pb) {
+        this.pb = pb;
+    }
+
+    @Override
+    public void setUI(InfoSetBox isb) {
+        this.isb = isb;
+    }
+
+    @Override
+    public void setUI(InfoViewBox ivb) {
+        this.ivb = ivb;
+    }
+
 }

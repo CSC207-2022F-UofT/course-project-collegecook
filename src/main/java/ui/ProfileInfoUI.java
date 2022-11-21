@@ -1,6 +1,7 @@
-package profile;
+package ui;
 
-import ui.AppController;
+import profile.InfoSetBox;
+import profile.ProfileController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class InfoFrame extends JFrame implements InfoSetBox {
+public class ProfileInfoUI extends JFrame implements InfoSetBox {
     JPanel infoPanel = new JPanel();
     JButton setButton = new JButton("Set your information");
     JLabel age = new JLabel("Age");
@@ -22,7 +23,7 @@ public class InfoFrame extends JFrame implements InfoSetBox {
     ProfileController pc;
     String username;
 
-    public InfoFrame(AppController appController){
+    public ProfileInfoUI(AppController appController){
         this.pc = appController.getProfileController();
         this.username = appController.getLoginControllor().preformGetLoggedInUser();
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));

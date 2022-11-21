@@ -1,9 +1,5 @@
 package ui;
 
-import login.*;
-import profile.ProfileFrame;
-import recipe.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -63,7 +59,7 @@ public class Menu extends JFrame {
         profile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ProfileFrame profileFrame = new ProfileFrame(appController);
+                ProfileUI profileUI = new ProfileUI(appController);
 
             }
         });

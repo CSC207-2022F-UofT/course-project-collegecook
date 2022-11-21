@@ -1,6 +1,7 @@
-package profile;
+package ui;
 
-import ui.AppController;
+import profile.ProfileBox;
+import profile.ProfileController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class ViewRecipeFrame extends JFrame implements ProfileBox{
+public class ProfileViewRecipeUI extends JFrame implements ProfileBox {
 
     JPanel recipePanel = new JPanel();
     JButton createdButton = new JButton("Your Created Recipes");
@@ -18,7 +19,7 @@ public class ViewRecipeFrame extends JFrame implements ProfileBox{
     ProfileController pc;
     String username;
 
-    public ViewRecipeFrame(AppController appController){
+    public ProfileViewRecipeUI(AppController appController){
         this.pc = appController.getProfileController();
         this.username = appController.getLoginControllor().preformGetLoggedInUser();
         recipePanel.setLayout(new BorderLayout());

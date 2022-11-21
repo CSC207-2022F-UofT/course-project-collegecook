@@ -1,6 +1,7 @@
-package profile;
+package ui;
 
-import ui.AppController;
+import profile.InfoViewBox;
+import profile.ProfileController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class ProfileFrame extends JFrame implements InfoViewBox {
+public class ProfileUI extends JFrame implements InfoViewBox {
 
     JPanel p_panel = new JPanel();
     JButton recipeButton = new JButton("View Your Related Recipes");
@@ -18,7 +19,7 @@ public class ProfileFrame extends JFrame implements InfoViewBox {
     String username;
 
 
-    public ProfileFrame(AppController appController) {
+    public ProfileUI(AppController appController) {
         this.pc = appController.getProfileController();
         this.username = appController.getLoginControllor().preformGetLoggedInUser();
         p_panel.setLayout(new BorderLayout());
@@ -28,8 +29,8 @@ public class ProfileFrame extends JFrame implements InfoViewBox {
         recipeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ViewRecipeFrame recipeFrame = new ViewRecipeFrame(appController);
-                recipeFrame.setVisible(true);
+                ProfileViewRecipeUI pvrUI = new ProfileViewRecipeUI(appController);
+                pvrUI.setVisible(true);
             }
         });
 
@@ -51,8 +52,8 @@ public class ProfileFrame extends JFrame implements InfoViewBox {
                                 "Oops! There is something wrong with your profile. ");
                     }
                 } else {
-                    InfoFrame infoFrame = new InfoFrame(appController);
-                    infoFrame.setVisible(true);
+                    ProfileInfoUI piUI = new ProfileInfoUI(appController);
+                    piUI.setVisible(true);
                 }
             }
         });
