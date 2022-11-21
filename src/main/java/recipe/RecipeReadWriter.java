@@ -7,6 +7,9 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class RecipeReadWriter implements RecipeRepoGateway{
+    /**
+     * This class is used to read recipe from "recipe.sav" or write recipe into "recipe.sav"
+     */
     private static final String file = "recipe.sav";
     private static RecipeReadWriter recipeReadWriter;
 
@@ -18,6 +21,12 @@ public class RecipeReadWriter implements RecipeRepoGateway{
         }
         return recipeReadWriter;
     }
+
+    /**
+     *
+     * @return Return the recipeList stored in the local file.
+     * @throws IOException
+     */
     @Override
     public RecipeList getRecipeList() throws IOException {
         FileInputStream f = new FileInputStream(file);
@@ -31,6 +40,11 @@ public class RecipeReadWriter implements RecipeRepoGateway{
         return null;
     }
 
+    /**
+     *
+     * @param recipeList The recipeList that user wants to store.
+     * @throws IOException
+     */
     @Override
     public void saveRecipe(RecipeList recipeList) throws IOException {
         FileOutputStream f2 = new FileOutputStream(file);

@@ -1,5 +1,8 @@
 package ui;
 
+import login.*;
+import recipe.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,9 +13,10 @@ public class WelcomeUI extends JFrame {
     JButton login = new JButton("Log In" );
     JButton signUp = new JButton("Sign Up");
     JLabel title = new JLabel("CollegeCook");
+    AppController appController;
 
-
-    public WelcomeUI(String user){
+    public WelcomeUI(AppController appController){
+        this.appController = appController;
         welcome.setLayout(new BoxLayout(welcome, BoxLayout.Y_AXIS));
 
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -25,7 +29,7 @@ public class WelcomeUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                LoginUI loginUI = new LoginUI();
+                LoginUI loginUI = new LoginUI(appController);
                 loginUI.setVisible(true);
             }
         });
@@ -37,7 +41,7 @@ public class WelcomeUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                SignUpUI signUpUI = new SignUpUI();
+                SignUpUI signUpUI = new SignUpUI(appController);
                 signUpUI.setVisible(true);
             }
         });
@@ -50,8 +54,5 @@ public class WelcomeUI extends JFrame {
     }
 
 
-    public static void main(String[] args){
-        WelcomeUI m = new WelcomeUI("Brenden");
-        m.setVisible(true);
-    }
+
 }

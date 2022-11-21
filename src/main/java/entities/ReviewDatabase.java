@@ -1,17 +1,19 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class ReviewDatabase {
-    private static ArrayList<Review> reviews = new ArrayList<Review>();
+public class ReviewDatabase implements Serializable {
+
+    private ArrayList<Review> reviews = new ArrayList<Review>();
 
     /**
      * Add the given review to the database.
      *
      * @param review the review to be added
      */
-    public static void addReview(Review review) {
+    public void addReview(Review review) {
         reviews.add(review);
     }
 
@@ -21,7 +23,7 @@ public class ReviewDatabase {
      * @param username the username of the user who made the reviews to be fetched
      */
 
-    public static ArrayList<Review> getUserReviews(String username) {
+    public ArrayList<Review> getUserReviews(String username) {
         ArrayList<Review> answer = new ArrayList<>();
         for (Review review : reviews) {
             if (Objects.equals(review.getUser(), username)) {
@@ -37,7 +39,7 @@ public class ReviewDatabase {
      * @param recipe the recipe that the reviews are fetched from
      */
 
-    public static ArrayList<Review> getRecipeReviews(Recipe recipe) {
+    public ArrayList<Review> getRecipeReviews(Recipe recipe) {
         ArrayList<Review> answer = new ArrayList<>();
         for (Review review : reviews) {
             if (review.getRecipe().equals(recipe)) {
@@ -46,5 +48,4 @@ public class ReviewDatabase {
         }
         return answer;
     }
-
 }

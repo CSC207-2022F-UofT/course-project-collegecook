@@ -5,6 +5,7 @@ import entities.RecipeList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ui.AppController;
 import ui.CreateRecipeUI;
 import ui.ViewRecipeUI;
 
@@ -23,9 +24,10 @@ class RecipeInteractorTest {
         recipeRepoGateway = RecipeReadWriter.getRecipeRepo();
         recipeInteractor = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
         RecipeController recipeController = new RecipeController(recipeInteractor);
-        RecipeCreateBox createBox = new CreateRecipeUI(recipeController);
+        AppController appController = new AppController(recipeController);
+        RecipeCreateBox createBox = new CreateRecipeUI(appController);
         recipeOutputBoundary.setUI(createBox);
-        RecipeViewBox recipeViewBox = new ViewRecipeUI();
+        RecipeViewBox recipeViewBox = new ViewRecipeUI(appController);
         recipeOutputBoundary.setUI(recipeViewBox);
         temp = recipeRepoGateway.getRecipeList();
         ArrayList<String> ta = new ArrayList<>();

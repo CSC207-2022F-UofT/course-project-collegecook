@@ -15,12 +15,10 @@ import recipe.*;
 public class MealplanBoxUI extends JFrame implements MealplanBox{
     MealplanController mealplanController;
 
-    JFrame mealplanbox = new JFrame("Meal Plan");
     JPanel panel_b = new JPanel();
     JPanel panel_l = new JPanel();
     JPanel panel_d = new JPanel();
     JPanel panel_s = new JPanel();
-    JPanel panel_cal = new JPanel();
     JLabel label_b = new JLabel("Breakfast");
     JLabel label_l = new JLabel("Lunch");
     JLabel label_d = new JLabel("Dinner");
@@ -32,6 +30,8 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
             public void actionPerformed( ActionEvent e ) {
                 mealplanController.deleteMealplan(0);
             }
+
+
         });
 
         JButton button_l = new JButton( new AbstractAction("delete") {
@@ -85,14 +85,14 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
         panel_s.add(button_cal);
         panel_s.add(button_save);
 
-        mealplanbox.add(panel_b);
-        mealplanbox.add(panel_l);
-        mealplanbox.add(panel_d);
-        mealplanbox.add(panel_cal);
+        this.add(panel_b);
+        this.add(panel_l);
+        this.add(panel_d);
+        this.add(panel_s);
 
-        mealplanbox.setLayout(new GridLayout(4,0));
+        this.setLayout(new GridLayout(4,0));
 
-        mealplanbox.setSize(600,600);
+        this.setSize(600,600);
     }
 
     public void setMealplan(String recipe, int meal){
@@ -121,5 +121,16 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
         panel_s.add(label_cal);
     }
 
+    public static void main(String[] args){
+        MealplanOutputBoundary mealplanOutputBoundary= new MealplanPresenter();
+        MealplanGateway mrg = new MealplanGate();
+        MealplanInputBoundary mealplanInputBoundary = new MealplanInteractor(mealplanOutputBoundary,"user",mrg);
+        ProfileInputBoundary profileInputBoundary = new ProfileInteractor(new ProfilePresenter());
+        RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();
+        RecipeRepoGateway recipeRepoGateway = RecipeReadWriter.getRecipeRepo();
+        RecipeInputBoundary recipeInputBoundary = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
+        MealplanBoxUI m = new MealplanBoxUI(new MealplanController(mealplanInputBoundary,profileInputBoundary,recipeInputBoundary));
+        m.setVisible(true);
+    }
 
 }

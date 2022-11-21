@@ -1,5 +1,6 @@
 package ui;
 
+import login.*;
 import recipe.*;
 
 import javax.swing.*;
@@ -31,8 +32,8 @@ public class CreateRecipeUI extends JFrame implements RecipeCreateBox{
     JButton create = new JButton("Create");
 
 
-    public CreateRecipeUI(RecipeController recipeController) {
-        this.recipeController = recipeController;
+    public CreateRecipeUI(AppController appController) {
+        this.recipeController = appController.getRecipeController();
 
         check.setLayout(new BoxLayout(check, BoxLayout.Y_AXIS));
         nameQ.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -89,7 +90,8 @@ public class CreateRecipeUI extends JFrame implements RecipeCreateBox{
                 ArrayList<String> ingredients = new ArrayList<>(Arrays.asList(ingredients_list));
                 recipeController.performCreateRecipe(name.getText(), procedure.getText(), cuisine.getText(),
                         ingredients, Integer.parseInt(calories.getText()), Integer.parseInt(time.getText()),
-                        Integer.parseInt(difficulty.getText()), "Brenden");
+                        Integer.parseInt(difficulty.getText()),
+                        appController.getLoginControllor().preformGetLoggedInUser());
             }
         });
         check.add(create);
@@ -117,13 +119,20 @@ public class CreateRecipeUI extends JFrame implements RecipeCreateBox{
 
 
     public static void main(String[] args){
-        RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();
-        RecipeRepoGateway recipeRepoGateway = RecipeReadWriter.getRecipeRepo();
-        RecipeInputBoundary recipeInputBoundary = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
-        RecipeController recipeController = new RecipeController(recipeInputBoundary);
-        RecipeCreateBox m = new CreateRecipeUI(recipeController);
-        recipeOutputBoundary.setUI(m);
-        m.setV(true);
+//        UserGateWay userGateWay = UserRepoImpl.getUserRepoImpl();
+//        LoginOutputBound loginOutputBound = new LoginPresenter();
+//        UserManager userManager = new UserManager(loginOutputBound, userGateWay);
+//        LoginControllor loginControllor = new LoginControllor(userManager);
+//
+//        RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();
+//        RecipeRepoGateway recipeRepoGateway = RecipeReadWriter.getRecipeRepo();
+//        RecipeInputBoundary recipeInputBoundary = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
+//        RecipeController recipeController = new RecipeController(recipeInputBoundary);
+//
+//        AppController appController = new AppController(recipeController, loginControllor);
+//        RecipeCreateBox m = new CreateRecipeUI(appController);
+//        recipeOutputBoundary.setUI(m);
+//        m.setV(true);
     }
 
 }

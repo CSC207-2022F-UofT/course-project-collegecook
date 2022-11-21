@@ -23,7 +23,7 @@ public class MealplanInteractor implements MealplanInputBoundary{
             mealplans= mrg.readFromFile();
         } catch (IOException | ClassNotFoundException e) {
             mealplans = new MealplanList();
-
+            System.out.println("Read file failed.....");
         }
 
         try {
