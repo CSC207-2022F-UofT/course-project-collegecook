@@ -1,16 +1,14 @@
 package mealplan;
 
-import entities.Profile;
-import entities.Recipe;
+import entities.*;
 
 import java.io.IOException;
 
-import entities.RecipeList;
-import recipe.*;
-
 public interface MealplanInputBoundary {
-    void addMealplan(String recipe, int meal);
+    void addRecipe(String recipe, int meal);
 
+    int computeRecipeCal(RecipeList recipeList);
+    int computeProfileCal(Profile pro);
     void computeCalories(Profile pro, RecipeList recipeList);
 
     void deleteMealplan(int meal);
@@ -18,4 +16,8 @@ public interface MealplanInputBoundary {
     void saveMealplan() throws IOException;
 
     String getUsername();
+
+    Mealplan getMealplan();
+
+    MealplanList getMealplanList();
 }

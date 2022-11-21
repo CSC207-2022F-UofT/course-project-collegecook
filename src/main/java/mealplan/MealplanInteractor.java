@@ -9,8 +9,8 @@ import java.util.Objects;
 
 public class MealplanInteractor implements MealplanInputBoundary{
     private Mealplan mealplan;
-    private String username;
-    private MealplanGateway mrg;
+    private final String username;
+    private final MealplanGateway mrg;
     private MealplanList mealplans;
     final MealplanOutputBoundary mealplanout;
 
@@ -23,7 +23,7 @@ public class MealplanInteractor implements MealplanInputBoundary{
             mealplans= mrg.readFromFile();
         } catch (IOException | ClassNotFoundException e) {
             mealplans = new MealplanList();
-
+            System.out.println("Read file failed.....");
         }
 
         try {
@@ -35,15 +35,23 @@ public class MealplanInteractor implements MealplanInputBoundary{
     }
 
 
-    public void addMealplan(String recipe, int meal){
+    public void addRecipe(String recipe, int meal){
         this.mealplan.addMealPlan(recipe, meal);
         mealplanout.addRecipe(recipe, meal);
     }
 
-    public void computeCalories(Profile pro, RecipeList recipeList){
-        int required_cal;
+    public int computeRecipeCal(RecipeList recipeList){
         int cal = 0;
-        List<Integer> Calories = new ArrayList<Integer>();
+        for (ArrayList<String> l : mealplan.returnMealPlan()){
+            for (String r : l){
+                cal = cal + recipeList.get_recipe(r).getCalories();
+            }
+        }
+        return cal;
+    }
+
+    public int computeProfileCal(Profile pro){
+        int required_cal;
         float weight = pro.getWeight();
         float height = pro.getHeight();
         String gender = pro.getGender();
@@ -55,15 +63,13 @@ public class MealplanInteractor implements MealplanInputBoundary{
         }else{
             required_cal = (int) (9.99 * weight + 6.25 * height  - 4.92 * age - 161);
         }
+        return required_cal;
+    }
 
-        for (ArrayList<String> l : mealplan.returnMealPlan()){
-            for (String r : l){
-                cal = cal + recipeList.get_recipe(r).getCalories();
-            }
-        }
-
-        Calories.add(required_cal);
-        Calories.add(cal);
+    public void computeCalories(Profile pro, RecipeList recipeList){
+        List<Integer> Calories = new ArrayList<Integer>();
+        Calories.add(computeProfileCal(pro));
+        Calories.add(computeRecipeCal(recipeList));
         mealplanout.createCaloriesView(Calories);
     }
 
@@ -78,6 +84,14 @@ public class MealplanInteractor implements MealplanInputBoundary{
 
     public String getUsername() {
         return this.username;
+    }
+
+    public Mealplan getMealplan() {
+        return this.mealplan;
+    }
+
+    public MealplanList getMealplanList() {
+        return this.mealplans;
     }
 
 }

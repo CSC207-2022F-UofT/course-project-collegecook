@@ -23,7 +23,7 @@ public class MealplanController {
     }
 
     public void addMealplan(String recipe, int meal){
-        mealplanInputBoundary.addMealplan(recipe, meal);
+        mealplanInputBoundary.addRecipe(recipe, meal);
     }
 
     public void displayRecipe(String recipe){
