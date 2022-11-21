@@ -175,10 +175,9 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
     }
 
     public void setCalories(List<Integer> cal){
-        JLabel label_cal = new JLabel("Recommended:" + cal.get(0) + "cal; " +
-                "Total:" + cal.get(1));
 
-        panel_s.add(label_cal);
+        JOptionPane.showMessageDialog(null, "Recommended:" + cal.get(0) + "cal; " +
+                "Total:" + cal.get(1));
     }
 
 
