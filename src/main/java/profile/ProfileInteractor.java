@@ -52,7 +52,8 @@ public class ProfileInteractor implements ProfileInputBoundary{
             }
         }
         Profile new_p = new Profile(username);
-        prg.saveProfile(new_p);
+        profileList.add(new_p);
+        prg.saveProfile(profileList);
         return new_p;
     }
 
@@ -73,6 +74,7 @@ public class ProfileInteractor implements ProfileInputBoundary{
     public void setInfo(String username, ProfileRequestModel prm) throws IOException {
         Profile p = checkProfile(username);
         setAll(prm, p);
+        prg.saveProfile(profileList);
         outputboundary.setInfoResult();
     }
 

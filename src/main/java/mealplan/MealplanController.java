@@ -17,7 +17,7 @@ public class MealplanController {
 
 
     public void getCalories() throws IOException {
-        Profile profile = profileInputBoundary.check_profile(mealplanInputBoundary.getUsername());
+        Profile profile = profileInputBoundary.checkProfile(mealplanInputBoundary.getUsername());
         RecipeList recipeList = recipeInputBoundary.getAll();
         mealplanInputBoundary.computeCalories(profile, recipeList);
     }

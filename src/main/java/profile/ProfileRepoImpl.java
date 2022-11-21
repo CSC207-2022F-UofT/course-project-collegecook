@@ -22,8 +22,7 @@ public class ProfileRepoImpl implements ProfileRepoGateway{
         FileInputStream f1 = new FileInputStream(file);
         ObjectInputStream inputStream = new ObjectInputStream(f1);
         try{
-            ArrayList<Profile> profilelist = (ArrayList<Profile>) inputStream.readObject();
-            return profilelist;
+            return (ArrayList<Profile>) inputStream.readObject();
         } catch (ClassNotFoundException e){
             e.printStackTrace();
         }
@@ -32,10 +31,17 @@ public class ProfileRepoImpl implements ProfileRepoGateway{
     }
 
     @Override
-    public void saveProfile(Profile pro) throws IOException {
+    public void saveProfile(ArrayList<Profile> pro) throws IOException {
         FileOutputStream f2 = new FileOutputStream(file);
         ObjectOutputStream outputstream = new ObjectOutputStream(f2);
         outputstream.writeObject(pro);
         f2.close();
+    }
+
+    public static void main(String[] arg) throws IOException {
+        ProfileRepoImpl profileRepo = ProfileRepoImpl.getPrl();
+        for(Profile p : profileRepo.getProfile()){
+            System.out.println(p.getUsername());
+        };
     }
 }

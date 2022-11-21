@@ -60,7 +60,7 @@ public class Menu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ProfileUI profileUI = new ProfileUI(appController);
-
+                profileUI.setVisible(true);
             }
         });
 

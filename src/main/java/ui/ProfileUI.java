@@ -39,6 +39,7 @@ public class ProfileUI extends JFrame implements InfoViewBox {
             public void actionPerformed(ActionEvent e) {
                 boolean status = false;
                 try {
+                    dispose();
                     status = pc.performCheckInfo(username);
                 } catch (IOException ex) {
                     JOptionPane.showMessageDialog(null,
@@ -46,6 +47,7 @@ public class ProfileUI extends JFrame implements InfoViewBox {
                 }
                 if (status) {
                     try {
+                        dispose();
                         pc.performViewInfo(username);
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(null,
@@ -57,6 +59,9 @@ public class ProfileUI extends JFrame implements InfoViewBox {
                 }
             }
         });
+        this.add(p_panel);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.pack();
     }
 
     @Override

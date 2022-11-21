@@ -35,6 +35,7 @@ public class ProfileInfoUI extends JFrame implements InfoSetBox {
                 float pcHeight = Float.parseFloat(heightInput.getText());
                 float pcWeight = Float.parseFloat(weightInput.getText());
                 try {
+                    dispose();
                     JOptionPane.showMessageDialog(null,
                             "You must enter all information at once, which can't be changed later. ");
                     pc.performSetInfo(username, pcAge, pcHeight, pcWeight, genderInput.getText());
