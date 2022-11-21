@@ -22,7 +22,7 @@ public class CollegeCookApp {
 
         MealplanOutputBoundary mealplanOutputBoundary= new MealplanPresenter();
         MealplanGateway mrg = MealplanGate.getInstance();
-        MealplanInputBoundary mealplanInputBoundary = new MealplanInteractor(mealplanOutputBoundary,"user",mrg);
+        MealplanInputBoundary mealplanInputBoundary = new MealplanInteractor(mealplanOutputBoundary,loginControllor.preformGetLoggedInUser(),mrg);
         MealplanController mealplanController = new MealplanController(mealplanInputBoundary,profileInputBoundary,recipeInputBoundary);
 
         AppController appController1 = new AppController(recipeController, loginControllor, profileController, mealplanController);
