@@ -180,5 +180,4 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
                 "Total:" + cal.get(1));
     }
 
-
 }
