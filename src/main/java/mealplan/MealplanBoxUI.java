@@ -7,7 +7,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import entities.Mealplan;
 import ui.AppController;
+
 
 public class MealplanBoxUI extends JFrame implements MealplanBox{
     AppController appController;
@@ -22,7 +24,7 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
     List<JButton> listOfBreakfast = new ArrayList<>();
     List<JButton> listOfLunch = new ArrayList<>();
     List<JButton> listOfDinner = new ArrayList<>();
-    public MealplanBoxUI(AppController appController){
+    public MealplanBoxUI(AppController appController) throws IOException {
         this.appController= appController;
 
         JButton button_b = new JButton( new AbstractAction("delete") {
@@ -37,7 +39,6 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
                 panel_b.repaint();
 
             }
-
 
         });
 
@@ -104,6 +105,43 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
         panel_d.add(button_d);
         panel_s.add(button_cal);
         panel_s.add(button_save);
+
+        ArrayList<ArrayList<String>>  mealplan =
+                appController.getMealplanController().mealplanInputBoundary.getMealplan().returnMealPlan();
+
+        for (String recipe: mealplan.get(0)){
+            JButton button_m = new JButton( new AbstractAction(recipe) {
+                @Override
+                public void actionPerformed( ActionEvent e ) {
+                    appController.getMealplanController().displayRecipe(recipe);
+                }
+            });
+
+            panel_b.add(button_m);
+        }
+
+        for (String recipe: mealplan.get(1)){
+            JButton button_m = new JButton( new AbstractAction(recipe) {
+                @Override
+                public void actionPerformed( ActionEvent e ) {
+                    appController.getMealplanController().displayRecipe(recipe);
+                }
+            });
+
+            panel_l.add(button_m);
+        }
+
+        for (String recipe: mealplan.get(2)){
+            JButton button_m = new JButton( new AbstractAction(recipe) {
+                @Override
+                public void actionPerformed( ActionEvent e ) {
+                    appController.getMealplanController().displayRecipe(recipe);
+                }
+            });
+
+            panel_d.add(button_m);
+
+        }
 
         this.add(panel_b);
         this.add(panel_l);
