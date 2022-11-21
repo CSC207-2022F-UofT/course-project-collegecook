@@ -42,6 +42,9 @@ public class MealplanInteractor implements MealplanInputBoundary{
 
     public int computeRecipeCal(RecipeList recipeList){
         int cal = 0;
+        if (mealplan == null){
+            return 0;
+        }
         for (ArrayList<String> l : mealplan.returnMealPlan()){
             for (String r : l){
                 cal = cal + recipeList.get_recipe(r).getCalories();
@@ -70,11 +73,15 @@ public class MealplanInteractor implements MealplanInputBoundary{
         List<Integer> Calories = new ArrayList<Integer>();
         Calories.add(computeProfileCal(pro));
         Calories.add(computeRecipeCal(recipeList));
-        mealplanout.createCaloriesView(Calories);
+        if (mealplanout != null) {
+            mealplanout.createCaloriesView(Calories);
+        }
     }
 
     public void deleteMealplan(int meal){
-        this.mealplan.deleteMealPlan(meal);
+        if(mealplan != null) {
+            this.mealplan.deleteMealPlan(meal);
+        }
     }
 
     public void saveMealplan() throws IOException {
@@ -92,6 +99,13 @@ public class MealplanInteractor implements MealplanInputBoundary{
 
     public MealplanList getMealplanList() {
         return this.mealplans;
+    }
+
+    public static void main(String[] arg){
+        MealplanOutputBoundary mealplanOutputBoundary = new MealplanPresenter();
+        MealplanGateway mealplanGateway = new MealplanGate();
+        MealplanInteractor mealplanInteractor = new MealplanInteractor(mealplanOutputBoundary, "Brenden", mealplanGateway);
+
     }
 
 }
