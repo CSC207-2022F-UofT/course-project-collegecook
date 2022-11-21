@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class ViewRecipeUI extends JFrame implements RecipeViewBox {
     JPanel view = new JPanel();
@@ -23,23 +24,38 @@ public class ViewRecipeUI extends JFrame implements RecipeViewBox {
     }
     @Override
     public void success(String result){
-        all = new JLabel(result);
-        all.setText("<html>" + result.replaceAll("<","&lt;").replaceAll(">", "&gt;").
-                replaceAll("\n", "<br/>") + "</html>");
-        all.setAlignmentX(Component.CENTER_ALIGNMENT);
-        all.setFont(new Font("Monaco", Font.PLAIN, 15));
-        view.add(all);
+        if (all == null) {
+            all = new JLabel(result);
+            all.setText("<html>" + result.replaceAll("<", "&lt;").replaceAll(">", "&gt;").
+                    replaceAll("\n", "<br/>") + "</html>");
+            all.setAlignmentX(Component.CENTER_ALIGNMENT);
+            all.setFont(new Font("Monaco", Font.PLAIN, 15));
+            view.add(all);
+        }
         folllow.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String readRecipe = appController.getRecipeController().getReadingRecipe();
                 String creator = appController.getRecipeController().getRecipe(readRecipe).getCreator();
                 String user = appController.getLoginControllor().preformGetLoggedInUser();
-                appController.getLoginControllor().PreformFollow(user,creator);
+                try {
+                    appController.getLoginControllor().PreformFollow(user,creator);
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null,"You have followed the creator.");;
+                }
+            }
+        });
+         mealPlan.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddMealplanUI addMealplanUI = new AddMealplanUI(appController,
+                        appController.getRecipeController().getReadingRecipe());
+                addMealplanUI.setVisible(true);
             }
         });
         buttonPanel.add(review);
         buttonPanel.add(mealPlan);
+
         buttonPanel.add(folllow);
         view.add(buttonPanel);
         this.add(view);

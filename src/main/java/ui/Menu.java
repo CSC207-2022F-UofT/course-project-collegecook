@@ -1,12 +1,12 @@
 package ui;
 
-import login.*;
-import recipe.*;
+import mealplan.MealplanBoxUI;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class Menu extends JFrame {
     JPanel menu = new JPanel();
@@ -53,11 +53,33 @@ public class Menu extends JFrame {
         });
         menu.add(search_recipe);
         mealPlan.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        mealPlan.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MealplanBoxUI mealplanBoxUI = null;
+                try {
+                    mealplanBoxUI = new MealplanBoxUI(appController);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                mealplanBoxUI.setVisible(true);
+            }
+        });
+
         menu.add(mealPlan);
         ranking.setAlignmentX(Component.CENTER_ALIGNMENT);
         menu.add(ranking);
         profile.setAlignmentX(Component.CENTER_ALIGNMENT);
         menu.add(profile);
+
+        profile.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ProfileUI profileUI = new ProfileUI(appController);
+                profileUI.setVisible(true);
+            }
+        });
 
 
 

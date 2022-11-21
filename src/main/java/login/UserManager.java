@@ -90,11 +90,12 @@ public class UserManager {
     //other.follower add user
     // method to find the user in the allUsers and add the other user in to the followed list(attribute of user),need to
     //check if the other user is already followed,also find the other user and add the user from the following list(attribute of user)
-    public void follow(String username, String other){
+    public void follow(String username, String other) throws IOException {
         for(User person :AllUser.getAllUser()){
             if(Objects.equals(person.getUsername(), username)){
                 person.addFollowed(AllUser.getUser(other));
                 AllUser.getUser(other).addFollowers(person);
+                urg.saveUser(AllUser);
                 LoginOutputBound.FollowedSuccess();
             }
         }
