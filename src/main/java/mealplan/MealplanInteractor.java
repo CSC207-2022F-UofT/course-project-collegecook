@@ -30,18 +30,32 @@ public class MealplanInteractor implements MealplanInputBoundary{
             this.mealplan = mealplans.getMealplan(username);
         } catch (Exception e) {
             this.mealplan = new Mealplan();
+            mealplans.add(username, mealplan);
             System.out.println("New Meal-plan created");
         }
+        if (mealplan == null){
+            this.mealplan = new Mealplan();
+            mealplans.add(username, mealplan);
+        }
+
     }
 
 
     public void addRecipe(String recipe, int meal){
         this.mealplan.addMealPlan(recipe, meal);
+        try {
+            mrg.saveToFile(mealplans);
+        } catch (IOException e) {
+            System.out.println("123");
+        }
         mealplanout.addRecipe(recipe, meal);
     }
 
     public int computeRecipeCal(RecipeList recipeList){
         int cal = 0;
+        if (mealplan == null){
+            return 0;
+        }
         for (ArrayList<String> l : mealplan.returnMealPlan()){
             for (String r : l){
                 cal = cal + recipeList.get_recipe(r).getCalories();
@@ -70,11 +84,15 @@ public class MealplanInteractor implements MealplanInputBoundary{
         List<Integer> Calories = new ArrayList<Integer>();
         Calories.add(computeProfileCal(pro));
         Calories.add(computeRecipeCal(recipeList));
-        mealplanout.createCaloriesView(Calories);
+        if (mealplanout != null) {
+            mealplanout.createCaloriesView(Calories);
+        }
     }
 
     public void deleteMealplan(int meal){
-        this.mealplan.deleteMealPlan(meal);
+        if(mealplan != null) {
+            this.mealplan.deleteMealPlan(meal);
+        }
     }
 
     public void saveMealplan() throws IOException {
@@ -92,6 +110,13 @@ public class MealplanInteractor implements MealplanInputBoundary{
 
     public MealplanList getMealplanList() {
         return this.mealplans;
+    }
+
+    public static void main(String[] arg){
+        MealplanOutputBoundary mealplanOutputBoundary = new MealplanPresenter();
+        MealplanGateway mealplanGateway = new MealplanGate();
+        MealplanInteractor mealplanInteractor = new MealplanInteractor(mealplanOutputBoundary, "Ben", mealplanGateway);
+        mealplanInteractor.addRecipe("Apple", 1);
     }
 
 }
