@@ -1,5 +1,7 @@
 package recipe;
 
+import entities.Recipe;
+
 import java.util.ArrayList;
 
 
@@ -47,6 +49,11 @@ public class RecipeController {
      */
     public void performReadRecipe(String recipeName) {
         recipeInputBoundary.readRecipe(recipeName);
+    }
+
+    public String getReadingRecipe(){return recipeInputBoundary.getReadingRecipe();}
+    public Recipe getRecipe(String name){
+        return recipeInputBoundary.getRecipe(name);
     }
 
 

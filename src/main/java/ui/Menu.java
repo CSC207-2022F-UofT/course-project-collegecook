@@ -1,6 +1,7 @@
 package ui;
 
-import profile.ProfileFrame;
+import login.*;
+import recipe.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,23 +19,25 @@ public class Menu extends JFrame {
 
     JPanel buttonPanel = new JPanel();
     JLabel userName;
+    AppController appController;
 
-    public Menu(String user){
+    public Menu(AppController appController){
+        this.appController = appController;
         menu.setLayout(new BoxLayout(menu, BoxLayout.Y_AXIS));
 
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         title.setFont(new Font("Serif", Font.PLAIN, 100));
         menu.add(title);
         menu.add(new JLabel(""));
-        userName = new JLabel("User: " + user);
+        userName = new JLabel("User: " + appController.getLoginControllor().preformGetLoggedInUser());
         userName.setAlignmentX(Component.CENTER_ALIGNMENT);
         menu.add(userName);
         create_recipe.setAlignmentX(Component.CENTER_ALIGNMENT);
         create_recipe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                CreateRecipeUI createRecipeUI = new CreateRecipeUI(user);
-//                createRecipeUI.setVisible(true);
+                CreateRecipeUI createRecipeUI = new CreateRecipeUI(appController);
+                createRecipeUI.setVisible(true);
             }
         });
 
@@ -44,8 +47,8 @@ public class Menu extends JFrame {
         search_recipe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // SearchRecipeUI searchRecipeUI = new SearchRecipeUI();
-                // searchRecipeUI.setVisible(true);
+                 SearchRecipeUI searchRecipeUI = new SearchRecipeUI(appController);
+                 searchRecipeUI.setVisible(true);
             }
         });
         menu.add(search_recipe);
@@ -55,14 +58,6 @@ public class Menu extends JFrame {
         menu.add(ranking);
         profile.setAlignmentX(Component.CENTER_ALIGNMENT);
         menu.add(profile);
-
-        profile.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ProfileFrame profileFrame = new ProfileFrame(user);
-                profileFrame.setVisible(true);
-            }
-        });
 
 
 
@@ -78,7 +73,18 @@ public class Menu extends JFrame {
     }
 
     public static void main(String[] args){
-        Menu m = new Menu("Brenden");
-        m.setVisible(true);
+//        UserGateWay userGateWay = UserRepoImpl.getUserRepoImpl();
+//        LoginOutputBound loginOutputBound = new LoginPresenter();
+//        UserManager userManager = new UserManager(loginOutputBound, userGateWay);
+//        LoginControllor loginControllor = new LoginControllor(userManager);
+//
+//        RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();
+//        RecipeRepoGateway recipeRepoGateway = RecipeReadWriter.getRecipeRepo();
+//        RecipeInputBoundary recipeInputBoundary = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
+//        RecipeController recipeController = new RecipeController(recipeInputBoundary);
+//
+//        AppController appController1 = new AppController(recipeController, loginControllor);
+//        Menu m = new Menu(appController1);
+//        m.setVisible(true);
     }
 }
