@@ -44,11 +44,11 @@ public class MealplanInteractor implements MealplanInputBoundary{
     public void addRecipe(String recipe, int meal){
         mealplans.getMealplan(username).addMealPlan(recipe, meal);
         try {
+            mealplans.add(username, mealplan);
             mrg.saveToFile(mealplans);
         } catch (IOException e) {
             System.out.println("123");
         }
-        mealplanout.addRecipe(recipe, meal);
     }
 
     public int computeRecipeCal(RecipeList recipeList){
