@@ -11,6 +11,5 @@ public interface ProfileInputBoundary {
     boolean checkInfo(String username) throws IOException ;
     Profile checkProfile(String username) throws IOException;
     void viewInfo(String username) throws IOException;
-    Profile checkProfile(String username) throws IOException;
 
 }
