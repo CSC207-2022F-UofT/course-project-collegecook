@@ -5,6 +5,9 @@ import entities.User;
 import java.util.ArrayList;
 
 public class RecipeRequestModel {
+    /**
+     * This is a RequestModel, which is used to combine user input together to avoid data clump(code smell).
+     */
     private final String recipe_name;
     private final String procedure;
     private final String cuisine;
@@ -26,13 +29,13 @@ public class RecipeRequestModel {
         this.creator = creator;
     }
 
-    public String get_procedure(){return this.procedure;}
-    public String get_recipe_name(){return this.recipe_name;
+    public String getProcedure(){return this.procedure;}
+    public String getRecipeName(){return this.recipe_name;
     }
-    public String get_cuisine(){return this.cuisine;}
-    public int get_calories(){return this.calories;}
-    public int get_time(){return this.time;}
-    public int get_difficulty(){return this.difficulty;}
-    public ArrayList<String> get_ingredients(){return this.ingredients;}
-    public String get_creator(){return this.creator;}
+    public String getCuisine(){return this.cuisine;}
+    public int getCalories(){return this.calories;}
+    public int getTime(){return this.time;}
+    public int getDifficulty(){return this.difficulty;}
+    public ArrayList<String> getIngredients(){return this.ingredients;}
+    public String getCreator(){return this.creator;}
 }

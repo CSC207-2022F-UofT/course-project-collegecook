@@ -1,5 +1,6 @@
 package ui;
 
+import login.*;
 import recipe.*;
 
 import javax.swing.*;
@@ -9,7 +10,9 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class CreateRecipeUI extends JFrame{
+public class CreateRecipeUI extends JFrame implements RecipeCreateBox{
+    RecipeController recipeController;
+    RecipeOutputBoundary recipeOutputBoundary;
     JPanel check = new JPanel();
     JTextField name = new JTextField(40);
     JTextArea procedure = new JTextArea(5, 40);
@@ -27,9 +30,11 @@ public class CreateRecipeUI extends JFrame{
     JLabel difficultyQ = new JLabel("What is the difficulty(out of 5)?");
 
     JButton create = new JButton("Create");
-    RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter(this);
 
-    public CreateRecipeUI(String user) {
+
+    public CreateRecipeUI(AppController appController) {
+        this.recipeController = appController.getRecipeController();
+
         check.setLayout(new BoxLayout(check, BoxLayout.Y_AXIS));
         nameQ.setAlignmentX(Component.CENTER_ALIGNMENT);
         check.add(nameQ);
@@ -79,15 +84,14 @@ public class CreateRecipeUI extends JFrame{
                     JOptionPane.showMessageDialog(null,
                             "Pleas enter an INTEGER for calories, time, difficulty!");
                 }
-                RecipeInputBoundary recipeInputBoundary = new RecipeInterActor(recipeOutputBoundary);
-                RecipeController recipeController = new RecipeController(recipeInputBoundary);
 
                 String ingredient = ingredients.getText();
                 String[] ingredients_list = ingredient.split(",");
                 ArrayList<String> ingredients = new ArrayList<>(Arrays.asList(ingredients_list));
                 recipeController.performCreateRecipe(name.getText(), procedure.getText(), cuisine.getText(),
                         ingredients, Integer.parseInt(calories.getText()), Integer.parseInt(time.getText()),
-                        Integer.parseInt(difficulty.getText()), user);
+                        Integer.parseInt(difficulty.getText()),
+                        appController.getLoginControllor().preformGetLoggedInUser());
             }
         });
         check.add(create);
@@ -97,21 +101,38 @@ public class CreateRecipeUI extends JFrame{
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.pack();
     }
-
+    @Override
     public void success(){
         JOptionPane.showMessageDialog(null, "Success");
         this.setVisible(false);
     }
-
-    public void failure(){
+    @Override
+    public void fail(){
         JOptionPane.showMessageDialog(null,
                 "Sorry, the recipe's name already exists.");
     }
 
+    @Override
+    public void setV(boolean vision) {
+        this.setVisible(vision);
+    }
 
 
     public static void main(String[] args){
-        CreateRecipeUI m = new CreateRecipeUI("Brenden");
-        m.setVisible(true);
+//        UserGateWay userGateWay = UserRepoImpl.getUserRepoImpl();
+//        LoginOutputBound loginOutputBound = new LoginPresenter();
+//        UserManager userManager = new UserManager(loginOutputBound, userGateWay);
+//        LoginControllor loginControllor = new LoginControllor(userManager);
+//
+//        RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();
+//        RecipeRepoGateway recipeRepoGateway = RecipeReadWriter.getRecipeRepo();
+//        RecipeInputBoundary recipeInputBoundary = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
+//        RecipeController recipeController = new RecipeController(recipeInputBoundary);
+//
+//        AppController appController = new AppController(recipeController, loginControllor);
+//        RecipeCreateBox m = new CreateRecipeUI(appController);
+//        recipeOutputBoundary.setUI(m);
+//        m.setV(true);
     }
+
 }
