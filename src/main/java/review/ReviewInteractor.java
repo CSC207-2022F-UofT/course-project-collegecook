@@ -10,7 +10,7 @@ public class ReviewInteractor {
 
     private RecipeList recipeList;
     private ReviewDatabase reviewDatabase;
-    ReviewDatabaseReadWriter rdrw = new ReviewDatabaseReadWriter();
+    ReviewDatabaseReadWriter databaseReadWriter = new ReviewDatabaseReadWriter();
 
 
     /**
@@ -26,7 +26,7 @@ public class ReviewInteractor {
         }
 
         try {
-            reviewDatabase = rdrw.readFromFile("reviews.sav");
+            reviewDatabase = databaseReadWriter.readFromFile("reviews.sav");
         } catch (IOException e) {
             reviewDatabase = new ReviewDatabase();
             System.out.println("Read file failed.....");
@@ -71,7 +71,7 @@ public class ReviewInteractor {
     private void createHelper(String username, Review review) {
         reviewDatabase.addReview(review);
         try {
-            rdrw.saveToFile("reviews.sav", reviewDatabase);
+            databaseReadWriter.saveToFile("reviews.sav", reviewDatabase);
         } catch (IOException e) {
             e.printStackTrace();
         }
