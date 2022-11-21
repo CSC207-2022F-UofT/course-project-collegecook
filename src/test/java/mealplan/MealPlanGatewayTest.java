@@ -12,17 +12,27 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MealPlanGatewayTest {
     MealplanGate mealplanGate;
     MealplanList mpl;
+    MealplanList temp;
     Mealplan mp;
 
     @BeforeEach
-    void setUp() throws IOException {
+    void setUp() throws IOException, ClassNotFoundException {
         mealplanGate = MealplanGate.getInstance();
+        temp = mealplanGate.readFromFile();
         mpl = new MealplanList();
         mp = new Mealplan();
 
         mealplanGate.saveToFile(mpl);
     }
 
+    @AfterEach
+    void tearDown() throws IOException {
+        mealplanGate.saveToFile(temp);
+        mealplanGate = null;
+        mpl = null;
+        temp = null;
+
+    }
 
     @Test
     void getRecipeGate() {

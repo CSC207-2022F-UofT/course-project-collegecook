@@ -1,8 +1,9 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Mealplan {
+public class Mealplan implements Serializable {
 
     ArrayList<ArrayList<String>> mealplan;
 

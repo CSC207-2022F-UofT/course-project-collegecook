@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+=======
 public class UserList implements Serializable {
     private final List<User> AllUser;
 
@@ -12,7 +13,9 @@ public class UserList implements Serializable {
     public UserList() {
         this.AllUser = new ArrayList<>();
     }
+
     //Used refactoring to factor out check method to make sure no users has same username when creating new account
+
     public boolean CheckAllUser(String username) {
         for (User person : AllUser) {
             if (Objects.equals(person.getUsername(), username)) {

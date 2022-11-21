@@ -1,6 +1,7 @@
 package ui;
 
 import login.LoginControllor;
+import mealplan.MealplanController;
 import profile.ProfileController;
 import recipe.RecipeController;
 import search.SearchController;
@@ -11,11 +12,14 @@ public class AppController {
     private final ProfileController profileController;
     private final SearchController searchController;
 
-    public AppController(RecipeController recipeController, LoginControllor loginControllor, ProfileController profileController, SearchController searchController) {
+    private final MealplanController mealplanController;
+
+    public AppController(RecipeController recipeController, LoginControllor loginControllor, ProfileController profileController,
+                         MealplanController mealplanController, SearchController searchController) {
         this.recipeController = recipeController;
         this.loginControllor = loginControllor;
         this.profileController = profileController;
-        this.searchController = searchController;
+        this.mealplanController = mealplanController;
     }
 
     public RecipeController getRecipeController() {
@@ -30,7 +34,12 @@ public class AppController {
         return profileController;
     }
 
+
     public SearchController getSearchController() {
         return searchController;
+
+    public MealplanController getMealplanController() {
+        return mealplanController;
+
     }
 }

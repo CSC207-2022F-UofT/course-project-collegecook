@@ -1,7 +1,9 @@
 package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+
 import java.util.Objects;
 
 public class User implements Serializable {
@@ -62,6 +64,7 @@ public class User implements Serializable {
     public List<User> getFollowers() {
         return followers;
     }
+    // Comparator for sorting the list by followers
 
     public List<User> getFollowed() {
         return followed;
