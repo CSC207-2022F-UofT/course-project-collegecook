@@ -60,7 +60,6 @@ public class Menu extends JFrame {
         menu.add(profile);
 
 
-
         this.add(menu);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.pack();
