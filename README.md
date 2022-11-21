@@ -1,8 +1,6 @@
-# Project Template
-
-This is a template repository for CSC 207 projects. 
-This repository contains starter code for a gradle project.
-It also contains workflow documents that give instructions on how to manage your Github repository and how to use Github Projects for efficient collaboration.
+# CSC207 Project: CollegeCook
+This repository is created as a course project for CSC207H1: Software Design Course in the University of Toronto.
+Contributors: Yading Feng, Krutika Joshi, Jason Kahn, Jinping Liang, Huayin Luo, Lucia Tan, Brenden Yiping Wang
 
 ## Checklist For Your Project
 - [ ] Verify the correct settings for your project repository
