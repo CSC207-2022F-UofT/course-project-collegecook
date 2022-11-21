@@ -3,7 +3,7 @@ package entities;
 import java.util.HashMap;
 
 public class AverageRatings {
-    private static HashMap<String, Double> ratings = new HashMap<String, Double>();
+    private HashMap<String, Double> ratings = new HashMap<String, Double>();
 
     /**
      * Add the average rating of a User's reviews.
@@ -13,7 +13,7 @@ public class AverageRatings {
      * @param username the username of the User who's average rating is being added.
      * @param rating the average rating of user's reviews
      */
-    public static void addAverageRating(String username, Double rating){
+    public void addAverageRating(String username, Double rating){
         ratings.put(username, rating);
     }
 
@@ -23,7 +23,7 @@ public class AverageRatings {
      *
      * @param username the User who's average rating is being fetched.
      */
-    public static Double getAverageRating(String username){
+    public Double getAverageRating(String username){
         if (ratings.containsKey(username)) {
             return ratings.get(username);
         } else {
