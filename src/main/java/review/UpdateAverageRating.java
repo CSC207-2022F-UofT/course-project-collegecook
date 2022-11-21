@@ -16,17 +16,8 @@ public class UpdateAverageRating {
 
     public static void updateAverage(String username, ReviewDatabase database){
         ArrayList<Review> reviews = database.getUserReviews(username);
-        AverageRatingReadWriter arrw = new AverageRatingReadWriter();
-        AverageRatings averageRating = new AverageRatings();
-        try {
-            AverageRatingReadWriter rdrw = new AverageRatingReadWriter();
-            averageRating = rdrw.readFromFile("ratings.sav");
-        } catch (IOException e) {
-            averageRating = new AverageRatings();
-            System.out.println("Read file failed.....");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        AverageRatingReadWriter ratingReadWriter = new AverageRatingReadWriter();
+        AverageRatings averageRating = loadRatingDatabase();
         if (reviews.size() != 0) {
             int sum = 0;
             for (Review r : reviews) {
@@ -35,10 +26,29 @@ public class UpdateAverageRating {
             Double average = (double) sum / reviews.size();
             averageRating.addAverageRating(username, average);
             try {
-                arrw.saveToFile("ratings.sav", averageRating);
+                ratingReadWriter.saveToFile("ratings.sav", averageRating);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    /**
+     * Load an AverageRatings class from the serialized file.
+     *
+     */
+
+    public static AverageRatings loadRatingDatabase() {
+        AverageRatings database;
+        AverageRatingReadWriter ratingReadWriter = new AverageRatingReadWriter();
+        try {
+            database = ratingReadWriter.readFromFile("ratings.sav");
+        } catch (IOException e) {
+            database = new AverageRatings();
+            System.out.println("Read file failed.....");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return database;
     }
 }

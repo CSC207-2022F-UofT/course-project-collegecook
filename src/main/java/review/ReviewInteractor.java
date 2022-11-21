@@ -10,7 +10,7 @@ public class ReviewInteractor {
 
     private RecipeList recipeList;
     private ReviewDatabase reviewDatabase;
-    ReviewDatabaseReadWriter databaseReadWriter = new ReviewDatabaseReadWriter();
+    private static final ReviewDatabaseReadWriter databaseReadWriter = new ReviewDatabaseReadWriter();
 
 
     /**
@@ -25,14 +25,25 @@ public class ReviewInteractor {
             System.out.println("Read file failed.....");
         }
 
+        this.reviewDatabase = loadReviewDatabase();
+    }
+
+    /**
+     * Load a ReviewDatabase class from the serialized file.
+     *
+     */
+
+    public static ReviewDatabase loadReviewDatabase() {
+        ReviewDatabase database;
         try {
-            reviewDatabase = databaseReadWriter.readFromFile("reviews.sav");
+            database = databaseReadWriter.readFromFile("reviews.sav");
         } catch (IOException e) {
-            reviewDatabase = new ReviewDatabase();
+            database = new ReviewDatabase();
             System.out.println("Read file failed.....");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        return database;
     }
 
     /**
@@ -44,11 +55,10 @@ public class ReviewInteractor {
      * @param recipeName the name of the recipe being reviewed
      * @param rating the review's rating.
      */
-    public String createReview(String username, String recipeName, int rating) {
+    public void createReview(String username, String recipeName, int rating) {
         Recipe recipe = recipeList.get_recipe(recipeName);
         Review review = new Review(username, recipe, rating);
         createHelper(username, review);
-        return review.toString();
     }
 
     /**
@@ -61,11 +71,10 @@ public class ReviewInteractor {
      * @param content the content of the review
      * @param rating the review's rating.
      */
-    public String createReview(String username, String recipeName, String content, int rating) {
+    public void createReview(String username, String recipeName, String content, int rating) {
         Recipe recipe = recipeList.get_recipe(recipeName);
         Review review = new Review(username, recipe, content, rating);
         createHelper(username, review);
-        return review.toString();
     }
 
     private void createHelper(String username, Review review) {
