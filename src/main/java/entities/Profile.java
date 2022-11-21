@@ -1,8 +1,9 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Profile {
+public class Profile implements Serializable {
 
     private ArrayList<Review> reviewed;
     private ArrayList<Recipe> created;
@@ -63,6 +64,15 @@ public class Profile {
         }
         return result;
     }
+
+    public String soutInfo(){
+        String result = new String("");
+        return "Age: " + age + "\n" +
+                "Height: " + height + "\n" +
+                "Weight: " + weight + "\n" +
+                "Gender: " + gender + "\n";
+    }
+
 
     public ArrayList<Review> getReviewed() {
         return reviewed;
