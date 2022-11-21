@@ -1,5 +1,7 @@
 package profile;
 
+import ui.AppController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,8 +20,11 @@ public class InfoFrame extends JFrame implements InfoSetBox {
     JTextField weightInput = new JTextField();
     JTextField genderInput = new JTextField();
     ProfileController pc;
+    String username;
 
-    public InfoFrame(String username){
+    public InfoFrame(AppController appController){
+        this.pc = appController.getProfileController();
+        this.username = appController.getLoginControllor().preformGetLoggedInUser();
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
 
         setButton.addActionListener(new ActionListener() {

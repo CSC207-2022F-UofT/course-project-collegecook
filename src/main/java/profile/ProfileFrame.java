@@ -1,5 +1,7 @@
 package profile;
 
+import ui.AppController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,8 +15,12 @@ public class ProfileFrame extends JFrame implements InfoViewBox {
     JButton infoButton = new JButton("information");
     JLabel infoLabel;
     ProfileController pc;
+    String username;
 
-    public ProfileFrame(String username) {
+
+    public ProfileFrame(AppController appController) {
+        this.pc = appController.getProfileController();
+        this.username = appController.getLoginControllor().preformGetLoggedInUser();
         p_panel.setLayout(new BorderLayout());
         p_panel.add(recipeButton, BorderLayout.NORTH);
         p_panel.add(infoButton, BorderLayout.CENTER);
@@ -22,7 +28,7 @@ public class ProfileFrame extends JFrame implements InfoViewBox {
         recipeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ViewRecipeFrame recipeFrame = new ViewRecipeFrame(username);
+                ViewRecipeFrame recipeFrame = new ViewRecipeFrame(appController);
                 recipeFrame.setVisible(true);
             }
         });
@@ -45,7 +51,7 @@ public class ProfileFrame extends JFrame implements InfoViewBox {
                                 "Oops! There is something wrong with your profile. ");
                     }
                 } else {
-                    InfoFrame infoFrame = new InfoFrame(username);
+                    InfoFrame infoFrame = new InfoFrame(appController);
                     infoFrame.setVisible(true);
                 }
             }

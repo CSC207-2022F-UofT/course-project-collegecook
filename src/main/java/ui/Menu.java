@@ -1,6 +1,7 @@
 package ui;
 
 import login.*;
+import profile.ProfileFrame;
 import recipe.*;
 
 import javax.swing.*;
@@ -58,6 +59,14 @@ public class Menu extends JFrame {
         menu.add(ranking);
         profile.setAlignmentX(Component.CENTER_ALIGNMENT);
         menu.add(profile);
+
+        profile.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ProfileFrame profileFrame = new ProfileFrame(appController);
+
+            }
+        });
 
 
 
