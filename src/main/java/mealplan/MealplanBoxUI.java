@@ -6,14 +6,14 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.List;
 
-import entities.Mealplan;
 import profile.ProfileInputBoundary;
 import profile.ProfileInteractor;
 import profile.ProfilePresenter;
 import recipe.*;
+import ui.AppController;
 
 public class MealplanBoxUI extends JFrame implements MealplanBox{
-    MealplanController mealplanController;
+    AppController appController;
 
     JPanel panel_b = new JPanel();
     JPanel panel_l = new JPanel();
@@ -22,13 +22,13 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
     JLabel label_b = new JLabel("Breakfast");
     JLabel label_l = new JLabel("Lunch");
     JLabel label_d = new JLabel("Dinner");
-    public MealplanBoxUI(MealplanController mealplanController){
-        this.mealplanController = mealplanController;
+    public MealplanBoxUI(AppController appController){
+        this.appController= appController;
 
         JButton button_b = new JButton( new AbstractAction("delete") {
             @Override
             public void actionPerformed( ActionEvent e ) {
-                mealplanController.deleteMealplan(0);
+                appController.getMealplanController().deleteMealplan(0);
             }
 
 
@@ -37,14 +37,14 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
         JButton button_l = new JButton( new AbstractAction("delete") {
             @Override
             public void actionPerformed( ActionEvent e ) {
-                mealplanController.deleteMealplan(1);
+                appController.getMealplanController().deleteMealplan(1);
             }
         });
 
         JButton button_d = new JButton( new AbstractAction("delete") {
             @Override
             public void actionPerformed( ActionEvent e ) {
-                mealplanController.deleteMealplan(2);
+                appController.getMealplanController().deleteMealplan(2);
             }
         });
 
@@ -52,7 +52,7 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
             @Override
             public void actionPerformed( ActionEvent e ) {
                 try {
-                    mealplanController.getCalories();
+                    appController.getMealplanController().getCalories();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -63,7 +63,7 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
             @Override
             public void actionPerformed( ActionEvent e ) {
                 try {
-                    mealplanController.saveMealplan();
+                    appController.getMealplanController().saveMealplan();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -100,7 +100,7 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
         JButton button_m = new JButton( new AbstractAction(recipe) {
             @Override
             public void actionPerformed( ActionEvent e ) {
-                mealplanController.displayRecipe(recipe);
+                appController.getMealplanController().displayRecipe(recipe);
             }
         });
 
@@ -121,16 +121,5 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
         panel_s.add(label_cal);
     }
 
-    public static void main(String[] args){
-        MealplanOutputBoundary mealplanOutputBoundary= new MealplanPresenter();
-        MealplanGateway mrg = new MealplanGate();
-        MealplanInputBoundary mealplanInputBoundary = new MealplanInteractor(mealplanOutputBoundary,"user",mrg);
-        ProfileInputBoundary profileInputBoundary = new ProfileInteractor(new ProfilePresenter());
-        RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();
-        RecipeRepoGateway recipeRepoGateway = RecipeReadWriter.getRecipeRepo();
-        RecipeInputBoundary recipeInputBoundary = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
-        MealplanBoxUI m = new MealplanBoxUI(new MealplanController(mealplanInputBoundary,profileInputBoundary,recipeInputBoundary));
-        m.setVisible(true);
-    }
 
 }
