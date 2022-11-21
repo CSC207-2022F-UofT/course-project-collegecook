@@ -1,5 +1,4 @@
 import login.*;
-import mealplan.*;
 import profile.*;
 import recipe.*;
 import ui.*;
@@ -20,12 +19,7 @@ public class CollegeCookApp {
         ProfileInputBoundary profileInputBoundary = new ProfileInteractor(profileOutputBoundary);
         ProfileController profileController = new ProfileController(profileInputBoundary);
 
-        MealplanOutputBoundary mealplanOutputBoundary= new MealplanPresenter();
-        MealplanGateway mrg = MealplanGate.getInstance();
-        MealplanInputBoundary mealplanInputBoundary = new MealplanInteractor(mealplanOutputBoundary,loginControllor.preformGetLoggedInUser(),mrg);
-        MealplanController mealplanController = new MealplanController(mealplanInputBoundary,profileInputBoundary,recipeInputBoundary);
-
-        AppController appController1 = new AppController(recipeController, loginControllor, profileController, mealplanController);
+        AppController appController1 = new AppController(recipeController, loginControllor, profileController);
         RecipeCreateBox recipeCreateBox = new CreateRecipeUI(appController1);
         RecipeViewBox recipeViewBox = new ViewRecipeUI(appController1);
         WelcomeUI welcomeUI = new WelcomeUI(appController1);
@@ -34,7 +28,6 @@ public class CollegeCookApp {
         ProfileBox profileBox = new ProfileViewRecipeUI(appController1);
         InfoSetBox infoSetBox = new ProfileInfoUI(appController1);
         InfoViewBox infoViewBox = new ProfileUI(appController1);
-        MealplanBox mealplanBox = new MealplanBoxUI(appController1);
         loginOutputBound.setUI(loginBox);
         loginOutputBound.setUI(signUpBox);
         loginOutputBound.setUI(recipeViewBox);
@@ -44,7 +37,6 @@ public class CollegeCookApp {
         profileOutputBoundary.setUI(infoSetBox);
         profileOutputBoundary.setUI(infoViewBox);
         ProfileUI profileUI = new ProfileUI(appController1);
-        mealplanOutputBoundary.setUI(mealplanBox);
         welcomeUI.setVisible(true);
     }
 }
