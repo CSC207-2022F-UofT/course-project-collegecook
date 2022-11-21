@@ -5,6 +5,9 @@ import entities.User;
 import java.util.ArrayList;
 
 public class RecipeRequestModel {
+    /**
+     * This is a RequestModel, which is used to combine user input together to avoid data clump(code smell).
+     */
     private final String recipe_name;
     private final String procedure;
     private final String cuisine;

@@ -19,7 +19,7 @@ public class SearchController {
      * @param sortType in what order to sort results (ie. by average rating, number of ingredients, time needed)
      * @return search results (list of recipes) for the given criteria
      */
-    SearchResponseModel getSearchResults(String name, String cuisine, ArrayList<String> ingredients, int timeInMin, String sortType, boolean sortAscending) throws IOException {
+    public SearchResponseModel getSearchResults(String name, String cuisine, ArrayList<String> ingredients, int timeInMin, String sortType, boolean sortAscending) throws IOException {
         SearchRequestModel requestModel = new SearchRequestModel(name, cuisine, ingredients, timeInMin, sortType, sortAscending);
         return searchInputBoundary.getSearchResults(requestModel);
     }

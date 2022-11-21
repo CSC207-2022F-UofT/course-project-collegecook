@@ -9,15 +9,15 @@ import java.util.ArrayList;
 
 public class SearchInteractor implements SearchInputBoundary{
 
-    final SearchPresenter searchPresenter;
+    final SearchOutputBoundary searchOutputBoundary;
     final RecipeRepoGateway recipeRepoGateway;
     /**
      * interactor that searches for matching recipes and sorts in chosen order
-     * @param searchPresenter SearchPresenter to interact with UI and display appropriate results
+     * @param searchOutputBoundary SearchOutputBoundary to interact with UI and display appropriate results
      * @param recipeRepoGateway RecipeRepoGateway that gets all recipes
      */
-    public SearchInteractor(SearchPresenter searchPresenter, RecipeRepoGateway recipeRepoGateway) {
-        this.searchPresenter = searchPresenter;
+    public SearchInteractor(SearchOutputBoundary searchOutputBoundary, RecipeRepoGateway recipeRepoGateway) {
+        this.searchOutputBoundary = searchOutputBoundary;
         this.recipeRepoGateway = recipeRepoGateway;
     }
 
@@ -43,7 +43,7 @@ public class SearchInteractor implements SearchInputBoundary{
 
         // if no matching recipes found, return failure view
         if (matchingRecipes.isEmpty()){
-            return searchPresenter.prepareFailureView("No matching recipes were found");
+            return searchOutputBoundary.prepareFailureView("No matching recipes were found");
         }
 
         // change arraylist to array for sorting
@@ -72,7 +72,7 @@ public class SearchInteractor implements SearchInputBoundary{
                 break;
         }
             recipeSorter.sort(foundRecipes, requestModel.sortByAscending);
-            return searchPresenter.prepareResultsView(new SearchResponseModel(foundRecipes));
+            return searchOutputBoundary.prepareResultsView(new SearchResponseModel(foundRecipes));
 
     }
 }
