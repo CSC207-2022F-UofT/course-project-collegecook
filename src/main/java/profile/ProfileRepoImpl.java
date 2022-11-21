@@ -40,8 +40,13 @@ public class ProfileRepoImpl implements ProfileRepoGateway{
 
     public static void main(String[] arg) throws IOException {
         ProfileRepoImpl profileRepo = ProfileRepoImpl.getPrl();
-        for(Profile p : profileRepo.getProfile()){
-            System.out.println(p.getUsername());
-        };
+        Profile p = new Profile("Peter");
+//        ArrayList<Profile> ap = new ArrayList<>();
+//        ap.add(p);
+//        profileRepo.saveProfile(ap);
+        for (Profile pp :profileRepo.getProfile()){
+            System.out.println(pp.getUsername());
+        }
+
     }
 }

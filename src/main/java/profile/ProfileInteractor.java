@@ -3,9 +3,11 @@ package profile;
 import entities.*;
 import recipe.RecipeRepoGateway;
 import recipe.RecipeReadWriter;
+import review.ReviewInteractor;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ProfileInteractor implements ProfileInputBoundary{
     private final ProfileRepoGateway prg =  ProfileRepoImpl.getPrl();
@@ -47,7 +49,8 @@ public class ProfileInteractor implements ProfileInputBoundary{
 
     public Profile checkProfile(String username) throws IOException {
         for (Profile p: profileList){
-            if (p.getUsername().equals(username)){
+            String expected = p.getUsername();
+            if (Objects.equals(expected, username)){
                 return p;
             }
         }
@@ -59,7 +62,7 @@ public class ProfileInteractor implements ProfileInputBoundary{
 
     //need jason to modify getUserReviews to be worked.
     public void allReviewed(String username) throws IOException {
-        ArrayList<Review> all = ReviewDatabase.getUserReviews(username);
+        ArrayList<Review> all = ReviewInteractor.loadReviewDatabase().getUserReviews(username);
         Profile p = checkProfile(username);
         p.setReviewed(all);
         if (p.getReviewed().isEmpty()){
@@ -90,7 +93,7 @@ public class ProfileInteractor implements ProfileInputBoundary{
         float height = p.getHeight();
         float weight = p.getWeight();
         String gender = p.getGender();
-        return age != 0 || height != 0 || weight != 0 || !gender.isEmpty();
+        return age != 0 || height != 0 || weight != 0 || gender != null;
     }
 
     private void setAll(ProfileRequestModel prm, Profile p) {
@@ -104,4 +107,9 @@ public class ProfileInteractor implements ProfileInputBoundary{
         p.setGender(gender);
     }
 
+    public static void main(String[] arg) throws IOException {
+        ProfileOutputBoundary profileOutputBoundary = new ProfilePresenter();
+        ProfileInteractor profileInteractor = new ProfileInteractor(profileOutputBoundary);
+        profileInteractor.checkInfo("Maison");
+    }
 }

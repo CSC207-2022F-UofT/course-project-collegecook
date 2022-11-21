@@ -36,7 +36,7 @@ public class CollegeCookApp {
         profileOutputBoundary.setUI(profileBox);
         profileOutputBoundary.setUI(infoSetBox);
         profileOutputBoundary.setUI(infoViewBox);
-
+        ProfileUI profileUI = new ProfileUI(appController1);
         welcomeUI.setVisible(true);
     }
 }
