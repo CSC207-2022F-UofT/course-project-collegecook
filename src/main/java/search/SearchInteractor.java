@@ -41,6 +41,7 @@ public class SearchInteractor implements SearchInputBoundary{
             }
         }
 
+        // if no matching recipes found, return failure view
         if (matchingRecipes.isEmpty()){
             return searchPresenter.prepareFailureView("No matching recipes were found");
         }
@@ -49,6 +50,7 @@ public class SearchInteractor implements SearchInputBoundary{
         Recipe[] foundRecipes = new Recipe[matchingRecipes.size()];
         foundRecipes = matchingRecipes.toArray(foundRecipes);
 
+        // sort array, strategy design pattern
         RecipeSorter recipeSorter = null;
 
         switch (requestModel.sortType) {
@@ -68,8 +70,6 @@ public class SearchInteractor implements SearchInputBoundary{
             default:
                 recipeSorter = new AverageRatingRecipeSorter();
                 break;
-//                return searchPresenter.prepareFailureView("Invalid sort type chosen. " +
-//                        "Please choose from one of the following three options: 'r' = sort by average rating, 'n' = sort by number of reviews, 't' = sort by time needed");
         }
             recipeSorter.sort(foundRecipes, requestModel.sortByAscending);
             return searchPresenter.prepareResultsView(new SearchResponseModel(foundRecipes));
