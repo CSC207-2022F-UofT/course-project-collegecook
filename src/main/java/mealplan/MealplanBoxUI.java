@@ -6,45 +6,45 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.List;
 
-import entities.Mealplan;
 import profile.ProfileInputBoundary;
 import profile.ProfileInteractor;
 import profile.ProfilePresenter;
 import recipe.*;
+import ui.AppController;
 
 public class MealplanBoxUI extends JFrame implements MealplanBox{
-    MealplanController mealplanController;
+    AppController appController;
 
-    JFrame mealplanbox = new JFrame("Meal Plan");
     JPanel panel_b = new JPanel();
     JPanel panel_l = new JPanel();
     JPanel panel_d = new JPanel();
     JPanel panel_s = new JPanel();
-    JPanel panel_cal = new JPanel();
     JLabel label_b = new JLabel("Breakfast");
     JLabel label_l = new JLabel("Lunch");
     JLabel label_d = new JLabel("Dinner");
-    public MealplanBoxUI(MealplanController mealplanController){
-        this.mealplanController = mealplanController;
+    public MealplanBoxUI(AppController appController){
+        this.appController= appController;
 
         JButton button_b = new JButton( new AbstractAction("delete") {
             @Override
             public void actionPerformed( ActionEvent e ) {
-                mealplanController.deleteMealplan(0);
+                appController.getMealplanController().deleteMealplan(0);
             }
+
+
         });
 
         JButton button_l = new JButton( new AbstractAction("delete") {
             @Override
             public void actionPerformed( ActionEvent e ) {
-                mealplanController.deleteMealplan(1);
+                appController.getMealplanController().deleteMealplan(1);
             }
         });
 
         JButton button_d = new JButton( new AbstractAction("delete") {
             @Override
             public void actionPerformed( ActionEvent e ) {
-                mealplanController.deleteMealplan(2);
+                appController.getMealplanController().deleteMealplan(2);
             }
         });
 
@@ -52,7 +52,7 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
             @Override
             public void actionPerformed( ActionEvent e ) {
                 try {
-                    mealplanController.getCalories();
+                    appController.getMealplanController().getCalories();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -63,7 +63,7 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
             @Override
             public void actionPerformed( ActionEvent e ) {
                 try {
-                    mealplanController.saveMealplan();
+                    appController.getMealplanController().saveMealplan();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -85,14 +85,14 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
         panel_s.add(button_cal);
         panel_s.add(button_save);
 
-        mealplanbox.add(panel_b);
-        mealplanbox.add(panel_l);
-        mealplanbox.add(panel_d);
-        mealplanbox.add(panel_cal);
+        this.add(panel_b);
+        this.add(panel_l);
+        this.add(panel_d);
+        this.add(panel_s);
 
-        mealplanbox.setLayout(new GridLayout(4,0));
+        this.setLayout(new GridLayout(4,0));
 
-        mealplanbox.setSize(600,600);
+        this.setSize(600,600);
     }
 
     public void setMealplan(String recipe, int meal){
@@ -100,7 +100,7 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
         JButton button_m = new JButton( new AbstractAction(recipe) {
             @Override
             public void actionPerformed( ActionEvent e ) {
-                mealplanController.displayRecipe(recipe);
+                appController.getMealplanController().displayRecipe(recipe);
             }
         });
 

@@ -44,6 +44,7 @@ public class SignUpUI extends JFrame implements SignUpBox {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                dispose();
                 appController.getLoginControllor().PerformCreateAllUser(userName.getText(),
                         Arrays.toString(passwordField.getPassword()));
             }
@@ -59,7 +60,6 @@ public class SignUpUI extends JFrame implements SignUpBox {
     }
 
     public void createSuccess(){
-        this.dispose();
         JOptionPane.showMessageDialog(null,
                 "Successfully created a new account");
         LoginUI loginUI = new LoginUI(appController);
@@ -67,6 +67,7 @@ public class SignUpUI extends JFrame implements SignUpBox {
     }
 
     public void createFailed(){
+        this.setVisible(true);
         JOptionPane.showMessageDialog(null,
                 "Please choose another username");
     }
