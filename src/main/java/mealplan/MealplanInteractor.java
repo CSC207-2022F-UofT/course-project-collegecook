@@ -30,13 +30,24 @@ public class MealplanInteractor implements MealplanInputBoundary{
             this.mealplan = mealplans.getMealplan(username);
         } catch (Exception e) {
             this.mealplan = new Mealplan();
+            mealplans.add(username, mealplan);
             System.out.println("New Meal-plan created");
         }
+        if (mealplan == null){
+            this.mealplan = new Mealplan();
+            mealplans.add(username, mealplan);
+        }
+
     }
 
 
     public void addRecipe(String recipe, int meal){
         this.mealplan.addMealPlan(recipe, meal);
+        try {
+            mrg.saveToFile(mealplans);
+        } catch (IOException e) {
+            System.out.println("123");
+        }
         mealplanout.addRecipe(recipe, meal);
     }
 
@@ -104,8 +115,8 @@ public class MealplanInteractor implements MealplanInputBoundary{
     public static void main(String[] arg){
         MealplanOutputBoundary mealplanOutputBoundary = new MealplanPresenter();
         MealplanGateway mealplanGateway = new MealplanGate();
-        MealplanInteractor mealplanInteractor = new MealplanInteractor(mealplanOutputBoundary, "Brenden", mealplanGateway);
-
+        MealplanInteractor mealplanInteractor = new MealplanInteractor(mealplanOutputBoundary, "Ben", mealplanGateway);
+        mealplanInteractor.addRecipe("Apple", 1);
     }
 
 }

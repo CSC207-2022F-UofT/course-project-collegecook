@@ -10,6 +10,7 @@ public class AddMealplanUI extends JFrame {
             @Override
             public void actionPerformed( ActionEvent e ) {
                 appController.getMealplanController().addMealplan(recipe,0);
+                JOptionPane.showMessageDialog(null, "Successfully add the recipe");
             }
 
         });
@@ -18,6 +19,7 @@ public class AddMealplanUI extends JFrame {
             @Override
             public void actionPerformed( ActionEvent e ) {
                 appController.getMealplanController().addMealplan(recipe,1);
+                JOptionPane.showMessageDialog(null, "Successfully add the recipe");
             }
 
         });
@@ -26,6 +28,7 @@ public class AddMealplanUI extends JFrame {
             @Override
             public void actionPerformed( ActionEvent e ) {
                 appController.getMealplanController().addMealplan(recipe,2);
+                JOptionPane.showMessageDialog(null, "Successfully add the recipe");
             }
 
         });
@@ -36,5 +39,6 @@ public class AddMealplanUI extends JFrame {
 
         this.add(AddMealplan);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.pack();
     }
 }
