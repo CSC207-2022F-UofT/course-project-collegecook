@@ -12,5 +12,5 @@ public interface SearchOutputBoundary {
      * @param error error message
      * @return view with error message displayed (ie. invalid search criteria, no recipes found)
      */
-    SearchResponseModel prepareNoResultsView(String error);
+    SearchResponseModel prepareFailureView(String error);
 }

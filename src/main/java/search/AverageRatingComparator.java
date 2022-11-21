@@ -1,10 +1,10 @@
-package sort;
+package search;
 
 import entities.Recipe;
 
 import java.util.Comparator;
 
-public class RatingComparator implements Comparator<Recipe> {
+public class AverageRatingComparator implements Comparator<Recipe> {
     /**
      * Compares its two arguments for order.
      * <p>

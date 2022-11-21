@@ -5,21 +5,21 @@ import entities.Recipe;
 import java.util.ArrayList;
 
 public class SearchResponseModel {
-    ArrayList<Recipe> matchingRecipes;
+    Recipe[] matchingRecipes;
 
     /**
      * Transiently stores data for presenter
      * @param matchingRecipes list of recipes matching search criteria
      */
-    public SearchResponseModel(ArrayList<Recipe> matchingRecipes){
+    public SearchResponseModel(Recipe[] matchingRecipes){
         this.matchingRecipes = matchingRecipes;
     }
 
-    public ArrayList<Recipe> getMatchingRecipes() {
+    public Recipe[] getMatchingRecipes() {
         return matchingRecipes;
     }
 
-    public void setMatchingRecipes(ArrayList<Recipe> matchingRecipes) {
+    public void setMatchingRecipes(Recipe[] matchingRecipes) {
         this.matchingRecipes = matchingRecipes;
     }
 }

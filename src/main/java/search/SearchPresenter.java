@@ -9,13 +9,13 @@ public class SearchPresenter implements SearchOutputBoundary{
     @Override
     public SearchResponseModel prepareResultsView(SearchResponseModel searchResults){
         //TODO: delete and fill out implementation details for results view
-        return new SearchResponseModel(new ArrayList<Recipe>());
+        return new SearchResponseModel(new Recipe[0]);
     };
 
     @Override
-    public SearchResponseModel prepareNoResultsView(String error){
-        //TODO: delete and fill out implementation details for no results view
-        return new SearchResponseModel(new ArrayList<Recipe>());
+    public SearchResponseModel prepareFailureView(String error){
+        //TODO: delete and fill out implementation details for failure view
+        return new SearchResponseModel(new Recipe[0]);
     };
 
 }

@@ -7,20 +7,13 @@ import java.io.IOException;
 
 
 public class RecipeInteractor implements RecipeInputBoundary {
-<<<<<<< HEAD:src/main/java/recipe/RecipeInteractor.java
-    private final RecipeRepoGateway rrg = RecipeRepoImpl.getRecipeRepoImpl();
-=======
     private final RecipeRepoGateway rrg;
->>>>>>> view-recipes-3:src/main/java/recipe/RecipeInterActor.java
     private RecipeList recipeList;
     final RecipeOutputBoundary recipeOutputBoundary;
+    private String readingRecipe = null;
 
 
-<<<<<<< HEAD:src/main/java/recipe/RecipeInteractor.java
-    public RecipeInteractor(RecipeOutputBoundary recipeOutputBoundary) {
-=======
     public RecipeInteractor(RecipeOutputBoundary recipeOutputBoundary, RecipeRepoGateway recipeRepoGateway) {
->>>>>>> view-recipes-3:src/main/java/recipe/RecipeInterActor.java
         this.recipeOutputBoundary = recipeOutputBoundary;
         this.rrg = recipeRepoGateway;
         try {
@@ -51,6 +44,7 @@ public class RecipeInteractor implements RecipeInputBoundary {
     public void readRecipe(String recipeName){
         if (this.recipeList.contain(recipeName)){
             Recipe recipe = this.getRecipe(recipeName);
+            this.readingRecipe = recipeName;
             recipeOutputBoundary.readSuccessView(recipe.toString());
         }else{
             recipeOutputBoundary.readFailureView();
@@ -60,11 +54,19 @@ public class RecipeInteractor implements RecipeInputBoundary {
     public RecipeList getAll(){
         return this.recipeList;
     }
-     public Recipe getRecipe(String recipeName){
-            return this.recipeList.get_recipe(recipeName);
-        }
+    public Recipe getRecipe(String recipeName){
+        return this.recipeList.get_recipe(recipeName);
+    }
+    public String getReadingRecipe(){
+        return this.readingRecipe;
+    }
 
-
+    public static void main(String[] arg){
+        RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();
+        RecipeRepoGateway recipeRepoGateway = RecipeReadWriter.getRecipeRepo();
+        RecipeInputBoundary recipeInputBoundary = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
+        recipeInputBoundary.getRecipe("apple pie");
+    }
 }
 
 
