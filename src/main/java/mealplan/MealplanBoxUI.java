@@ -4,12 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-import profile.ProfileInputBoundary;
-import profile.ProfileInteractor;
-import profile.ProfilePresenter;
-import recipe.*;
 import ui.AppController;
 
 public class MealplanBoxUI extends JFrame implements MealplanBox{
@@ -22,6 +19,9 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
     JLabel label_b = new JLabel("Breakfast");
     JLabel label_l = new JLabel("Lunch");
     JLabel label_d = new JLabel("Dinner");
+    List<JButton> listOfBreakfast = new ArrayList<>();
+    List<JButton> listOfLunch = new ArrayList<>();
+    List<JButton> listOfDinner = new ArrayList<>();
     public MealplanBoxUI(AppController appController){
         this.appController= appController;
 
@@ -29,6 +29,13 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
             @Override
             public void actionPerformed( ActionEvent e ) {
                 appController.getMealplanController().deleteMealplan(0);
+                for(JButton b:listOfBreakfast){
+                    panel_b.remove(b);
+                    b = null;
+                }
+                panel_b.revalidate();
+                panel_b.repaint();
+
             }
 
 
@@ -37,7 +44,14 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
         JButton button_l = new JButton( new AbstractAction("delete") {
             @Override
             public void actionPerformed( ActionEvent e ) {
+
                 appController.getMealplanController().deleteMealplan(1);
+                for(JButton l:listOfLunch){
+                    panel_l.remove(l);
+                    l = null;
+                }
+                panel_l.revalidate();
+                panel_l.repaint();
             }
         });
 
@@ -45,6 +59,12 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
             @Override
             public void actionPerformed( ActionEvent e ) {
                 appController.getMealplanController().deleteMealplan(2);
+                for(JButton d:listOfDinner){
+                    panel_l.remove(d);
+                    d = null;
+                }
+                panel_d.revalidate();
+                panel_d.repaint();
             }
         });
 
@@ -106,11 +126,13 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
 
         if (meal == 0){
             panel_b.add(button_m);
+            listOfBreakfast.add(button_m);
 
         } else if (meal == 1) {
             panel_l.add(button_m);
+            listOfLunch.add(button_m);
         } else {
-            panel_d.add(button_m);
+            listOfDinner.add(button_m);
         }
     }
 
