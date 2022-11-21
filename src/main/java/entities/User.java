@@ -1,14 +1,17 @@
 package entities;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-public class User{
+
+import java.util.Objects;
+
+public class User implements Serializable {
 
     private String username;
     private String password;
 
     private boolean LoginStatus;
-    private Profile profile;
     private List<User> followers;
     private List<User> followed;
 
@@ -24,6 +27,10 @@ public class User{
         return username;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public boolean isLoginStatus() {
         return LoginStatus;
     }
@@ -36,27 +43,44 @@ public class User{
         LoginStatus = loginStatus;
     }
 
-    public void addFollowers(List<User> followers) {
-        this.followers.add((User) followers);
+    public void addFollowers(User Other) {
+
+        this.followers.add(Other);
     }
-    public void addFollowed(List<User> followed) {
-        this.followed.add((User) followed);
+    public void addFollowed(User Other) {
+
+        this.followed.add(Other);
     }
 
-    public void setProfile(Profile profile) {
-        this.profile = profile;
+
+    public void RemoveFollowers(User other) {
+        this.followers.remove(other);
     }
 
-    public void RemoveFollowers(List<User> followers) {
-        this.followers.remove((User) followers);
+    public void RemoveFollowed(User other) {
+        this.followed.remove(other);
     }
 
-    public void RemoveFollowed(List<User> followed) {
-        this.followed.remove((User) followed);
+    public List<User> getFollowers() {
+        return followers;
     }
     // Comparator for sorting the list by followers
 
+    public List<User> getFollowed() {
+        return followed;
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return getUsername().equals(user.getUsername());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getUsername());
+    }
 }
 

@@ -1,10 +1,12 @@
 package entities;
 
-
 import java.io.Serializable;
 import java.util.*;
 
 public class RecipeList implements Serializable, Iterable<Recipe>{
+    /**
+     * This is the class of RecipeList, which is also an entity.
+     */
     private final Map<String, Recipe> all_recipe = new HashMap<>() ;
     private int recipe_size;
 
@@ -14,6 +16,12 @@ public class RecipeList implements Serializable, Iterable<Recipe>{
         this.all_recipe.put(recipe_name, recipe);
         this.recipe_size = all_recipe.size();
     }
+
+    /**
+     *
+     * @param recipeName
+     * @return
+     */
     public Recipe get_recipe(String recipeName){
 
         return all_recipe.get(recipeName);
@@ -24,6 +32,11 @@ public class RecipeList implements Serializable, Iterable<Recipe>{
     }
 
 
+    /**
+     *
+     * @return Return RecipeIterator. Iterator Design Pattern is used here to make the RecipeList iterable. When
+     * iterating through the RecipeList, user can get each Recipe in it.
+     */
     @Override
     public Iterator<Recipe> iterator() {
         return new RecipeIterator();
