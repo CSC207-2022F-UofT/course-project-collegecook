@@ -4,8 +4,10 @@ import profile.*;
 import recipe.*;
 import ui.*;
 
+import java.io.IOException;
+
 public class CollegeCookApp {
-    public static void main(String[] arg){
+    public static void main(String[] arg) throws IOException {
         UserGateWay userGateWay = UserRepoImpl.getUserRepoImpl();
         LoginOutputBound loginOutputBound = new LoginPresenter();
         UserManager userManager = new UserManager(loginOutputBound, userGateWay);
