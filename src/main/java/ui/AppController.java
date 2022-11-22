@@ -2,7 +2,6 @@ package ui;
 
 import login.LoginControllor;
 import mealplan.MealplanController;
-import mealplan.MealplanInputBoundary;
 import profile.ProfileController;
 import recipe.RecipeController;
 import search.SearchController;
@@ -12,8 +11,8 @@ public class AppController {
     private final LoginControllor loginControllor;
     private final ProfileController profileController;
     private final SearchController searchController;
-    private final MealplanController mealplanController;
 
+    private final MealplanController mealplanController;
 
     public AppController(RecipeController recipeController, LoginControllor loginControllor, ProfileController profileController,
                          MealplanController mealplanController, SearchController searchController) {
@@ -21,7 +20,7 @@ public class AppController {
         this.loginControllor = loginControllor;
         this.profileController = profileController;
         this.mealplanController = mealplanController;
-        this.searchController = searchController;
+        this.searchController = null;
     }
 
     public RecipeController getRecipeController() {
@@ -40,9 +39,8 @@ public class AppController {
     public SearchController getSearchController() {
         return searchController;
     }
-
     public MealplanController getMealplanController() {
         return mealplanController;
-    }
 
+    }
 }
