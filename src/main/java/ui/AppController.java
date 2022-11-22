@@ -43,6 +43,6 @@ public class AppController {
 
     public MealplanController getMealplanController() {
         return mealplanController;
-
     }
+
 }
