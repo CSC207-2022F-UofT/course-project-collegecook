@@ -23,7 +23,7 @@ public class SearchInteractor implements SearchInputBoundary{
 
 
     @Override
-    public SearchResponseModel getSearchResults(SearchRequestModel requestModel) throws IOException {
+    public void getSearchResults(SearchRequestModel requestModel) throws IOException {
         // get all recipes
         RecipeList recipes = recipeRepoGateway.getRecipeList();
 
@@ -44,7 +44,7 @@ public class SearchInteractor implements SearchInputBoundary{
 
         // if no matching recipes found, return failure view
         if (matchingRecipes.isEmpty()){
-            return searchOutputBoundary.prepareFailureView("No matching recipes were found");
+            searchOutputBoundary.prepareFailureView("No matching recipes were found");
         }
 
         // change arraylist to array for sorting
@@ -73,7 +73,7 @@ public class SearchInteractor implements SearchInputBoundary{
                 break;
         }
             recipeSorter.sort(foundRecipes, requestModel.isSortByAscending());
-            return searchOutputBoundary.prepareResultsView(new SearchResponseModel(foundRecipes));
+            searchOutputBoundary.prepareSuccessView(new SearchResponseModel(foundRecipes));
 
     }
 }

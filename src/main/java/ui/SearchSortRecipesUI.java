@@ -1,18 +1,15 @@
 package ui;
 
 import entities.Recipe;
-import recipe.RecipeReadWriter;
 import search.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class SearchSortRecipesUI extends JFrame implements ActionListener{
+public class SearchSortRecipesUI extends JFrame{
 
     // search criteria input fields and labels
     JTextField nameInput = new JTextField(100);
@@ -44,14 +41,12 @@ public class SearchSortRecipesUI extends JFrame implements ActionListener{
 
     // search controller
     SearchController searchController;
-    AppController appController;
 
     /**
      * Screen with fields to enter search criteria/sorting options, and button to search
      */
     public SearchSortRecipesUI(AppController appController){
         this.searchController = appController.getSearchController();
-        this.appController = appController;
 
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -87,38 +82,28 @@ public class SearchSortRecipesUI extends JFrame implements ActionListener{
         searchPanel.add(isSortAscendingLabel);
 
         searchButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        searchButton.addActionListener(this);
-        searchPanel.add(searchButton);
+        searchButton.addActionListener(e -> {
+            ArrayList<String> ingredients = new ArrayList<>(Arrays.asList(ingredientsInput.getText().split(",")));
 
+            try {
+                searchController.getSearchResults(
+                        nameInput.getText(),
+                        cuisineInput.getText(),
+                        ingredients,
+                        Integer.parseInt(timeInput.getText()),
+                        sortTypeInput.getText(),
+                        isSortAscendingInput.isSelected()
+                );
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+
+        });
+
+        searchPanel.add(searchButton);
         this.add(searchPanel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.pack();
 
-    }
-
-    public void actionPerformed(ActionEvent e){
-        SearchOutputBoundary searchOutputBoundary = new SearchPresenter();
-        SearchInputBoundary searchInputBoundary = new SearchInteractor(searchOutputBoundary, RecipeReadWriter.getRecipeRepo());
-        SearchController searchController = new SearchController(searchInputBoundary);
-        ArrayList<String> ingredients = new ArrayList<>(Arrays.asList(ingredientsInput.getText().split(",")));
-
-        try {
-            SearchResponseModel responseModel = searchController.getSearchResults(
-                    nameInput.getText(),
-                    cuisineInput.getText(),
-                    ingredients,
-                    Integer.parseInt(timeInput.getText()),
-                    sortTypeInput.getText(),
-                    isSortAscendingInput.isSelected()
-            );
-            Recipe[] matchingRecipes = responseModel.getMatchingRecipes();
-
-            // show results panel
-            SearchSortRecipesResultsUI searchSortRecipesResultsUI = new SearchSortRecipesResultsUI(appController, matchingRecipes);
-            searchSortRecipesResultsUI.setVisible(true);
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "Error in search. Try again.");
         }
-    }
-
 }

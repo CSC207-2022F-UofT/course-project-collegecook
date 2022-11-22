@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 public class SearchRecipeUI extends JFrame {
     RecipeController recipeController;
-    RecipeOutputBoundary recipeOutputBoundary;
     JPanel view = new JPanel();
     JTextField name = new JTextField();
     JButton read = new JButton("Read");
