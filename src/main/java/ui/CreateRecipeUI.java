@@ -84,11 +84,6 @@ public class CreateRecipeUI extends JFrame implements RecipeCreateBox{
                     JOptionPane.showMessageDialog(null,
                             "Pleas enter an INTEGER for calories, time, difficulty!");
                 }
-<<<<<<< HEAD
-                RecipeInputBoundary recipeInputBoundary = new RecipeInteractor(recipeOutputBoundary);
-                RecipeController recipeController = new RecipeController(recipeInputBoundary);
-=======
->>>>>>> view-recipes-3
 
                 String ingredient = ingredients.getText();
                 String[] ingredients_list = ingredient.split(",");
