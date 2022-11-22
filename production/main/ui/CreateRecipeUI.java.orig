@@ -1,6 +1,5 @@
 package ui;
 
-import login.*;
 import recipe.*;
 
 import javax.swing.*;
@@ -32,8 +31,10 @@ public class CreateRecipeUI extends JFrame implements RecipeCreateBox{
     JButton create = new JButton("Create");
 
 
-    public CreateRecipeUI(AppController appController) {
-        this.recipeController = appController.getRecipeController();
+    public CreateRecipeUI(RecipeController recipeController, RecipeOutputBoundary recipePresenter) {
+        this.recipeController = recipeController;
+        this.recipeOutputBoundary = recipePresenter;
+        recipePresenter.setUI(this);
 
         check.setLayout(new BoxLayout(check, BoxLayout.Y_AXIS));
         nameQ.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -84,14 +85,18 @@ public class CreateRecipeUI extends JFrame implements RecipeCreateBox{
                     JOptionPane.showMessageDialog(null,
                             "Pleas enter an INTEGER for calories, time, difficulty!");
                 }
+<<<<<<< HEAD
+                RecipeInputBoundary recipeInputBoundary = new RecipeInteractor(recipeOutputBoundary);
+                RecipeController recipeController = new RecipeController(recipeInputBoundary);
+=======
+>>>>>>> view-recipes-3
 
                 String ingredient = ingredients.getText();
                 String[] ingredients_list = ingredient.split(",");
                 ArrayList<String> ingredients = new ArrayList<>(Arrays.asList(ingredients_list));
                 recipeController.performCreateRecipe(name.getText(), procedure.getText(), cuisine.getText(),
                         ingredients, Integer.parseInt(calories.getText()), Integer.parseInt(time.getText()),
-                        Integer.parseInt(difficulty.getText()),
-                        appController.getLoginControllor().preformGetLoggedInUser());
+                        Integer.parseInt(difficulty.getText()), "Brenden");
             }
         });
         check.add(create);
@@ -112,27 +117,15 @@ public class CreateRecipeUI extends JFrame implements RecipeCreateBox{
                 "Sorry, the recipe's name already exists.");
     }
 
-    @Override
-    public void setV(boolean vision) {
-        this.setVisible(vision);
-    }
 
 
     public static void main(String[] args){
-//        UserGateWay userGateWay = UserRepoImpl.getUserRepoImpl();
-//        LoginOutputBound loginOutputBound = new LoginPresenter();
-//        UserManager userManager = new UserManager(loginOutputBound, userGateWay);
-//        LoginControllor loginControllor = new LoginControllor(userManager);
-//
-//        RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();
-//        RecipeRepoGateway recipeRepoGateway = RecipeReadWriter.getRecipeRepo();
-//        RecipeInputBoundary recipeInputBoundary = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
-//        RecipeController recipeController = new RecipeController(recipeInputBoundary);
-//
-//        AppController appController = new AppController(recipeController, loginControllor);
-//        RecipeCreateBox m = new CreateRecipeUI(appController);
-//        recipeOutputBoundary.setUI(m);
-//        m.setV(true);
+        RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();
+        RecipeRepoGateway recipeRepoGateway = RecipeReadWriter.getRecipeRepo();
+        RecipeInputBoundary recipeInputBoundary = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
+        RecipeController recipeController = new RecipeController(recipeInputBoundary);
+        CreateRecipeUI m = new CreateRecipeUI(recipeController, recipeOutputBoundary);
+        m.setVisible(true);
     }
 
 }

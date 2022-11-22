@@ -4,6 +4,7 @@ import login.LoginControllor;
 import mealplan.MealplanController;
 import profile.ProfileController;
 import recipe.RecipeController;
+import search.SearchController;
 
 public class AppController {
     private final RecipeController recipeController;
@@ -11,12 +12,14 @@ public class AppController {
     private final ProfileController profileController;
     private final MealplanController mealplanController;
 
+    private final SearchController searchController;
     public AppController(RecipeController recipeController, LoginControllor loginControllor, ProfileController profileController,
-                         MealplanController mealplanController) {
+                         MealplanController mealplanController, SearchController searchController) {
         this.recipeController = recipeController;
         this.loginControllor = loginControllor;
         this.profileController = profileController;
         this.mealplanController = mealplanController;
+        this.searchController = searchController;
     }
 
     public RecipeController getRecipeController() {
@@ -33,5 +36,9 @@ public class AppController {
 
     public MealplanController getMealplanController() {
         return mealplanController;
+    }
+
+    public SearchController getSearchController() {
+        return searchController;
     }
 }
