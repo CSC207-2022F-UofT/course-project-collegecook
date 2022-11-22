@@ -8,7 +8,7 @@ import ui.*;
 import java.io.IOException;
 
 public class CollegeCookApp {
-    public static void main(String[] arg){
+    public static void main(String[] arg) throws IOException {
         // Interface adapter layer setup
         // login use case setup
         
@@ -33,7 +33,8 @@ public class CollegeCookApp {
         SearchInputBoundary searchInputBoundary = new SearchInteractor(searchOutputBoundary, recipeRepoGateway);
         SearchController searchController = new SearchController(searchInputBoundary);
 
-        // meal plan use case setup
+        // UI
+        
         MealplanOutputBoundary mealplanOutputBoundary= new MealplanPresenter();
         MealplanGateway mrg = MealplanGate.getInstance();
         MealplanInputBoundary mealplanInputBoundary = new MealplanInteractor(mealplanOutputBoundary,loginControllor.preformGetLoggedInUser(),mrg);

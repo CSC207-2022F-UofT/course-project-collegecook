@@ -20,6 +20,7 @@ public class AppController {
         this.loginControllor = loginControllor;
         this.profileController = profileController;
         this.mealplanController = mealplanController;
+        this.searchController = null;
     }
 
     public RecipeController getRecipeController() {
@@ -37,7 +38,7 @@ public class AppController {
 
     public SearchController getSearchController() {
         return searchController;
-
+    }
     public MealplanController getMealplanController() {
         return mealplanController;
 

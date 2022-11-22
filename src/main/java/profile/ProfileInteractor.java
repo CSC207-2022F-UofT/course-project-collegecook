@@ -60,7 +60,6 @@ public class ProfileInteractor implements ProfileInputBoundary{
         return new_p;
     }
 
-    //need jason to modify getUserReviews to be worked.
     public void allReviewed(String username) throws IOException {
         ArrayList<Review> all = ReviewInteractor.loadReviewDatabase().getUserReviews(username);
         Profile p = checkProfile(username);
