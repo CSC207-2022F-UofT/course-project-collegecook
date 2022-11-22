@@ -40,5 +40,6 @@ public class AppController {
 
     public SearchController getSearchController() {
         return searchController;
+
     }
 }
