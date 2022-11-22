@@ -63,6 +63,8 @@ public class Menu extends JFrame {
 
         menu.add(mealPlan);
         ranking.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+
         menu.add(ranking);
         profile.setAlignmentX(Component.CENTER_ALIGNMENT);
         menu.add(profile);
@@ -79,6 +81,7 @@ public class Menu extends JFrame {
         this.add(menu);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.pack();
+
     }
 
     private static void addAButton(String text, Container container) {
@@ -86,6 +89,7 @@ public class Menu extends JFrame {
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
         container.add(button);
     }
+
 
     public static void main(String[] args){
 //        UserGateWay userGateWay = UserRepoImpl.getUserRepoImpl();

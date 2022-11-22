@@ -7,12 +7,12 @@ public interface RankOutputBoundary {
      *
      * @param rank contains the sorted Users list
      */
-    String prepareSuccessView(RankResponseModel rank);
+    RankResponseModel prepareSuccessView(RankResponseModel rank);
     /**
      * A method that contains a fail method that needs to be implemented
      * for the model to output the failed sorting message.
      *
      * @param error contains the information on the error
      */
-    String prepareFailView(String error);
+    RankResponseModel prepareFailView(String error);
 }

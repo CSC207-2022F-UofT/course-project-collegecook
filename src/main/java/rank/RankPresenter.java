@@ -1,5 +1,7 @@
 package rank;
 
+import entities.User;
+
 public class RankPresenter implements RankOutputBoundary{
     /**
      * A method that contains a success method that is implemented
@@ -7,9 +9,8 @@ public class RankPresenter implements RankOutputBoundary{
      *
      * @param rank contains the sorted Users list
      */
-    public String prepareSuccessView(RankResponseModel rank){
-        return "Successfully ranked the users by " + rank.getRank() + "\n Here is the list of the ranked " +
-                "users in descending order" + rank.getUsers();}
+    public RankResponseModel prepareSuccessView(RankResponseModel rank){
+        return rank;}
 
     /**
      * A method that contains a fail method that is implemented
@@ -18,9 +19,9 @@ public class RankPresenter implements RankOutputBoundary{
      * @param error contains the information on the error
      */
 
-    public String prepareFailView(String error){
-        return "Unable to sort the users based on " + error + "\n Please choose one of the following: \n " +
-                "Average Rating , Total Followers, Total Number of Recipe";
+    public RankResponseModel prepareFailView(String error){
+        User[] errorUser = new User[0];
+        return new RankResponseModel(error, errorUser );
     }
 }
 

@@ -1,6 +1,7 @@
 import login.*;
 import mealplan.*;
 import profile.*;
+import rank.*;
 import recipe.*;
 import ui.*;
 
@@ -25,7 +26,11 @@ public class CollegeCookApp {
         MealplanInputBoundary mealplanInputBoundary = new MealplanInteractor(mealplanOutputBoundary,loginControllor.preformGetLoggedInUser(),mrg);
         MealplanController mealplanController = new MealplanController(mealplanInputBoundary,profileInputBoundary,recipeInputBoundary);
 
-        AppController appController1 = new AppController(recipeController, loginControllor, profileController, mealplanController);
+        RankOutputBoundary rankOutputBoundary = new RankPresenter();
+        RankInputBoundary rankInputBoundary = new RankInteractor(rankOutputBoundary);
+        RankController rankController = new RankController(rankInputBoundary);
+
+        AppController appController1 = new AppController(recipeController, loginControllor, profileController, mealplanController, rankController);
         RecipeCreateBox recipeCreateBox = new CreateRecipeUI(appController1);
         RecipeViewBox recipeViewBox = new ViewRecipeUI(appController1);
         WelcomeUI welcomeUI = new WelcomeUI(appController1);
