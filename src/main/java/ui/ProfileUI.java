@@ -29,7 +29,7 @@ public class ProfileUI extends JFrame implements InfoViewBox {
         recipeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ProfileViewRecipeUI pvrUI = new ProfileViewRecipeUI(appController);
+                ProfileRecipeUI pvrUI = new ProfileRecipeUI(appController);
                 pvrUI.setVisible(true);
             }
         });

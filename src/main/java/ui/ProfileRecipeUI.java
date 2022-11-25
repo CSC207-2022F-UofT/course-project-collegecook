@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class ProfileViewRecipeUI extends JFrame implements ProfileBox {
+public class ProfileRecipeUI extends JFrame implements ProfileBox {
 
     JPanel recipePanel = new JPanel();
     JButton createdButton = new JButton("Your Created Recipes");
@@ -19,7 +19,7 @@ public class ProfileViewRecipeUI extends JFrame implements ProfileBox {
     ProfileController pc;
     String username;
 
-    public ProfileViewRecipeUI(AppController appController){
+    public ProfileRecipeUI(AppController appController){
         this.pc = appController.getProfileController();
         this.username = appController.getLoginControllor().preformGetLoggedInUser();
         recipePanel.setLayout(new BorderLayout());
