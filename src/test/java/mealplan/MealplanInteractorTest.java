@@ -22,6 +22,9 @@ public class MealplanInteractorTest {
         mealplanGate = MealplanGate.getInstance();
         temp = mealplanGate.readFromFile();
         mealplanInteractor = new MealplanInteractor(mealplanOutputBoundary, "user",mealplanGate);
+        mealplanInteractor.deleteMealplan(0);
+        mealplanInteractor.deleteMealplan(1);
+        mealplanInteractor.deleteMealplan(2);
     }
 
     @AfterEach
