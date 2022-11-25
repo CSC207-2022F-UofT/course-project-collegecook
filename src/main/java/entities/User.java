@@ -59,17 +59,5 @@ public class User implements Serializable {
         return followed;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        User user = (User) o;
-        return getUsername().equals(user.getUsername());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getUsername());
-    }
 }
 

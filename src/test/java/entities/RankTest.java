@@ -20,11 +20,11 @@ import java.util.List;
         List<User> folloUser1 = new ArrayList<>();
         folloUser1.add(user3);
         folloUser1.add(user4);
-        user1.addFollowers(folloUser1);
+        //user1.addFollowers(folloUser1);
         // Set followers for User 2 to 1
         List<User> folloUser2 = new ArrayList<>();
         folloUser1.add(user3);
-        user2.addFollowers(folloUser2);
+        //user2.addFollowers(folloUser2);
         // Testing
         UserList userList = new UserList();
         List<User> users = userList.getAllUser();

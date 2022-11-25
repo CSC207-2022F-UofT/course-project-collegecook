@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 public class UserTest {
     User a;
@@ -12,8 +13,8 @@ public class UserTest {
 
     @BeforeEach
     void setUp() {
-        User a = new User("a","12345");
-        User b = new User("b","12345");
+        a = new User("a","12345");
+        b = new User("b","12345");
     }
 
     @AfterEach
@@ -53,11 +54,21 @@ public class UserTest {
 
 
     @Test
-    void removeFollowers() {
+    void RemoveFollowers() {
+        a.addFollowers(b);
+        a.RemoveFollowers(b);
+        int expected = 0;
+        int actual = a.GetNumberOfFollowers();
+        assertEquals(expected, actual);
     }
 
     @Test
-    void removeFollowed() {
+    void RemoveFollowed() {
+        b.addFollowed(a);
+        b.RemoveFollowed(a);
+        int expected = 0;
+        int actual = b.GetNumberOfFollowed();
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -68,11 +79,5 @@ public class UserTest {
     void getFollowed() {
     }
 
-    @Test
-    void testEquals() {
-    }
 
-    @Test
-    void testHashCode() {
-    }
 }
