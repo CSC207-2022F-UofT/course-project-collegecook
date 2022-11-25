@@ -91,6 +91,11 @@ public class RecipeInteractor implements RecipeInputBoundary {
         return this.readingRecipe;
         }
 
+    @Override
+    public String getCreator(String recipe) {
+        return this.recipeList.get_recipe(recipe).getCreator();
+    }
+
 
 }
 

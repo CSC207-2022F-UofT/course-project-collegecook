@@ -14,4 +14,6 @@ public interface RecipeInputBoundary {
     Recipe getRecipe(String recipeName);
     String getReadingRecipe();
 
+    String getCreator(String readRecipe);
+
 }

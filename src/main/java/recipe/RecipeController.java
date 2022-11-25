@@ -55,7 +55,7 @@ public class RecipeController {
     public Recipe getRecipe(String name){
         return recipeInputBoundary.getRecipe(name);
     }
-
+    public String getCreator(String recipe){return recipeInputBoundary.getCreator(recipe);}
 
 
 
