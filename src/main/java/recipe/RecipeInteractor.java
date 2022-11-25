@@ -15,7 +15,11 @@ public class RecipeInteractor implements RecipeInputBoundary {
     final RecipeOutputBoundary recipeOutputBoundary;
     private String readingRecipe = null;
 
-
+    /**
+     *
+     * @param recipeOutputBoundary An interface of the presenter.
+     * @param recipeRepoGateway An interface of the readWriter.
+     */
     public RecipeInteractor(RecipeOutputBoundary recipeOutputBoundary, RecipeRepoGateway recipeRepoGateway) {
         this.recipeOutputBoundary = recipeOutputBoundary;
         this.rrg = recipeRepoGateway;
@@ -28,7 +32,8 @@ public class RecipeInteractor implements RecipeInputBoundary {
 
     /**
      *
-     * @param recipeRequestModel
+     * @param recipeRequestModel A requestModel which includes all the user input. They are packed up to avoid data
+     *                           clump.
      */
     @Override
     public void createRecipe (RecipeRequestModel recipeRequestModel){
@@ -47,6 +52,11 @@ public class RecipeInteractor implements RecipeInputBoundary {
             }
         }
     }
+
+    /**
+     *
+     * @param recipeName The name of the recipe that the user wants to read.
+     */
     @Override
     public void readRecipe(String recipeName){
         if (this.recipeList.contain(recipeName)){
@@ -57,11 +67,21 @@ public class RecipeInteractor implements RecipeInputBoundary {
             recipeOutputBoundary.readFailureView();
         }
     }
+
+    /**
+     *
+     * @return Return the recipeList that is stored in "recipe.sav"
+     */
     @Override
     public RecipeList getAll(){
         return this.recipeList;
     }
 
+    /**
+     *
+     * @param recipeName A String, which is a name of the recipe.
+     * @return Return a recipe which has the recipeName
+     */
     @Override
      public Recipe getRecipe(String recipeName){
             return this.recipeList.get_recipe(recipeName);
