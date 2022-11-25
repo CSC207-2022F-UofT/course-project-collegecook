@@ -8,12 +8,9 @@ import java.awt.event.ActionListener;
 
 public class RankUI extends JFrame{
     RankController rankController;
-    RankOutputBoundary rankOutputBoundary;
     JPanel view = new JPanel();
     JTextField ranking = new JTextField(40);
-    JTextField asc = new JTextField(40);
     JButton read = new JButton("Sort");
-    JLabel rankingQ = new JLabel("How would you like to rank the users? Average Rating, Total Followers, Total Number of Recipe");
 
 
     public RankUI(AppController appController){

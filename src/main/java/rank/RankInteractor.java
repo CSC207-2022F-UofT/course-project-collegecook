@@ -21,13 +21,13 @@ public class RankInteractor implements RankInputBoundary{
         this.rankOutputBoundary = rankOutputBoundary;
     }
     @Override
-    public String sortUsers(RankRequestModel requestModel) {
+    public RankResponseModel sortUsers(RankRequestModel requestModel) {
         // stores all the Users in a list
         UserList userList = new UserList();
         List<User> users = userList.getAllUser();
         // Return an error if no users have been registered
         if (users.isEmpty()){
-            return rankOutputBoundary.prepareFailView("There are no users!");
+            rankOutputBoundary.prepareFailView("There are no users!");
         }
         // arraylist -> array
         User[] totalUsers = new User[users.size()];
@@ -51,7 +51,8 @@ public class RankInteractor implements RankInputBoundary{
                 break;}
         }
         rankSorter.sort(totalUsers);
-        return rankOutputBoundary.prepareSuccessView(new RankResponseModel(requestModel.getRanking(), totalUsers));
+        rankOutputBoundary.prepareSuccessView(new RankResponseModel(requestModel.getRanking(), totalUsers));
+        return new RankResponseModel(requestModel.getRanking(), totalUsers);
     }
 }
 
