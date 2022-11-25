@@ -33,9 +33,8 @@ public class CollegeCookApp {
         SearchInputBoundary searchInputBoundary = new SearchInteractor(searchOutputBoundary, recipeRepoGateway);
         SearchController searchController = new SearchController(searchInputBoundary);
 
-
         // UI
-
+        
         MealplanOutputBoundary mealplanOutputBoundary= new MealplanPresenter();
         MealplanGateway mrg = MealplanGate.getInstance();
         MealplanInputBoundary mealplanInputBoundary = new MealplanInteractor(mealplanOutputBoundary,loginControllor.preformGetLoggedInUser(),mrg);
@@ -43,6 +42,7 @@ public class CollegeCookApp {
 
         AppController appController1 = new AppController(recipeController, loginControllor, profileController, mealplanController, searchController);
 
+        // UI
         RecipeCreateBox recipeCreateBox = new CreateRecipeUI(appController1);
         RecipeViewBox recipeViewBox = new ViewRecipeUI(appController1);
         WelcomeUI welcomeUI = new WelcomeUI(appController1);
