@@ -1,8 +1,6 @@
 package profile;
 
 import entities.Profile;
-import recipe.RecipeReadWriter;
-
 import java.io.*;
 import java.util.ArrayList;
 
@@ -38,15 +36,4 @@ public class ProfileRepoImpl implements ProfileRepoGateway{
         f2.close();
     }
 
-    public static void main(String[] arg) throws IOException {
-        ProfileRepoImpl profileRepo = ProfileRepoImpl.getPrl();
-        Profile p = new Profile("Peter");
-//        ArrayList<Profile> ap = new ArrayList<>();
-//        ap.add(p);
-//        profileRepo.saveProfile(ap);
-        for (Profile pp :profileRepo.getProfile()){
-            System.out.println(pp.getUsername());
-        }
-
-    }
 }
