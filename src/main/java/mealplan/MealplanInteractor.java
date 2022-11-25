@@ -72,7 +72,7 @@ public class MealplanInteractor implements MealplanInputBoundary{
         int age = pro.getAge();
 
 
-        if (Objects.equals(gender, "male")){
+        if (Objects.equals(gender, "Male")){
             required_cal = (int) (9.99 * weight + 6.25 * height  - 4.92 * age + 5);
         }else{
             required_cal = (int) (9.99 * weight + 6.25 * height  - 4.92 * age - 161);
