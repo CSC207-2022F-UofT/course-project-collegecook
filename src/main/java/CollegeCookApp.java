@@ -10,8 +10,8 @@ public class CollegeCookApp {
     public static void main(String[] arg) throws IOException {
         UserGateWay userGateWay = UserRepoImpl.getUserRepoImpl();
         LoginOutputBound loginOutputBound = new LoginPresenter();
-        UserManager userManager = new UserManager(loginOutputBound, userGateWay);
-        LoginControllor loginControllor = new LoginControllor(userManager);
+        LoginInputBound loginInputBound = new UserManager(loginOutputBound, userGateWay);
+        LoginControllor loginControllor = new LoginControllor(loginInputBound);
 
         RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();
         RecipeRepoGateway recipeRepoGateway = RecipeReadWriter.getRecipeRepo();

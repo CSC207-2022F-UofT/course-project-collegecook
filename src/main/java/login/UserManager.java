@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-public class UserManager {
+public class UserManager implements LoginInputBound {
     private UserList AllUser;
 
     private final UserGateWay urg;
@@ -24,7 +24,7 @@ public class UserManager {
         }
     }
 
-
+    @Override
     //create Account
     public void CheckAllUser(String username,String password){
         if (AllUser.CheckAllUser(username)){
@@ -38,7 +38,7 @@ public class UserManager {
         }else{LoginOutputBound.CreatAccountFail();}
     }
 
-
+    @Override
     // method to find the user in the allUsers and change the status to logged in
     public void Login(String username, String password){
         List<User> allUser = AllUser.getAllUser();
@@ -57,7 +57,7 @@ public class UserManager {
         }
     }
 
-
+    @Override
     // method to find the user in the allUsers and change the status to logged out
     public void Logout(String username){
         for(User person :AllUser.getAllUser()){
@@ -70,6 +70,7 @@ public class UserManager {
 
     }
 
+    @Override
     //Check if user already followed this other user(refactoring)
     public boolean CheckFollow(String username, String other){
         for(User person :AllUser.getAllUser()){
@@ -84,7 +85,7 @@ public class UserManager {
             }return true;
         }
 
-
+    @Override
     //a user want to follow another user
     // add other to user.followed
     //other.follower add user
@@ -100,7 +101,7 @@ public class UserManager {
             }
         }
     }
-
+    @Override
     // method to find the user in the allUsers and remove the other user in to the followed list(attribute of user),need to
     //check if the other user is already followed,also find the other user and remove the user from the following list(attribute of user)
     public boolean CheckUnFollow(String username, String other) {
@@ -118,7 +119,7 @@ public class UserManager {
         LoginOutputBound.UnFollowedFail();
         return false;
     }
-
+    @Override
     // remove Other from user.followed
     //remove user from other.following
     public void Unfollow(String username, String other){
@@ -130,7 +131,7 @@ public class UserManager {
             }
         }
     }
-
+    @Override
     public String getLoggedInUser(){
         return this.loggedInUser;
     }
