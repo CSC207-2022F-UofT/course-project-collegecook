@@ -1,9 +1,5 @@
 package search;
 
-import entities.Recipe;
-
-import java.util.ArrayList;
-
 public class SearchPresenter implements SearchOutputBoundary{
     SearchResultsBox searchResultsBox;
     @Override

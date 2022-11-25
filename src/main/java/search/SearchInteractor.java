@@ -23,7 +23,7 @@ public class SearchInteractor implements SearchInputBoundary{
 
 
     @Override
-    public void getSearchResults(SearchRequestModel requestModel) throws IOException {
+    public SearchResponseModel getSearchResults(SearchRequestModel requestModel) throws IOException {
         // get all recipes
         RecipeList recipes = recipeRepoGateway.getRecipeList();
 
@@ -74,6 +74,6 @@ public class SearchInteractor implements SearchInputBoundary{
         }
             recipeSorter.sort(foundRecipes, requestModel.isSortByAscending());
             searchOutputBoundary.prepareSuccessView(new SearchResponseModel(foundRecipes));
-
+            return new SearchResponseModel(foundRecipes);
     }
 }

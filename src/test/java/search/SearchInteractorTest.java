@@ -2,7 +2,10 @@ package search;
 
 import entities.Recipe;
 import entities.RecipeList;
+import entities.Review;
+import org.junit.BeforeClass;
 import org.junit.jupiter.api.*;
+import recipe.RecipeReadWriter;
 import recipe.RecipeRepoGateway;
 
 import java.io.IOException;
@@ -10,52 +13,73 @@ import java.util.ArrayList;
 
 public class SearchInteractorTest {
 
-    /**
-     * Test for getting search results sorted by average rating
-     */
+    private final static RecipeRepoGateway recipeRepoGateway = RecipeReadWriter.getRecipeRepo();
+    private final static SearchPresenter searchPresenter = new SearchPresenter();
+
+
     @Test
     public void getSearchResultsSortAverageRating() throws IOException {
-        // set up objects
-        RecipeRepoGateway recipeRepoGateway = new RecipeRepoGateway() {
-            @Override
-            public RecipeList getRecipeList() throws IOException {
-                return null;
-            }
+        // TODO: Create database?
+//        RecipeReadWriter recipeReadWriter = new RecipeReadWriter();
+//        RecipeRepoGateway recipeRepoGateway1
 
-            @Override
-            public void saveRecipe(RecipeList recipeList) throws IOException {
+        // set up recipes
+        Recipe[] recipes = new Recipe[3];
+        ArrayList<String> ingredients1 = new ArrayList<String>();
+        ingredients1.add("apple");
+        ingredients1.add("flour");
+        ingredients1.add("sugar");
 
-            }
-        };
-        SearchPresenter searchPresenter = new SearchPresenter(){
-            @Override
-            public SearchResponseModel prepareResultsView(SearchResponseModel searchResponseModel) {
-                return null;
-            }
-            @Override
-            public SearchResponseModel prepareFailureView(String error) {
-                return null;
-            }
+        ArrayList<String> ingredients2 = new ArrayList<String>();
+        ingredients2.add("apple");
+        ingredients2.add("sugar");
 
-        };
+        ArrayList<String> ingredients3 = new ArrayList<String>();
+        ingredients3.add("meatball");
+        ingredients3.add("tomato");
+        ingredients3.add("pasta");
+
+        Recipe recipe1 = new Recipe("apple pie", "blah apples", "french", ingredients1, 200, 20, 4, "bob");
+        Recipe recipe2 = new Recipe("candy apple", "blah apple candy", "french", ingredients2, 300, 10, 4, "cat");
+        Recipe recipe3 = new Recipe("spaghetti", "blah bananas", "italian", ingredients3, 100, 20, 30, "bob");
+
+        recipes[0] = recipe1;
+        recipes[1] = recipe2;
+        recipes[2] = recipe3;
+
+        // reviews for each of the recipes
+        // average rating for each recipe should be: 4.3, 5, 4.
+        // sorted order should be Recipe3 (spaghetti), Recipe1 (apple pie), Recipe2 (candy apple)
+        Review[] reviews = new Review[5];
+        Review review1a = new Review("lei", recipes[0], 4);
+        Review review1b = new Review("joe", recipes[0], 5);
+        Review review1c = new Review("ang", recipes[0], 4);
+        Review review2a = new Review("ang", recipes[1], 5);
+        Review review3a = new Review("lei", recipes[2], 4);
+
         SearchInteractor searchInteractor = new SearchInteractor(searchPresenter, recipeRepoGateway);
 
+        // search request model
         ArrayList<String> ingredients = new ArrayList<String>();
-        ingredients.add("chicken");
-        ingredients.add("potato");
-        ingredients.add("tomato");
+        ingredients.add("sugar");
 
         SearchRequestModel searchRequestModel = new SearchRequestModel(
-                "potato",
-                "chinese",
+                "",
+                "",
                 ingredients,
-                10,
+                0,
                 "r",
                 true
         );
 
         // get search results
-        searchInteractor.getSearchResults(searchRequestModel);
+        SearchResponseModel actualResults = searchInteractor.getSearchResults(searchRequestModel);
+        Recipe[] expectedResults = new Recipe[3];
+        expectedResults[0] = recipe3;
+        expectedResults[1] = recipe1;
+        expectedResults[2] = recipe2;
+
+        Assertions.assertEquals(expectedResults, actualResults.matchingRecipes);
     }
 
     /**
@@ -64,28 +88,6 @@ public class SearchInteractorTest {
     @Test
     public void getSearchResultsSortNumReviews() throws IOException {
         // set up objects
-        RecipeRepoGateway recipeRepoGateway = new RecipeRepoGateway() {
-            @Override
-            public RecipeList getRecipeList() throws IOException {
-                return null;
-            }
-
-            @Override
-            public void saveRecipe(RecipeList recipeList) throws IOException {
-
-            }
-        };
-        SearchPresenter searchPresenter = new SearchPresenter(){
-            @Override
-            public SearchResponseModel prepareResultsView(SearchResponseModel searchResponseModel) {
-                return null;
-            }
-            @Override
-            public SearchResponseModel prepareFailureView(String error) {
-                return null;
-            }
-
-        };
         SearchInteractor searchInteractor = new SearchInteractor(searchPresenter, recipeRepoGateway);
 
         ArrayList<String> ingredients = new ArrayList<String>();
@@ -111,29 +113,6 @@ public class SearchInteractorTest {
      */
     @Test
     public void getSearchResultsSortTimeNeeded() throws IOException {
-        // set up objects
-        RecipeRepoGateway recipeRepoGateway = new RecipeRepoGateway() {
-            @Override
-            public RecipeList getRecipeList() throws IOException {
-                return null;
-            }
-
-            @Override
-            public void saveRecipe(RecipeList recipeList) throws IOException {
-
-            }
-        };
-        SearchPresenter searchPresenter = new SearchPresenter(){
-            @Override
-            public SearchResponseModel prepareResultsView(SearchResponseModel searchResponseModel) {
-                return null;
-            }
-            @Override
-            public SearchResponseModel prepareFailureView(String error) {
-                return null;
-            }
-
-        };
         SearchInteractor searchInteractor = new SearchInteractor(searchPresenter, recipeRepoGateway);
 
         ArrayList<String> ingredients = new ArrayList<String>();
@@ -159,29 +138,6 @@ public class SearchInteractorTest {
      */
     @Test
     public void getSearchResultsSortByDescending() throws IOException {
-        // set up objects
-        RecipeRepoGateway recipeRepoGateway = new RecipeRepoGateway() {
-            @Override
-            public RecipeList getRecipeList() throws IOException {
-                return null;
-            }
-
-            @Override
-            public void saveRecipe(RecipeList recipeList) throws IOException {
-
-            }
-        };
-        SearchPresenter searchPresenter = new SearchPresenter(){
-            @Override
-            public SearchResponseModel prepareResultsView(SearchResponseModel searchResponseModel) {
-                return null;
-            }
-            @Override
-            public SearchResponseModel prepareFailureView(String error) {
-                return null;
-            }
-
-        };
         SearchInteractor searchInteractor = new SearchInteractor(searchPresenter, recipeRepoGateway);
 
         ArrayList<String> ingredients = new ArrayList<String>();
@@ -208,28 +164,6 @@ public class SearchInteractorTest {
     @Test
     public void getSearchResultsNoResults() throws IOException {
         // set up objects
-        RecipeRepoGateway recipeRepoGateway = new RecipeRepoGateway() {
-            @Override
-            public RecipeList getRecipeList() throws IOException {
-                return null;
-            }
-
-            @Override
-            public void saveRecipe(RecipeList recipeList) throws IOException {
-
-            }
-        };
-        SearchPresenter searchPresenter = new SearchPresenter(){
-            @Override
-            public SearchResponseModel prepareResultsView(SearchResponseModel searchResponseModel) {
-                return null;
-            }
-            @Override
-            public SearchResponseModel prepareFailureView(String error) {
-                return null;
-            }
-
-        };
         SearchInteractor searchInteractor = new SearchInteractor(searchPresenter, recipeRepoGateway);
 
         ArrayList<String> ingredients = new ArrayList<String>();
