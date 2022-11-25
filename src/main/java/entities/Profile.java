@@ -68,8 +68,8 @@ public class Profile implements Serializable {
     public String soutInfo(){
         String result = new String("");
         return "Age: " + age + "\n" +
-                "Height: " + height + "\n" +
-                "Weight: " + weight + "\n" +
+                "Height: " + height + "cm \n" +
+                "Weight: " + weight + "kg \n" +
                 "Gender: " + gender + "\n";
     }
 
