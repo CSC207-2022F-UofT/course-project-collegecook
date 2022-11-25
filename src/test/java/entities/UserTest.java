@@ -4,6 +4,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
@@ -73,10 +76,20 @@ public class UserTest {
 
     @Test
     void getFollowers() {
+        a.addFollowers(b);
+        List<User> expected = new ArrayList<>();
+        expected.add(b);
+        List<User> actual = a.getFollowers();
+        assertEquals(expected, actual);
     }
 
     @Test
     void getFollowed() {
+        b.addFollowed(a);
+        List<User> expected = new ArrayList<>();
+        expected.add(a);
+        List<User> actual = b.getFollowed();
+        assertEquals(expected, actual);
     }
 
 

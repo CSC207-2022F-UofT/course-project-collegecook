@@ -54,6 +54,9 @@ public class User implements Serializable {
         this.followed.remove(other);
     }
 
+    public List<User> getFollowers() {
+        return followers;
+    }
 
     public List<User> getFollowed() {
         return followed;
