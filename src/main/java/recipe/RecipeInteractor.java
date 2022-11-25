@@ -54,12 +54,14 @@ public class RecipeInteractor implements RecipeInputBoundary {
     public RecipeList getAll(){
         return this.recipeList;
     }
+
      public Recipe getRecipe(String recipeName){
             return this.recipeList.get_recipe(recipeName);
         }
         public String getReadingRecipe(){
         return this.readingRecipe;
         }
+
 
     public static void main(String[] arg){
         RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();

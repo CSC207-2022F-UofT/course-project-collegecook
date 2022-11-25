@@ -24,7 +24,7 @@ class RecipeInteractorTest {
         recipeRepoGateway = RecipeReadWriter.getRecipeRepo();
         recipeInteractor = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
         RecipeController recipeController = new RecipeController(recipeInteractor);
-        AppController appController = new AppController(recipeController);
+        AppController appController = new AppController(recipeController, );
         RecipeCreateBox createBox = new CreateRecipeUI(appController);
         recipeOutputBoundary.setUI(createBox);
         RecipeViewBox recipeViewBox = new ViewRecipeUI(appController);
