@@ -25,6 +25,10 @@ class ProfileTest {
         p = new Profile("Brenden");
         p.setCreated(created);
         p.setReviewed(reviewed);
+        p.setAge(20);
+        p.setHeight(163);
+        p.setWeight(45);
+        p.setGender("Female");
     }
 
     @AfterEach
@@ -62,6 +66,24 @@ class ProfileTest {
     @Test
     void testGetCreated(){
         assertEquals(created, p.getCreated());
+    }
+
+    @Test
+    void testGetAge() {
+        assertEquals(20, p.getAge());
+    }
+
+    @Test
+    void testGetHeight() {
+        assertEquals(163, p.getHeight());
+    }
+    @Test
+    void testGetWeight() {
+        assertEquals(45, p.getWeight());
+    }
+    @Test
+    void testGetGender() {
+        assertEquals("Female", p.getGender());
     }
 
 }
