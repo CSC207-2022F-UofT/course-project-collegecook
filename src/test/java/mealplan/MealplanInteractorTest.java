@@ -1,6 +1,8 @@
 package mealplan;
+import entities.MealplanList;
 import entities.Profile;
 import entities.RecipeList;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,11 +15,19 @@ public class MealplanInteractorTest {
     MealplanGateway mealplanGate;
     MealplanInputBoundary mealplanInteractor;
     RecipeList rl;
+    MealplanList temp;
     @BeforeEach
-    void setUp() throws IOException {
+    void setUp() throws IOException, ClassNotFoundException {
         MealplanOutputBoundary mealplanOutputBoundary= new MealplanPresenter();
         mealplanGate = MealplanGate.getInstance();
+        temp = mealplanGate.readFromFile();
         mealplanInteractor = new MealplanInteractor(mealplanOutputBoundary, "user",mealplanGate);
+    }
+
+    @AfterEach
+    void tearDown() throws IOException {
+        mealplanGate.saveToFile(temp);
+        mealplanGate = null;
     }
 
     @Test
@@ -27,7 +37,7 @@ public class MealplanInteractorTest {
     }
     @Test
     void addRecipe(){
-        mealplanInteractor.addRecipe("recipe",1);
+        mealplanInteractor.addRecipe("recipe",0);
         assertTrue(mealplanInteractor.getMealplan().returnMealPlan().get(0).contains("recipe"));
     }
 
@@ -39,6 +49,7 @@ public class MealplanInteractorTest {
                 "cuisine", ingredients, 500, 2, 3, "Brenden");
         rl.add_recipe("recipe2", "procedure",
                 "cuisine", ingredients, 500, 2, 3, "Brenden");
+        mealplanInteractor.addRecipe("recipe2",1);
         assertEquals(1000,mealplanInteractor.computeRecipeCal(rl));
     }
 

@@ -41,6 +41,8 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
             }
 
         });
+        button_b.setBackground(Color.RED);
+        button_b.setOpaque(true);
 
         JButton button_l = new JButton( new AbstractAction("delete") {
             @Override
@@ -55,6 +57,8 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
                 panel_l.repaint();
             }
         });
+        button_l.setBackground(Color.RED);
+        button_l.setOpaque(true);
 
         JButton button_d = new JButton( new AbstractAction("delete") {
             @Override
@@ -68,6 +72,8 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
                 panel_d.repaint();
             }
         });
+        button_d.setBackground(Color.RED);
+        button_d.setOpaque(true);
 
         JButton button_cal = new JButton( new AbstractAction("calculate calories") {
             @Override
