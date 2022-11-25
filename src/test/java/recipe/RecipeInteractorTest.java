@@ -15,63 +15,212 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RecipeInteractorTest {
-    RecipeInteractor recipeInteractor;
+
     RecipeRepoGateway recipeRepoGateway;
     RecipeList temp;
+    String failName;
     @BeforeEach
     void setUp() throws IOException {
-        RecipeOutputBoundary recipeOutputBoundary= new RecipePresenter();
         recipeRepoGateway = RecipeReadWriter.getRecipeRepo();
-        recipeInteractor = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
-        RecipeController recipeController = new RecipeController(recipeInteractor);
-        AppController appController = new AppController(recipeController);
-        RecipeCreateBox createBox = new CreateRecipeUI(appController);
-        recipeOutputBoundary.setUI(createBox);
-        RecipeViewBox recipeViewBox = new ViewRecipeUI(appController);
-        recipeOutputBoundary.setUI(recipeViewBox);
         temp = recipeRepoGateway.getRecipeList();
-        ArrayList<String> ta = new ArrayList<>();
-        RecipeRequestModel recipeRequestModel = new RecipeRequestModel("Test3", "Procedure",
-                "cuisine", ta, 1, 2, 3, "Tester");
-        recipeInteractor.createRecipe(recipeRequestModel);
+
     }
 
     @AfterEach
     void tearDown() throws IOException {
         recipeRepoGateway.saveRecipe(temp);
         recipeRepoGateway = null;
-        recipeInteractor = null;
+
     }
 
     @Test
-    void createRecipe() throws IOException {
+    void createRecipe(){
+        RecipeOutputBoundary recipeOutputBoundary = new RecipeOutputBoundary() {
+            @Override
+            public void createSuccessView(){
+                RecipeList recipeList = null;
+                try {
+                    recipeList = recipeRepoGateway.getRecipeList();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                assertTrue(recipeList.contain("Test3"));
+            }
+
+            @Override
+            public void createFailureView(){
+                RecipeList recipeList = null;
+                try {
+                    recipeList = recipeRepoGateway.getRecipeList();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                assertTrue(recipeList.contain("Test3"));
+            }
+
+            @Override
+            public void readSuccessView(String result) {
+            }
+
+            @Override
+            public void readFailureView() {
+            }
+
+            @Override
+            public void setUI(RecipeCreateBox recipeCreateBox) {
+
+            }
+
+            @Override
+            public void setUI(RecipeViewBox recipeViewBox) {
+
+            }
+        };
         ArrayList<String> ta = new ArrayList<>();
-        RecipeRequestModel recipeRequestModel = new RecipeRequestModel("Test4", "Procedure",
+        RecipeRequestModel recipeRequestModel = new RecipeRequestModel("Test3", "Procedure",
                 "cuisine", ta, 1, 2, 3, "Tester");
+        RecipeInteractor recipeInteractor = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
         recipeInteractor.createRecipe(recipeRequestModel);
-        assertTrue(recipeRepoGateway.getRecipeList().contain("Test2"));
+        recipeInteractor.createRecipe(recipeRequestModel);
+
     }
+
 
     @Test
     void readRecipe() {
+        RecipeOutputBoundary recipeOutputBoundary = new RecipeOutputBoundary() {
+            @Override
+            public void createSuccessView() {
+
+            }
+
+            @Override
+            public void createFailureView() {
+
+            }
+
+            @Override
+            public void readSuccessView(String result) {
+                String expected = "Recipe: Test4" + "\n"  +
+                        "Creator: Tester" + "\n" +
+                        "Procedure: Procedure" + "\n" +
+                        "Cuisine: cuisine" + "\n" +
+                        "Ingredients: []" + "\n" +
+                        "Calories: 1" + "\n" +
+                        "Time Required: 2" + " minutes \n" +
+                        "Difficulty (out of 5): 3" + "\n";
+                assertEquals(expected, result);
+            }
+
+            @Override
+            public void readFailureView() {
+                try {
+                    assertFalse(recipeRepoGateway.getRecipeList().contain(failName));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+            @Override
+            public void setUI(RecipeCreateBox recipeCreateBox) {
+
+            }
+
+            @Override
+            public void setUI(RecipeViewBox recipeViewBox) {
+
+            }
+        };
+        ArrayList<String> ta = new ArrayList<>();
+        RecipeRequestModel recipeRequestModel = new RecipeRequestModel("Test4", "Procedure",
+                "cuisine", ta, 1, 2, 3, "Tester");
+        RecipeInteractor recipeInteractor = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
+        recipeInteractor.createRecipe(recipeRequestModel);
+        recipeInteractor.readRecipe("Test4");
+        failName = "Test5";
+        recipeInteractor.readRecipe(failName);
 
     }
 
     @Test
     void getAll() {
-        assertTrue(recipeInteractor.getAll().contain("Test3"));
-        for (Recipe r : temp){
-            assertTrue(recipeInteractor.getAll().contain(r.getRecipeName()));
+        RecipeOutputBoundary recipeOutputBoundary = new RecipeOutputBoundary() {
+            @Override
+            public void createSuccessView() {
+
+            }
+
+            @Override
+            public void createFailureView() {
+
+            }
+
+            @Override
+            public void readSuccessView(String result) {
+
+            }
+
+            @Override
+            public void readFailureView() {
+
+            }
+
+            @Override
+            public void setUI(RecipeCreateBox recipeCreateBox) {
+
+            }
+
+            @Override
+            public void setUI(RecipeViewBox recipeViewBox) {
+
+            }
+        };
+        RecipeInteractor recipeInteractor = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
+        for (Recipe r : recipeInteractor.getAll()){
+            assertTrue(temp.contain(r.getRecipeName()));
         }
+
     }
 
     @Test
     void getRecipe() {
-        Recipe actual = recipeInteractor.getRecipe("Test3");
-        ArrayList<String> ta = new ArrayList<>();
-        Recipe expected = new Recipe("Test3", "Procedure",
-                "cuisine", ta, 1, 2, 3, "Tester");
-        assertEquals(expected, actual);
+        RecipeOutputBoundary recipeOutputBoundary = new RecipeOutputBoundary() {
+            @Override
+            public void createSuccessView() {
 
+            }
+
+            @Override
+            public void createFailureView() {
+
+            }
+
+            @Override
+            public void readSuccessView(String result) {
+
+            }
+
+            @Override
+            public void readFailureView() {
+
+            }
+
+            @Override
+            public void setUI(RecipeCreateBox recipeCreateBox) {
+
+            }
+
+            @Override
+            public void setUI(RecipeViewBox recipeViewBox) {
+
+            }
+        };
+        RecipeInteractor recipeInteractor = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
+        ArrayList<String> ta = new ArrayList<>();
+        RecipeRequestModel recipeRequestModel = new RecipeRequestModel("Test3", "Procedure",
+                "cuisine", ta, 1, 2, 3, "Tester");
+        recipeInteractor.createRecipe(recipeRequestModel);
+        recipeInteractor.readRecipe("Test3");
+        assertEquals("Test3", recipeInteractor.getReadingRecipe());
     }
 }
