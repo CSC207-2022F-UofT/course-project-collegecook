@@ -62,7 +62,6 @@ public class UserManager implements LoginInputBound {
     public void Logout(String username){
         for(User person :AllUser.getAllUser()){
             if(Objects.equals(person.getUsername(), username)){
-                person.setLoginStatus(false);
             }else{LoginOutputBound.LogoutFail();}
 
         }

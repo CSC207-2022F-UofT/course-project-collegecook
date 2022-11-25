@@ -11,7 +11,6 @@ public class User implements Serializable {
     private String username;
     private String password;
 
-    private boolean LoginStatus;
     private List<User> followers;
     private List<User> followed;
 
@@ -31,17 +30,11 @@ public class User implements Serializable {
         return password;
     }
 
-    public boolean isLoginStatus() {
-        return LoginStatus;
-    }
 
     public int GetNumberOfFollowers(){return followers.size();}
 
-    public int GetNumberOfFollowed(){return followed.size(); }
+    public int GetNumberOfFollowed(){return followed.size();}
 
-    public void setLoginStatus(boolean loginStatus) {
-        LoginStatus = loginStatus;
-    }
 
     public void addFollowers(User Other) {
 
@@ -61,10 +54,6 @@ public class User implements Serializable {
         this.followed.remove(other);
     }
 
-    public List<User> getFollowers() {
-        return followers;
-    }
-    // Comparator for sorting the list by followers
 
     public List<User> getFollowed() {
         return followed;
