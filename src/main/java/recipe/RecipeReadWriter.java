@@ -15,6 +15,10 @@ public class RecipeReadWriter implements RecipeRepoGateway{
 
     public RecipeReadWriter(){}
 
+    /**
+     *
+     * @return RecipeReadWriter. The Singleton Design Pattern is used here to control the initialization of gateway.
+     */
     public static RecipeReadWriter getRecipeRepo(){
         if (recipeReadWriter == null){
             recipeReadWriter = new RecipeReadWriter();

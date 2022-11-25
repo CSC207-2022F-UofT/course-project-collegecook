@@ -7,6 +7,9 @@ import java.io.IOException;
 
 
 public class RecipeInteractor implements RecipeInputBoundary {
+    /**
+     * This is RecipeInteractor, which is in the Use Case layer.
+     */
     private final RecipeRepoGateway rrg;
     private RecipeList recipeList;
     final RecipeOutputBoundary recipeOutputBoundary;
@@ -23,6 +26,10 @@ public class RecipeInteractor implements RecipeInputBoundary {
         }
     }
 
+    /**
+     *
+     * @param recipeRequestModel
+     */
     @Override
     public void createRecipe (RecipeRequestModel recipeRequestModel){
         if (recipeList.contain(recipeRequestModel.getRecipeName())) {
