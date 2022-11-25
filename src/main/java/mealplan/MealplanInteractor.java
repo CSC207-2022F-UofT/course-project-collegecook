@@ -42,7 +42,7 @@ public class MealplanInteractor implements MealplanInputBoundary{
 
 
     public void addRecipe(String recipe, int meal){
-        this.mealplan.addMealPlan(recipe, meal);
+        mealplans.getMealplan(username).addMealPlan(recipe, meal);
         try {
             mealplans.add(username, mealplan);
             mrg.saveToFile(mealplans);
