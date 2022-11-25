@@ -21,7 +21,7 @@ public class RankInteractor implements RankInputBoundary{
         this.rankOutputBoundary = rankOutputBoundary;
     }
     @Override
-    public RankResponseModel sortUsers(RankRequestModel requestModel) {
+    public String sortUsers(RankRequestModel requestModel) {
         // stores all the Users in a list
         UserList userList = new UserList();
         List<User> users = userList.getAllUser();

@@ -2,6 +2,8 @@ package rank;
 
 import entities.User;
 
+import java.util.Arrays;
+
 public class RankPresenter implements RankOutputBoundary{
     /**
      * A method that contains a success method that is implemented
@@ -9,8 +11,8 @@ public class RankPresenter implements RankOutputBoundary{
      *
      * @param rank contains the sorted Users list
      */
-    public RankResponseModel prepareSuccessView(RankResponseModel rank){
-        return rank;}
+    public String prepareSuccessView(RankResponseModel rank){
+        return "Success! Here are the users ranked by: " + rank.getRank() + "\n" + Arrays.toString(rank.getUsers());}
 
     /**
      * A method that contains a fail method that is implemented
@@ -19,9 +21,8 @@ public class RankPresenter implements RankOutputBoundary{
      * @param error contains the information on the error
      */
 
-    public RankResponseModel prepareFailView(String error){
-        User[] errorUser = new User[0];
-        return new RankResponseModel(error, errorUser );
+    public String prepareFailView(String error){
+        return error;
     }
 }
 

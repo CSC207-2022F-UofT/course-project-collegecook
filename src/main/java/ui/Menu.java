@@ -82,7 +82,18 @@ public class Menu extends JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.pack();
 
+        ranking.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        ranking.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                RankUI rankUI = new RankUI(appController);
+                rankUI.setVisible(true);
+            }
+        });
+        menu.add(ranking);
     }
+
 
     private static void addAButton(String text, Container container) {
         JButton button = new JButton(text);

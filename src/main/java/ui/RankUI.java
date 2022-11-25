@@ -35,4 +35,5 @@ public class RankUI extends JFrame{
         this.pack();
     }
 
+
 }

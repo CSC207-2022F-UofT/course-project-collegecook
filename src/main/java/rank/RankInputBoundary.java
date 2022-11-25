@@ -12,6 +12,6 @@ public interface RankInputBoundary {
      *
      * @param requestModel contains the choice of ranking
      */
-    RankResponseModel sortUsers(RankRequestModel requestModel);
+    String sortUsers(RankRequestModel requestModel);
 
 }
