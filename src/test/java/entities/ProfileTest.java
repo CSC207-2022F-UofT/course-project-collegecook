@@ -86,4 +86,11 @@ class ProfileTest {
         assertEquals("Female", p.getGender());
     }
 
+    @Test
+    void testSoutInfo(){
+        String expected = "Age: 20" + "\n" + "Height: " + 163 + "cm \n" + "Weight: " + 45 + "kg \n" +
+                "Gender: Female" + "\n";
+        assertEquals(expected, p.soutInfo());
+    }
+
 }
