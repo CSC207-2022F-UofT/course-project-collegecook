@@ -35,7 +35,7 @@ public class MealplanInteractorTest {
 
     @Test
     void getMealplanlist() throws IOException, ClassNotFoundException {
-        mealplanInteractor.addRecipe("recipe",1);
+        mealplanInteractor.addRecipe("recipe2",1);
         assertEquals(mealplanInteractor.getMealplanList(),mealplanGate.readFromFile());
     }
     @Test
@@ -52,7 +52,6 @@ public class MealplanInteractorTest {
                 "cuisine", ingredients, 500, 2, 3, "Brenden");
         rl.add_recipe("recipe2", "procedure",
                 "cuisine", ingredients, 500, 2, 3, "Brenden");
-        mealplanInteractor.addRecipe("recipe2",1);
         assertEquals(1000,mealplanInteractor.computeRecipeCal(rl));
     }
 
