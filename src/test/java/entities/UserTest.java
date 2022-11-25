@@ -53,16 +53,6 @@ public class UserTest {
 
 
     @Test
-    void getNumberOfFollowers() {
-    }
-
-    @Test
-    void getNumberOfFollowed() {
-    }
-
-
-
-    @Test
     void removeFollowers() {
     }
 
