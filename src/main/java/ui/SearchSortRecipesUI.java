@@ -12,19 +12,19 @@ import java.util.Arrays;
 public class SearchSortRecipesUI extends JFrame{
 
     // search criteria input fields and labels
-    JTextField nameInput = new JTextField(100);
+    JTextField nameInput = new JTextField(40);
     JLabel nameLabel = new JLabel("Name/Keyword: ");
 
-    JTextField cuisineInput = new JTextField(100);
+    JTextField cuisineInput = new JTextField(40);
     JLabel cuisineLabel = new JLabel("Cuisine: ");
 
-    JTextField ingredientsInput = new JTextField(100);
+    JTextField ingredientsInput = new JTextField(40);
     JLabel ingredientsLabel = new JLabel("Ingredients (use singular, separate using commas): ");
 
-    JTextField timeInput = new JTextField(100);
+    JTextField timeInput = new JTextField(40);
     JLabel timeLabel = new JLabel("Time: ");
 
-    JTextField sortTypeInput = new JTextField(100);
+    JTextField sortTypeInput = new JTextField(40);
     JLabel sortTypeLabel = new JLabel("Sort by 'r' = average rating, 'n' = number of reviews, 't'= time needed");
 
     JCheckBox isSortAscendingInput = new JCheckBox();
