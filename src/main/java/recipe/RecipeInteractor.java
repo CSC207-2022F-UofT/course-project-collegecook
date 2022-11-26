@@ -23,7 +23,7 @@ public class RecipeInteractor implements RecipeInputBoundary {
         }
     }
 
-
+    @Override
     public void createRecipe (RecipeRequestModel recipeRequestModel){
         if (recipeList.contain(recipeRequestModel.getRecipeName())) {
             recipeOutputBoundary.createFailureView();
@@ -40,7 +40,7 @@ public class RecipeInteractor implements RecipeInputBoundary {
             }
         }
     }
-
+    @Override
     public void readRecipe(String recipeName){
         if (this.recipeList.contain(recipeName)){
             Recipe recipe = this.getRecipe(recipeName);
@@ -50,11 +50,12 @@ public class RecipeInteractor implements RecipeInputBoundary {
             recipeOutputBoundary.readFailureView();
         }
     }
-
+    @Override
     public RecipeList getAll(){
         return this.recipeList;
     }
 
+<<<<<<< HEAD
     public Recipe getRecipe(String recipeName){
         return this.recipeList.get_recipe(recipeName);
     }
@@ -62,13 +63,18 @@ public class RecipeInteractor implements RecipeInputBoundary {
         return this.readingRecipe;
     }
 
+=======
+    @Override
+     public Recipe getRecipe(String recipeName){
+            return this.recipeList.get_recipe(recipeName);
+        }
+        @Override
+        public String getReadingRecipe(){
+        return this.readingRecipe;
+        }
+>>>>>>> view-recipes-3
 
-    public static void main(String[] arg){
-        RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();
-        RecipeRepoGateway recipeRepoGateway = RecipeReadWriter.getRecipeRepo();
-        RecipeInputBoundary recipeInputBoundary = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
-        recipeInputBoundary.getRecipe("apple pie");
-    }
+
 }
 
 

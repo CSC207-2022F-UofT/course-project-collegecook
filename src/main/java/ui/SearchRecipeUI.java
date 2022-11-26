@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class SearchRecipeUI extends JFrame {
     RecipeController recipeController;
+    RecipeOutputBoundary recipeOutputBoundary;
     JPanel view = new JPanel();
     JTextField name = new JTextField();
     JButton read = new JButton("Read");
@@ -22,9 +23,7 @@ public class SearchRecipeUI extends JFrame {
         view.add(name);
 
         read.setAlignmentX(Component.CENTER_ALIGNMENT);
-//        RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter(new ViewRecipeUI());
-//        RecipeInputBoundary recipeInputBoundary = new RecipeInteractor(recipeOutputBoundary);
-//        RecipeController recipeController = new RecipeController(recipeInputBoundary);
+        this.recipeController = appController.getRecipeController();
         read.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

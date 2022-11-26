@@ -5,8 +5,14 @@ import entities.Profile;
 import java.io.IOException;
 
 public interface ProfileInputBoundary {
-    void all_created(String username) throws IOException;
-    void all_reviewed(String username) throws IOException;
-    Profile check_profile(String username) throws IOException;
-    void set_info(String username, ProfileRequestModel prm);
+    void allCreated(String username) throws IOException;
+    void allReviewed(String username) throws IOException;
+    void setInfo(String username, ProfileRequestModel prm) throws IOException;
+    boolean checkInfo(String username) throws IOException ;
+    Profile checkProfile(String username) throws IOException;
+    void viewInfo(String username) throws IOException;
+<<<<<<< HEAD
+=======
+
+>>>>>>> view-recipes-3
 }
