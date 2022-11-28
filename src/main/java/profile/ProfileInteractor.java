@@ -49,8 +49,7 @@ public class ProfileInteractor implements ProfileInputBoundary{
 
     public Profile checkProfile(String username) throws IOException {
         for (Profile p: profileList){
-            String expected = p.getUsername();
-            if (Objects.equals(expected, username)){
+            if (p.getUsername().equals(username)){
                 return p;
             }
         }
@@ -106,9 +105,4 @@ public class ProfileInteractor implements ProfileInputBoundary{
         p.setGender(gender);
     }
 
-    public static void main(String[] arg) throws IOException {
-        ProfileOutputBoundary profileOutputBoundary = new ProfilePresenter();
-        ProfileInteractor profileInteractor = new ProfileInteractor(profileOutputBoundary);
-        profileInteractor.checkInfo("Maison");
-    }
 }
