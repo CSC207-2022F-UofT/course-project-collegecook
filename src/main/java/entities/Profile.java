@@ -64,12 +64,6 @@ public class Profile implements Serializable {
     }
 
     /**
-     * @param age The input age of the user
-     * Set the age of the user in his/her Profile.
-     */
-    public void setAge(int age) { this.age = age; }
-
-    /**
      * Get all recipes that are reviewed by the user in his/her Profile.
      */
     public ArrayList<Review> getReviewed() {
@@ -85,36 +79,42 @@ public class Profile implements Serializable {
 
 
     /**
-     * @param height The input height of the user
+     * Set the age of the user in his/her Profile.
+     * @param age The input age of the user
+     */
+    public void setAge(int age) { this.age = age; }
+
+    /**
      * Set the height of the user in his/her Profile.
+     * @param height The input height of the user
      */
     public void setHeight(float height) { this.height = height; }
 
     /**
-     * @param weight The input weight of the user
      * Set the weight of the user in his/her Profile.
+     * @param weight The input weight of the user
      */
     public void setWeight(float weight) { this.weight = weight; }
 
     /**
-     * @param gender The input gender of the user
      * Set the gender of the user in his/her Profile.
+     * @param gender The input gender of the user
      */
     public void setGender(String gender) {
         this.gender = gender;
     }
 
     /**
-     * @param reviewed A arraylist of profile which contains all the recipes reviewed by the user.
      * Set the reviewed of the user in his/her Profile.
+     * @param reviewed A arraylist of profile which contains all the recipes reviewed by the user.
      */
     public void setReviewed(ArrayList<Review> reviewed) {
         this.reviewed = reviewed;
     }
 
     /**
-     * @param created A arraylist of profile which contains all the recipes created by the user.
      * Set the reviewed of the user in his/her Profile.
+     * @param created A arraylist of profile which contains all the recipes created by the user.
      */
     public void setCreated(ArrayList<Recipe> created) {
         this.created = created;
@@ -122,6 +122,7 @@ public class Profile implements Serializable {
 
 
     /**
+     * A method that returns all information of the reviewed recipes of the user in this profile.
      * @return Return a string which contains all the recipes reviewed by the user.
      */
     public String soutReviewed() {
@@ -133,6 +134,7 @@ public class Profile implements Serializable {
     }
 
     /**
+     * A method that returns all information of the created recipes of the user in this profile.
      * @return Return a string which contains all the recipes created by the user.
      */
     public String soutCreated() {
@@ -144,6 +146,7 @@ public class Profile implements Serializable {
     }
 
     /**
+     * A method that returns all information of the user in this profile.
      * @return Return a string that contains the age, height, weight, and gender of the user in this profile.
      */
     public String soutInfo(){
