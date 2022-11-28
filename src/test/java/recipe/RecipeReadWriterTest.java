@@ -24,7 +24,7 @@ class RecipeReadWriterTest {
         ArrayList<String> ta = new ArrayList<>();
         Recipe test = new Recipe("Test", "Procedure",
                 "cuisine", ta, 1, 2, 3, "Tester");
-        rl.add_recipe("Test2", "Procedure",
+        rl.addRecipe("Test2", "Procedure",
                 "cuisine", ta, 1, 2, 3, "Tester");
         recipeReadWriter.saveRecipe(rl);
     }
@@ -51,7 +51,7 @@ class RecipeReadWriterTest {
     @Test
     void saveRecipe() throws IOException {
         ArrayList<String> ta = new ArrayList<>();
-        rl.add_recipe("Test3", "Procedure",
+        rl.addRecipe("Test3", "Procedure",
                 "cuisine", ta, 1, 2, 3, "Tester");
         recipeReadWriter.saveRecipe(rl);
         assertTrue(recipeReadWriter.getRecipeList().contain("Test3"));

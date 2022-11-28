@@ -14,7 +14,7 @@ class RecipeControllerTest {
     RecipeController recipeController;
     @BeforeEach
     void setUp() {
-        RecipeInputBoundary recipeInputBoundary = new RecipeInputBoundary() {
+        RecipeInputBoundary recipeInputBoundary = new RecipeInputBoundary(){
             @Override
             public void createRecipe(RecipeRequestModel recipeRequestModel) {
                 assertTrue(true);
@@ -37,6 +37,11 @@ class RecipeControllerTest {
 
             @Override
             public String getReadingRecipe() {
+                return null;
+            }
+
+            @Override
+            public String getCreator(String readRecipe) {
                 return null;
             }
         };

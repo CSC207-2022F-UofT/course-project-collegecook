@@ -40,7 +40,7 @@ public class RecipeInteractor implements RecipeInputBoundary {
         if (recipeList.contain(recipeRequestModel.getRecipeName())) {
             recipeOutputBoundary.createFailureView();
         }else {
-            recipeList.add_recipe(recipeRequestModel.getRecipeName(), recipeRequestModel.getProcedure(),
+            recipeList.addRecipe(recipeRequestModel.getRecipeName(), recipeRequestModel.getProcedure(),
                     recipeRequestModel.getCuisine(), recipeRequestModel.getIngredients(),
                     recipeRequestModel.getCalories(), recipeRequestModel.getTime(),
                     recipeRequestModel.getDifficulty(), recipeRequestModel.getCreator());
@@ -84,7 +84,7 @@ public class RecipeInteractor implements RecipeInputBoundary {
      */
     @Override
      public Recipe getRecipe(String recipeName){
-            return this.recipeList.get_recipe(recipeName);
+            return this.recipeList.getRecipe(recipeName);
         }
         @Override
         public String getReadingRecipe(){
@@ -93,7 +93,7 @@ public class RecipeInteractor implements RecipeInputBoundary {
 
     @Override
     public String getCreator(String recipe) {
-        return this.recipeList.get_recipe(recipe).getCreator();
+        return this.recipeList.getRecipe(recipe).getCreator();
     }
 
 

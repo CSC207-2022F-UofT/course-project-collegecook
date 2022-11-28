@@ -57,7 +57,7 @@ public class ReviewInteractor {
      * @param rating the review's rating.
      */
     public void createReview(String username, String recipeName, int rating) {
-        Recipe recipe = recipeList.get_recipe(recipeName);
+        Recipe recipe = recipeList.getRecipe(recipeName);
         Review review = new Review(username, recipe, rating);
         createHelper(username, review);
     }
@@ -73,7 +73,7 @@ public class ReviewInteractor {
      * @param rating the review's rating.
      */
     public void createReview(String username, String recipeName, String content, int rating) {
-        Recipe recipe = recipeList.get_recipe(recipeName);
+        Recipe recipe = recipeList.getRecipe(recipeName);
         Review review = new Review(username, recipe, content, rating);
         createHelper(username, review);
     }

@@ -57,4 +57,9 @@ public class RecipeReadWriter implements RecipeRepoGateway{
         f2.close();
     }
 
+    public static void main(String[] args) throws IOException {
+        RecipeReadWriter recipeReadWriter1 = RecipeReadWriter.getRecipeRepo();
+        RecipeList recipeList = new RecipeList().getRecipe();
+        }
+    }
 }
