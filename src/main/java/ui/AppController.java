@@ -1,9 +1,11 @@
 package ui;
 
+import entities.Review;
 import login.LoginControllor;
 import mealplan.MealplanController;
 import profile.ProfileController;
 import recipe.RecipeController;
+import review.ReviewController;
 import search.SearchController;
 
 public class AppController {
@@ -14,13 +16,16 @@ public class AppController {
 
     private final MealplanController mealplanController;
 
+    private final ReviewController reviewController;
+
     public AppController(RecipeController recipeController, LoginControllor loginControllor, ProfileController profileController,
-                         MealplanController mealplanController, SearchController searchController) {
+                         MealplanController mealplanController, SearchController searchController, ReviewController reviewController) {
         this.recipeController = recipeController;
         this.loginControllor = loginControllor;
         this.profileController = profileController;
         this.mealplanController = mealplanController;
         this.searchController = null;
+        this.reviewController = reviewController;
     }
 
     public RecipeController getRecipeController() {
@@ -42,5 +47,8 @@ public class AppController {
     public MealplanController getMealplanController() {
         return mealplanController;
 
+    }
+    public ReviewController getReviewController() {
+        return reviewController;
     }
 }
