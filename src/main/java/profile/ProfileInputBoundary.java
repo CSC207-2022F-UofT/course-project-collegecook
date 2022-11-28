@@ -39,7 +39,6 @@ public interface ProfileInputBoundary {
 
     /**
      * Check if the profile with the given username exists in the Profile Database.
-     * If the profile already exists, return the profile,
      * @param username The username of the user.
      * @return If the profile already exists in the Database, return the current profile; otherwise, return a new
      * profile with the given username.
