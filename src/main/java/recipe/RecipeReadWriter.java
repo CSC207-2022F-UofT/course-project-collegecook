@@ -13,7 +13,7 @@ public class RecipeReadWriter implements RecipeRepoGateway{
     private static final String file = "recipe.sav";
     private static RecipeReadWriter recipeReadWriter;
 
-    public RecipeReadWriter(){}
+    private RecipeReadWriter(){}
 
     /**
      *
@@ -59,7 +59,9 @@ public class RecipeReadWriter implements RecipeRepoGateway{
 
     public static void main(String[] args) throws IOException {
         RecipeReadWriter recipeReadWriter1 = RecipeReadWriter.getRecipeRepo();
-        RecipeList recipeList = new RecipeList().getRecipe();
+        for(Recipe r: recipeReadWriter1.getRecipeList()){
+            System.out.println(r.getRecipeName());
         }
     }
+
 }
