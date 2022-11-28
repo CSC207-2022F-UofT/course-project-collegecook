@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ProfileTest {
     Profile p;
     ArrayList<Recipe> created = new ArrayList<>();
-    ArrayList<Review> reviewed;
+    ArrayList<Review> reviewed = new ArrayList<>();
 
     @BeforeEach
     void setUp() {
@@ -38,22 +38,22 @@ class ProfileTest {
 
     @Test
     void testSoutReviewed() {
-        String expected = "Reviewer: Allison" + "\n" + "Rating: 5/5" +
-                "\n" + "Taste good!";
+        String expected = "Reviewer: Allison" + System.lineSeparator() + "Rating: 5/5" +
+                System.lineSeparator() + "\"" + "Taste good!" + "\"" + "\n";
         String actual = p.soutReviewed();
         assertEquals(expected, actual);
     }
 
     @Test
     void testSoutCreated() {
-        String expected = "Recipe: name" + "\n" +
-                "Creator: Brenden" + "\n" +
-                "Procedure: procedure" + "\n" +
-                "Cuisine: cuisine" + "\n" +
-                "Ingredients: food" + "\n" +
-                "Calories: 1"+ "\n" +
-                "Time Required: 2" + "\n" +
-                "Difficulty (out of 5): 3" + "\n";
+        String expected = "Recipe: name\n"  +
+                "Creator: Brenden\n" +
+                "Procedure: procedure\n" +
+                "Cuisine: cuisine\n" +
+                "Ingredients: [food]\n" +
+                "Calories: 1\n" +
+                "Time Required: 2 minutes \n" +
+                "Difficulty (out of 5): 3\n";
         String actual = p.soutCreated();
         assertEquals(expected, actual);
     }
@@ -87,8 +87,13 @@ class ProfileTest {
     }
 
     @Test
+    void testGetUsername(){
+        assertEquals("Brenden", p.getUsername());
+    }
+
+    @Test
     void testSoutInfo(){
-        String expected = "Age: 20" + "\n" + "Height: " + 163 + "cm \n" + "Weight: " + 45 + "kg \n" +
+        String expected = "Age: 20" + "\n" + "Height: " + 163.0 + "cm \n" + "Weight: " + 45.0 + "kg \n" +
                 "Gender: Female" + "\n";
         assertEquals(expected, p.soutInfo());
     }

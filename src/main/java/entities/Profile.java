@@ -140,7 +140,7 @@ public class Profile implements Serializable {
     public String soutCreated() {
         String result = new String("");
         for (Recipe r : created){
-            result = result + r.toString() + "\n";
+            result = result + r.toString();
         }
         return result;
     }
