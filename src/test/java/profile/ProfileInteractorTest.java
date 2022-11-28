@@ -2,11 +2,16 @@ package profile;
 
 import entities.Profile;
 import entities.RecipeList;
+import entities.ReviewDatabase;
+import mealplan.MealplanOutputBoundary;
+import mealplan.MealplanPresenter;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import recipe.*;
-import ui.AppController;
+import recipe.RecipeInteractor;
+import recipe.RecipeReadWriter;
+import recipe.RecipeRepoGateway;
+import recipe.RecipeRequestModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,18 +20,25 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ProfileInteractorTest {
     ProfileRepoGateway prg;
-    ArrayList<Profile> temp;
+    ArrayList<Profile> tempProfile;
+    RecipeRepoGateway rrg;
+    RecipeList tempRecipe;
+    ReviewDatabase reviewDatabase;
 
     @BeforeEach
     void setUp() throws IOException {
         prg = ProfileRepoImpl.getPrl();
-        temp = prg.getProfile();
+        tempProfile = prg.getProfile();
+        rrg = RecipeReadWriter.getRecipeRepo();
+        tempRecipe = rrg.getRecipeList();
     }
 
     @AfterEach
     void tearDown() throws IOException {
-        prg.saveProfile(temp);
+        prg.saveProfile(tempProfile);
         prg = null;
+        rrg.saveRecipe(tempRecipe);
+        rrg = null;
     }
 
     @Test
@@ -100,9 +112,7 @@ public class ProfileInteractorTest {
 
             }
         };
-        ProfileRequestModel prm = new ProfileRequestModel(20, 163, 45, "Female");
         ProfileInteractor pi = new ProfileInteractor(output);
-        pi.setInfo("Allison", prm);
         pi.allCreated("Allison");
     }
 
@@ -177,15 +187,64 @@ public class ProfileInteractorTest {
 
             }
         };
-        ProfileRequestModel prm = new ProfileRequestModel(20, 163, 45, "Female");
         ProfileInteractor pi = new ProfileInteractor(output);
-        pi.setInfo("Allison", prm);
         pi.allReviewed("Allison");
     }
 
     @Test
-    void testCheckProfile(){
-        // todo
+    void testCheckProfile() throws IOException {
+        ProfileOutputBoundary output = new ProfileOutputBoundary() {
+            @Override
+            public void viewReviewed(String result) {
+
+            }
+
+            @Override
+            public void noReviewed() {
+
+            }
+
+            @Override
+            public void viewCreated(String result) {
+
+            }
+
+            @Override
+            public void noCreated() {
+
+            }
+
+            @Override
+            public void setInfoResult() {
+
+            }
+
+            @Override
+            public void viewInfo(String result) {
+
+            }
+
+            @Override
+            public void setUI(ProfileBox pb) {
+
+            }
+
+            @Override
+            public void setUI(InfoSetBox isb) {
+
+            }
+
+            @Override
+            public void setUI(InfoViewBox ivb) {
+
+            }
+        };
+        ArrayList<Profile> pl = new ArrayList<>();
+        Profile p = new Profile("Allison");
+        pl.add(p);
+        prg.saveProfile(pl);
+        ProfileInteractor pi = new ProfileInteractor(output);
+        assertEquals(p, pi.checkProfile("Allison"));
     }
 
     @Test
@@ -255,7 +314,75 @@ public class ProfileInteractorTest {
     }
 
     @Test
-    void testViewInfo(){
+    void testViewInfo() throws IOException {
+        ProfileOutputBoundary output = new ProfileOutputBoundary() {
+            @Override
+            public void viewReviewed(String result) {
+
+            }
+
+            @Override
+            public void noReviewed() {
+
+            }
+
+            @Override
+            public void viewCreated(String result) {
+
+            }
+
+            @Override
+            public void noCreated() {
+
+            }
+
+            @Override
+            public void setInfoResult() {
+
+            }
+
+            @Override
+            public void viewInfo(String result) {
+                ArrayList<Profile> profileList = null;
+                try {
+                    profileList = prg.getProfile();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                for (Profile p : profileList) {
+                    if (p.getUsername().equals("Allison")) {
+                        String expected = p.soutInfo();
+                        assertEquals(expected, result);
+                    }
+                }
+            }
+
+            @Override
+            public void setUI(ProfileBox pb) {
+
+            }
+
+            @Override
+            public void setUI(InfoSetBox isb) {
+
+            }
+
+            @Override
+            public void setUI(InfoViewBox ivb) {
+
+            }
+        };
+        Profile p = new Profile("Allison");
+        p.setAge(20);
+        p.setHeight(163);
+        p.setWeight(45);
+        p.setGender("Female");
+        ProfileInteractor pi = new ProfileInteractor(output);
+        pi.viewInfo("Allison");
+    }
+
+    @Test
+    void testCheckInfo() throws IOException {
         ProfileOutputBoundary output = new ProfileOutputBoundary() {
             @Override
             public void viewReviewed(String result) {
@@ -302,16 +429,14 @@ public class ProfileInteractorTest {
 
             }
         };
-    }
-
-    @Test
-    void testCheckInfo(){
-
-    }
-
-    @Test
-    void testSetAll(){
-
+        Profile p = new Profile("Allison");
+        p.setAge(20);
+        p.setHeight(163);
+        p.setWeight(45);
+        p.setGender("Female");
+        ProfileInteractor pi = new ProfileInteractor(output);
+        boolean status = pi.checkInfo("Allison");
+        assertTrue(status);
     }
 
 
