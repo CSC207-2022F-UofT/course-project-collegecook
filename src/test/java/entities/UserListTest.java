@@ -59,6 +59,12 @@ class UserListTest {
         User actual = l.getUser("a");
         assertEquals(expected, actual);
     }
+    @Test
+    void getUser2() {
+        User expected = null;
+        User actual = l.getUser("d");
+        assertEquals(null, actual);
+    }
 
     @Test
     void getAllUser() {
@@ -68,4 +74,5 @@ class UserListTest {
         assertEquals(expected, actual);
 
     }
+
 }
