@@ -53,6 +53,15 @@ public class ViewRecipeUI extends JFrame implements RecipeViewBox {
                 addMealplanUI.setVisible(true);
             }
         });
+
+        review.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CreateReviewUI createReviewUI = new CreateReviewUI(appController);
+                createReviewUI.setVisible(true);
+            }
+        });
+
         buttonPanel.add(review);
         buttonPanel.add(mealPlan);
 
