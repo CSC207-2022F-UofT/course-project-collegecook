@@ -50,4 +50,5 @@ public class UserList implements Serializable {
     public List<User> getAllUser() {
         return AllUser;
     }
+
 }

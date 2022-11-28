@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -92,5 +93,17 @@ public class UserTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    void equals() {
+        User c = new User("a","12345");
+        Boolean expected = true;
+        Boolean actual = a.equals(c);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void testHashCode() {
+        assertEquals(Objects.hash(a.getUsername()), a.hashCode());
+    }
 
 }
