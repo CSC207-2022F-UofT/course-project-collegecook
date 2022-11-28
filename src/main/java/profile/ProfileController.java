@@ -57,10 +57,10 @@ public class ProfileController {
     }
 
     /**
-     * Requests a ProfileInputBoundary to check if the user with the given username has already inputted his/her
-     * information.
+     * Requests a ProfileInputBoundary to check if the profile contains all the information of the user with the given
+     * username.
      * @param username the username of the user
-     * @return true if the user contains his/her information; false otherwise.
+     * @return true if the profile contains all the information; false otherwise.
      */
     public boolean performCheckInfo(String username)throws IOException{
         return inputBoundary.checkInfo(username);
