@@ -14,7 +14,7 @@ public class TotalNumRecipeComparator implements Comparator<User> {
         Profile profile2 = new Profile(o2.getUsername());
         int userTotalrecipe1 = profile1.getCreated().size();
         int userTotalrecipe2 = profile2.getCreated().size();
-        return userTotalrecipe1 - userTotalrecipe2;
+        return userTotalrecipe2 - userTotalrecipe1;
     }
 
 }

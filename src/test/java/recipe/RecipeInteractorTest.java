@@ -24,11 +24,11 @@ class RecipeInteractorTest {
         recipeRepoGateway = RecipeReadWriter.getRecipeRepo();
         recipeInteractor = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
         RecipeController recipeController = new RecipeController(recipeInteractor);
-        AppController appController = new AppController(recipeController);
-        RecipeCreateBox createBox = new CreateRecipeUI(appController);
-        recipeOutputBoundary.setUI(createBox);
-        RecipeViewBox recipeViewBox = new ViewRecipeUI(appController);
-        recipeOutputBoundary.setUI(recipeViewBox);
+        // AppController appController = new AppController(recipeController);
+        // RecipeCreateBox createBox = new CreateRecipeUI(appController);
+        //recipeOutputBoundary.setUI(createBox);
+        //RecipeViewBox recipeViewBox = new ViewRecipeUI(appController);
+        //recipeOutputBoundary.setUI(recipeViewBox);
         temp = recipeRepoGateway.getRecipeList();
         ArrayList<String> ta = new ArrayList<>();
         RecipeRequestModel recipeRequestModel = new RecipeRequestModel("Test3", "Procedure",

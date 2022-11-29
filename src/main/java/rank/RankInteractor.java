@@ -4,6 +4,8 @@ import entities.Rank;
 import entities.User;
 import entities.UserList;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
 
 public class RankInteractor implements RankInputBoundary{
@@ -33,24 +35,20 @@ public class RankInteractor implements RankInputBoundary{
         User[] totalUsers = new User[users.size()];
         users.toArray(totalUsers);
 
-        // sort
-        RankSorter rankSorter = null;
-
         switch (requestModel.getRanking()) {
             case "average rating": {
                 // sort based on avg rating
-                rankSorter = new AvgRatingSorter();
+                Arrays.sort(totalUsers, new AvgRatingComparator());
                 break;}
             case "total number of recipe": {
                 // sort based on # of recipe
-                rankSorter = new TotalNumRecipeSorter();
+                Arrays.sort(totalUsers, new TotalNumRecipeComparator());
                 break;}
             default: {
                 // sort based on total followers
-                rankSorter = new TotalFollowersSorter();
+                Arrays.sort(totalUsers, new TotalFollowersComparator());
                 break;}
         }
-        rankSorter.sort(totalUsers);
         rankOutputBoundary.prepareSuccessView(new RankResponseModel(requestModel.getRanking(), totalUsers));
         return new RankResponseModel(requestModel.getRanking(), totalUsers);
     }
