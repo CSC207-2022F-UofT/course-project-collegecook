@@ -5,7 +5,10 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class ProfileRepoImpl implements ProfileRepoGateway{
-    private static final String file = "Profile.sav";
+    /**
+     * This class is to read profiles from "profile.sav" or write profiles into "profile.sav"
+     */
+    private static final String file = "profile.sav";
     private static ProfileRepoImpl prl;
 
     public static ProfileRepoImpl getPrl(){
@@ -15,6 +18,10 @@ public class ProfileRepoImpl implements ProfileRepoGateway{
         return prl;
     }
 
+    /**
+     * @return Return a arraylist of profiles stored in the local file.
+     * @throws IOException
+     */
     @Override
     public ArrayList<Profile> getProfile() throws IOException {
         FileInputStream f1 = new FileInputStream(file);
@@ -28,11 +35,15 @@ public class ProfileRepoImpl implements ProfileRepoGateway{
         return null;
     }
 
+    /**
+     * @param profiles a arraylist of profiles that needs to be saved in the local file.
+     * @throws IOException
+     */
     @Override
-    public void saveProfile(ArrayList<Profile> pro) throws IOException {
+    public void saveProfile(ArrayList<Profile> profiles) throws IOException {
         FileOutputStream f2 = new FileOutputStream(file);
         ObjectOutputStream outputstream = new ObjectOutputStream(f2);
-        outputstream.writeObject(pro);
+        outputstream.writeObject(profiles);
         f2.close();
     }
 
