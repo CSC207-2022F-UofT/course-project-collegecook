@@ -1,6 +1,9 @@
 package profile;
 
 public class ProfileRequestModel {
+    /**
+     * This is a RequestModel, which combines information inputs together to avoid data clump (code smell).
+     */
     private int age;
     private float height;
     private float weight;
