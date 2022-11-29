@@ -7,7 +7,7 @@ package profile;
 public interface ProfileOutputBoundary {
 
     /**
-     * A method that passes the result of allReviewed from the interactor to presenter,
+     * A method that passes the result of allReviewed from the interactor to the presenter,
      * This method can only be called If the user reviewed some recipes.
      * @param result A string of all reviewed recipes.
      */
@@ -46,19 +46,19 @@ public interface ProfileOutputBoundary {
     void viewInfo(String result);
 
     /**
-     * Set up a ProfileBox interface, which will be implemented in the UI layer.
+     * Set up a ProfileBox interface.
      * @param profileBox A profileBox interface.
      */
     void setUI(ProfileBox profileBox);
 
     /**
-     * Set up a InfoSetBox interface, which will be implemented in the UI layer.
+     * Set up a InfoSetBox interface.
      * @param infoSetBox A InfoSetBox interface.
      */
     void setUI(InfoSetBox infoSetBox);
 
     /**
-     * Set up a InfoViewBox interface, which will be implemented in the UI layer.
+     * Set up a InfoViewBox interface.
      * @param infoViewBox A InfoViewBox interface.
      */
     void setUI(InfoViewBox infoViewBox);
