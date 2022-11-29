@@ -20,11 +20,15 @@ public class SearchSortRecipesResultsUI extends JFrame implements SearchResultsB
         for (Recipe recipe: matchingRecipes){
             searchResultsPanel.add(new JLabel(recipe.getRecipeName()));
         }
+        this.add(searchResultsPanel);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.pack();
+        this.setVisible(true);
     }
 
     @Override
     public void failure(String error) {
-        searchResultsPanel.add(new JLabel(error));
+        JOptionPane.showMessageDialog(null,"Sorry, no results were found.");
     }
 
     //    }

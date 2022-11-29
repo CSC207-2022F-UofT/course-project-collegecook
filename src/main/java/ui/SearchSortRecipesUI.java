@@ -5,6 +5,8 @@ import search.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -82,22 +84,25 @@ public class SearchSortRecipesUI extends JFrame{
         searchPanel.add(isSortAscendingLabel);
 
         searchButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        searchButton.addActionListener(e -> {
-            ArrayList<String> ingredients = new ArrayList<>(Arrays.asList(ingredientsInput.getText().split(",")));
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<String> ingredients = new ArrayList<>(Arrays.asList(ingredientsInput.getText().split(",")));
+                try {
+                    searchController.getSearchResults(
+                            nameInput.getText(),
+                            cuisineInput.getText(),
+                            ingredients,
+                            Integer.parseInt(timeInput.getText()),
+                            sortTypeInput.getText(),
+                            isSortAscendingInput.isSelected()
+                    );
+                } catch (IOException ex) {
+                    System.out.println("something went wrong");
+                    throw new RuntimeException(ex);
+                }
 
-            try {
-                searchController.getSearchResults(
-                        nameInput.getText(),
-                        cuisineInput.getText(),
-                        ingredients,
-                        Integer.parseInt(timeInput.getText()),
-                        sortTypeInput.getText(),
-                        isSortAscendingInput.isSelected()
-                );
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
             }
-
         });
 
         searchPanel.add(searchButton);

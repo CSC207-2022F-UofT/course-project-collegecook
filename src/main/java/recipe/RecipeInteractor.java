@@ -55,7 +55,6 @@ public class RecipeInteractor implements RecipeInputBoundary {
         return this.recipeList;
     }
 
-<<<<<<< HEAD
     public Recipe getRecipe(String recipeName){
         return this.recipeList.get_recipe(recipeName);
     }
@@ -63,16 +62,6 @@ public class RecipeInteractor implements RecipeInputBoundary {
         return this.readingRecipe;
     }
 
-=======
-    @Override
-     public Recipe getRecipe(String recipeName){
-            return this.recipeList.get_recipe(recipeName);
-        }
-        @Override
-        public String getReadingRecipe(){
-        return this.readingRecipe;
-        }
->>>>>>> view-recipes-3
 
 
 }

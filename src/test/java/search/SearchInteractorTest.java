@@ -2,78 +2,119 @@ package search;
 
 import entities.Recipe;
 import entities.RecipeList;
-import entities.Review;
+import entities.ReviewDatabase;
+import entities.UserList;
+import login.UserGateWay;
+import login.UserRepoImpl;
 import org.junit.jupiter.api.*;
 import recipe.*;
-
+import review.ReviewDatabaseReadWriter;
+import review.ReviewInteractor;
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class SearchInteractorTest {
 
     RecipeRepoGateway recipeRepoGateway;
-    RecipeList temp;
+    ReviewDatabaseReadWriter reviewDatabaseReadWriter;
+    ReviewInteractor reviewInteractor;
 
+    UserGateWay userGateWay;
+    RecipeList tempRecipes;
+    ReviewDatabase tempReviews;
+
+    UserList tempUsers;
+
+    /**
+     * Saves current recipe database data in a temporary object, clear database for use in test cases
+     * - Recipes are stored in recipe.sav file, accessed through RecipeReadWriter
+     * Saves current review database data in a temporary object
+     * - Reviews are stored in a review.sav file, accessed through ReviewInteractor
+     */
     @BeforeEach
     void setup() throws IOException {
         recipeRepoGateway = RecipeReadWriter.getRecipeRepo();
-        temp = recipeRepoGateway.getRecipeList();
+        tempRecipes = recipeRepoGateway.getRecipeList();
+
+        reviewDatabaseReadWriter = new ReviewDatabaseReadWriter();
+        tempReviews = ReviewInteractor.loadReviewDatabase();
+
+        userGateWay = UserRepoImpl.getUserRepoImpl();
+        tempUsers = userGateWay.getAllUser();
     }
 
+    /**
+     * Put original recipes back into recipe database
+     * Put original reviews back into review database
+     */
     @AfterEach
     void teardown() throws IOException {
-        recipeRepoGateway.saveRecipe(temp);
+        recipeRepoGateway.saveRecipe(tempRecipes);
         recipeRepoGateway = null;
+        tempRecipes = null;
+
+        reviewDatabaseReadWriter.saveToFile("reviews.sav", tempReviews);
+        tempReviews = null;
+
+        userGateWay.saveUser(tempUsers);
+        userGateWay = null;
+        tempUsers = null;
     }
 
+    /**
+     * Tests if find search results according to ingredients and sort by average rating
+     */
     @Test
     public void getSearchResultsSortAverageRating() throws IOException {
-        // set up recipes
-        Recipe[] recipes = new Recipe[3];
-        ArrayList<String> ingredients1 = new ArrayList<String>();
+        // set up recipes and save to recipe database
+        RecipeList recipes = new RecipeList();
+        ArrayList<String> ingredients1 = new ArrayList<>();
         ingredients1.add("apple");
         ingredients1.add("flour");
         ingredients1.add("sugar");
 
-        ArrayList<String> ingredients2 = new ArrayList<String>();
+        ArrayList<String> ingredients2 = new ArrayList<>();
         ingredients2.add("apple");
         ingredients2.add("sugar");
 
-        ArrayList<String> ingredients3 = new ArrayList<String>();
+        ArrayList<String> ingredients3 = new ArrayList<>();
         ingredients3.add("meatball");
         ingredients3.add("tomato");
         ingredients3.add("pasta");
 
-        Recipe recipe1 = new Recipe("apple pie", "blah apples", "french", ingredients1, 200, 20, 4, "bob");
-        Recipe recipe2 = new Recipe("candy apple", "blah apple candy", "french", ingredients2, 300, 10, 4, "cat");
-        Recipe recipe3 = new Recipe("spaghetti", "blah bananas", "italian", ingredients3, 100, 20, 30, "bob");
+        Recipe recipe1 = new Recipe("apple pie", "blah apples", "french", ingredients1, 200, 20, 4, "bob"); // has sugar
+        Recipe recipe2 = new Recipe("candy apple", "blah apple candy", "french", ingredients2, 300, 10, 4, "cat"); // has sugar
+        Recipe recipe3 = new Recipe("spaghetti", "blah bananas", "italian", ingredients3, 100, 20, 30, "bob"); // no sugar
 
-        recipes[0] = recipe1;
-        recipes[1] = recipe2;
-        recipes[2] = recipe3;
+        recipes.add_recipe(recipe1.getRecipeName(), recipe1.getProcedure(), recipe1.getCuisine(), recipe1.getIngredients(), recipe1.getCalories(), recipe1.getTime(), recipe1.getDifficulty(), "bob");
+        recipes.add_recipe(recipe2.getRecipeName(), recipe2.getProcedure(), recipe2.getCuisine(), recipe2.getIngredients(), recipe2.getCalories(), recipe2.getTime(), recipe2.getDifficulty(), "cat");
+        recipes.add_recipe(recipe3.getRecipeName(), recipe3.getProcedure(), recipe3.getCuisine(), recipe3.getIngredients(), recipe3.getCalories(), recipe3.getTime(), recipe3.getDifficulty(), "bob");
+        recipeRepoGateway.saveRecipe(recipes);
+
+        // create users (since to create review, need to update user average ratings)
+        UserList users = new UserList();
+        users.AddAllUser("lei", "1234");
+        users.AddAllUser("joe", "1234");
+        users.AddAllUser("ang", "1234");
+
+        userGateWay.saveUser(users);
 
         // reviews for each of the recipes
-        // average rating for each recipe should be: 4.3, 5, 4.
-        // sorted order should be Recipe3 (spaghetti), Recipe1 (apple pie), Recipe2 (candy apple)
-        Review[] reviews = new Review[5];
-        Review review1a = new Review("lei", recipes[0], 4);
-        Review review1b = new Review("joe", recipes[0], 5);
-        Review review1c = new Review("ang", recipes[0], 4);
-        Review review2a = new Review("ang", recipes[1], 5);
-        Review review3a = new Review("lei", recipes[2], 4);
+        reviewInteractor = new ReviewInteractor();
+        reviewInteractor.createReview("lei", recipe1.getRecipeName(), 4);
+        reviewInteractor.createReview("joe", recipe1.getRecipeName(), 5);
+        reviewInteractor.createReview("ang", recipe1.getRecipeName(), 4); // recipe1 average rating = 4.3
+        reviewInteractor.createReview("ang", recipe2.getRecipeName(), 5); // recipe2 average rating = 5
+        reviewInteractor.createReview("lei", recipe3.getRecipeName(), 4); // recipe3 average rating = 4
 
-        // create presenter with custom results
+        // create presenter with custom test results (instead of showing UI)
         SearchOutputBoundary searchPresenter = new SearchOutputBoundary() {
             @Override
             public void prepareSuccessView(SearchResponseModel searchResults) {
-                Recipe[] expectedResults = new Recipe[3];
-                expectedResults[0] = recipe3;
-                expectedResults[1] = recipe1;
-                expectedResults[2] = recipe2;
-
-                assertEquals(searchResults.matchingRecipes, expectedResults);
+                assertEquals(searchResults.matchingRecipes.length, 2);
+                assertEquals(searchResults.matchingRecipes[0], recipe2);
+                assertEquals(searchResults.matchingRecipes[1], recipe1);
             }
 
             @Override
@@ -82,12 +123,12 @@ public class SearchInteractorTest {
             }
         };
 
-        SearchInteractor searchInteractor = new SearchInteractor(searchPresenter, recipeRepoGateway);
 
-        // search request model
-        ArrayList<String> ingredients = new ArrayList<String>();
+        // search for recipes with:
+        // - ingredients has sugar, any name, cuisine, time.
+        // - sorted in ascending order by average rating
+        ArrayList<String> ingredients = new ArrayList<>();
         ingredients.add("sugar");
-
         SearchRequestModel searchRequestModel = new SearchRequestModel(
                 "",
                 "",
@@ -97,26 +138,14 @@ public class SearchInteractorTest {
                 true
         );
 
-        RecipeInteractor recipeInteractor = new RecipeInteractor(new RecipePresenter(), recipeRepoGateway);
-        recipeInteractor.createRecipe(new RecipeRequestModel(
-                recipe1.getRecipeName(), recipe1.getProcedure(),
-                recipe1.getCuisine(), recipe1.getIngredients(),
-                recipe1.getCalories(), recipe1.getTime(), recipe1.getDifficulty(), "bob"));
-        recipeInteractor.createRecipe(new RecipeRequestModel(
-                recipe2.getRecipeName(), recipe2.getProcedure(),
-                recipe2.getCuisine(), recipe2.getIngredients(),
-                recipe2.getCalories(), recipe2.getTime(), recipe2.getDifficulty(), "cat"));
-        recipeInteractor.createRecipe(new RecipeRequestModel(
-                recipe3.getRecipeName(), recipe3.getProcedure(),
-                recipe3.getCuisine(), recipe3.getIngredients(),
-                recipe3.getCalories(), recipe3.getTime(), recipe3.getDifficulty(), "bob"));
         // get search results
+        SearchInteractor searchInteractor = new SearchInteractor(searchPresenter, recipeRepoGateway);
         searchInteractor.getSearchResults(searchRequestModel);
     }
 
-    /**
-     * Test for getting search results sorted by number of reviews
-     */
+//    /**
+//     * Test for getting search results sorted by number of reviews
+//     */
 //    @Test
 //    public void getSearchResultsSortNumReviews() throws IOException {
 //        // set up objects
