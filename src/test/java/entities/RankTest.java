@@ -8,7 +8,9 @@ import rank.TotalNumRecipeComparator;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-    public class RankTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class RankTest {
 
     @Test
     public void TestUserFollowerComparator() {
@@ -22,9 +24,16 @@ import java.util.Arrays;
         user2.addFollowers(user4);
         User[] users = {user2,user1,user3};
         Arrays.sort(users, new TotalFollowersComparator());
+        ArrayList<String> expected = new ArrayList<String>();
+        expected.add(user1.getUsername());
+        expected.add(user2.getUsername());
+        expected.add(user3.getUsername());
+        ArrayList<String> actualList  = new ArrayList<String>();
         for (User user : users) {
-            System.out.println(user.getUsername());
-        }}
+            actualList.add(user.getUsername());
+        }
+        assertEquals(expected, actualList);
+        }
     @Test
     public void TestProfileComparator() {
         User user1 = new User("User1", "CSC207");
@@ -50,16 +59,22 @@ import java.util.Arrays;
         // Making recipe for profile 1
         ArrayList<Recipe> recipe1 = new ArrayList<Recipe>();
         recipe1.add(dish1);
-        recipe1.add(dish2);
         profile1.setCreated(recipe1);
         // Making recipe for profile 2
         ArrayList<Recipe> recipe2 = new ArrayList<Recipe>();
         recipe2.add(dish3);
+        recipe2.add(dish2);
         profile2.setCreated(recipe2);
         Arrays.sort(users, new TotalNumRecipeComparator());
+        ArrayList<String> expected = new ArrayList<String>();
+        expected.add(user2.getUsername());
+        expected.add(user1.getUsername());
+        expected.add(user3.getUsername());
+        ArrayList<String> actualList  = new ArrayList<String>();
         for (User user : users) {
-            System.out.println(user.getUsername());
+            actualList.add(user.getUsername());
         }
+        assertEquals(expected, actualList);
     }
     @Test
     public void TestAvgRating() {

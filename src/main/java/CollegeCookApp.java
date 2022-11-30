@@ -1,6 +1,7 @@
 import login.*;
 import mealplan.*;
 import profile.*;
+import rank.*;
 import recipe.*;
 import search.*;
 import ui.*;
@@ -33,6 +34,11 @@ public class CollegeCookApp {
         SearchInputBoundary searchInputBoundary = new SearchInteractor(searchOutputBoundary, recipeRepoGateway);
         SearchController searchController = new SearchController(searchInputBoundary);
 
+        // rank use case setup
+        RankOutputBoundary rankOutputBoundary = new RankPresenter();
+        RankInputBoundary rankInputBoundary = new RankInteractor(rankOutputBoundary);
+        RankController rankController = new RankController(rankInputBoundary);
+
         // UI
         
         MealplanOutputBoundary mealplanOutputBoundary= new MealplanPresenter();
@@ -40,7 +46,7 @@ public class CollegeCookApp {
         MealplanInputBoundary mealplanInputBoundary = new MealplanInteractor(mealplanOutputBoundary,loginControllor.preformGetLoggedInUser(),mrg);
         MealplanController mealplanController = new MealplanController(mealplanInputBoundary,profileInputBoundary,recipeInputBoundary);
 
-        AppController appController1 = new AppController(recipeController, loginControllor, profileController, mealplanController, searchController);
+        AppController appController1 = new AppController(recipeController, loginControllor, profileController, mealplanController, searchController, rankController);
 
         // UI
         RecipeCreateBox recipeCreateBox = new CreateRecipeUI(appController1);
