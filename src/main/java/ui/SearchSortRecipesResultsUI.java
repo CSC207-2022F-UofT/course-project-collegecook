@@ -17,10 +17,12 @@ public class SearchSortRecipesResultsUI extends JFrame implements SearchResultsB
 
     @Override
     public void success(Recipe[] matchingRecipes) {
+        searchResultsPanel.removeAll();
         for (Recipe recipe: matchingRecipes){
             searchResultsPanel.add(new JLabel(recipe.getRecipeName()));
         }
         this.add(searchResultsPanel);
+
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.pack();
         this.setVisible(true);

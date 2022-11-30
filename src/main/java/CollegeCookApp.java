@@ -47,6 +47,7 @@ public class CollegeCookApp {
         ProfileBox profileBox = new ProfileViewRecipeUI(appController1);
         InfoSetBox infoSetBox = new ProfileInfoUI(appController1);
         InfoViewBox infoViewBox = new ProfileUI(appController1);
+        SearchResultsBox searchResultsBox = new SearchSortRecipesResultsUI(appController1);
 
         // set corresponding view
         MealplanBox mealplanBox = new MealplanBoxUI(appController1);
@@ -60,6 +61,7 @@ public class CollegeCookApp {
         profileOutputBoundary.setUI(infoViewBox);
         ProfileUI profileUI = new ProfileUI(appController1);
         mealplanOutputBoundary.setUI(mealplanBox);
+        searchOutputBoundary.setUI(searchResultsBox);
         welcomeUI.setVisible(true);
     }
 }

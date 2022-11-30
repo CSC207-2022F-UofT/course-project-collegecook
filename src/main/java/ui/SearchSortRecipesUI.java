@@ -1,8 +1,6 @@
 package ui;
 
-import entities.Recipe;
 import search.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,8 +10,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class SearchSortRecipesUI extends JFrame{
+    // search controller
+    SearchController searchController;
+    // search panel
+    JPanel searchPanel = new JPanel();
+    // search button
+    JButton searchButton = new JButton("Search");
 
     // search criteria input fields and labels
+    JLabel title = new JLabel("Search & Sort Recipes");
+
     JTextField nameInput = new JTextField(40);
     JLabel nameLabel = new JLabel("Name/Keyword: ");
 
@@ -32,17 +38,7 @@ public class SearchSortRecipesUI extends JFrame{
     JCheckBox isSortAscendingInput = new JCheckBox();
     JLabel isSortAscendingLabel = new JLabel("Sort by ascending? ");
 
-    // title of screen
-    JLabel title = new JLabel("Search & Sort Recipes");
 
-    // search button
-    JButton searchButton = new JButton("Search");
-
-    // search panel
-    JPanel searchPanel = new JPanel();
-
-    // search controller
-    SearchController searchController;
 
     /**
      * Screen with fields to enter search criteria/sorting options, and button to search
@@ -87,13 +83,12 @@ public class SearchSortRecipesUI extends JFrame{
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ArrayList<String> ingredients = new ArrayList<>(Arrays.asList(ingredientsInput.getText().split(",")));
                 try {
                     searchController.getSearchResults(
                             nameInput.getText(),
                             cuisineInput.getText(),
-                            ingredients,
-                            Integer.parseInt(timeInput.getText()),
+                            new ArrayList<>(Arrays.asList(ingredientsInput.getText().split(","))),
+                            timeInput.getText().isEmpty() ? 0 : Integer.parseInt(timeInput.getText()),
                             sortTypeInput.getText(),
                             isSortAscendingInput.isSelected()
                     );
@@ -104,8 +99,8 @@ public class SearchSortRecipesUI extends JFrame{
 
             }
         });
-
         searchPanel.add(searchButton);
+
         this.add(searchPanel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.pack();
