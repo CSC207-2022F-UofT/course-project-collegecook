@@ -3,31 +3,28 @@ package ui;
 import login.LoginControllor;
 import mealplan.MealplanController;
 import profile.ProfileController;
-import rank.RankController;
 import recipe.RecipeController;
+import search.SearchController;
 
 public class AppController {
     private final RecipeController recipeController;
     private final LoginControllor loginControllor;
     private final ProfileController profileController;
+    private final SearchController searchController;
+
     private final MealplanController mealplanController;
-    private final RankController rankController;
 
     public AppController(RecipeController recipeController, LoginControllor loginControllor, ProfileController profileController,
-                         MealplanController mealplanController, RankController rankController) {
+                         MealplanController mealplanController, SearchController searchController) {
         this.recipeController = recipeController;
         this.loginControllor = loginControllor;
         this.profileController = profileController;
         this.mealplanController = mealplanController;
-        this.rankController = rankController;
+        this.searchController = null;
     }
 
     public RecipeController getRecipeController() {
         return recipeController;
-    }
-
-    public RankController getRankController() {
-        return rankController;
     }
 
     public LoginControllor getLoginControllor() {
@@ -38,7 +35,12 @@ public class AppController {
         return profileController;
     }
 
+
+    public SearchController getSearchController() {
+        return searchController;
+    }
     public MealplanController getMealplanController() {
         return mealplanController;
+
     }
 }

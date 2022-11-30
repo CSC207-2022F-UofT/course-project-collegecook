@@ -1,8 +1,8 @@
 package review;
 
 import entities.*;
-import recipe.RecipeRepoGateway;
 import recipe.RecipeReadWriter;
+import recipe.RecipeRepoGateway;
 
 import java.io.IOException;
 
@@ -18,6 +18,7 @@ public class ReviewInteractor {
      */
     public ReviewInteractor() {
         try {
+
             RecipeRepoGateway rrg = RecipeReadWriter.getRecipeRepo();
             recipeList = rrg.getRecipeList();
         } catch (IOException e) {

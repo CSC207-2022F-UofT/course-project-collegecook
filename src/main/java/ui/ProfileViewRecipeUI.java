@@ -49,7 +49,9 @@ public class ProfileViewRecipeUI extends JFrame implements ProfileBox {
                 }
             }
         });
-
+        this.add(recipePanel);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.pack();
     }
 
     @Override

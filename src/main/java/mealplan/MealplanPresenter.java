@@ -11,12 +11,6 @@ public class MealplanPresenter implements MealplanOutputBoundary{
     }
 
     @Override
-    public void addRecipe(String recipe, int meal) {
-        if (mealplanBox != null) {
-            mealplanBox.setMealplan(recipe, meal);
-        }
-    }
-    @Override
     public void setUI (MealplanBox mealplanbox) {
         this.mealplanBox=mealplanbox;
     }
