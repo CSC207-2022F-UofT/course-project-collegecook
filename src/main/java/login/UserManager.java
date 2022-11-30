@@ -57,17 +57,7 @@ public class UserManager implements LoginInputBound {
         }
     }
 
-    @Override
-    // method to find the user in the allUsers and change the status to logged out
-    public void Logout(String username){
-        for(User person :AllUser.getAllUser()){
-            if(Objects.equals(person.getUsername(), username)){
-            }else{LoginOutputBound.LogoutFail();}
 
-        }
-
-
-    }
 
     @Override
     //Check if user already followed this other user(refactoring)

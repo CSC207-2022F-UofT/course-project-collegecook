@@ -10,14 +10,11 @@ public interface LoginOutputBound {
     void CreatAccountSuccess();
     void CreatAccountFail();
 
-    void LogoutFail();
-
     void FollowedSuccess();
     void FollowedFail();
 
     void UnFollowedSuccess();
     void UnFollowedFail();
-    void AddProfile();
     void setUI(LoginBox loginBox);
     void setUI(SignUpBox signUpBox);
     void setUI(RecipeViewBox recipeViewBox);

@@ -19,9 +19,6 @@ public class LoginControllor {
         loginInputBound.Login(username,password);
     }
 
-    public void PerformLogout(String username){
-        loginInputBound.Logout(username);
-    }
 
 
     public void PreformFollow(String username, String other) throws IOException {

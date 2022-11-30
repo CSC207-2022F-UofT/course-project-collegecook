@@ -5,10 +5,10 @@ import entities.UserList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import recipe.RecipeReadWriter;
-import recipe.RecipeRepoGateway;
+import recipe.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,15 +33,170 @@ class UserManagerTest {
 
     @Test
     void checkAllUser() {
+        LoginOutputBound loginOutputBound = new LoginOutputBound() {
+            @Override
+            public void LoginSuccess() {
+
+            }
+
+            @Override
+            public void LoginFailed() {
+
+            }
+
+            @Override
+            public void CreatAccountSuccess() {
+                UserList userList = null;
+                try {
+                    userList = userGateWay.getAllUser();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                assertTrue(userList.contains("a"));
+
+            }
+
+            @Override
+            public void CreatAccountFail() {
+                UserList userList = null;
+                try {
+                    userList = userGateWay.getAllUser();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                assertTrue(userList.contains("a"));
+
+            }
+
+            @Override
+            public void LogoutFail() {
+
+            }
+
+            @Override
+            public void FollowedSuccess() {
+
+            }
+
+            @Override
+            public void FollowedFail() {
+
+            }
+
+            @Override
+            public void UnFollowedSuccess() {
+
+            }
+
+            @Override
+            public void UnFollowedFail() {
+
+            }
+
+            @Override
+            public void AddProfile() {
+
+            }
+
+            @Override
+            public void setUI(LoginBox loginBox) {
+
+            }
+
+            @Override
+            public void setUI(SignUpBox signUpBox) {
+
+            }
+
+            @Override
+            public void setUI(RecipeViewBox recipeViewBox) {
+
+            }
+        };
+        UserManager userManager = new UserManager(loginOutputBound,userGateWay);
+        userManager.CheckAllUser("a","12345");
     }
+
+
+
 
     @Test
     void login() {
+        LoginOutputBound loginOutputBound = new LoginOutputBound() {
+            @Override
+            public void LoginSuccess() {
+
+            }
+
+            @Override
+            public void LoginFailed() {
+
+            }
+
+            @Override
+            public void CreatAccountSuccess() {
+
+            }
+
+            @Override
+            public void CreatAccountFail() {
+
+            }
+
+            @Override
+            public void LogoutFail() {
+
+            }
+
+            @Override
+            public void FollowedSuccess() {
+
+            }
+
+            @Override
+            public void FollowedFail() {
+
+            }
+
+            @Override
+            public void UnFollowedSuccess() {
+
+            }
+
+            @Override
+            public void UnFollowedFail() {
+
+            }
+
+            @Override
+            public void AddProfile() {
+
+            }
+
+            @Override
+            public void setUI(LoginBox loginBox) {
+
+            }
+
+            @Override
+            public void setUI(SignUpBox signUpBox) {
+
+            }
+
+            @Override
+            public void setUI(RecipeViewBox recipeViewBox) {
+
+            }
+        };
+        UserManager userManager = new UserManager(loginOutputBound,userGateWay);
+        userManager.CheckAllUser("a","12345");
+        userManager.Login("a","12345");
+        String expected = "a";
+        String actual = userManager.getLoggedInUser() ;
+        assertEquals(expected, actual);
+
     }
 
-    @Test
-    void logout() {
-    }
 
     @Test
     void checkFollow() {
