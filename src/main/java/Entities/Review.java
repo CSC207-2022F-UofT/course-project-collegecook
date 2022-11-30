@@ -1,6 +1,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Review implements Serializable {
 
@@ -72,6 +73,14 @@ public class Review implements Serializable {
     public String toString(){
         return "Reviewer: " + username + System.lineSeparator() + "Rating: " + rating + "/5" +
                 System.lineSeparator() + "\"" + reviewContent + "\"";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Review review = (Review) o;
+        return rating == review.rating && Objects.equals(username, review.username) && Objects.equals(reviewedRecipe, review.reviewedRecipe) && Objects.equals(reviewContent, review.reviewContent);
     }
 
 }
