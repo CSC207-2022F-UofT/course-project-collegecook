@@ -1,9 +1,20 @@
 package review;
 import entities.ReviewDatabase;
+import recipe.RecipeReadWriter;
 
 import java.io.*;
 
 public class ReviewDatabaseReadWriter implements ReadWriter<ReviewDatabase> {
+
+    private static ReviewDatabaseReadWriter reviewReadWriter;
+    public static ReviewDatabaseReadWriter getRecipeRepo(){
+        if (reviewReadWriter == null){
+            reviewReadWriter = new ReviewDatabaseReadWriter();
+        }
+        return reviewReadWriter;
+    }
+
+
     /**
      * Writes the users to file at filePath.
      *

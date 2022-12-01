@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class ReviewDatabase implements Serializable {
 
-    private ArrayList<Review> reviews = new ArrayList<Review>();
+    private ArrayList<Review> reviews = new ArrayList<>();
 
     /**
      * Add the given review to the database.

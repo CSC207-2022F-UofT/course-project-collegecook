@@ -25,12 +25,10 @@ class ReviewInteractorTest {
 
     @BeforeEach
     void setUp() throws IOException, ClassNotFoundException {
-        readWriter = new ReviewDatabaseReadWriter();
-        ReviewDatabaseReadWriter readWriter = new ReviewDatabaseReadWriter();
-        ReviewDatabase current = readWriter.readFromFile("reviews.sav");
+        readWriter = ReviewDatabaseReadWriter.getRecipeRepo();
+        current = readWriter.readFromFile("reviews.sav");
         ReviewDatabase empty = new ReviewDatabase();
         readWriter.saveToFile("reviews.sav", empty);
-        interactor = new ReviewInteractor();
 
         recipeReadWriter = RecipeReadWriter.getRecipeRepo();
         temp = recipeReadWriter.getRecipeList();
@@ -41,11 +39,14 @@ class ReviewInteractorTest {
         list.add_recipe("spaghetti", "Just cook it",
                 "italy", ingredients, 500, 10, 3, "Ben");
         recipeReadWriter.saveRecipe(list);
+
+        interactor = new ReviewInteractor();
     }
 
     @AfterEach
     void tearDown() throws IOException {
         readWriter.saveToFile("reviews.sav", current);
+        recipeReadWriter.saveRecipe(temp);
         readWriter = null;
         current = null;
         interactor = null;
@@ -65,12 +66,6 @@ class ReviewInteractorTest {
 
     @Test
     void TestcreateReview() throws IOException, ClassNotFoundException {
-        ArrayList<String> ingredients = new ArrayList<>();
-        ingredients.add("pasta");
-        ingredients.add("sauce");
-        Recipe sampleRecipe = new Recipe("spaghetti", "Just cook it",
-                "italy", ingredients, 500, 10, 3, "Ben");
-
         interactor.createReview("bob", "spaghetti", "tasted terrible", 1);
         ArrayList<Review> actual = readWriter.readFromFile("reviews.sav").getUserReviews("bob");
         Review review = ReviewSimpleFactory.createReview();
