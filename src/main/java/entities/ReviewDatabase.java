@@ -6,6 +6,7 @@ import java.util.Objects;
 
 public class ReviewDatabase implements Serializable {
 
+    private static final long serialVersionUID = -8459197638434162084L;
     private ArrayList<Review> reviews = new ArrayList<>();
 
     /**

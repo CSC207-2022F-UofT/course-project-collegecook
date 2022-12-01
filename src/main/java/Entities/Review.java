@@ -5,6 +5,7 @@ import java.util.Objects;
 
 public class Review implements Serializable {
 
+    private static final long serialVersionUID = -1460462247339298801L;
     private final String username;
     private final Recipe reviewedRecipe;
     private String reviewContent = "";

@@ -43,6 +43,9 @@ public class ReviewInteractor {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        if (database == null) {
+            database = new ReviewDatabase();
+        }
         return database;
     }
 
