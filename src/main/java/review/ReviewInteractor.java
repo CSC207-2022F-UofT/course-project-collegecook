@@ -10,7 +10,7 @@ public class ReviewInteractor {
 
     private RecipeList recipeList;
     private ReviewDatabase reviewDatabase;
-    private static final ReviewDatabaseReadWriter databaseReadWriter = ReviewDatabaseReadWriter.getRecipeRepo();
+    private static final ReviewDatabaseReadWriter databaseReadWriter = ReviewDatabaseReadWriter.getReviewRepo();
 
 
     /**

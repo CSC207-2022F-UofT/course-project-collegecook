@@ -25,7 +25,7 @@ class ReviewInteractorTest {
 
     @BeforeEach
     void setUp() throws IOException, ClassNotFoundException {
-        readWriter = ReviewDatabaseReadWriter.getRecipeRepo();
+        readWriter = ReviewDatabaseReadWriter.getReviewRepo();
         current = readWriter.readFromFile("reviews.sav");
         ReviewDatabase empty = new ReviewDatabase();
         readWriter.saveToFile("reviews.sav", empty);

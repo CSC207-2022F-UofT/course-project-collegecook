@@ -7,7 +7,7 @@ import java.io.*;
 public class ReviewDatabaseReadWriter implements ReadWriter<ReviewDatabase> {
 
     private static ReviewDatabaseReadWriter reviewReadWriter;
-    public static ReviewDatabaseReadWriter getRecipeRepo(){
+    public static ReviewDatabaseReadWriter getReviewRepo(){
         if (reviewReadWriter == null){
             reviewReadWriter = new ReviewDatabaseReadWriter();
         }
