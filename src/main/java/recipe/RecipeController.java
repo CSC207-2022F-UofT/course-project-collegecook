@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class RecipeController {
     /**
-     * This is RecipeController, a class in Controller layer.
+     * This is RecipeController, a class in the Controller layer.
      */
 
     RecipeInputBoundary recipeInputBoundary;
@@ -51,7 +51,17 @@ public class RecipeController {
         recipeInputBoundary.readRecipe(recipeName);
     }
 
+    /**
+     *
+     * @return Return the name of the recipe that the user is currently reading.
+     */
     public String getReadingRecipe(){return recipeInputBoundary.getReadingRecipe();}
+
+    /**
+     *
+     * @param name name is the name of the recipe
+     * @return Return the recipe according to the given name.
+     */
     public Recipe getRecipe(String name){
         return recipeInputBoundary.getRecipe(name);
     }

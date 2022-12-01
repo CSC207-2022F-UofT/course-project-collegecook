@@ -1,6 +1,8 @@
 package mealplan;
+import entities.MealplanList;
 import entities.Profile;
 import entities.RecipeList;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,16 +15,32 @@ public class MealplanInteractorTest {
     MealplanGateway mealplanGate;
     MealplanInputBoundary mealplanInteractor;
     RecipeList rl;
+    MealplanList temp;
     @BeforeEach
-    void setUp() throws IOException {
+    void setUp() throws IOException, ClassNotFoundException {
         MealplanOutputBoundary mealplanOutputBoundary= new MealplanPresenter();
         mealplanGate = MealplanGate.getInstance();
+        temp = mealplanGate.readFromFile();
         mealplanInteractor = new MealplanInteractor(mealplanOutputBoundary, "user",mealplanGate);
+        mealplanInteractor.deleteMealplan(0);
+        mealplanInteractor.deleteMealplan(1);
+        mealplanInteractor.deleteMealplan(2);
+    }
+
+    @AfterEach
+    void tearDown() throws IOException {
+        mealplanGate.saveToFile(temp);
+        mealplanGate = null;
     }
 
     @Test
+    void getMealplanlist() throws IOException, ClassNotFoundException {
+        mealplanInteractor.addRecipe("recipe2",1);
+        assertEquals(mealplanInteractor.getMealplanList(),mealplanGate.readFromFile());
+    }
+    @Test
     void addRecipe(){
-        mealplanInteractor.addRecipe("recipe",1);
+        mealplanInteractor.addRecipe("recipe",0);
         assertTrue(mealplanInteractor.getMealplan().returnMealPlan().get(0).contains("recipe"));
     }
 
