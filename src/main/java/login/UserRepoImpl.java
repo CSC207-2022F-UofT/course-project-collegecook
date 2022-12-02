@@ -41,7 +41,7 @@ public class UserRepoImpl implements UserGateWay {
 
     }
 
-    public static void main(String[] arg) throws IOException {
+    /*public static void main(String[] arg) throws IOException {
         UserList userlist= new UserList();
         User user = new User("Brenden", "12345");
         userlist.AddAllUser("Brenden", "12345");
@@ -50,5 +50,5 @@ public class UserRepoImpl implements UserGateWay {
         System.out.println(userGateWay.getAllUser().CheckAllUser("Brenden"));
 
 
-    }
+    }*/
 }

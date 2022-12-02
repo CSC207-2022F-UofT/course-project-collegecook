@@ -51,4 +51,6 @@ public class UserList implements Serializable {
         return AllUser;
     }
 
+    public void getAllUser(String c, String s) {
+    }
 }
