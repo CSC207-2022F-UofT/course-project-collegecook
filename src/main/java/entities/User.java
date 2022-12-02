@@ -1,7 +1,6 @@
 package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import java.util.Objects;
@@ -18,7 +17,7 @@ public class User implements Serializable {
     private List<User> followed;
 
     /**
-     *
+     * Constructor for class User
      * @param username The name of the user.
      * @param password The password of the recipe
      */
@@ -31,16 +30,28 @@ public class User implements Serializable {
 
     }
 
+    /**
+     * To return the username of User
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * To return the password of User
+     */
     public String getPassword() {
         return password;
     }
 
-
+    /**
+     * To return the number of followers of the User
+     */
     public int GetNumberOfFollowers(){return followers.size();}
+
+    /**
+     * To return the number of followers of the User
+     */
 
     public int GetNumberOfFollowed(){return followed.size();}
 
