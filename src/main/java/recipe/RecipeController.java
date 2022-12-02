@@ -31,7 +31,6 @@ public class RecipeController {
      * @param time The time required in making the cuisine.
      * @param difficulty The difficulty of making the cuisine.
      * @param creator The creator of the recipe
-     *
      * This method is used to combine the input of uses into an RecipeRequestModel to avoid Data Clump, and pass it
      * to the recipeInputBoundary.
      */

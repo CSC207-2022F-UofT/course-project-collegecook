@@ -17,14 +17,13 @@ public class ReviewInteractor {
      * Construct a ReviewInteractor.
      */
     public ReviewInteractor() {
-        try {
 
             RecipeRepoGateway rrg = RecipeReadWriter.getRecipeRepo();
             recipeList = rrg.getRecipeList();
-        } catch (IOException e) {
+
             recipeList = new RecipeList();
             System.out.println("Read file failed.....");
-        }
+
 
         this.reviewDatabase = loadReviewDatabase();
     }

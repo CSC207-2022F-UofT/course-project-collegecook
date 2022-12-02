@@ -1,7 +1,5 @@
 package recipe;
 
-import java.io.IOException;
-
 public interface RecipeOutputBoundary {
     /**
      * This RecipeOutputBoundary is created to follow the clean architecture. RecipePresenter should implement this

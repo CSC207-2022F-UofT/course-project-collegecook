@@ -1,10 +1,8 @@
 package recipe;
 
-import entities.Recipe;
 import entities.RecipeList;
 
 import java.io.*;
-import java.util.ArrayList;
 
 public class RecipeReadWriter implements RecipeRepoGateway{
     /**
@@ -26,41 +24,28 @@ public class RecipeReadWriter implements RecipeRepoGateway{
         return recipeReadWriter;
     }
 
-    /**
-     *
-     * @return Return the recipeList stored in the local file.
-     * @throws IOException
-     */
+
     @Override
-    public RecipeList getRecipeList() throws IOException {
-        FileInputStream f = new FileInputStream(file);
-        ObjectInputStream inputStream = new ObjectInputStream(f);
+    public RecipeList getRecipeList(){
         try{
+            FileInputStream f = new FileInputStream(file);
+            ObjectInputStream inputStream = new ObjectInputStream(f);
             return (RecipeList) inputStream.readObject();
-        } catch (ClassNotFoundException e){
-            e.printStackTrace();
+        } catch (ClassNotFoundException | ClassCastException | IOException e){
+            return new RecipeList();
         }
-        f.close();
-        return null;
     }
 
-    /**
-     *
-     * @param recipeList The recipeList that user wants to store.
-     * @throws IOException
-     */
+
     @Override
-    public void saveRecipe(RecipeList recipeList) throws IOException {
-        FileOutputStream f2 = new FileOutputStream(file);
-        ObjectOutputStream outputStream = new ObjectOutputStream(f2);
-        outputStream.writeObject(recipeList);
-        f2.close();
-    }
-
-    public static void main(String[] args) throws IOException {
-        RecipeReadWriter recipeReadWriter1 = RecipeReadWriter.getRecipeRepo();
-        for(Recipe r: recipeReadWriter1.getRecipeList()){
-            System.out.println(r.getRecipeName());
+    public void saveRecipe(RecipeList recipeList){
+        try {
+            FileOutputStream f2 = new FileOutputStream(file);
+            ObjectOutputStream outputStream = new ObjectOutputStream(f2);
+            outputStream.writeObject(recipeList);
+            f2.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

@@ -3,7 +3,6 @@ package recipe;
 import entities.Recipe;
 import entities.RecipeList;
 
-import java.util.ArrayList;
 
 public interface RecipeInputBoundary {
 

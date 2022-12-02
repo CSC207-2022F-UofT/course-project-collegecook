@@ -112,10 +112,5 @@ public class CreateRecipeUI extends JFrame implements RecipeCreateBox{
                 "Sorry, the recipe's name already exists.");
     }
 
-    @Override
-    public void setV(boolean vision) {
-        this.setVisible(vision);
-    }
-
 
 }

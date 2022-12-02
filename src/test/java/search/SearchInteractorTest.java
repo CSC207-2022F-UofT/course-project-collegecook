@@ -18,12 +18,12 @@ public class SearchInteractorTest {
         // set up objects
         RecipeRepoGateway recipeRepoGateway = new RecipeRepoGateway() {
             @Override
-            public RecipeList getRecipeList() throws IOException {
+            public RecipeList getRecipeList(){
                 return null;
             }
 
             @Override
-            public void saveRecipe(RecipeList recipeList) throws IOException {
+            public void saveRecipe(RecipeList recipeList){
 
             }
         };
@@ -66,12 +66,12 @@ public class SearchInteractorTest {
         // set up objects
         RecipeRepoGateway recipeRepoGateway = new RecipeRepoGateway() {
             @Override
-            public RecipeList getRecipeList() throws IOException {
+            public RecipeList getRecipeList(){
                 return null;
             }
 
             @Override
-            public void saveRecipe(RecipeList recipeList) throws IOException {
+            public void saveRecipe(RecipeList recipeList) {
 
             }
         };
@@ -114,12 +114,12 @@ public class SearchInteractorTest {
         // set up objects
         RecipeRepoGateway recipeRepoGateway = new RecipeRepoGateway() {
             @Override
-            public RecipeList getRecipeList() throws IOException {
+            public RecipeList getRecipeList(){
                 return null;
             }
 
             @Override
-            public void saveRecipe(RecipeList recipeList) throws IOException {
+            public void saveRecipe(RecipeList recipeList) {
 
             }
         };
@@ -162,12 +162,12 @@ public class SearchInteractorTest {
         // set up objects
         RecipeRepoGateway recipeRepoGateway = new RecipeRepoGateway() {
             @Override
-            public RecipeList getRecipeList() throws IOException {
+            public RecipeList getRecipeList(){
                 return null;
             }
 
             @Override
-            public void saveRecipe(RecipeList recipeList) throws IOException {
+            public void saveRecipe(RecipeList recipeList) {
 
             }
         };
@@ -210,12 +210,12 @@ public class SearchInteractorTest {
         // set up objects
         RecipeRepoGateway recipeRepoGateway = new RecipeRepoGateway() {
             @Override
-            public RecipeList getRecipeList() throws IOException {
+            public RecipeList getRecipeList(){
                 return null;
             }
 
             @Override
-            public void saveRecipe(RecipeList recipeList) throws IOException {
+            public void saveRecipe(RecipeList recipeList) {
 
             }
         };

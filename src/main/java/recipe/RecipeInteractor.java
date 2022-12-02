@@ -3,7 +3,7 @@ package recipe;
 import entities.Recipe;
 import entities.RecipeList;
 
-import java.io.IOException;
+
 
 
 public class RecipeInteractor implements RecipeInputBoundary {
@@ -11,7 +11,7 @@ public class RecipeInteractor implements RecipeInputBoundary {
      * This is RecipeInteractor, which is in the Use Case layer.
      */
     private final RecipeRepoGateway rrg;
-    private RecipeList recipeList;
+    private final RecipeList recipeList;
     final RecipeOutputBoundary recipeOutputBoundary;
     private String readingRecipe = null;
 
@@ -23,11 +23,8 @@ public class RecipeInteractor implements RecipeInputBoundary {
     public RecipeInteractor(RecipeOutputBoundary recipeOutputBoundary, RecipeRepoGateway recipeRepoGateway) {
         this.recipeOutputBoundary = recipeOutputBoundary;
         this.rrg = recipeRepoGateway;
-        try {
-            recipeList = rrg.getRecipeList();
-        } catch (IOException e) {
-            recipeList = new RecipeList();
-        }
+        recipeList = rrg.getRecipeList();
+
     }
 
     /**
@@ -44,13 +41,10 @@ public class RecipeInteractor implements RecipeInputBoundary {
                     recipeRequestModel.getCuisine(), recipeRequestModel.getIngredients(),
                     recipeRequestModel.getCalories(), recipeRequestModel.getTime(),
                     recipeRequestModel.getDifficulty(), recipeRequestModel.getCreator());
-            try {
-                rrg.saveRecipe(recipeList);
-                recipeOutputBoundary.createSuccessView();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            rrg.saveRecipe(recipeList);
+            recipeOutputBoundary.createSuccessView();
         }
+
     }
 
     /**
