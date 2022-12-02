@@ -20,6 +20,7 @@ public class ProfileController {
     /**
      * Requests a ProfileInputBoundary to view all created recipes of the user with the given username.
      * @param username the username of the user
+     * @throws IOException
      */
     public void performAllCreated(String username) throws IOException {
         inputBoundary.allCreated(username);
@@ -28,6 +29,7 @@ public class ProfileController {
     /**
      * Requests a ProfileInputBoundary to view all recipes reviewed by the user with the given username.
      * @param username the username of the user
+     * @throws IOException
      */
     public void performAllReviewed(String username) throws IOException {
         inputBoundary.allReviewed(username);
@@ -40,6 +42,7 @@ public class ProfileController {
      * @param height the height of the user
      * @param weight the weight of the user
      * @param gender the gender of the user
+     * @throws IOException
      * This method passes all the parameters excluding username into a ProfileRequestModel to avoid Data Clump,
      * and passes the request model to the recipeInputBoundary.
      */
@@ -51,6 +54,7 @@ public class ProfileController {
     /**
      * Requests a ProfileInputBoundary to view all information of the user with the given username.
      * @param username the username of the user
+     * @throws IOException
      */
     public void performViewInfo(String username) throws IOException {
         inputBoundary.viewInfo(username);
@@ -61,6 +65,7 @@ public class ProfileController {
      * username.
      * @param username the username of the user
      * @return true if the profile contains all the information; false otherwise.
+     * @throws IOException
      */
     public boolean performCheckInfo(String username)throws IOException{
         return inputBoundary.checkInfo(username);

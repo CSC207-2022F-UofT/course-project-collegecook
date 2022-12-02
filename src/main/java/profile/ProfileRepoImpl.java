@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 public class ProfileRepoImpl implements ProfileRepoGateway{
     /**
-     * This class is to read profiles from "profile.sav" or write profiles into "profile.sav"
+     * This class is to read profiles from "Profile.sav" or write profiles into "Profile.sav"
      */
-    private static final String file = "profile.sav";
+    private static final String file = "Profile.sav";
     private static ProfileRepoImpl prl;
 
     public static ProfileRepoImpl getPrl(){
@@ -19,7 +19,7 @@ public class ProfileRepoImpl implements ProfileRepoGateway{
     }
 
     /**
-     * @return Return a arraylist of profiles stored in the local file.
+     * @return Return an arraylist of profiles stored in the local file.
      * @throws IOException
      */
     @Override
@@ -36,7 +36,7 @@ public class ProfileRepoImpl implements ProfileRepoGateway{
     }
 
     /**
-     * @param profiles a arraylist of profiles that needs to be saved in the local file.
+     * @param profiles an arraylist of profiles that needs to be saved in the local file.
      * @throws IOException
      */
     @Override
