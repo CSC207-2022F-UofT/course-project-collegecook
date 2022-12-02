@@ -51,9 +51,6 @@ public class ProfileInfoUI extends JFrame implements InfoSetBox {
             }
         });
 
-        setButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        infoPanel.add(setButton);
-
         age.setAlignmentX(Component.CENTER_ALIGNMENT);
         infoPanel.add(age);
         ageInput.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -69,17 +66,23 @@ public class ProfileInfoUI extends JFrame implements InfoSetBox {
         weightInput.setAlignmentX(Component.CENTER_ALIGNMENT);
         infoPanel.add(weightInput);
 
-        femaleButton.setBounds(120, 30, 120, 50);
-        maleButton.setBounds(250, 30, 80, 50);
-        confirmButton.setBounds(125, 90, 80, 30);
-        genderLabel.setBounds(20, 30, 150, 50);
+//        femaleButton.setBounds(0, 25, 120, 50);
+//        maleButton.setBounds(0, 10, 80, 50);
+//        confirmButton.setBounds(0, 30, 80, 30);
 
-        infoPanel.add(femaleButton);
-        infoPanel.add(maleButton);
-        infoPanel.add(confirmButton);
+        genderLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         infoPanel.add(genderLabel);
+        femaleButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        infoPanel.add(femaleButton);
+        maleButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        infoPanel.add(maleButton);
+        confirmButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        infoPanel.add(confirmButton);
         G1.add(femaleButton);
         G1.add(maleButton);
+
+        setButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        infoPanel.add(setButton);
 
         this.add(infoPanel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
