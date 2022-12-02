@@ -15,4 +15,5 @@ public interface RankOutputBoundary {
      * @param error contains the information on the error
      */
     void prepareFailView(String error);
+    public void setUI(RankResultBox rankResultBox);
 }

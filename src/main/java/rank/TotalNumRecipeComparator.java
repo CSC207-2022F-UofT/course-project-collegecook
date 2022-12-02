@@ -6,8 +6,12 @@ import entities.User;
 import java.util.Comparator;
 
 public class TotalNumRecipeComparator implements Comparator<User> {
-
-
+    /**
+     * Sorts users based on the total number od recipes
+     *
+     * @param o1 a user that has a total number of recipes
+     * @param o2 a user that has a total number of recipes
+     */
     @Override
     public int compare(User o1, User o2) {
         Profile profile1 = new Profile(o1.getUsername());

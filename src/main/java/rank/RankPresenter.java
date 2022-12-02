@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 public class RankPresenter implements RankOutputBoundary{
     RankResultBox rankResultBox;
+
     /**
      * A method that contains a success method that is implemented
      * for the model to output the success message with the sorted list.
@@ -25,6 +26,14 @@ public class RankPresenter implements RankOutputBoundary{
 
     public void prepareFailView(String error){
         rankResultBox.failure(error);
+    }
+    /**
+     * A method that returns the response of the model to the user
+     *
+     * @param rankResultBox contains the information that is going to be displayed
+     */
+    public void setUI(RankResultBox rankResultBox){
+        this.rankResultBox = rankResultBox;
     }
 }
 

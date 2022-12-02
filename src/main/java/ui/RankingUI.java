@@ -16,7 +16,12 @@ public class RankingUI extends JFrame implements RankResultBox{
     public void success(User[] users) {
         for (User user: users){
             rankResultsPanel.add(new JLabel(user.getUsername()));
-        }}
+        }
+        this.add(rankResultsPanel);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.pack();
+        this.setVisible(true);
+    }
     @Override
     public void failure(String error) {
         rankResultsPanel.add(new JLabel(error));
