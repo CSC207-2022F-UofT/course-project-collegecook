@@ -1,9 +1,6 @@
 package review;
 
-import entities.Recipe;
-import entities.RecipeList;
-import entities.Review;
-import entities.ReviewDatabase;
+import entities.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,6 +20,10 @@ class ReviewInteractorTest {
     RecipeList temp;
     RecipeReadWriter recipeReadWriter;
 
+    AverageRatingReadWriter ratingReadWriter;
+
+    AverageRatings currentRatings;
+
     @BeforeEach
     void setUp() throws IOException, ClassNotFoundException {
         readWriter = ReviewDatabaseReadWriter.getReviewRepo();
@@ -41,17 +42,23 @@ class ReviewInteractorTest {
         recipeReadWriter.saveRecipe(list);
 
         interactor = new ReviewInteractor();
+
+        ratingReadWriter = new AverageRatingReadWriter();
+        currentRatings = ratingReadWriter.readFromFile("ratings.sav");
     }
 
     @AfterEach
     void tearDown() throws IOException {
         readWriter.saveToFile("reviews.sav", current);
         recipeReadWriter.saveRecipe(temp);
+        ratingReadWriter.saveToFile("ratings.sav", currentRatings);
         readWriter = null;
         current = null;
         interactor = null;
         recipeReadWriter = null;
         temp = null;
+        ratingReadWriter = null;
+        currentRatings = null;
     }
 
     @Test
