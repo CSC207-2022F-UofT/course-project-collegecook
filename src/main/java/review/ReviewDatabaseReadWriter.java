@@ -1,6 +1,5 @@
 package review;
 import entities.ReviewDatabase;
-import recipe.RecipeReadWriter;
 
 import java.io.*;
 
@@ -20,7 +19,6 @@ public class ReviewDatabaseReadWriter implements ReadWriter<ReviewDatabase> {
      *
      * @param filePath the file to write the records to
      * @param reviews  stores the list of users to be serialized
-     * @throws IOException
      */
     public void saveToFile(String filePath, Object reviews) throws IOException {
 
@@ -39,7 +37,6 @@ public class ReviewDatabaseReadWriter implements ReadWriter<ReviewDatabase> {
      *
      * @param filePath file where the user list is stored
      * @return list of reviews
-     * @throws IOException
      */
     public ReviewDatabase readFromFile(String filePath) throws IOException, ClassNotFoundException {
 
