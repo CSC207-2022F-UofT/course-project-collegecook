@@ -65,7 +65,7 @@ class UpdateAverageRatingTest {
     }
 
     @Test
-    void TestloadRatingDatabase() throws IOException {
+    void TestloadRatingDatabase() {
 
         Double actual = UpdateAverageRating.loadRatingDatabase().getAverageRating("Ben");
         Double expected = 3.0;
@@ -74,22 +74,17 @@ class UpdateAverageRatingTest {
 
     @Test
     void TestupdateAverage() throws IOException, ClassNotFoundException {
-        RecipeList list = recipeReadWriter.getRecipeList();
         ArrayList<String> ingredients = new ArrayList<>();
         ingredients.add("onion");
-        list.add_recipe("quarter of an onion", "quarter an onion",
-                "italy", ingredients, 100, 10, 5, "Ben");
-        recipeReadWriter.saveRecipe(list);
-
         Recipe recipe2 = new Recipe("quarter of an onion", "quarter an onion", "italy",
                 ingredients, 100, 10, 5, "Ben");
-        Review review2 = new Review("Mike", recipe2, "I like onions", 4);
+        Review review2 = new Review("bob", recipe2, "I like onions", 4);
         ReviewDatabase database = new ReviewDatabase();
         database.addReview(ReviewSimpleFactory.createReview());
         database.addReview(review2);
-        UpdateAverageRating.updateAverage("Ben", database);
+        UpdateAverageRating.updateAverage("bob", database);
         AverageRatings averageRatings = readWriter.readFromFile("ratings.sav");
-        Double actual = averageRatings.getAverageRating("Ben");
+        Double actual = averageRatings.getAverageRating("bob");
         Double expected = 2.5;
         assertEquals(expected, actual);
 

@@ -1,12 +1,8 @@
 package review;
 
 import entities.*;
-import recipe.RecipeInteractor;
-import recipe.RecipeReadWriter;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class UpdateAverageRating {
 
@@ -18,7 +14,7 @@ public class UpdateAverageRating {
      */
 
     public static void updateAverage(String username, ReviewDatabase database){
-        ArrayList<Review> reviews = getUserReviews(username, database);
+        ArrayList<Review> reviews = database.getUserReviews(username);
         AverageRatingReadWriter ratingReadWriter = new AverageRatingReadWriter();
         AverageRatings averageRating = loadRatingDatabase();
         if (reviews.size() != 0) {
@@ -34,27 +30,6 @@ public class UpdateAverageRating {
                 e.printStackTrace();
             }
         }
-    }
-
-    private static ArrayList<Review> getUserReviews(String username,  ReviewDatabase database) {
-        RecipeList recipeList;
-        RecipeReadWriter rrg = RecipeReadWriter.getRecipeRepo();
-        ArrayList<Recipe> usersRecipe = new ArrayList<>();
-        try {
-            recipeList = rrg.getRecipeList();
-        } catch (IOException e) {
-            recipeList = new RecipeList();
-        }
-        for (Recipe r : recipeList) {
-            if (username.equals(r.getCreator())) {
-                usersRecipe.add(r);
-            }
-        }
-        ArrayList<Review> answer = new ArrayList<>();
-        for (Recipe r : usersRecipe) {
-            answer.addAll(database.getRecipeReviews(r));
-        }
-        return answer;
     }
 
     /**
