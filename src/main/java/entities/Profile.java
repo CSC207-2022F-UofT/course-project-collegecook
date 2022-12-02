@@ -106,7 +106,7 @@ public class Profile implements Serializable {
 
     /**
      * Set the reviewed of the user in his/her Profile.
-     * @param reviewed A arraylist of profile which contains all the recipes reviewed by the user.
+     * @param reviewed An arraylist of profile which contains all the recipes reviewed by the user.
      */
     public void setReviewed(ArrayList<Review> reviewed) {
         this.reviewed = reviewed;
@@ -114,7 +114,7 @@ public class Profile implements Serializable {
 
     /**
      * Set the reviewed of the user in his/her Profile.
-     * @param created A arraylist of profile which contains all the recipes created by the user.
+     * @param created An arraylist of profile which contains all the recipes created by the user.
      */
     public void setCreated(ArrayList<Recipe> created) {
         this.created = created;
@@ -126,11 +126,11 @@ public class Profile implements Serializable {
      * @return Return a string which contains all the recipes reviewed by the user.
      */
     public String soutReviewed() {
-        String result = new String("");
+        StringBuilder result = new StringBuilder();
         for (Review r : reviewed){
-            result = result + r.toString() + "\n";
+            result.append(r.toString()).append("\n");
         }
-        return result;
+        return result.toString();
     }
 
     /**
@@ -138,11 +138,11 @@ public class Profile implements Serializable {
      * @return Return a string which contains all the recipes created by the user.
      */
     public String soutCreated() {
-        String result = new String("");
+        StringBuilder result = new StringBuilder();
         for (Recipe r : created){
-            result = result + r.toString();
+            result.append(r.toString());
         }
-        return result;
+        return result.toString();
     }
 
     /**
@@ -150,7 +150,6 @@ public class Profile implements Serializable {
      * @return Return a string that contains the age, height, weight, and gender of the user in this profile.
      */
     public String soutInfo(){
-        String result = new String("");
         return "Age: " + age + "\n" +
                 "Height: " + height + "cm \n" +
                 "Weight: " + weight + "kg \n" +

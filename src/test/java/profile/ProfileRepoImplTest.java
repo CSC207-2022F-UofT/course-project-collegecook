@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ProfileRepoImplTest {
     ProfileRepoImpl pri;
@@ -42,7 +41,7 @@ public class ProfileRepoImplTest {
     @Test
     void testGetProfile() throws IOException{
         ArrayList<Profile> profileList = pri.getProfile();
-        assertTrue(profileList.get(0).getUsername().equals("Allison"));
+        assertEquals("Allison", profileList.get(0).getUsername());
     }
 
     @Test
@@ -50,7 +49,8 @@ public class ProfileRepoImplTest {
         pl.add(new Profile("Jacob"));
         pri.saveProfile(pl);
         ArrayList<Profile> result = pri.getProfile();
-        assertTrue(result.get(0).getUsername().equals("Allison"));
-        assertTrue(result.get(1).getUsername().equals("Jacob"));
+        assertEquals("Allison", result.get(0).getUsername());
+        assertEquals("Jacob", result.get(1).getUsername());
     }
+
 }

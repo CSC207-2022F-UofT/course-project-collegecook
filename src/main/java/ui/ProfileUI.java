@@ -5,8 +5,6 @@ import profile.ProfileController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class ProfileUI extends JFrame implements InfoViewBox {
@@ -26,37 +24,31 @@ public class ProfileUI extends JFrame implements InfoViewBox {
         p_panel.add(recipeButton, BorderLayout.NORTH);
         p_panel.add(infoButton, BorderLayout.CENTER);
 
-        recipeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ProfileRecipeUI pvrUI = new ProfileRecipeUI(appController);
-                pvrUI.setVisible(true);
-            }
+        recipeButton.addActionListener(e -> {
+            ProfileRecipeUI pvrUI = new ProfileRecipeUI(appController);
+            pvrUI.setVisible(true);
         });
 
-        infoButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                boolean status = false;
+        infoButton.addActionListener(e -> {
+            boolean status = false;
+            try {
+                dispose();
+                status = pc.performCheckInfo(username);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null,
+                        "Oops! There is something wrong with your profile. ");
+            }
+            if (status) {
                 try {
                     dispose();
-                    status = pc.performCheckInfo(username);
+                    pc.performViewInfo(username);
                 } catch (IOException ex) {
                     JOptionPane.showMessageDialog(null,
                             "Oops! There is something wrong with your profile. ");
                 }
-                if (status) {
-                    try {
-                        dispose();
-                        pc.performViewInfo(username);
-                    } catch (IOException ex) {
-                        JOptionPane.showMessageDialog(null,
-                                "Oops! There is something wrong with your profile. ");
-                    }
-                } else {
-                    ProfileInfoUI piUI = new ProfileInfoUI(appController);
-                    piUI.setVisible(true);
-                }
+            } else {
+                ProfileInfoUI piUI = new ProfileInfoUI(appController);
+                piUI.setVisible(true);
             }
         });
         this.add(p_panel);

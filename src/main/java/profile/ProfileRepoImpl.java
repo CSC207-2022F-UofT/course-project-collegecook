@@ -20,7 +20,7 @@ public class ProfileRepoImpl implements ProfileRepoGateway{
 
     /**
      * @return Return an arraylist of profiles stored in the local file.
-     * @throws IOException
+     * @throws IOException Will be handled in the UI.
      */
     @Override
     public ArrayList<Profile> getProfile() throws IOException {
@@ -37,7 +37,7 @@ public class ProfileRepoImpl implements ProfileRepoGateway{
 
     /**
      * @param profiles an arraylist of profiles that needs to be saved in the local file.
-     * @throws IOException
+     * @throws IOException Will be handled in the UI.
      */
     @Override
     public void saveProfile(ArrayList<Profile> profiles) throws IOException {

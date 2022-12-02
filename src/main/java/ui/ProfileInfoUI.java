@@ -5,8 +5,6 @@ import profile.ProfileController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class ProfileInfoUI extends JFrame implements InfoSetBox {
@@ -31,28 +29,25 @@ public class ProfileInfoUI extends JFrame implements InfoSetBox {
         this.username = appController.getLoginControllor().preformGetLoggedInUser();
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
 
-        setButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int pcAge = Integer.parseInt(ageInput.getText());
-                float pcHeight = Float.parseFloat(heightInput.getText());
-                float pcWeight = Float.parseFloat(weightInput.getText());
-                String gender = "";
-                if (femaleButton.isSelected()){
-                    gender = femaleButton.getText();
-                }
-                else{
-                    gender = maleButton.getText();
-                }
-                try {
-                    dispose();
-                    JOptionPane.showMessageDialog(null,
-                            "You must enter all information at once, which can't be changed later. ");
-                    pc.performSetInfo(username, pcAge, pcHeight, pcWeight, gender);
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(null,
-                            "Oops! There is something wrong with your Profile. ");
-                }
+        setButton.addActionListener(e -> {
+            int pcAge = Integer.parseInt(ageInput.getText());
+            float pcHeight = Float.parseFloat(heightInput.getText());
+            float pcWeight = Float.parseFloat(weightInput.getText());
+            String gender;
+            if (femaleButton.isSelected()){
+                gender = femaleButton.getText();
+            }
+            else{
+                gender = maleButton.getText();
+            }
+            try {
+                dispose();
+                JOptionPane.showMessageDialog(null,
+                        "You must enter all information at once, which can't be changed later. ");
+                pc.performSetInfo(username, pcAge, pcHeight, pcWeight, gender);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null,
+                        "Oops! There is something wrong with your Profile. ");
             }
         });
 
