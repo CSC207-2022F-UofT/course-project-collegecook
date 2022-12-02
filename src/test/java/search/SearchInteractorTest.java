@@ -332,4 +332,45 @@ public class SearchInteractorTest {
         SearchInteractor searchInteractor = new SearchInteractor(searchPresenter, recipeRepoGateway);
         searchInteractor.getSearchResults(searchRequestModel);
     }
+
+    @Test
+    public void getSearchResultsEmptyIngredients() throws IOException {
+        RecipeList recipes = new RecipeList();
+        recipes.add_recipe(recipe1.getRecipeName(), recipe1.getProcedure(), recipe1.getCuisine(), recipe1.getIngredients(), recipe1.getCalories(), recipe1.getTime(), recipe1.getDifficulty(), "bob"); // within time limit
+        recipes.add_recipe(recipe2.getRecipeName(), recipe2.getProcedure(), recipe2.getCuisine(), recipe2.getIngredients(), recipe2.getCalories(), recipe2.getTime(), recipe2.getDifficulty(), "cat"); // within time limit
+        recipes.add_recipe(recipe3.getRecipeName(), recipe3.getProcedure(), recipe3.getCuisine(), recipe3.getIngredients(), recipe3.getCalories(), recipe3.getTime(), recipe3.getDifficulty(), "bob"); // not within time limit
+        recipeRepoGateway.saveRecipe(recipes);
+
+        SearchOutputBoundary searchPresenter = new SearchOutputBoundary() {
+            @Override
+            public void setUI(SearchResultsBox searchResultsBox) {
+            }
+
+            @Override
+            public void prepareSuccessView(SearchResponseModel searchResults) {
+                assertEquals(2, searchResults.matchingRecipes.length);
+                assertEquals(recipe1, searchResults.matchingRecipes[0]);
+                assertEquals(recipe2, searchResults.matchingRecipes[1]);
+            }
+
+            @Override
+            public void prepareFailureView(String error) {
+                System.out.println(error);
+            }
+        };
+
+
+        SearchRequestModel searchRequestModel = new SearchRequestModel(
+                "",
+                "",
+                new ArrayList<>(),
+                20,
+                "t",
+                false
+        );
+
+
+        SearchInteractor searchInteractor = new SearchInteractor(searchPresenter, recipeRepoGateway);
+        searchInteractor.getSearchResults(searchRequestModel);
+    }
 }
