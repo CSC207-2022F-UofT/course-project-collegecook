@@ -2,12 +2,13 @@ import login.*;
 import mealplan.*;
 import profile.*;
 import recipe.*;
+import review.ReviewController;
 import search.*;
 import ui.*;
 
 import java.io.IOException;
 
-public class CollegeCookApp {
+public class  CollegeCookApp {
     public static void main(String[] arg) throws IOException {
         // Interface adapter layer setup
         // login use case setup
@@ -30,13 +31,18 @@ public class CollegeCookApp {
         SearchInputBoundary searchInputBoundary = new SearchInteractor(searchOutputBoundary, recipeRepoGateway);
         SearchController searchController = new SearchController(searchInputBoundary);
 
-        // app controller
+
+        // review setup
+        ReviewController reviewController = new ReviewController();
+
+        // UI
         MealplanOutputBoundary mealplanOutputBoundary= new MealplanPresenter();
         MealplanGateway mrg = MealplanGate.getInstance();
         MealplanInputBoundary mealplanInputBoundary = new MealplanInteractor(mealplanOutputBoundary,loginControllor.preformGetLoggedInUser(),mrg);
         MealplanController mealplanController = new MealplanController(mealplanInputBoundary,profileInputBoundary,recipeInputBoundary);
 
-        AppController appController1 = new AppController(recipeController, loginControllor, profileController, mealplanController, searchController);
+        AppController appController1 = new AppController(recipeController, loginControllor, profileController,
+                mealplanController, searchController, reviewController);
 
         // UI
         RecipeCreateBox recipeCreateBox = new CreateRecipeUI(appController1);

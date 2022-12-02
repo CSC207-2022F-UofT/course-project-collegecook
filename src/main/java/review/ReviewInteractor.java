@@ -40,7 +40,7 @@ public class ReviewInteractor {
             database = databaseReadWriter.readFromFile("reviews.sav");
         } catch (IOException e) {
             database = new ReviewDatabase();
-            System.out.println("Read file failed.....");
+            System.out.println("Read reviews.sav failed.....");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
