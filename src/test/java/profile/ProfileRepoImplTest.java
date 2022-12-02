@@ -41,13 +41,16 @@ public class ProfileRepoImplTest {
 
     @Test
     void testGetProfile() throws IOException{
-        assertSame(pl, pri.getProfile());
+        ArrayList<Profile> profileList = pri.getProfile();
+        assertTrue(profileList.get(0).getUsername().equals("Allison"));
     }
 
     @Test
     void testSaveProfile() throws IOException{
         pl.add(new Profile("Jacob"));
         pri.saveProfile(pl);
-        assertSame(pl, pri.getProfile());
+        ArrayList<Profile> result = pri.getProfile();
+        assertTrue(result.get(0).getUsername().equals("Allison"));
+        assertTrue(result.get(1).getUsername().equals("Jacob"));
     }
 }
