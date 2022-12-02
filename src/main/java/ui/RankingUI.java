@@ -1,6 +1,5 @@
 package ui;
 import entities.User;
-import rank.RankController;
 import rank.RankResultBox;
 import javax.swing.*;
 

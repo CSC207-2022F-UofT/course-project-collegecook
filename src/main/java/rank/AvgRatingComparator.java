@@ -3,8 +3,6 @@ package rank;
 import entities.AverageRatings;
 import entities.User;
 
-import java.io.PushbackInputStream;
-import java.util.Arrays;
 import java.util.Comparator;
 
 public class AvgRatingComparator implements Comparator<User> {

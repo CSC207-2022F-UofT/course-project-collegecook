@@ -1,8 +1,5 @@
 package rank;
 
-import entities.User;
-
-import java.util.Arrays;
 
 public class RankPresenter implements RankOutputBoundary{
     RankResultBox rankResultBox;
