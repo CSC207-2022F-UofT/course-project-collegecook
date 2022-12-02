@@ -74,11 +74,24 @@ class UpdateAverageRatingTest {
 
     @Test
     void TestupdateAverage() throws IOException, ClassNotFoundException {
-        Recipe recipe = ReviewSimpleFactory.createReview().getRecipe();
-        // review2 = new Review("Mike", recipe, 1, )
-        ArrayList<Review> actual = reviewReadWriter.readFromFile("reviews.sav").getUserReviews("bob");
-        Review review = ReviewSimpleFactory.createReview();
-        assertTrue(actual.contains(review));
+        RecipeList list = recipeReadWriter.getRecipeList();
+        ArrayList<String> ingredients = new ArrayList<>();
+        ingredients.add("onion");
+        list.add_recipe("quarter of an onion", "quarter an onion",
+                "italy", ingredients, 100, 10, 5, "Ben");
+        recipeReadWriter.saveRecipe(list);
+
+        Recipe recipe2 = new Recipe("quarter of an onion", "quarter an onion", "italy",
+                ingredients, 100, 10, 5, "Ben");
+        Review review2 = new Review("Mike", recipe2, "I like onions", 4);
+        ReviewDatabase database = new ReviewDatabase();
+        database.addReview(ReviewSimpleFactory.createReview());
+        database.addReview(review2);
+        UpdateAverageRating.updateAverage("Ben", database);
+        AverageRatings averageRatings = readWriter.readFromFile("ratings.sav");
+        Double actual = averageRatings.getAverageRating("Ben");
+        Double expected = 2.5;
+        assertEquals(expected, actual);
 
     }
 
