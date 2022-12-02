@@ -38,13 +38,13 @@ public class LoginControllor {
         return loginInputBound.getLoggedInUser();
     }
 
-    public static void main(String[] arg){
+/*    public static void main(String[] arg){
         UserGateWay userGateWay = UserRepoImpl.getUserRepoImpl();
         LoginOutputBound loginOutputBound = new LoginPresenter();
         LoginInputBound loginInputBound1 = new UserManager(loginOutputBound, userGateWay);
         LoginControllor loginControllor = new LoginControllor(loginInputBound1);
         loginControllor.PerformLogin("Brenden", "12345");
-    }
+    }*/
     }
 
 
