@@ -27,6 +27,7 @@ public class SearchRecipeUI extends JFrame {
         read.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
                 recipeController.performReadRecipe(name.getText());
             }
         });
