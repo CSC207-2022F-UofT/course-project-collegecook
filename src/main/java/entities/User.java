@@ -7,12 +7,21 @@ import java.util.List;
 import java.util.Objects;
 
 public class User implements Serializable {
+    /**
+     * This is the class of User, which is an entity.
+     */
 
     private String username;
     private String password;
 
     private List<User> followers;
     private List<User> followed;
+
+    /**
+     *
+     * @param username The name of the user.
+     * @param password The password of the recipe
+     */
 
     public User(String username, String password) {
         this.username = username;
