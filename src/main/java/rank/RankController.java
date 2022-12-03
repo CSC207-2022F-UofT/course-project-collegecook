@@ -1,4 +1,4 @@
-    package rank;
+package rank;
 
 public class RankController {
     final RankInputBoundary rankInput;
@@ -23,9 +23,9 @@ public class RankController {
      *
      * @param ranking variable chosen by the user to sort other Users
      */
-    public String sorting(String ranking) {
+    public void sorting(String ranking) {
         ranking = ranking.toLowerCase().strip();
         RankRequestModel requestModel = new RankRequestModel(ranking);
-        return rankInput.sortUsers(requestModel);
+        rankInput.sortUsers(requestModel);
     }
 }
