@@ -9,7 +9,7 @@ public class SearchPresenter implements SearchOutputBoundary{
     }
     @Override
     public void prepareSuccessView(SearchResponseModel searchResults) {
-        searchResultsBox.success(searchResults.matchingRecipes);
+        searchResultsBox.success(searchResults);
     }
 
     @Override

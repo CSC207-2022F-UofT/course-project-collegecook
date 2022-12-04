@@ -73,6 +73,6 @@ public class SearchInteractor implements SearchInputBoundary{
                 break;
         }
             recipeSorter.sort(foundRecipes, requestModel.isSortByAscending());
-            searchOutputBoundary.prepareSuccessView(new SearchResponseModel(foundRecipes));
+            searchOutputBoundary.prepareSuccessView(new SearchResponseModel(foundRecipes,requestModel));
     }
 }
