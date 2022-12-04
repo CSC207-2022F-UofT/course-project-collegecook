@@ -3,6 +3,7 @@ import mealplan.*;
 import profile.*;
 import rank.*;
 import recipe.*;
+import review.ReviewController;
 import search.*;
 import ui.*;
 
@@ -46,7 +47,7 @@ public class CollegeCookApp {
         MealplanInputBoundary mealplanInputBoundary = new MealplanInteractor(mealplanOutputBoundary,loginControllor.preformGetLoggedInUser(),mrg);
         MealplanController mealplanController = new MealplanController(mealplanInputBoundary,profileInputBoundary,recipeInputBoundary);
 
-        AppController appController1 = new AppController(recipeController, loginControllor, profileController, mealplanController, searchController, rankController);
+        AppController appController1 = new AppController(recipeController, loginControllor, profileController, mealplanController, searchController, rankController, reviewController);
 
         // UI
         RecipeCreateBox recipeCreateBox = new CreateRecipeUI(appController1);
