@@ -6,17 +6,17 @@ import recipe.RecipeRepoGateway;
 
 import java.io.IOException;
 
-public class ReviewInteractor {
+public class ReviewInteractor implements ReviewInputBoundary {
 
     private RecipeList recipeList;
     private ReviewDatabase reviewDatabase;
-    private static final ReviewDatabaseReadWriter databaseReadWriter = ReviewDatabaseReadWriter.getReviewRepo();
+    private static ReviewDatabaseReadWriter databaseReadWriter;
 
 
     /**
      * Construct a ReviewInteractor.
      */
-    public ReviewInteractor() {
+    public ReviewInteractor(ReviewDatabaseReadWriter databaseReadWriter) {
         try {
 
             RecipeRepoGateway rrg = RecipeReadWriter.getRecipeRepo();
@@ -25,6 +25,7 @@ public class ReviewInteractor {
             recipeList = new RecipeList();
             System.out.println("Read file failed.....");
         }
+        ReviewInteractor.databaseReadWriter = databaseReadWriter;
         this.reviewDatabase = loadReviewDatabase();
     }
 
@@ -58,6 +59,7 @@ public class ReviewInteractor {
      * @param recipeName the name of the recipe being reviewed
      * @param rating the review's rating.
      */
+    @Override
     public void createReview(String username, String recipeName, int rating) {
         Recipe recipe = recipeList.get_recipe(recipeName);
         Review review = new Review(username, recipe, rating);
@@ -74,6 +76,7 @@ public class ReviewInteractor {
      * @param content the content of the review
      * @param rating the review's rating.
      */
+    @Override
     public void createReview(String username, String recipeName, String content, int rating) {
         Recipe recipe = recipeList.get_recipe(recipeName);
         Review review = new Review(username, recipe, content, rating);
@@ -89,4 +92,5 @@ public class ReviewInteractor {
         }
         UpdateAverageRating.updateAverage(username, reviewDatabase);
     }
+
 }

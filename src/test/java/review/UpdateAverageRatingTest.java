@@ -41,7 +41,7 @@ class UpdateAverageRatingTest {
                 "italy", ingredients, 500, 10, 3, "Ben");
         recipeReadWriter.saveRecipe(list);
 
-        interactor = new ReviewInteractor();
+        interactor = new ReviewInteractor(reviewReadWriter);
 
         readWriter = new AverageRatingReadWriter();
         current = readWriter.readFromFile("ratings.sav");

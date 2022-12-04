@@ -5,6 +5,7 @@ import mealplan.MealplanController;
 import profile.ProfileController;
 import rank.RankController;
 import recipe.RecipeController;
+import review.ReviewController;
 import search.SearchController;
 
 public class AppController {
@@ -15,14 +16,18 @@ public class AppController {
     private final RankController rankController;
     private final MealplanController mealplanController;
 
+    private final ReviewController reviewController;
+
     public AppController(RecipeController recipeController, LoginControllor loginControllor, ProfileController profileController,
-                         MealplanController mealplanController, SearchController searchController, RankController rankController) {
+                         MealplanController mealplanController, SearchController searchController,
+                         RankController rankController, ReviewController reviewController) {
         this.recipeController = recipeController;
         this.loginControllor = loginControllor;
         this.profileController = profileController;
         this.mealplanController = mealplanController;
         this.searchController = null;
         this.rankController = rankController;
+        this.reviewController = reviewController;
     }
 
     public RecipeController getRecipeController() {
@@ -45,6 +50,8 @@ public class AppController {
     }
     public MealplanController getMealplanController() {
         return mealplanController;
-
+    }
+    public ReviewController getReviewController() {
+        return reviewController;
     }
 }
