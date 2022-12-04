@@ -1,29 +1,31 @@
 package ui;
 
-import entities.Review;
 import login.LoginControllor;
 import mealplan.MealplanController;
 import profile.ProfileController;
+import rank.RankController;
 import recipe.RecipeController;
-import review.ReviewController;
 import search.SearchController;
 
 public class AppController {
     private final RecipeController recipeController;
     private final LoginControllor loginControllor;
     private final ProfileController profileController;
-    private final MealplanController mealplanController;
-    private final SearchController searchController;
     private final ReviewController reviewController;
+    private final SearchController searchController;
+    private final RankController rankController;
+    private final MealplanController mealplanController;
 
     public AppController(RecipeController recipeController, LoginControllor loginControllor, ProfileController profileController,
-                         MealplanController mealplanController, SearchController searchController, ReviewController reviewController) {
+                         MealplanController mealplanController, SearchController searchController, RankController rankController) {
         this.recipeController = recipeController;
         this.loginControllor = loginControllor;
         this.profileController = profileController;
         this.mealplanController = mealplanController;
         this.searchController = searchController;
         this.reviewController = reviewController;
+        this.rankController = rankController;
+
     }
 
     public RecipeController getRecipeController() {
@@ -41,12 +43,11 @@ public class AppController {
     public MealplanController getMealplanController() {
         return mealplanController;
     }
-
+    public RankController getRankController() {
+        return rankController;
+    }
     public SearchController getSearchController() {
         return searchController;
 
-    }
-    public ReviewController getReviewController() {
-        return reviewController;
     }
 }
