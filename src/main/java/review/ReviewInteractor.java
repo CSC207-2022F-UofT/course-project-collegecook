@@ -10,21 +10,21 @@ public class ReviewInteractor {
 
     private RecipeList recipeList;
     private ReviewDatabase reviewDatabase;
-    private static final ReviewDatabaseReadWriter databaseReadWriter = new ReviewDatabaseReadWriter();
+    private static final ReviewDatabaseReadWriter databaseReadWriter = ReviewDatabaseReadWriter.getReviewRepo();
 
 
     /**
      * Construct a ReviewInteractor.
      */
     public ReviewInteractor() {
+        try {
 
             RecipeRepoGateway rrg = RecipeReadWriter.getRecipeRepo();
             recipeList = rrg.getRecipeList();
-
+        } catch (IOException e) {
             recipeList = new RecipeList();
             System.out.println("Read file failed.....");
-
-
+        }
         this.reviewDatabase = loadReviewDatabase();
     }
 
@@ -43,6 +43,9 @@ public class ReviewInteractor {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        if (database == null) {
+            database = new ReviewDatabase();
+        }
         return database;
     }
 
@@ -56,7 +59,7 @@ public class ReviewInteractor {
      * @param rating the review's rating.
      */
     public void createReview(String username, String recipeName, int rating) {
-        Recipe recipe = recipeList.getRecipe(recipeName);
+        Recipe recipe = recipeList.get_recipe(recipeName);
         Review review = new Review(username, recipe, rating);
         createHelper(username, review);
     }
@@ -72,7 +75,7 @@ public class ReviewInteractor {
      * @param rating the review's rating.
      */
     public void createReview(String username, String recipeName, String content, int rating) {
-        Recipe recipe = recipeList.getRecipe(recipeName);
+        Recipe recipe = recipeList.get_recipe(recipeName);
         Review review = new Review(username, recipe, content, rating);
         createHelper(username, review);
     }
