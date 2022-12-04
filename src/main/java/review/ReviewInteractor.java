@@ -5,18 +5,21 @@ import recipe.RecipeReadWriter;
 import recipe.RecipeRepoGateway;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ReviewInteractor implements ReviewInputBoundary {
 
     private RecipeList recipeList;
     private ReviewDatabase reviewDatabase;
+    final ReviewOutputBoundary reviewOutputBoundary;
     private static ReviewDatabaseReadWriter databaseReadWriter;
 
 
     /**
      * Construct a ReviewInteractor.
      */
-    public ReviewInteractor(ReviewDatabaseReadWriter databaseReadWriter) {
+    public ReviewInteractor(ReviewOutputBoundary reviewOutputboundary, ReviewDatabaseReadWriter databaseReadWriter) {
+        this.reviewOutputBoundary = reviewOutputboundary;
         try {
 
             RecipeRepoGateway rrg = RecipeReadWriter.getRecipeRepo();
@@ -87,10 +90,25 @@ public class ReviewInteractor implements ReviewInputBoundary {
         reviewDatabase.addReview(review);
         try {
             databaseReadWriter.saveToFile("reviews.sav", reviewDatabase);
+            reviewOutputBoundary.createReviewView();
         } catch (IOException e) {
             e.printStackTrace();
         }
         UpdateAverageRating.updateAverage(username, reviewDatabase);
+    }
+    @Override
+    public void readRecipeReviews(String recipeName) {
+        if (this.recipeList.contain(recipeName)) {
+            Recipe recipe = recipeList.get_recipe(recipeName);
+            ArrayList<String> reviews = new ArrayList<>();
+            ArrayList<Review> databaseReviews = reviewDatabase.getRecipeReviews(recipe);
+            for (Review r: databaseReviews) {
+                reviews.add(r.toString());
+            }
+            reviewOutputBoundary.readSuccessView(reviews);
+        } else {
+            reviewOutputBoundary.readFailureView();
+        }
     }
 
 }

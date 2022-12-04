@@ -3,10 +3,7 @@ import mealplan.*;
 import profile.*;
 import rank.*;
 import recipe.*;
-import review.ReviewController;
-import review.ReviewDatabaseReadWriter;
-import review.ReviewInputBoundary;
-import review.ReviewInteractor;
+import review.*;
 import search.*;
 import ui.*;
 
@@ -44,8 +41,9 @@ public class CollegeCookApp {
         RankController rankController = new RankController(rankInputBoundary);
 
         // review use case setup
+        ReviewOutputBoundary reviewOutputBoundary = new ReviewPresenter();
         ReviewDatabaseReadWriter reviewDatabaseReadWriter = ReviewDatabaseReadWriter.getReviewRepo();
-        ReviewInputBoundary reviewInputBoundary = new ReviewInteractor(reviewDatabaseReadWriter);
+        ReviewInputBoundary reviewInputBoundary = new ReviewInteractor(reviewOutputBoundary, reviewDatabaseReadWriter);
         ReviewController reviewController = new ReviewController(reviewInputBoundary);
 
         // UI
