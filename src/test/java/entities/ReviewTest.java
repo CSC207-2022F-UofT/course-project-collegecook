@@ -3,6 +3,7 @@ package entities;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import review.ReviewSimpleFactory;
 
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,7 +19,7 @@ public class ReviewTest {
         ingredients.add("sauce");
         sampleRecipe = new Recipe("spaghetti", "Just cook it",
                 "italy", ingredients, 500, 10, 3, "Ben");
-        rev = new Review("bob", sampleRecipe, "tasted terrible", 1);
+        rev = ReviewSimpleFactory.createReview();
     }
 
     @AfterEach
@@ -61,6 +62,16 @@ public class ReviewTest {
         System.out.println(expected);
         String actual = rev.toString();
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void Testequals() {
+        Review review1 = ReviewSimpleFactory.createReview();
+        Review review2 = ReviewSimpleFactory.createReview();
+        assertEquals(review1, review2);
+
+        Review review3 = new Review("bob", sampleRecipe, 1);
+        assertNotEquals(review1, review3);
     }
 
 }

@@ -50,25 +50,30 @@ public class User implements Serializable {
     public int GetNumberOfFollowers(){return followers.size();}
 
     /**
-     * To return the number of followers of the User
+     * To return the number of users a User followed
      */
 
     public int GetNumberOfFollowed(){return followed.size();}
 
 
-    public void addFollowers(User Other) {
+    /**
+     * To add other user to the User's list of followers
+     * @param Other The name of the user that want to follow the User.
+     */
 
-        this.followers.add(Other);
-    }
-    public void addFollowed(User Other) {
+    public void addFollowers(User Other) {this.followers.add(Other);}
 
-        this.followed.add(Other);
-    }
+    /**
+     * To add the Other user into the list of users a User has followed
+     * @param Other The name of the user that the User want to follow.
+     */
+    public void addFollowed(User Other) {this.followed.add(Other);}
 
-
-    public void RemoveFollowers(User other) {
-        this.followers.remove(other);
-    }
+    /**
+     * To remove other user from the User's list of followers
+     * @param other The name of the user that the User want to follow.
+     */
+    public void RemoveFollowers(User other) {this.followers.remove(other);}
 
     public void RemoveFollowed(User other) {
         this.followed.remove(other);

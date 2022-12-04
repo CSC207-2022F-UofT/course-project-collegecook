@@ -10,7 +10,7 @@ public class ReviewInteractor {
 
     private RecipeList recipeList;
     private ReviewDatabase reviewDatabase;
-    private static final ReviewDatabaseReadWriter databaseReadWriter = new ReviewDatabaseReadWriter();
+    private static final ReviewDatabaseReadWriter databaseReadWriter = ReviewDatabaseReadWriter.getReviewRepo();
 
 
     /**
@@ -25,7 +25,6 @@ public class ReviewInteractor {
             recipeList = new RecipeList();
             System.out.println("Read file failed.....");
         }
-
         this.reviewDatabase = loadReviewDatabase();
     }
 
@@ -43,6 +42,9 @@ public class ReviewInteractor {
             System.out.println("Read reviews.sav failed.....");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
+        }
+        if (database == null) {
+            database = new ReviewDatabase();
         }
         return database;
     }

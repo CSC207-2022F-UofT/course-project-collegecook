@@ -1,5 +1,9 @@
 package rank;
 
+import entities.User;
+
+import java.util.List;
+
 public interface RankInputBoundary {
     /**
      *
@@ -8,5 +12,6 @@ public interface RankInputBoundary {
      *
      * @param requestModel contains the choice of ranking
      */
-    String sortUsers(RankRequestModel requestModel);
+    RankResponseModel sortUsers(RankRequestModel requestModel);
+
 }
