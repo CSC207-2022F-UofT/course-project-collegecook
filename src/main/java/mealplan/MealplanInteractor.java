@@ -100,7 +100,7 @@ public class MealplanInteractor implements MealplanInputBoundary{
      * @param recipeList a list of all stored recipes.
      */
     public void computeCalories(Profile pro, RecipeList recipeList){
-        List<Integer> Calories = new ArrayList<Integer>();
+        List<Integer> Calories = new ArrayList<>();
         Calories.add(computeProfileCal(pro));
         Calories.add(computeRecipeCal(recipeList));
         if (mealplanout != null) {

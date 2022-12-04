@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import entities.Mealplan;
 import ui.AppController;
 
 
@@ -33,7 +32,6 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
                 appController.getMealplanController().deleteMealplan(0);
                 for(JButton b:listOfBreakfast){
                     panel_b.remove(b);
-                    b = null;
                 }
                 panel_b.revalidate();
                 panel_b.repaint();
@@ -51,7 +49,6 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
                 appController.getMealplanController().deleteMealplan(1);
                 for(JButton l:listOfLunch){
                     panel_l.remove(l);
-                    l = null;
                 }
                 panel_l.revalidate();
                 panel_l.repaint();
@@ -66,7 +63,6 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
                 appController.getMealplanController().deleteMealplan(2);
                 for(JButton d:listOfDinner){
                     panel_d.remove(d);
-                    d = null;
                 }
                 panel_d.revalidate();
                 panel_d.repaint();
@@ -78,12 +74,8 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
         JButton button_cal = new JButton( new AbstractAction("calculate calories") {
             @Override
             public void actionPerformed( ActionEvent e ) {
-                try {
-                    String username = appController.getLoginControllor().preformGetLoggedInUser();
-                    appController.getMealplanController().getCalories(username);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+                String username = appController.getLoginControllor().preformGetLoggedInUser();
+                appController.getMealplanController().getCalories(username);
             }
         });
 
@@ -93,7 +85,7 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
                 try {
                     appController.getMealplanController().saveMealplan();
                 } catch (IOException ex) {
-                    throw new RuntimeException(ex);
+                    System.out.println("Unable to save meal plan.");
                 }
             }
         });

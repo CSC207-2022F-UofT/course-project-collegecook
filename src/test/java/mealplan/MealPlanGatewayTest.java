@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MealPlanGatewayTest {
@@ -26,7 +25,7 @@ public class MealPlanGatewayTest {
     }
 
     @AfterEach
-    void tearDown() throws IOException {
+    void tearDown() {
         mealplanGate.saveToFile(temp);
         mealplanGate = null;
         mpl = null;

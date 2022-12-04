@@ -35,7 +35,7 @@ public class MealplanInteractorTest {
     }
 
     @Test
-    void getMealplanlist() throws IOException, ClassNotFoundException {
+    void getMealplanlist() throws IOException{
         mealplanInteractor.addRecipe("recipe2",1);
         mealplanInteractor.saveMealplan();
         assertNotNull(mealplanInteractor.getMealplanList().getMealplan("user"));
