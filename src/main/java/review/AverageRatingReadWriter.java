@@ -10,7 +10,6 @@ public class AverageRatingReadWriter implements ReadWriter<AverageRatings> {
      *
      * @param filePath the file to write the records to
      * @param ratings  stores the map of ratings to be serialized
-     * @throws IOException
      */
     public void saveToFile(String filePath, Object ratings) throws IOException {
 
@@ -29,7 +28,6 @@ public class AverageRatingReadWriter implements ReadWriter<AverageRatings> {
      *
      * @param filePath file where the user list is stored
      * @return list of reviews
-     * @throws IOException
      */
     public AverageRatings readFromFile(String filePath) throws IOException, ClassNotFoundException {
 
