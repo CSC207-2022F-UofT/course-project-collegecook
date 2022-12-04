@@ -10,19 +10,20 @@ public class MealplanController {
     RecipeInputBoundary recipeInputBoundary;
     public MealplanController(MealplanInputBoundary mealplanInputBoundary, ProfileInputBoundary profileInputBoundary,
                               RecipeInputBoundary recipeInputBoundary) {
-        this.mealplanInputBoundary=mealplanInputBoundary;
+        this.mealplanInputBoundary = mealplanInputBoundary;
         this.profileInputBoundary = profileInputBoundary;
         this.recipeInputBoundary = recipeInputBoundary;
     }
 
 
-    public void getCalories() throws IOException {
-        Profile profile = profileInputBoundary.checkProfile(mealplanInputBoundary.getUsername());
+    public void getCalories(String username) throws IOException {
+        Profile profile = profileInputBoundary.checkProfile(username);
         RecipeList recipeList = recipeInputBoundary.getAll();
         mealplanInputBoundary.computeCalories(profile, recipeList);
     }
 
     public void addMealplan(String recipe, int meal){
+
         mealplanInputBoundary.addRecipe(recipe, meal);
     }
 

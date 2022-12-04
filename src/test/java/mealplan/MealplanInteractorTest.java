@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,8 +37,11 @@ public class MealplanInteractorTest {
     @Test
     void getMealplanlist() throws IOException, ClassNotFoundException {
         mealplanInteractor.addRecipe("recipe2",1);
-        assertEquals(mealplanInteractor.getMealplanList(),mealplanGate.readFromFile());
+        mealplanInteractor.saveMealplan();
+        assertNotNull(mealplanInteractor.getMealplanList().getMealplan("user"));
     }
+
+
     @Test
     void addRecipe(){
         mealplanInteractor.addRecipe("recipe",0);
@@ -52,6 +56,8 @@ public class MealplanInteractorTest {
                 "cuisine", ingredients, 500, 2, 3, "Brenden");
         rl.add_recipe("recipe2", "procedure",
                 "cuisine", ingredients, 500, 2, 3, "Brenden");
+        mealplanInteractor.addRecipe("recipe",0);
+        mealplanInteractor.addRecipe("recipe2",1);
         assertEquals(1000,mealplanInteractor.computeRecipeCal(rl));
     }
 
@@ -59,7 +65,7 @@ public class MealplanInteractorTest {
     void computeProfileCal(){
         Profile pro = new Profile("user");
         pro.setAge(20);
-        pro.setGender("male");
+        pro.setGender("Male");
         pro.setHeight(180);
         pro.setWeight(60);
         assertEquals(1631,mealplanInteractor.computeProfileCal(pro));
@@ -83,5 +89,37 @@ public class MealplanInteractorTest {
         assertEquals("user", mealplanInteractor.getUsername());
     }
 
+    @Test
+    void computeCalories(){
+        MealplanOutputBoundary mealplanOutputBoundary = new MealplanOutputBoundary() {
+            @Override
+            public void createCaloriesView(List<Integer> cal) {
+                assertEquals(1631, (int) cal.get(0));
+            }
+
+            @Override
+            public void setUI(MealplanBox mealplanbox) {
+
+            }
+        };
+        Profile pro = new Profile("user");
+        pro.setAge(20);
+        pro.setGender("Male");
+        pro.setHeight(180);
+        pro.setWeight(60);
+
+
+        MealplanInteractor mealplanInteractor = new MealplanInteractor(mealplanOutputBoundary,"user",MealplanGate.getInstance());
+        rl = new RecipeList();
+        ArrayList<String> ingredients = new ArrayList<>();
+        rl.add_recipe("recipe", "procedure",
+                "cuisine", ingredients, 500, 2, 3, "Brenden");
+        rl.add_recipe("recipe2", "procedure",
+                "cuisine", ingredients, 500, 2, 3, "Brenden");
+        mealplanInteractor.addRecipe("recipe",0);
+        mealplanInteractor.addRecipe("recipe2",1);
+
+        mealplanInteractor.computeCalories(pro, rl);
+    }
 
 }

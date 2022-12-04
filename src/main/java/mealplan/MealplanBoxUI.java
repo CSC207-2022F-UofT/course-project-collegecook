@@ -65,7 +65,7 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
             public void actionPerformed( ActionEvent e ) {
                 appController.getMealplanController().deleteMealplan(2);
                 for(JButton d:listOfDinner){
-                    panel_l.remove(d);
+                    panel_d.remove(d);
                     d = null;
                 }
                 panel_d.revalidate();
@@ -79,7 +79,8 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
             @Override
             public void actionPerformed( ActionEvent e ) {
                 try {
-                    appController.getMealplanController().getCalories();
+                    String username = appController.getLoginControllor().preformGetLoggedInUser();
+                    appController.getMealplanController().getCalories(username);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -97,6 +98,44 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
             }
         });
 
+        ArrayList<ArrayList<String>>  mealplan =
+                appController.getMealplanController().mealplanInputBoundary.getMealplan().returnMealPlan();
+
+        for (String recipe: mealplan.get(0)){
+            JButton button_m = new JButton( new AbstractAction(recipe) {
+                @Override
+                public void actionPerformed( ActionEvent e ) {
+                    appController.getMealplanController().displayRecipe(recipe);
+                }
+            });
+
+            panel_b.add(button_m);
+            listOfBreakfast.add(button_m);
+        }
+
+        for (String recipe: mealplan.get(1)){
+            JButton button_m = new JButton( new AbstractAction(recipe) {
+                @Override
+                public void actionPerformed( ActionEvent e ) {
+                    appController.getMealplanController().displayRecipe(recipe);
+                }
+            });
+
+            panel_l.add(button_m);
+            listOfLunch.add(button_m);
+        }
+
+        for (String recipe: mealplan.get(2)){
+            JButton button_m = new JButton( new AbstractAction(recipe) {
+                @Override
+                public void actionPerformed( ActionEvent e ) {
+                    appController.getMealplanController().displayRecipe(recipe);
+                }
+            });
+
+            panel_d.add(button_m);
+            listOfDinner.add(button_m);
+        }
 
         panel_b.setBackground(Color.ORANGE);
         panel_l.setBackground(Color.YELLOW);
@@ -112,42 +151,6 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
         panel_s.add(button_cal);
         panel_s.add(button_save);
 
-        ArrayList<ArrayList<String>>  mealplan =
-                appController.getMealplanController().mealplanInputBoundary.getMealplan().returnMealPlan();
-
-        for (String recipe: mealplan.get(0)){
-            JButton button_m = new JButton( new AbstractAction(recipe) {
-                @Override
-                public void actionPerformed( ActionEvent e ) {
-                    appController.getMealplanController().displayRecipe(recipe);
-                }
-            });
-
-            panel_b.add(button_m);
-        }
-
-        for (String recipe: mealplan.get(1)){
-            JButton button_m = new JButton( new AbstractAction(recipe) {
-                @Override
-                public void actionPerformed( ActionEvent e ) {
-                    appController.getMealplanController().displayRecipe(recipe);
-                }
-            });
-
-            panel_l.add(button_m);
-        }
-
-        for (String recipe: mealplan.get(2)){
-            JButton button_m = new JButton( new AbstractAction(recipe) {
-                @Override
-                public void actionPerformed( ActionEvent e ) {
-                    appController.getMealplanController().displayRecipe(recipe);
-                }
-            });
-
-            panel_d.add(button_m);
-
-        }
 
         this.add(panel_b);
         this.add(panel_l);
@@ -157,34 +160,14 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
         this.setLayout(new GridLayout(4,0));
 
         this.setSize(600,600);
+
     }
 
-    public void setMealplan(String recipe, int meal){
-
-        JButton button_m = new JButton( new AbstractAction(recipe) {
-            @Override
-            public void actionPerformed( ActionEvent e ) {
-                appController.getMealplanController().displayRecipe(recipe);
-            }
-        });
-
-        if (meal == 0){
-            panel_b.add(button_m);
-            listOfBreakfast.add(button_m);
-
-        } else if (meal == 1) {
-            panel_l.add(button_m);
-            listOfLunch.add(button_m);
-        } else {
-            listOfDinner.add(button_m);
-        }
-    }
 
     public void setCalories(List<Integer> cal){
 
         JOptionPane.showMessageDialog(null, "Recommended:" + cal.get(0) + "cal; " +
                 "Total:" + cal.get(1));
     }
-
 
 }
