@@ -12,21 +12,21 @@ public class AppController {
     private final RecipeController recipeController;
     private final LoginControllor loginControllor;
     private final ProfileController profileController;
-    private final ReviewController reviewController;
     private final SearchController searchController;
     private final RankController rankController;
     private final MealplanController mealplanController;
+    private final ReviewController reviewController;
 
     public AppController(RecipeController recipeController, LoginControllor loginControllor, ProfileController profileController,
-                         MealplanController mealplanController, SearchController searchController, RankController rankController, ReviewController reviewController) {
+                         MealplanController mealplanController,
+                         SearchController searchController, RankController rankController, ReviewController reviewController) {
         this.recipeController = recipeController;
         this.loginControllor = loginControllor;
         this.profileController = profileController;
         this.mealplanController = mealplanController;
         this.searchController = searchController;
-        this.reviewController = reviewController;
         this.rankController = rankController;
-
+        this.reviewController = reviewController;
     }
 
     public RecipeController getRecipeController() {
@@ -41,17 +41,15 @@ public class AppController {
         return profileController;
     }
 
-    public MealplanController getMealplanController() {
-        return mealplanController;
-    }
     public RankController getRankController() {
         return rankController;
     }
     public SearchController getSearchController() {
         return searchController;
-
     }
-
+    public MealplanController getMealplanController() {
+        return mealplanController;
+    }
     public ReviewController getReviewController() {
         return reviewController;
     }
