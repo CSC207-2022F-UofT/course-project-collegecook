@@ -100,12 +100,12 @@ public class ReviewInteractor implements ReviewInputBoundary {
     public void readRecipeReviews(String recipeName) {
         if (this.recipeList.contain(recipeName)) {
             Recipe recipe = recipeList.get_recipe(recipeName);
-            ArrayList<String> reviews = new ArrayList<>();
+            StringBuilder reviews = new StringBuilder();
             ArrayList<Review> databaseReviews = reviewDatabase.getRecipeReviews(recipe);
             for (Review r: databaseReviews) {
-                reviews.add(r.toString());
+                reviews.append(System.lineSeparator()).append(r.toString());
             }
-            reviewOutputBoundary.readSuccessView(reviews);
+            reviewOutputBoundary.readSuccessView(reviews.toString());
         } else {
             reviewOutputBoundary.readFailureView();
         }

@@ -23,7 +23,6 @@ public class CreateReviewUI extends JFrame implements ReviewCreateBox {
         this.reviewController = appController.getReviewController();
         view.setLayout(new BoxLayout(view, BoxLayout.Y_AXIS));
 
-        view.setLayout(new BoxLayout(view, BoxLayout.Y_AXIS));
         ratingQ.setAlignmentX(Component.CENTER_ALIGNMENT);
         view.add(ratingQ);
         rating.setAlignmentX(Component.CENTER_ALIGNMENT);

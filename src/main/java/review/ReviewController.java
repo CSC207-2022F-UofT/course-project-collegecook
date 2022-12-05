@@ -44,4 +44,8 @@ public class ReviewController {
     public void performCreateReview(String username, String recipeName, String content, int rating) {
         reviewInputBoundary.createReview(username, recipeName, content, rating);
     }
+
+    public void performViewReviews(String recipeName) {
+        reviewInputBoundary.readRecipeReviews(recipeName);
+    }
 }

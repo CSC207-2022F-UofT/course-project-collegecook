@@ -2,7 +2,6 @@ package review;
 
 
 
-import java.util.ArrayList;
 
 public class ReviewPresenter implements ReviewOutputBoundary {
 
@@ -16,8 +15,12 @@ public class ReviewPresenter implements ReviewOutputBoundary {
     }
 
     @Override
-    public void readSuccessView(ArrayList<String> reviews) {
-        reviewViewBox.success(reviews);
+    public void readSuccessView(String reviews) {
+        if (reviews.equals("")) {
+            reviewViewBox.noReviews();
+        } else {
+            reviewViewBox.success(reviews);
+        }
     }
 
     @Override

@@ -67,7 +67,7 @@ public class CollegeCookApp {
         InfoViewBox infoViewBox = new ProfileUI(appController1);
         RankResultBox rankResultBox = new RankingUI(appController1);
         ReviewCreateBox reviewCreateBox = new CreateReviewUI(appController1);
-        ReviewViewBox reviewViewBox = new ViewReviewUI();
+        ReviewViewBox reviewViewBox = new ViewReviewUI(appController1);
 
         // set corresponding view
         MealplanBox mealplanBox = new MealplanBoxUI(appController1);
