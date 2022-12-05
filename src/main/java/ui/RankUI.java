@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class RankUI extends JFrame{
     RankController rankController;
@@ -28,7 +29,11 @@ public class RankUI extends JFrame{
         read.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                rankController.sorting(ranking.getText());
+                try {
+                    rankController.sorting(ranking.getText());
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         view.add(read);
