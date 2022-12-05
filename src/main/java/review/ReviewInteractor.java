@@ -10,7 +10,7 @@ public class ReviewInteractor {
 
     private RecipeList recipeList;
     private ReviewDatabase reviewDatabase;
-    private static final ReviewDatabaseReadWriter databaseReadWriter = new ReviewDatabaseReadWriter();
+    private static final ReviewDatabaseReadWriter databaseReadWriter = ReviewDatabaseReadWriter.getReviewRepo();
 
 
     /**
@@ -20,12 +20,11 @@ public class ReviewInteractor {
         try {
 
             RecipeRepoGateway rrg = RecipeReadWriter.getRecipeRepo();
-            recipeList = rrg.getRecipeList();
+            this.recipeList = rrg.getRecipeList();
         } catch (IOException e) {
             recipeList = new RecipeList();
             System.out.println("Read file failed.....");
         }
-
         this.reviewDatabase = loadReviewDatabase();
     }
 
@@ -40,9 +39,12 @@ public class ReviewInteractor {
             database = databaseReadWriter.readFromFile("reviews.sav");
         } catch (IOException e) {
             database = new ReviewDatabase();
-            System.out.println("Read file failed.....");
+            System.out.println("Read reviews.sav failed.....");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
+        }
+        if (database == null) {
+            database = new ReviewDatabase();
         }
         return database;
     }

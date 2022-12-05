@@ -56,5 +56,4 @@ public interface ProfileInputBoundary {
      * @throws IOException It might occur due to methods in other class. Will be handled in the UI.
      */
     void viewInfo(String username) throws IOException;
-
 }

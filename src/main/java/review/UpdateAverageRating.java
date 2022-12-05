@@ -1,7 +1,6 @@
 package review;
 
 import entities.*;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -45,9 +44,12 @@ public class UpdateAverageRating {
             database = ratingReadWriter.readFromFile("ratings.sav");
         } catch (IOException e) {
             database = new AverageRatings();
-            System.out.println("Read file failed.....");
+            System.out.println("Read ratings.sav failed.....");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
+        }
+        if (database == null) {
+            database = new AverageRatings();
         }
         return database;
     }

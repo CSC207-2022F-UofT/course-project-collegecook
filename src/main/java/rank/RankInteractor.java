@@ -4,14 +4,14 @@ import entities.Rank;
 import entities.User;
 import entities.UserList;
 
-import java.util.Collections;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
 
 public class RankInteractor implements RankInputBoundary{
     // The only input accepted are "Average Rating" , "Total Followers", "Total Number of Recipe"
     final RankOutputBoundary rankOutputBoundary;
-    UserList userList = new UserList();
-    List<User> users = userList.getAllUser();
+
     /**
      *
      * Returns a list of the sorted Users based on the variable chosen
@@ -23,29 +23,34 @@ public class RankInteractor implements RankInputBoundary{
         this.rankOutputBoundary = rankOutputBoundary;
     }
     @Override
-    public String sortUsers(RankRequestModel requestModel) {
-        // import all users for user
-        switch (requestModel.getRanking()) {
-            case "Average Rating": {
-                // sort based on avg rating
-                users.sort(Rank.UserAvgRating);
-                RankResponseModel rankResponseModel = new RankResponseModel(requestModel.getRanking(), users);
-                return rankOutputBoundary.prepareSuccessView(rankResponseModel);
-            }
-            case "Total Followers": {
-                // sort based on total followers
-                users.sort(Rank.UserFollowerComparator);
-                RankResponseModel rankResponseModel = new RankResponseModel(requestModel.getRanking(), users);
-                return rankOutputBoundary.prepareSuccessView(rankResponseModel);
-            }
-            case "Total Number of Recipe": {
-                // sort based on # of recipe
-                users.sort(Rank.UserTotalRecipe);
-                RankResponseModel rankResponseModel = new RankResponseModel(requestModel.getRanking(), users);
-                return rankOutputBoundary.prepareSuccessView(rankResponseModel);
-            }
+    public RankResponseModel sortUsers(RankRequestModel requestModel) {
+        // stores all the Users in a list
+        UserList userList = new UserList();
+        List<User> users = userList.getAllUser();
+        // Return an error if no users have been registered
+        if (users.isEmpty()){
+            rankOutputBoundary.prepareFailView("There are no users!");
         }
-        return rankOutputBoundary.prepareFailView(requestModel.getRanking());
+        // arraylist -> array
+        User[] totalUsers = new User[users.size()];
+        users.toArray(totalUsers);
+
+        switch (requestModel.getRanking()) {
+            case "average rating": {
+                // sort based on avg rating
+                Arrays.sort(totalUsers, new AvgRatingComparator());
+                break;}
+            case "total number of recipe": {
+                // sort based on # of recipe
+                Arrays.sort(totalUsers, new TotalNumRecipeComparator());
+                break;}
+            default: {
+                // sort based on total followers
+                Arrays.sort(totalUsers, new TotalFollowersComparator());
+                break;}
+        }
+        rankOutputBoundary.prepareSuccessView(new RankResponseModel(requestModel.getRanking(), totalUsers));
+        return new RankResponseModel(requestModel.getRanking(), totalUsers);
     }
 }
 
