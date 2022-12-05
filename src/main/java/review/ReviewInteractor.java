@@ -20,6 +20,12 @@ public class ReviewInteractor implements ReviewInputBoundary {
      */
     public ReviewInteractor(ReviewOutputBoundary reviewOutputboundary, ReviewDatabaseReadWriter databaseReadWriter) {
         this.reviewOutputBoundary = reviewOutputboundary;
+        getReviewsHelper();
+        ReviewInteractor.databaseReadWriter = databaseReadWriter;
+        this.reviewDatabase = loadReviewDatabase();
+    }
+
+    private void getReviewsHelper() {
         try {
 
             RecipeRepoGateway rrg = RecipeReadWriter.getRecipeRepo();
@@ -28,8 +34,6 @@ public class ReviewInteractor implements ReviewInputBoundary {
             recipeList = new RecipeList();
             System.out.println("Read file failed.....");
         }
-        ReviewInteractor.databaseReadWriter = databaseReadWriter;
-        this.reviewDatabase = loadReviewDatabase();
     }
 
     /**
@@ -64,6 +68,7 @@ public class ReviewInteractor implements ReviewInputBoundary {
      */
     @Override
     public void createReview(String username, String recipeName, int rating) {
+        getReviewsHelper();
         Recipe recipe = recipeList.get_recipe(recipeName);
         Review review = new Review(username, recipe, rating);
         createHelper(username, review);
@@ -81,6 +86,7 @@ public class ReviewInteractor implements ReviewInputBoundary {
      */
     @Override
     public void createReview(String username, String recipeName, String content, int rating) {
+        getReviewsHelper();
         Recipe recipe = recipeList.get_recipe(recipeName);
         Review review = new Review(username, recipe, content, rating);
         createHelper(username, review);
@@ -98,6 +104,7 @@ public class ReviewInteractor implements ReviewInputBoundary {
     }
     @Override
     public void readRecipeReviews(String recipeName) {
+        getReviewsHelper();
         if (this.recipeList.contain(recipeName)) {
             Recipe recipe = recipeList.get_recipe(recipeName);
             StringBuilder reviews = new StringBuilder();
