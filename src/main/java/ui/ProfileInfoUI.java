@@ -66,10 +66,6 @@ public class ProfileInfoUI extends JFrame implements InfoSetBox {
         weightInput.setAlignmentX(Component.CENTER_ALIGNMENT);
         infoPanel.add(weightInput);
 
-//        femaleButton.setBounds(0, 25, 120, 50);
-//        maleButton.setBounds(0, 10, 80, 50);
-//        confirmButton.setBounds(0, 30, 80, 30);
-
         genderLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         infoPanel.add(genderLabel);
         femaleButton.setAlignmentX(Component.CENTER_ALIGNMENT);
