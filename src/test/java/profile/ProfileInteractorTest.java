@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import recipe.RecipeReadWriter;
 import recipe.RecipeRepoGateway;
-import review.ReviewDatabaseReadWriter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -190,7 +189,7 @@ public class ProfileInteractorTest {
         };
         ArrayList<String> ta = new ArrayList<>();
         RecipeList recipeList = rrg.getRecipeList();
-        recipeList.add_recipe("Test", "Procedure", "cuisine", ta, 1, 2,
+        recipeList.addRecipe("Test", "Procedure", "cuisine", ta, 1, 2,
                 3, "Allison");
         rrg.saveRecipe(recipeList);
         ProfileInteractor pi = new ProfileInteractor(output);
