@@ -10,7 +10,7 @@ public class UserRepoImpl implements UserGateWay {
     private static UserRepoImpl userRepoImpl;
 
 
-    private UserRepoImpl(){}
+    public UserRepoImpl(){}
 
     public static UserRepoImpl getUserRepoImpl(){
         if (userRepoImpl == null){
