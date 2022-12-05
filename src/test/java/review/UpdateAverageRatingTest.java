@@ -40,8 +40,9 @@ class UpdateAverageRatingTest {
         list.addRecipe("spaghetti", "Just cook it",
                 "italy", ingredients, 500, 10, 3, "Ben");
         recipeReadWriter.saveRecipe(list);
+        ReviewOutputBoundary reviewOutputBoundary = new ReviewPresenter();
 
-        interactor = new ReviewInteractor();
+        interactor = new ReviewInteractor(reviewOutputBoundary, reviewReadWriter);
 
         readWriter = new AverageRatingReadWriter();
         current = readWriter.readFromFile("ratings.sav");

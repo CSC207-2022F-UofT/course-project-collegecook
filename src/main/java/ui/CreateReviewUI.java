@@ -1,15 +1,12 @@
 package ui;
 
 import review.ReviewController;
+import review.ReviewCreateBox;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.Arrays;
 
-public class CreateReviewUI extends JFrame {
+public class CreateReviewUI extends JFrame implements ReviewCreateBox {
 
     AppController appController;
     ReviewController reviewController;
@@ -26,7 +23,6 @@ public class CreateReviewUI extends JFrame {
         this.reviewController = appController.getReviewController();
         view.setLayout(new BoxLayout(view, BoxLayout.Y_AXIS));
 
-        view.setLayout(new BoxLayout(view, BoxLayout.Y_AXIS));
         ratingQ.setAlignmentX(Component.CENTER_ALIGNMENT);
         view.add(ratingQ);
         rating.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -40,33 +36,22 @@ public class CreateReviewUI extends JFrame {
         String user = appController.getLoginControllor().preformGetLoggedInUser();
         String recipe = appController.getRecipeController().getReadingRecipe();
 
-        save.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        save.addActionListener(e -> {
 
-                try{
-                    Integer.parseInt(rating.getText());
-                }catch (NumberFormatException e1){
-                    JOptionPane.showMessageDialog(null,
-                            "Please enter an INTEGER for rating!");
-                }
-                int ratenum = Integer.parseInt(rating.getText());
-                if (content.getText().equals("")){
-                    try {
-                        reviewController.performCreateReview(user, recipe, ratenum);
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                } else {
-                    try {
-                        reviewController.performCreateReview(user, recipe, content.getText(), ratenum);
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                }
-
-                dispose();
+            try{
+                Integer.parseInt(rating.getText());
+            }catch (NumberFormatException e1){
+                JOptionPane.showMessageDialog(null,
+                        "Please enter an INTEGER for rating!");
             }
+            int ratenum = Integer.parseInt(rating.getText());
+            if (content.getText().equals("")){
+                reviewController.performCreateReview(user, recipe, ratenum);
+            } else {
+                reviewController.performCreateReview(user, recipe, content.getText(), ratenum);
+            }
+
+            dispose();
         });
         view.add(save);
 
@@ -74,5 +59,9 @@ public class CreateReviewUI extends JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.pack();
 
+    }
+    public void success() {
+        JOptionPane.showMessageDialog(null, "Success");
+        this.setVisible(false);
     }
 }
