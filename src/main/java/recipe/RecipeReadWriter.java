@@ -13,7 +13,7 @@ public class RecipeReadWriter implements RecipeRepoGateway{
     private static final String file = "recipe.sav";
     private static RecipeReadWriter recipeReadWriter;
 
-    public RecipeReadWriter(){}
+    private RecipeReadWriter(){}
 
     public static RecipeReadWriter getRecipeRepo(){
         if (recipeReadWriter == null){
