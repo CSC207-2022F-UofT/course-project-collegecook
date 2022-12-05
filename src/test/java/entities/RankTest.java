@@ -11,7 +11,6 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RankTest {
-
     @Test
     public void TestUserFollowerComparator() {
         User user1 = new User("User1", "CSC207");

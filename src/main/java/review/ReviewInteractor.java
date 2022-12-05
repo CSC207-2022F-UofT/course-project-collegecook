@@ -29,7 +29,7 @@ public class ReviewInteractor implements ReviewInputBoundary {
         try {
 
             RecipeRepoGateway rrg = RecipeReadWriter.getRecipeRepo();
-            recipeList = rrg.getRecipeList();
+            this.recipeList = rrg.getRecipeList();
         } catch (IOException e) {
             recipeList = new RecipeList();
             System.out.println("Read file failed.....");

@@ -53,8 +53,8 @@ public class CollegeCookApp {
         MealplanInputBoundary mealplanInputBoundary = new MealplanInteractor(mealplanOutputBoundary,loginControllor.preformGetLoggedInUser(),mrg);
         MealplanController mealplanController = new MealplanController(mealplanInputBoundary,profileInputBoundary,recipeInputBoundary);
 
-        AppController appController1 = new AppController(recipeController, loginControllor, profileController,
-                mealplanController, searchController, rankController, reviewController);
+        AppController appController1 = new AppController(recipeController, loginControllor,
+                profileController, mealplanController, searchController, rankController, reviewController);
 
         // UI
         RecipeCreateBox recipeCreateBox = new CreateRecipeUI(appController1);
@@ -65,6 +65,7 @@ public class CollegeCookApp {
         ProfileBox profileBox = new ProfileViewRecipeUI(appController1);
         InfoSetBox infoSetBox = new ProfileInfoUI(appController1);
         InfoViewBox infoViewBox = new ProfileUI(appController1);
+        SearchResultsBox searchResultsBox = new SearchSortRecipesResultsUI(appController1);
         RankResultBox rankResultBox = new RankingUI(appController1);
         ReviewCreateBox reviewCreateBox = new CreateReviewUI(appController1);
         ReviewViewBox reviewViewBox = new ViewReviewUI(appController1);
@@ -85,6 +86,7 @@ public class CollegeCookApp {
 
         ProfileUI profileUI = new ProfileUI(appController1);
         mealplanOutputBoundary.setUI(mealplanBox);
+        searchOutputBoundary.setUI(searchResultsBox);
         welcomeUI.setVisible(true);
     }
 }

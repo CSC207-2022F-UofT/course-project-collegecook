@@ -8,10 +8,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+/**
+ * Main menu screen once a user is logged in
+ */
 public class Menu extends JFrame {
     JPanel menu = new JPanel();
     JButton create_recipe = new JButton("Create Recipe");
     JButton search_recipe = new JButton("Search Recipe");
+    JButton searchSortRecipe = new JButton("Search and Sort for Recipes");
     JButton mealPlan = new JButton("My Meal Plan");
     JButton ranking = new JButton("Ranking");
     JButton profile = new JButton("My Profile");
@@ -25,13 +29,18 @@ public class Menu extends JFrame {
         this.appController = appController;
         menu.setLayout(new BoxLayout(menu, BoxLayout.Y_AXIS));
 
+        // title: CollegeCook
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         title.setFont(new Font("Serif", Font.PLAIN, 100));
         menu.add(title);
         menu.add(new JLabel(""));
+
+        // user: username
         userName = new JLabel("User: " + appController.getLoginControllor().preformGetLoggedInUser());
         userName.setAlignmentX(Component.CENTER_ALIGNMENT);
         menu.add(userName);
+
+        // create recipe button
         create_recipe.setAlignmentX(Component.CENTER_ALIGNMENT);
         create_recipe.addActionListener(new ActionListener() {
             @Override
@@ -40,10 +49,10 @@ public class Menu extends JFrame {
                 createRecipeUI.setVisible(true);
             }
         });
-
         menu.add(create_recipe);
         search_recipe.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        // read one recipe button
         search_recipe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -52,8 +61,20 @@ public class Menu extends JFrame {
             }
         });
         menu.add(search_recipe);
-        mealPlan.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        // search and sort for recipes button
+        searchSortRecipe.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SearchSortRecipesUI searchSortRecipesUI = new SearchSortRecipesUI(appController);
+                searchSortRecipesUI.setVisible(true);
+            }
+        });
+        menu.add(searchSortRecipe);
+        searchSortRecipe.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // my meal plan button
+        mealPlan.setAlignmentX(Component.CENTER_ALIGNMENT);
         mealPlan.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -66,15 +87,17 @@ public class Menu extends JFrame {
                 mealplanBoxUI.setVisible(true);
             }
         });
-
         menu.add(mealPlan);
+
+        // ranking button
         ranking.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 
         menu.add(ranking);
+
+        // my profile button
         profile.setAlignmentX(Component.CENTER_ALIGNMENT);
         menu.add(profile);
-
         profile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -83,7 +106,7 @@ public class Menu extends JFrame {
             }
         });
 
-
+        // add entire menu to screen
         this.add(menu);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.pack();

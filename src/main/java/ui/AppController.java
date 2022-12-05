@@ -15,17 +15,16 @@ public class AppController {
     private final SearchController searchController;
     private final RankController rankController;
     private final MealplanController mealplanController;
-
     private final ReviewController reviewController;
 
     public AppController(RecipeController recipeController, LoginControllor loginControllor, ProfileController profileController,
-                         MealplanController mealplanController, SearchController searchController,
-                         RankController rankController, ReviewController reviewController) {
+                         MealplanController mealplanController,
+                         SearchController searchController, RankController rankController, ReviewController reviewController) {
         this.recipeController = recipeController;
         this.loginControllor = loginControllor;
         this.profileController = profileController;
         this.mealplanController = mealplanController;
-        this.searchController = null;
+        this.searchController = searchController;
         this.rankController = rankController;
         this.reviewController = reviewController;
     }
