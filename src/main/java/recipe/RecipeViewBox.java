@@ -11,4 +11,5 @@ public interface RecipeViewBox {
     void followSuccess();
 
     void followFailure();
+
 }

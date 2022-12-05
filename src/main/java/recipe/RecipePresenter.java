@@ -33,4 +33,6 @@ public class RecipePresenter implements RecipeOutputBoundary{
     }
     @Override
     public void setUI(RecipeViewBox recipeViewBox){this.recipeViewBox = recipeViewBox;}
+
+
 }

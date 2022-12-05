@@ -13,4 +13,5 @@ public interface RecipeOutputBoundary {
     void setUI(RecipeCreateBox recipeCreateBox);
 
     void setUI(RecipeViewBox recipeViewBox);
+
 }
