@@ -47,6 +47,22 @@ public class ProfileInteractor implements ProfileInputBoundary{
         }
     }
 
+    public int allCreatedRanking(String username) throws IOException {
+        RecipeList allRecipe = rrg.getRecipeList();
+        ArrayList<Recipe> recipeList = new ArrayList<>();
+        for (Recipe r: allRecipe){
+            if (r.getCreator().equals(username)){
+                recipeList.add(r);
+            }
+        }
+        Profile p = checkProfile(username);
+        p.setCreated(recipeList);
+        if(recipeList.isEmpty()){
+            return 0;
+        }
+        return recipeList.size();
+    }
+
     public Profile checkProfile(String username) throws IOException {
         for (Profile p: profileList){
             String expected = p.getUsername();

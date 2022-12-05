@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
 
-public class TotalNumRecipeComparator implements Comparator<Profile> {
+public class TotalNumRecipeComparator implements Comparator<User> {
     /**
      * Sorts users based on the total number od recipes
      *
@@ -20,9 +20,21 @@ public class TotalNumRecipeComparator implements Comparator<Profile> {
      * @param o2 a user that has a total number of recipes
      */
     @Override
-    public int compare(Profile o1, Profile o2) {
-        int totalRecipe1 = o1.getCreated().size();
-        int totalRecipe2 = o2.getCreated().size();
+    public int compare(User o1, User o2) {
+        ProfileOutputBoundary profileOutputBoundary = new ProfilePresenter();
+        ProfileInteractor profileInteractor = new ProfileInteractor(profileOutputBoundary);
+        int totalRecipe1 = 0;
+        try {
+            totalRecipe1 = profileInteractor.allCreatedRanking(o1.getUsername());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        int totalRecipe2 = 0;
+        try {
+            totalRecipe2 = profileInteractor.allCreatedRanking(o2.getUsername());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         return totalRecipe2 - totalRecipe1;
     }
 

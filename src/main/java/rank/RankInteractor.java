@@ -58,10 +58,18 @@ public class RankInteractor implements RankInputBoundary{
                 break;}
             case "total number of recipe": {
                 // sort based on # of recipe
-                Arrays.sort(totalProfile, new TotalNumRecipeComparator());
-                for(Profile profile: totalProfile){
-                    int recipe = profile.getCreated().size();
-                    String returns = recipe + "-" + profile.getUsername();
+                Arrays.sort(totalUsers, new TotalNumRecipeComparator());
+//                Arrays.sort(totalProfile, new TotalNumRecipeComparator());
+//                for(Profile profile: totalProfile){
+//                    int recipe = profile.getCreated().size();
+//                    String returns = recipe + "-" + profile.getUsername();
+//                    finalList.add(returns);
+//                }
+                for(User user: totalUsers){
+                    ProfileOutputBoundary profileOutputBoundary = new ProfilePresenter();
+                    ProfileInteractor profileInteractor = new ProfileInteractor(profileOutputBoundary);
+                    int userAvgRating1 = profileInteractor.allCreatedRanking(user.getUsername());
+                    String returns = userAvgRating1 + "-" + user.getUsername();
                     finalList.add(returns);
                 }
                 break;}
