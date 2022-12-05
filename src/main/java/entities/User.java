@@ -32,6 +32,7 @@ public class User implements Serializable {
 
     /**
      * To return the username of User
+     * @return string of username
      */
     public String getUsername() {
         return username;
@@ -39,6 +40,7 @@ public class User implements Serializable {
 
     /**
      * To return the password of User
+     * @return string of password
      */
     public String getPassword() {
         return password;
@@ -46,11 +48,13 @@ public class User implements Serializable {
 
     /**
      * To return the number of followers of the User
+     * @return return the number of followers
      */
     public int GetNumberOfFollowers(){return followers.size();}
 
     /**
      * To return the number of users a User followed
+     * @return return the number of users a User has followed
      */
 
     public int GetNumberOfFollowed(){return followed.size();}
@@ -71,22 +75,33 @@ public class User implements Serializable {
 
     /**
      * To remove other user from the User's list of followers
-     * @param other The name of the user that the User want to follow.
+     * @param other The name of the user that the User want to unfollow.
      */
     public void RemoveFollowers(User other) {this.followers.remove(other);}
 
-    public void RemoveFollowed(User other) {
-        this.followed.remove(other);
-    }
+    /**
+     * To remove the other user from the list of users a User has followed
+     * @param other The name of the user that the User want to unfollow.
+     */
+    public void RemoveFollowed(User other) {this.followed.remove(other);}
 
-    public List<User> getFollowers() {
-        return followers;
-    }
+    /**
+     * To get the list of followers a user has
+     * @return return the list of followers a user has
+     */
+    public List<User> getFollowers() {return followers;}
 
-    public List<User> getFollowed() {
-        return followed;
-    }
+    /**
+     * To get the list of users that User followed
+     * @return return  the list of users that User followed
+     */
+    public List<User> getFollowed() {return followed;}
 
+    /**
+     *
+     * @param o Arbitrary object
+     * @return Return whether o is a user with the same name,password,list of followed/followers.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
