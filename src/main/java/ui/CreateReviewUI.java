@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Arrays;
 
 public class CreateReviewUI extends JFrame {
@@ -51,9 +52,17 @@ public class CreateReviewUI extends JFrame {
                 }
                 int ratenum = Integer.parseInt(rating.getText());
                 if (content.getText().equals("")){
-                    reviewController.performCreateReview(user, recipe, ratenum);
+                    try {
+                        reviewController.performCreateReview(user, recipe, ratenum);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 } else {
-                    reviewController.performCreateReview(user, recipe, content.getText(), ratenum);
+                    try {
+                        reviewController.performCreateReview(user, recipe, content.getText(), ratenum);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
 
                 dispose();

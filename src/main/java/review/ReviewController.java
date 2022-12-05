@@ -1,5 +1,7 @@
 package review;
 
+import java.io.IOException;
+
 public class ReviewController {
 
     /**
@@ -12,7 +14,7 @@ public class ReviewController {
      * @param rating the review's rating.
      */
 
-    public void performCreateReview(String username, String recipeName, int rating) {
+    public void performCreateReview(String username, String recipeName, int rating) throws IOException {
         ReviewInteractor interactor = new ReviewInteractor();
         interactor.createReview(username, recipeName, rating);
     }
@@ -29,7 +31,7 @@ public class ReviewController {
      */
 
 
-    public void performCreateReview(String username, String recipeName, String content, int rating) {
+    public void performCreateReview(String username, String recipeName, String content, int rating) throws IOException {
         ReviewInteractor interactor = new ReviewInteractor();
         interactor.createReview(username, recipeName, content, rating);
     }

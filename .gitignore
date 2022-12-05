@@ -115,14 +115,10 @@ gradle-app.setting
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
-<<<<<<< HEAD
 
-gradlew.bat
-gradlew
 gradle/
 bin/
 .idea/
-=======
 gradlew
 gradlew.bat
 
@@ -134,5 +130,6 @@ src/test/.DS_Store
 src/test/java/.DS_Store
 .DS_Store
 
->>>>>>> 18-feature-0-entities
 
+production/main/ui/AppController.java.orig
+production/main/CollegeCookApp.java.orig

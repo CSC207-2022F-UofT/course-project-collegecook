@@ -1,21 +1,19 @@
 package search;
 
-import entities.Recipe;
-
-import java.util.ArrayList;
-
 public class SearchPresenter implements SearchOutputBoundary{
+    SearchResultsBox searchResultsBox;
 
     @Override
-    public SearchResponseModel prepareResultsView(SearchResponseModel searchResults){
-        //TODO: delete and fill out implementation details for results view
-        return new SearchResponseModel(new Recipe[0]);
-    };
+    public void setUI(SearchResultsBox searchResultsBox){
+        this.searchResultsBox = searchResultsBox;
+    }
+    @Override
+    public void prepareSuccessView(SearchResponseModel searchResults) {
+        searchResultsBox.success(searchResults);
+    }
 
     @Override
-    public SearchResponseModel prepareFailureView(String error){
-        //TODO: delete and fill out implementation details for failure view
-        return new SearchResponseModel(new Recipe[0]);
-    };
-
+    public void prepareFailureView(String error) {
+        searchResultsBox.failure(error);
+    }
 }
