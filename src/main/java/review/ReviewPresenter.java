@@ -1,15 +1,38 @@
 package review;
 
+
+
+import java.util.ArrayList;
+
 public class ReviewPresenter implements ReviewOutputBoundary {
 
-    void CreateReviewView();
+    ReviewCreateBox reviewCreateBox;
 
-    void readSuccessView(String reviews);
+    ReviewViewBox reviewViewBox;
 
-    void readFailureView();
+    @Override
+    public void createReviewView() {
+        reviewCreateBox.success();
+    }
 
-    void setUI(ReviewCreateBox reviewCreateBox);
+    @Override
+    public void readSuccessView(ArrayList<String> reviews) {
+        reviewViewBox.success(reviews);
+    }
 
-    void setUI(ReviewViewBox reviewViewBox);
+    @Override
+    public void readFailureView() {
+        reviewViewBox.fail();
+    }
+
+    @Override
+    public void setUI(ReviewCreateBox reviewCreateBox) {
+        this.reviewCreateBox = reviewCreateBox;
+    }
+
+    @Override
+    public void setUI(ReviewViewBox reviewViewBox) {
+        this.reviewViewBox = reviewViewBox;
+    }
 
 }
