@@ -2,6 +2,7 @@ package search;
 
 import entities.Recipe;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class AverageRatingRecipeSorter implements RecipeSorter{
     /**
@@ -11,7 +12,11 @@ public class AverageRatingRecipeSorter implements RecipeSorter{
      */
     @Override
     public void sort(Recipe[] recipes, boolean sortByAscending) {
-        Arrays.sort(recipes, new AverageRatingComparator());
+        if (sortByAscending) {
+            Arrays.sort(recipes, new AverageRatingComparator());
+        }
+        else{Arrays.sort(recipes, Collections.reverseOrder(new AverageRatingComparator()));}
+
     }
 
 }

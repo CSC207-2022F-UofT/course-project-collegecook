@@ -3,6 +3,7 @@ package search;
 import entities.Recipe;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 public class NumReviewsRecipeSorter implements RecipeSorter{
     /**
@@ -12,7 +13,12 @@ public class NumReviewsRecipeSorter implements RecipeSorter{
      */
     @Override
     public void sort(Recipe[] recipes, boolean sortByAscending) {
-        Arrays.sort(recipes, new NumReviewsComparator());
+
+        if (sortByAscending) {
+            Arrays.sort(recipes, new NumReviewsComparator());
+        }
+        else{Arrays.sort(recipes, Collections.reverseOrder(new NumReviewsComparator()));}
+
     }
 
 }

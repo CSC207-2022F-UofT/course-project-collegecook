@@ -1,6 +1,7 @@
 package ui;
 
 import recipe.*;
+import review.ReviewController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +16,9 @@ public class ViewRecipeUI extends JFrame implements RecipeViewBox {
     JPanel buttonPanel = new JPanel();
     JButton review = new JButton("Review");
     JButton mealPlan = new JButton("Add to My Meal Plan");
-    JButton folllow = new JButton("follow");
+    JButton folllow = new JButton("Follow");
+
+    JButton reviews = new JButton("View Reviews");
     AppController appController;
 
     public ViewRecipeUI(AppController appController){
@@ -41,7 +44,7 @@ public class ViewRecipeUI extends JFrame implements RecipeViewBox {
                 try {
                     appController.getLoginControllor().PreformFollow(user,creator);
                 } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(null,"You have followed the creator.");;
+                    JOptionPane.showMessageDialog(null,"You have followed the creator.");
                 }
             }
         });
@@ -53,10 +56,22 @@ public class ViewRecipeUI extends JFrame implements RecipeViewBox {
                 addMealplanUI.setVisible(true);
             }
         });
+
+        review.addActionListener(e -> {
+            CreateReviewUI createReviewUI = new CreateReviewUI(appController);
+            createReviewUI.setVisible(true);
+        });
+
+        reviews.addActionListener(e -> {
+            ReviewController reviewController = appController.getReviewController();
+            reviewController.performViewReviews(appController.getRecipeController().getReadingRecipe());
+        });
+
         buttonPanel.add(review);
         buttonPanel.add(mealPlan);
 
         buttonPanel.add(folllow);
+        buttonPanel.add(reviews);
         view.add(buttonPanel);
         this.add(view);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

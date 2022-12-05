@@ -6,7 +6,7 @@ import java.util.List;
 
 public class RankResponseModel {
     String rank;
-    List<User> users;
+    User[] users;
     /**
      *
      * Constructor for RankResponseModel. Takes in a string which
@@ -16,7 +16,7 @@ public class RankResponseModel {
      * @param rank contains the variable used to sort Users
      * @param rank contains the sorted list of users
      */
-    public RankResponseModel(String rank, List<User> users) {
+    public RankResponseModel(String rank, User[] users) {
         this.rank = rank;
         this.users = users;
     }
@@ -30,7 +30,7 @@ public class RankResponseModel {
     /**
      * A getter function that returns the sorted list of users.
      */
-    public List<User> getUsers() {
+    public User[] getUsers() {
         return users;
     }
     /**
@@ -42,7 +42,7 @@ public class RankResponseModel {
     /**
      * A setter function that sets users
      */
-    public void setUsers(List<User> users) {
+    public void setUsers(User[] users) {
         this.users = users;
     }
 }

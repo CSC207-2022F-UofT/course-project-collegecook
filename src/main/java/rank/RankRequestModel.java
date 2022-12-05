@@ -1,7 +1,8 @@
 package rank;
 
 public class RankRequestModel {
-    private String ranking;
+    private final String ranking;
+
     /**
      * Constructor for RankRequestModel. Takes in a ranking which
      * contains the variable chosen by the user to sort the other
@@ -19,6 +20,7 @@ public class RankRequestModel {
      * the user.
      */
     public String getRanking() {
-        return ranking;
+        return this.ranking;
     }
+
 }
