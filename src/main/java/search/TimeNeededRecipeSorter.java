@@ -2,6 +2,7 @@ package search;
 
 import entities.Recipe;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class TimeNeededRecipeSorter implements RecipeSorter {
     /**
@@ -11,6 +12,11 @@ public class TimeNeededRecipeSorter implements RecipeSorter {
      */
     @Override
     public void sort(Recipe[] recipes, boolean sortByAscending) {
-        Arrays.sort(recipes, new TimeNeededComparator());
+        if (sortByAscending)
+        {
+            Arrays.sort(recipes, new TimeNeededComparator());
+        }
+        else{Arrays.sort(recipes, Collections.reverseOrder(new TimeNeededComparator()));}
+
     }
 }

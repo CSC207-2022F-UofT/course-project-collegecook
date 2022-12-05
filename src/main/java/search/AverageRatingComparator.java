@@ -23,15 +23,19 @@ public class AverageRatingComparator implements Comparator<Recipe> {
      */
     @Override
     public int compare(Recipe r1, Recipe r2) {
+
         ReviewDatabase reviewDatabase = ReviewInteractor.loadReviewDatabase();
         ArrayList<Review> reviews1 = reviewDatabase.getRecipeReviews(r1);
         ArrayList<Review> reviews2 = reviewDatabase.getRecipeReviews(r2);
 
+        if (reviews1.isEmpty() || reviews2.isEmpty()){
+            return reviews1.size() - reviews2.size();
+        }
+        else{
+            int r1avgRating = (reviews1.stream().mapToInt(Review::getRating).sum())/ reviews1.size();
+            int r2avgRating = (reviews2.stream().mapToInt(Review::getRating).sum())/ reviews2.size();
+            return r1avgRating - r2avgRating;
 
-        int r1avgRating = (reviews1.stream().mapToInt(Review::getRating).sum())/ reviews1.size();
-        int r2avgRating = (reviews2.stream().mapToInt(Review::getRating).sum())/ reviews2.size();
-        return r1avgRating - r2avgRating;
-
-//        return (int) ((recipeRatingDiff >= 0) ? Math.ceil(recipeRatingDiff) : Math.floor(recipeRatingDiff));
+        }
     }
 }

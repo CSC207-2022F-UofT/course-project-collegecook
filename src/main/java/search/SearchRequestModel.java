@@ -3,13 +3,13 @@ package search;
 import java.util.ArrayList;
 
 public class SearchRequestModel {
-    String name;
-    String cuisine;
-    ArrayList<String> ingredients;
-    int timeInMin;
-    String sortType;
+    private String name;
+    private String cuisine;
+    private ArrayList<String> ingredients;
+    private int timeInMin;
+    private String sortType;
 
-    boolean sortByAscending;
+    private boolean sortByAscending;
 
     /**
      * Input data to search for matching recipes with

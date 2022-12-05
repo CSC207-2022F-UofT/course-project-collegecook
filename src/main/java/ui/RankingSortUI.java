@@ -24,8 +24,12 @@ public class RankingSortUI extends JFrame {
         rankPanel.add(nameLabel);
         rankButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         rankButton.addActionListener(e -> {
+            try {
                 rankController.sorting(nameInput.getText());
-            });
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
         rankPanel.add(rankButton);
         this.add(rankPanel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

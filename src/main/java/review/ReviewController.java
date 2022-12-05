@@ -1,6 +1,19 @@
 package review;
 
+
 public class ReviewController {
+
+    ReviewInputBoundary reviewInputBoundary;
+
+    /**
+     * Constructs a new ReviewController
+     * @param reviewInputBoundary An interface to get access of the ReviewInteractor.
+     */
+
+    public ReviewController(ReviewInputBoundary reviewInputBoundary) {
+        this.reviewInputBoundary = reviewInputBoundary;
+    }
+
 
     /**
      * Requests a ReviewInteractor class to create a new review,
@@ -13,8 +26,7 @@ public class ReviewController {
      */
 
     public void performCreateReview(String username, String recipeName, int rating) {
-        ReviewInteractor interactor = new ReviewInteractor();
-        interactor.createReview(username, recipeName, rating);
+        reviewInputBoundary.createReview(username, recipeName, rating);
     }
 
     /**
@@ -30,7 +42,10 @@ public class ReviewController {
 
 
     public void performCreateReview(String username, String recipeName, String content, int rating) {
-        ReviewInteractor interactor = new ReviewInteractor();
-        interactor.createReview(username, recipeName, content, rating);
+        reviewInputBoundary.createReview(username, recipeName, content, rating);
+    }
+
+    public void performViewReviews(String recipeName) {
+        reviewInputBoundary.readRecipeReviews(recipeName);
     }
 }

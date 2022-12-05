@@ -3,6 +3,7 @@ import mealplan.*;
 import profile.*;
 import rank.*;
 import recipe.*;
+import review.*;
 import search.*;
 import ui.*;
 
@@ -39,6 +40,12 @@ public class CollegeCookApp {
         RankInputBoundary rankInputBoundary = new RankInteractor(rankOutputBoundary);
         RankController rankController = new RankController(rankInputBoundary);
 
+        // review use case setup
+        ReviewOutputBoundary reviewOutputBoundary = new ReviewPresenter();
+        ReviewDatabaseReadWriter reviewDatabaseReadWriter = ReviewDatabaseReadWriter.getReviewRepo();
+        ReviewInputBoundary reviewInputBoundary = new ReviewInteractor(reviewOutputBoundary, reviewDatabaseReadWriter);
+        ReviewController reviewController = new ReviewController(reviewInputBoundary);
+
         // UI
         
         MealplanOutputBoundary mealplanOutputBoundary= new MealplanPresenter();
@@ -46,7 +53,8 @@ public class CollegeCookApp {
         MealplanInputBoundary mealplanInputBoundary = new MealplanInteractor(mealplanOutputBoundary,loginControllor.preformGetLoggedInUser(),mrg);
         MealplanController mealplanController = new MealplanController(mealplanInputBoundary,profileInputBoundary,recipeInputBoundary);
 
-        AppController appController1 = new AppController(recipeController, loginControllor, profileController, mealplanController, searchController, rankController);
+        AppController appController1 = new AppController(recipeController, loginControllor,
+                profileController, mealplanController, searchController, rankController, reviewController);
 
         // UI
         RecipeCreateBox recipeCreateBox = new CreateRecipeUI(appController1);
@@ -57,7 +65,10 @@ public class CollegeCookApp {
         ProfileBox profileBox = new ProfileViewRecipeUI(appController1);
         InfoSetBox infoSetBox = new ProfileInfoUI(appController1);
         InfoViewBox infoViewBox = new ProfileUI(appController1);
+        SearchResultsBox searchResultsBox = new SearchSortRecipesResultsUI(appController1);
         RankResultBox rankResultBox = new RankingUI(appController1);
+        ReviewCreateBox reviewCreateBox = new CreateReviewUI(appController1);
+        ReviewViewBox reviewViewBox = new ViewReviewUI(appController1);
 
         // set corresponding view
         MealplanBox mealplanBox = new MealplanBoxUI(appController1);
@@ -70,9 +81,12 @@ public class CollegeCookApp {
         profileOutputBoundary.setUI(infoSetBox);
         profileOutputBoundary.setUI(infoViewBox);
         rankOutputBoundary.setUI(rankResultBox);
+        reviewOutputBoundary.setUI(reviewCreateBox);
+        reviewOutputBoundary.setUI(reviewViewBox);
 
         ProfileUI profileUI = new ProfileUI(appController1);
         mealplanOutputBoundary.setUI(mealplanBox);
+        searchOutputBoundary.setUI(searchResultsBox);
         welcomeUI.setVisible(true);
     }
 }
