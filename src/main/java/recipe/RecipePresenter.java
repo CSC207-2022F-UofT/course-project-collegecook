@@ -1,6 +1,9 @@
 package recipe;
 
 public class RecipePresenter implements RecipeOutputBoundary{
+    /**
+     * This is RecipePresenter, which is in the presenter layer.
+     */
     RecipeCreateBox recipeCreateBox;
     RecipeViewBox recipeViewBox;
 

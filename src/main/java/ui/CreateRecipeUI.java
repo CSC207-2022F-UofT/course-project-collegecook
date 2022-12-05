@@ -112,27 +112,5 @@ public class CreateRecipeUI extends JFrame implements RecipeCreateBox{
                 "Sorry, the recipe's name already exists.");
     }
 
-    @Override
-    public void setV(boolean vision) {
-        this.setVisible(vision);
-    }
-
-
-    public static void main(String[] args){
-//        UserGateWay userGateWay = UserRepoImpl.getUserRepoImpl();
-//        LoginOutputBound loginOutputBound = new LoginPresenter();
-//        UserManager userManager = new UserManager(loginOutputBound, userGateWay);
-//        LoginControllor loginControllor = new LoginControllor(userManager);
-//
-//        RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();
-//        RecipeRepoGateway recipeRepoGateway = RecipeReadWriter.getRecipeRepo();
-//        RecipeInputBoundary recipeInputBoundary = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
-//        RecipeController recipeController = new RecipeController(recipeInputBoundary);
-//
-//        AppController appController = new AppController(recipeController, loginControllor);
-//        RecipeCreateBox m = new CreateRecipeUI(appController);
-//        recipeOutputBoundary.setUI(m);
-//        m.setV(true);
-    }
 
 }

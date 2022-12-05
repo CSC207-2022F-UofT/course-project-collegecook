@@ -52,7 +52,7 @@ public class SearchRecipeUI extends JFrame {
 //        AppController appController = new AppController(recipeController, loginControllor);
 //        RecipeViewBox recipeViewBox = new ViewRecipeUI(appController);
 //        recipeOutputBoundary.setUI(recipeViewBox);
-//        SearchRecipeUI m = new SearchRecipeUI(appController);
+//bnew SearchRecipeUI(appController);
 //        m.setVisible(true);
 
     }
