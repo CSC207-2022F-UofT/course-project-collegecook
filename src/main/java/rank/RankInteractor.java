@@ -3,7 +3,9 @@ package rank;
 import entities.Rank;
 import entities.User;
 import entities.UserList;
+import login.UserRepoImpl;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
@@ -23,10 +25,12 @@ public class RankInteractor implements RankInputBoundary{
         this.rankOutputBoundary = rankOutputBoundary;
     }
     @Override
-    public RankResponseModel sortUsers(RankRequestModel requestModel) {
+    public RankResponseModel sortUsers(RankRequestModel requestModel) throws IOException {
         // stores all the Users in a list
-        UserList userList = new UserList();
-        List<User> users = userList.getAllUser();
+        UserRepoImpl userRepo = new UserRepoImpl();
+        List<User> users = userRepo.getAllUser().getAllUser();
+//        UserList userList = new UserList();
+//        List<User> users = userList.getAllUser();
         // Return an error if no users have been registered
         if (users.isEmpty()){
             rankOutputBoundary.prepareFailView("There are no users!");
