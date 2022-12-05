@@ -16,7 +16,7 @@ public class RecipeInteractor implements RecipeInputBoundary {
     private String readingRecipe = null;
 
     /**
-     *
+     * Construct the RecipeInteractor
      * @param recipeOutputBoundary An interface of the presenter.
      * @param recipeRepoGateway An interface of the readWriter.
      */
@@ -28,7 +28,7 @@ public class RecipeInteractor implements RecipeInputBoundary {
     }
 
     /**
-     *
+     * Create a new recipe and store it in the database.
      * @param recipeRequestModel A requestModel which includes all the user input. They are packed up to avoid data
      *                           clump.
      */
@@ -48,7 +48,7 @@ public class RecipeInteractor implements RecipeInputBoundary {
     }
 
     /**
-     *
+     * Call the presenter to read the recipe.
      * @param recipeName The name of the recipe that the user wants to read.
      */
     @Override
@@ -63,7 +63,7 @@ public class RecipeInteractor implements RecipeInputBoundary {
     }
 
     /**
-     *
+     * Get a RecipeList that includes all the
      * @return Return the recipeList that is stored in "recipe.sav"
      */
     @Override
@@ -72,7 +72,7 @@ public class RecipeInteractor implements RecipeInputBoundary {
     }
 
     /**
-     *
+     * Get the recipe according to the given name.
      * @param recipeName A String, which is a name of the recipe.
      * @return Return a recipe which has the recipeName
      */
@@ -80,11 +80,21 @@ public class RecipeInteractor implements RecipeInputBoundary {
      public Recipe getRecipe(String recipeName){
             return this.recipeList.getRecipe(recipeName);
         }
-        @Override
+
+    /**
+     * Return all the information of the recipe.
+     * @return The name of the recipe that the user is reading.
+     */
+    @Override
         public String getReadingRecipe(){
         return this.readingRecipe;
         }
 
+    /**
+     * Get the creator of the given recipe.
+     * @param recipe The name of the recipe.
+     * @return The creator of the recipe.
+     */
     @Override
     public String getCreator(String recipe) {
         return this.recipeList.getRecipe(recipe).getCreator();

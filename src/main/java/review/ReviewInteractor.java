@@ -17,14 +17,11 @@ public class ReviewInteractor {
      * Construct a ReviewInteractor.
      */
     public ReviewInteractor() {
-        try {
 
-            RecipeRepoGateway rrg = RecipeReadWriter.getRecipeRepo();
-            this.recipeList = rrg.getRecipeList();
-        } catch (IOException e) {
-            recipeList = new RecipeList();
-            System.out.println("Read file failed.....");
-        }
+
+        RecipeRepoGateway rrg = RecipeReadWriter.getRecipeRepo();
+        this.recipeList = rrg.getRecipeList();
+
         this.reviewDatabase = loadReviewDatabase();
     }
 
@@ -59,7 +56,7 @@ public class ReviewInteractor {
      * @param rating the review's rating.
      */
     public void createReview(String username, String recipeName, int rating) {
-        Recipe recipe = recipeList.get_recipe(recipeName);
+        Recipe recipe = recipeList.getRecipe(recipeName);
         Review review = new Review(username, recipe, rating);
         createHelper(username, review);
     }
@@ -75,7 +72,7 @@ public class ReviewInteractor {
      * @param rating the review's rating.
      */
     public void createReview(String username, String recipeName, String content, int rating) {
-        Recipe recipe = recipeList.get_recipe(recipeName);
+        Recipe recipe = recipeList.getRecipe(recipeName);
         Review review = new Review(username, recipe, content, rating);
         createHelper(username, review);
     }

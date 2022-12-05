@@ -190,7 +190,7 @@ public class ProfileInteractorTest {
         };
         ArrayList<String> ta = new ArrayList<>();
         RecipeList recipeList = rrg.getRecipeList();
-        recipeList.add_recipe("Test", "Procedure", "cuisine", ta, 1, 2,
+        recipeList.addRecipe("Test", "Procedure", "cuisine", ta, 1, 2,
                 3, "Allison");
         rrg.saveRecipe(recipeList);
         ProfileInteractor pi = new ProfileInteractor(output);
