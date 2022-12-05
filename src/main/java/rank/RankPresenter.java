@@ -11,7 +11,7 @@ public class RankPresenter implements RankOutputBoundary{
      * @param rank contains the sorted Users list
      */
     public void prepareSuccessView(RankResponseModel rank){
-        rankResultBox.success(rank.getUsers());}
+        rankResultBox.success(rank.getUsers(), rank.getRank());}
         // return "Success! Here are the users ranked by: " + rank.getRank() + "\n" + Arrays.toString(rank.getUsers());}
 
     /**

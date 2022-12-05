@@ -1,12 +1,15 @@
 package entities;
 
 import org.junit.jupiter.api.Test;
+import profile.ProfileRepoImpl;
 import rank.AvgRatingComparator;
 import rank.TotalFollowersComparator;
 import rank.TotalNumRecipeComparator;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -35,7 +38,7 @@ public class RankTest {
         assertEquals(expected, actualList);
         }
     @Test
-    public void TestProfileComparator() {
+    public void TestProfileComparator() throws IOException {
         User user1 = new User("User1", "CSC207");
         User user2 = new User("User2", "CSC208");
         User user3 = new User("User3", "CSC209");
@@ -65,7 +68,10 @@ public class RankTest {
         recipe2.add(dish3);
         recipe2.add(dish2);
         profile2.setCreated(recipe2);
-        Arrays.sort(users, new TotalNumRecipeComparator());
+        List<Profile> profiles = ProfileRepoImpl.getPrl().getProfile();
+        Profile[] totalProfile = new Profile[profiles.size()];
+        profiles.toArray(totalProfile);
+        Arrays.sort(totalProfile, new TotalNumRecipeComparator());
         ArrayList<String> expected = new ArrayList<String>();
         expected.add(user2.getUsername());
         expected.add(user1.getUsername());

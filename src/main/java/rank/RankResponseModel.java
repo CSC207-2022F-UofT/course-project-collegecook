@@ -2,11 +2,12 @@ package rank;
 
 import entities.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RankResponseModel {
     String rank;
-    User[] users;
+    ArrayList<String> users;
     /**
      *
      * Constructor for RankResponseModel. Takes in a string which
@@ -16,7 +17,7 @@ public class RankResponseModel {
      * @param rank contains the variable used to sort Users
      * @param rank contains the sorted list of users
      */
-    public RankResponseModel(String rank, User[] users) {
+    public RankResponseModel(String rank, ArrayList<String> users) {
         this.rank = rank;
         this.users = users;
     }
@@ -30,7 +31,7 @@ public class RankResponseModel {
     /**
      * A getter function that returns the sorted list of users.
      */
-    public User[] getUsers() {
+    public ArrayList<String> getUsers() {
         return users;
     }
     /**
@@ -42,7 +43,7 @@ public class RankResponseModel {
     /**
      * A setter function that sets users
      */
-    public void setUsers(User[] users) {
+    public void setUsers(ArrayList<String> users) {
         this.users = users;
     }
 }
