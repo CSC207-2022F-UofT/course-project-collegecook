@@ -21,6 +21,10 @@ public class RecipeInteractor implements RecipeInputBoundary {
         } catch (IOException e) {
             recipeList = new RecipeList();
         }
+
+        if (recipeList == null){
+            recipeList = new RecipeList();
+        }
     }
 
     @Override

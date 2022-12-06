@@ -25,6 +25,9 @@ public class ReviewInteractor {
             recipeList = new RecipeList();
             System.out.println("Read file failed.....");
         }
+        if (this.recipeList == null){
+            this.recipeList = new RecipeList();
+        }
         this.reviewDatabase = loadReviewDatabase();
     }
 
