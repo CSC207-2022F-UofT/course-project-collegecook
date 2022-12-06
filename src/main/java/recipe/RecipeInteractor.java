@@ -23,12 +23,7 @@ public class RecipeInteractor implements RecipeInputBoundary {
     public RecipeInteractor(RecipeOutputBoundary recipeOutputBoundary, RecipeRepoGateway recipeRepoGateway) {
         this.recipeOutputBoundary = recipeOutputBoundary;
         this.rrg = recipeRepoGateway;
-        try {
-            recipeList = rrg.getRecipeList();
-        } catch (IOException e) {
-            recipeList = new RecipeList();
-        }
-
+        recipeList = rrg.getRecipeList();
         if (recipeList == null){
             recipeList = new RecipeList();
         }

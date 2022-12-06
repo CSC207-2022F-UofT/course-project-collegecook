@@ -64,9 +64,9 @@ public class SearchInteractorTest {
         recipe3 = new Recipe("spaghetti", "blah bananas", "italian", ingredients3, 100, 30, 30, "bob"); // time = 30 (over time limit)
 
         RecipeList recipeList = new RecipeList();
-        recipeList.add_recipe("apple pie", "blah apples", "french", ingredients1, 200, 20, 4, "bob"); // time = 20
-        recipeList.add_recipe("candy apple", "blah apple candy", "french", ingredients2, 300, 10, 4, "cat"); // time = 10
-        recipeList.add_recipe("spaghetti", "blah bananas", "italian", ingredients3, 100, 30, 30, "bob"); // time = 30 (over time limit)
+        recipeList.addRecipe("apple pie", "blah apples", "french", ingredients1, 200, 20, 4, "bob"); // time = 20
+        recipeList.addRecipe("candy apple", "blah apple candy", "french", ingredients2, 300, 10, 4, "cat"); // time = 10
+        recipeList.addRecipe("spaghetti", "blah bananas", "italian", ingredients3, 100, 30, 30, "bob"); // time = 30 (over time limit)
         recipeRepoGateway.saveRecipe(recipeList);
 
         // create users (required to create reviews)
@@ -219,9 +219,9 @@ public class SearchInteractorTest {
     @Test
     public void getSearchResultsWithMatchingIngredientsSortAscendingTimeNeeded() throws IOException {
         RecipeList recipes = new RecipeList();
-        recipes.add_recipe(recipe1.getRecipeName(), recipe1.getProcedure(), recipe1.getCuisine(), recipe1.getIngredients(), recipe1.getCalories(), recipe1.getTime(), recipe1.getDifficulty(), "bob");
-        recipes.add_recipe(recipe2.getRecipeName(), recipe2.getProcedure(), recipe2.getCuisine(), recipe2.getIngredients(), recipe2.getCalories(), recipe2.getTime(), recipe2.getDifficulty(), "cat");
-        recipes.add_recipe(recipe3.getRecipeName(), recipe3.getProcedure(), recipe3.getCuisine(), recipe3.getIngredients(), recipe3.getCalories(), recipe3.getTime(), recipe3.getDifficulty(), "bob");
+        recipes.addRecipe(recipe1.getRecipeName(), recipe1.getProcedure(), recipe1.getCuisine(), recipe1.getIngredients(), recipe1.getCalories(), recipe1.getTime(), recipe1.getDifficulty(), "bob");
+        recipes.addRecipe(recipe2.getRecipeName(), recipe2.getProcedure(), recipe2.getCuisine(), recipe2.getIngredients(), recipe2.getCalories(), recipe2.getTime(), recipe2.getDifficulty(), "cat");
+        recipes.addRecipe(recipe3.getRecipeName(), recipe3.getProcedure(), recipe3.getCuisine(), recipe3.getIngredients(), recipe3.getCalories(), recipe3.getTime(), recipe3.getDifficulty(), "bob");
         recipeRepoGateway.saveRecipe(recipes);
 
         SearchOutputBoundary searchPresenter = new SearchOutputBoundary() {
@@ -272,9 +272,9 @@ public class SearchInteractorTest {
     public void getSearchResultsMultipleCriteriaOneResultDescendingOrder() throws IOException {
         // set up recipes and save to recipe database
         RecipeList recipes = new RecipeList();
-        recipes.add_recipe(recipe1.getRecipeName(), recipe1.getProcedure(), recipe1.getCuisine(), recipe1.getIngredients(), recipe1.getCalories(), recipe1.getTime(), recipe1.getDifficulty(), "bob"); // within time limit, has flour
-        recipes.add_recipe(recipe2.getRecipeName(), recipe2.getProcedure(), recipe2.getCuisine(), recipe2.getIngredients(), recipe2.getCalories(), recipe2.getTime(), recipe2.getDifficulty(), "cat"); // within time limit, no flour
-        recipes.add_recipe(recipe3.getRecipeName(), recipe3.getProcedure(), recipe3.getCuisine(), recipe3.getIngredients(), recipe3.getCalories(), recipe3.getTime(), recipe3.getDifficulty(), "bob"); // not within time limit, has flour
+        recipes.addRecipe(recipe1.getRecipeName(), recipe1.getProcedure(), recipe1.getCuisine(), recipe1.getIngredients(), recipe1.getCalories(), recipe1.getTime(), recipe1.getDifficulty(), "bob"); // within time limit, has flour
+        recipes.addRecipe(recipe2.getRecipeName(), recipe2.getProcedure(), recipe2.getCuisine(), recipe2.getIngredients(), recipe2.getCalories(), recipe2.getTime(), recipe2.getDifficulty(), "cat"); // within time limit, no flour
+        recipes.addRecipe(recipe3.getRecipeName(), recipe3.getProcedure(), recipe3.getCuisine(), recipe3.getIngredients(), recipe3.getCalories(), recipe3.getTime(), recipe3.getDifficulty(), "bob"); // not within time limit, has flour
         recipeRepoGateway.saveRecipe(recipes);
 
         // create presenter with custom test results (instead of showing UI)
@@ -320,9 +320,9 @@ public class SearchInteractorTest {
     @Test
     public void getSearchResultsEmptyIngredients() throws IOException {
         RecipeList recipes = new RecipeList();
-        recipes.add_recipe(recipe1.getRecipeName(), recipe1.getProcedure(), recipe1.getCuisine(), recipe1.getIngredients(), recipe1.getCalories(), recipe1.getTime(), recipe1.getDifficulty(), "bob"); // within time limit
-        recipes.add_recipe(recipe2.getRecipeName(), recipe2.getProcedure(), recipe2.getCuisine(), recipe2.getIngredients(), recipe2.getCalories(), recipe2.getTime(), recipe2.getDifficulty(), "cat"); // within time limit
-        recipes.add_recipe(recipe3.getRecipeName(), recipe3.getProcedure(), recipe3.getCuisine(), recipe3.getIngredients(), recipe3.getCalories(), recipe3.getTime(), recipe3.getDifficulty(), "bob"); // not within time limit
+        recipes.addRecipe(recipe1.getRecipeName(), recipe1.getProcedure(), recipe1.getCuisine(), recipe1.getIngredients(), recipe1.getCalories(), recipe1.getTime(), recipe1.getDifficulty(), "bob"); // within time limit
+        recipes.addRecipe(recipe2.getRecipeName(), recipe2.getProcedure(), recipe2.getCuisine(), recipe2.getIngredients(), recipe2.getCalories(), recipe2.getTime(), recipe2.getDifficulty(), "cat"); // within time limit
+        recipes.addRecipe(recipe3.getRecipeName(), recipe3.getProcedure(), recipe3.getCuisine(), recipe3.getIngredients(), recipe3.getCalories(), recipe3.getTime(), recipe3.getDifficulty(), "bob"); // not within time limit
         recipeRepoGateway.saveRecipe(recipes);
 
         SearchOutputBoundary searchPresenter = new SearchOutputBoundary() {
