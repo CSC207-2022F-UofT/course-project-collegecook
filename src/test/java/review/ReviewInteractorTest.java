@@ -40,8 +40,23 @@ class ReviewInteractorTest {
         list.add_recipe("spaghetti", "Just cook it",
                 "italy", ingredients, 500, 10, 3, "Ben");
         recipeReadWriter.saveRecipe(list);
+        ReviewOutputBoundary reviewOutputBoundary = new ReviewOutputBoundary() {
+            @Override
+            public void createReviewView() {
+            }
 
-        interactor = new ReviewInteractor();
+            @Override
+            public void readSuccessView(String reviews) {}
+
+            @Override
+            public void readFailureView() {}
+            @Override
+            public void setUI(ReviewCreateBox reviewCreateBox){}
+            @Override
+            public void setUI(ReviewViewBox reviewViewBox) {}
+        };
+
+        interactor = new ReviewInteractor(reviewOutputBoundary, readWriter);
 
         ratingReadWriter = new AverageRatingReadWriter();
         currentRatings = ratingReadWriter.readFromFile("ratings.sav");

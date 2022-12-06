@@ -1,8 +1,19 @@
 package review;
 
-import java.io.IOException;
 
 public class ReviewController {
+
+    ReviewInputBoundary reviewInputBoundary;
+
+    /**
+     * Constructs a new ReviewController
+     * @param reviewInputBoundary An interface to get access of the ReviewInteractor.
+     */
+
+    public ReviewController(ReviewInputBoundary reviewInputBoundary) {
+        this.reviewInputBoundary = reviewInputBoundary;
+    }
+
 
     /**
      * Requests a ReviewInteractor class to create a new review,
@@ -14,9 +25,8 @@ public class ReviewController {
      * @param rating the review's rating.
      */
 
-    public void performCreateReview(String username, String recipeName, int rating) throws IOException {
-        ReviewInteractor interactor = new ReviewInteractor();
-        interactor.createReview(username, recipeName, rating);
+    public void performCreateReview(String username, String recipeName, int rating) {
+        reviewInputBoundary.createReview(username, recipeName, rating);
     }
 
     /**
@@ -31,8 +41,11 @@ public class ReviewController {
      */
 
 
-    public void performCreateReview(String username, String recipeName, String content, int rating) throws IOException {
-        ReviewInteractor interactor = new ReviewInteractor();
-        interactor.createReview(username, recipeName, content, rating);
+    public void performCreateReview(String username, String recipeName, String content, int rating) {
+        reviewInputBoundary.createReview(username, recipeName, content, rating);
+    }
+
+    public void performViewReviews(String recipeName) {
+        reviewInputBoundary.readRecipeReviews(recipeName);
     }
 }
