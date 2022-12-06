@@ -2,14 +2,10 @@ package rank;
 
 import entities.*;
 import login.UserRepoImpl;
-import profile.ProfileInteractor;
-import profile.ProfileOutputBoundary;
-import profile.ProfilePresenter;
-import profile.ProfileRepoImpl;
+import recipe.RecipeReadWriter;
+import recipe.RecipeRepoGateway;
 
-import javax.swing.*;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +13,7 @@ import java.util.List;
 public class RankInteractor implements RankInputBoundary{
     // The only input accepted are "Average Rating" , "Total Followers", "Total Number of Recipe"
     final RankOutputBoundary rankOutputBoundary;
+    private final RecipeRepoGateway rrg = RecipeReadWriter.getRecipeRepo();
 
     /**
      *
@@ -28,6 +25,19 @@ public class RankInteractor implements RankInputBoundary{
     public RankInteractor(RankOutputBoundary rankOutputBoundary) {
         this.rankOutputBoundary = rankOutputBoundary;
     }
+    public int allCreatedRanking(String username) throws IOException {
+        RecipeList allRecipe = rrg.getRecipeList();
+        ArrayList<Recipe> recipeList = new ArrayList<>();
+        for (Recipe r: allRecipe){
+            if (r.getCreator().equals(username)){
+                recipeList.add(r);
+            }
+        }
+        if(recipeList.isEmpty()){
+            return 0;
+        }
+        return recipeList.size();
+    }
     @Override
     public RankResponseModel sortUsers(RankRequestModel requestModel) throws IOException {
         // stores all the Users in a list
@@ -35,10 +45,6 @@ public class RankInteractor implements RankInputBoundary{
         // arraylist -> array
         User[] totalUsers = new User[users.size()];
         users.toArray(totalUsers);
-        // For total number of recipe
-        List<Profile> profiles = ProfileRepoImpl.getPrl().getProfile();
-        Profile[] totalProfile = new Profile[profiles.size()];
-        profiles.toArray(totalProfile);
         // Final array
         ArrayList<String> finalList = new ArrayList<String>();
         // Return an error if no users have been registered
@@ -59,16 +65,8 @@ public class RankInteractor implements RankInputBoundary{
             case "total number of recipe": {
                 // sort based on # of recipe
                 Arrays.sort(totalUsers, new TotalNumRecipeComparator());
-//                Arrays.sort(totalProfile, new TotalNumRecipeComparator());
-//                for(Profile profile: totalProfile){
-//                    int recipe = profile.getCreated().size();
-//                    String returns = recipe + "-" + profile.getUsername();
-//                    finalList.add(returns);
-//                }
                 for(User user: totalUsers){
-                    ProfileOutputBoundary profileOutputBoundary = new ProfilePresenter();
-                    ProfileInteractor profileInteractor = new ProfileInteractor(profileOutputBoundary);
-                    int userAvgRating1 = profileInteractor.allCreatedRanking(user.getUsername());
+                    int userAvgRating1 = allCreatedRanking(user.getUsername());
                     String returns = userAvgRating1 + "-" + user.getUsername();
                     finalList.add(returns);
                 }

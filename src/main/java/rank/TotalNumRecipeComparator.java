@@ -21,21 +21,33 @@ public class TotalNumRecipeComparator implements Comparator<User> {
      */
     @Override
     public int compare(User o1, User o2) {
-        ProfileOutputBoundary profileOutputBoundary = new ProfilePresenter();
-        ProfileInteractor profileInteractor = new ProfileInteractor(profileOutputBoundary);
-        int totalRecipe1 = 0;
+        RankOutputBoundary rankOutputBoundary = new RankPresenter();
+        RankInteractor rankInteractor = new RankInteractor(rankOutputBoundary);
+        int rep1 = 0;
         try {
-            totalRecipe1 = profileInteractor.allCreatedRanking(o1.getUsername());
+            rep1 = rankInteractor.allCreatedRanking(o1.getUsername());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        int totalRecipe2 = 0;
+        int rep2 = 0;
         try {
-            totalRecipe2 = profileInteractor.allCreatedRanking(o2.getUsername());
+            rep2 = rankInteractor.allCreatedRanking(o2.getUsername());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return totalRecipe2 - totalRecipe1;
+//        int totalRecipe1 = 0;
+//        try {
+//            totalRecipe1 = profileInteractor.allCreatedRanking(o1.getUsername());
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        int totalRecipe2 = 0;
+//        try {
+//            totalRecipe2 = profileInteractor.allCreatedRanking(o2.getUsername());
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+        return rep2 - rep1;
     }
 
 }
