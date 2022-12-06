@@ -1,15 +1,15 @@
 package entities;
 
 import org.junit.jupiter.api.Test;
-import profile.ProfileRepoImpl;
 import rank.AvgRatingComparator;
+import rank.RankResponseModel;
 import rank.TotalFollowersComparator;
 import rank.TotalNumRecipeComparator;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -97,4 +97,5 @@ public class RankTest {
         for (User user : users) {
             System.out.println(user.getUsername());
         }}
+
 }
