@@ -10,25 +10,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RankRequestModelTest {
     @Test
-    public void TestUserFollowerComparator() {
-        User user1 = new User("User1", "CSC207");
-        User user2 = new User("User2", "CSC208");
-        User user3 = new User("User3", "CSC209");
-        User user4 = new User("User4", "CSC210");
-        // Set followers for user 1 to 2
-        user1.addFollowers(user4);
-        user1.addFollowers(user3);
-        user2.addFollowers(user4);
-        User[] users = {user2,user1,user3};
-        Arrays.sort(users, new TotalFollowersComparator());
-        ArrayList<String> expected = new ArrayList<String>();
-        expected.add(user1.getUsername());
-        expected.add(user2.getUsername());
-        expected.add(user3.getUsername());
-        ArrayList<String> actualList  = new ArrayList<String>();
-        for (User user : users) {
-            actualList.add(user.getUsername());
-        }
-        assertEquals(expected, actualList);
+    public void RankRequestTest() {
+        String rank = "total followers";
+        RankRequestModel rankRequestModel = new RankRequestModel(rank);
+        String expected = "total followers";
+        String actual = rankRequestModel.getRanking();
+        assertEquals(expected, actual);
+
     }
 }

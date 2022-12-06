@@ -1,10 +1,10 @@
-package entities;
+package rank;
 
+import entities.AverageRatings;
+import entities.Profile;
+import entities.Recipe;
+import entities.User;
 import org.junit.jupiter.api.Test;
-import rank.AvgRatingComparator;
-import rank.RankResponseModel;
-import rank.TotalFollowersComparator;
-import rank.TotalNumRecipeComparator;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class RankTest {
+public class RankInteractorTest {
 
     @Test
     public void TestUserFollowerComparator() {
