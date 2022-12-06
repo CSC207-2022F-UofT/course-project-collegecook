@@ -71,7 +71,7 @@ public class SearchSortRecipesResultsUI extends JFrame implements SearchResultsB
 
     @Override
     public void failure(String error) {
-        JOptionPane.showMessageDialog(null,"Sorry, no results were found.");
+        JOptionPane.showMessageDialog(null,"Sorry, no matching recipes were found.");
     }
 
     //    }
