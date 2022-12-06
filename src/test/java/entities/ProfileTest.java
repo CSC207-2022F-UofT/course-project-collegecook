@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ProfileTest {
     Profile p;
     ArrayList<Recipe> created = new ArrayList<>();
-    ArrayList<Review> reviewed;
+    ArrayList<Review> reviewed = new ArrayList<>();
 
     @BeforeEach
     void setUp() {
@@ -25,6 +25,10 @@ class ProfileTest {
         p = new Profile("Brenden");
         p.setCreated(created);
         p.setReviewed(reviewed);
+        p.setAge(20);
+        p.setHeight(163);
+        p.setWeight(45);
+        p.setGender("Female");
     }
 
     @AfterEach
@@ -34,22 +38,22 @@ class ProfileTest {
 
     @Test
     void testSoutReviewed() {
-        String expected = "Reviewer: Allison" + "\n" + "Rating: 5/5" +
-                "\n" + "Taste good!";
+        String expected = "Reviewer: Allison" + System.lineSeparator() + "Rating: 5/5" +
+                System.lineSeparator() + "\"" + "Taste good!" + "\"" + "\n";
         String actual = p.soutReviewed();
         assertEquals(expected, actual);
     }
 
     @Test
     void testSoutCreated() {
-        String expected = "Recipe: name" + "\n" +
-                "Creator: Brenden" + "\n" +
-                "Procedure: procedure" + "\n" +
-                "Cuisine: cuisine" + "\n" +
-                "Ingredients: food" + "\n" +
-                "Calories: 1"+ "\n" +
-                "Time Required: 2" + "\n" +
-                "Difficulty (out of 5): 3" + "\n";
+        String expected = "Recipe: name\n"  +
+                "Creator: Brenden\n" +
+                "Procedure: procedure\n" +
+                "Cuisine: cuisine\n" +
+                "Ingredients: [food]\n" +
+                "Calories: 1\n" +
+                "Time Required: 2 minutes \n" +
+                "Difficulty (out of 5): 3\n";
         String actual = p.soutCreated();
         assertEquals(expected, actual);
     }
@@ -62,6 +66,36 @@ class ProfileTest {
     @Test
     void testGetCreated(){
         assertEquals(created, p.getCreated());
+    }
+
+    @Test
+    void testGetAge() {
+        assertEquals(20, p.getAge());
+    }
+
+    @Test
+    void testGetHeight() {
+        assertEquals(163, p.getHeight());
+    }
+    @Test
+    void testGetWeight() {
+        assertEquals(45, p.getWeight());
+    }
+    @Test
+    void testGetGender() {
+        assertEquals("Female", p.getGender());
+    }
+
+    @Test
+    void testGetUsername(){
+        assertEquals("Brenden", p.getUsername());
+    }
+
+    @Test
+    void testSoutInfo(){
+        String expected = "Age: 20" + "\n" + "Height: " + 163.0 + "cm \n" + "Weight: " + 45.0 + "kg \n" +
+                "Gender: Female" + "\n";
+        assertEquals(expected, p.soutInfo());
     }
 
 }

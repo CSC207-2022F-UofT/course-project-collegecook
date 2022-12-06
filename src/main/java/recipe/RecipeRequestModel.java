@@ -1,7 +1,5 @@
 package recipe;
 
-import entities.User;
-
 import java.util.ArrayList;
 
 public class RecipeRequestModel {

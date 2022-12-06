@@ -5,11 +5,9 @@ import profile.ProfileController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class ProfileViewRecipeUI extends JFrame implements ProfileBox {
+public class ProfileRecipeUI extends JFrame implements ProfileBox {
 
     JPanel recipePanel = new JPanel();
     JButton createdButton = new JButton("Your Created Recipes");
@@ -19,34 +17,28 @@ public class ProfileViewRecipeUI extends JFrame implements ProfileBox {
     ProfileController pc;
     String username;
 
-    public ProfileViewRecipeUI(AppController appController){
+    public ProfileRecipeUI(AppController appController){
         this.pc = appController.getProfileController();
         this.username = appController.getLoginControllor().preformGetLoggedInUser();
         recipePanel.setLayout(new BorderLayout());
         recipePanel.add(createdButton, BorderLayout.NORTH);
         recipePanel.add(reviewedButton, BorderLayout.SOUTH);
 
-        createdButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    pc.performAllCreated(username);
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(null,
-                            "Oops! There is something wrong with your profile. ");
-                }
+        createdButton.addActionListener(e -> {
+            try {
+                pc.performAllCreated(username);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null,
+                        "Oops! There is something wrong with your profile. ");
             }
         });
 
-        reviewedButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    pc.performAllReviewed(username);
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(null,
-                            "Oops! There is something wrong with your profile. ");
-                }
+        reviewedButton.addActionListener(e -> {
+            try {
+                pc.performAllReviewed(username);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null,
+                        "Oops! There is something wrong with your profile. ");
             }
         });
         this.add(recipePanel);

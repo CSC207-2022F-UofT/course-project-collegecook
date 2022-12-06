@@ -21,9 +21,6 @@ public class MealplanTest {
 
     @Test
     void addMealPlan() {
-        ArrayList<String> ingredients = new ArrayList<>();
-        Recipe recipe = new Recipe("name", "procedure",
-                "cuisine", ingredients, 1, 2, 3,"creator");
         mp.addMealPlan("name",0);
         mp.addMealPlan("name",0);
         ArrayList<String> breakfast = new ArrayList<>();
