@@ -14,5 +14,10 @@ public interface RankInputBoundary {
      * @param requestModel contains the choice of ranking
      */
     RankResponseModel sortUsers(RankRequestModel requestModel) throws IOException;
-
+    /**
+     *
+     * Returns the number of recipe created by the user
+     *
+     * @param username username of user
+     */int allCreatedRanking(String username) throws IOException;
 }

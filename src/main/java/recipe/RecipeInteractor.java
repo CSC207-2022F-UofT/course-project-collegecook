@@ -11,7 +11,7 @@ public class RecipeInteractor implements RecipeInputBoundary {
      * This is RecipeInteractor, which is in the Use Case layer.
      */
     private final RecipeRepoGateway rrg;
-    private final RecipeList recipeList;
+    private RecipeList recipeList;
     final RecipeOutputBoundary recipeOutputBoundary;
     private String readingRecipe = null;
 
@@ -24,7 +24,9 @@ public class RecipeInteractor implements RecipeInputBoundary {
         this.recipeOutputBoundary = recipeOutputBoundary;
         this.rrg = recipeRepoGateway;
         recipeList = rrg.getRecipeList();
-
+        if (recipeList == null){
+            recipeList = new RecipeList();
+        }
     }
 
     /**
@@ -71,6 +73,7 @@ public class RecipeInteractor implements RecipeInputBoundary {
         return this.recipeList;
     }
 
+<<<<<<<<< Temporary merge branch 1
     /**
      * Get the recipe according to the given name.
      * @param recipeName A String, which is a name of the recipe.

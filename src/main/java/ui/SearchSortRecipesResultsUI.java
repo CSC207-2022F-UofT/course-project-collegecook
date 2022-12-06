@@ -41,11 +41,11 @@ public class SearchSortRecipesResultsUI extends JFrame implements SearchResultsB
                 }
             });
             if (Objects.equals(searchCriteria.getSortType(), "t")) {
-                searchResultsPanel.add(new JLabel(String.valueOf(recipe.getTime())));
+                searchResultsPanel.add(new JLabel(recipe.getTime() + " minutes"));
             }
             else if (Objects.equals(searchCriteria.getSortType(), "n")){
                 ArrayList<Review> reviews = reviewDatabase.getRecipeReviews(recipe);
-                searchResultsPanel.add(new JLabel(String.valueOf(reviews.size())));
+                searchResultsPanel.add(new JLabel(reviews.size() + " reviews"));
             }
             else {
                 ArrayList<Review> reviews = reviewDatabase.getRecipeReviews(recipe);
@@ -54,7 +54,7 @@ public class SearchSortRecipesResultsUI extends JFrame implements SearchResultsB
                 }
                 else{
                     double avgRating = (reviews.stream().mapToDouble(Review::getRating).sum())/ reviews.size();
-                    searchResultsPanel.add(new JLabel(String.valueOf(avgRating)));
+                    searchResultsPanel.add(new JLabel("Average Rating: " + avgRating));
                     searchResultsPanel.add(new JLabel(reviews.size()+" reviews"));
                 }
 
@@ -71,7 +71,7 @@ public class SearchSortRecipesResultsUI extends JFrame implements SearchResultsB
 
     @Override
     public void failure(String error) {
-        JOptionPane.showMessageDialog(null,"Sorry, no results were found.");
+        JOptionPane.showMessageDialog(null,"Sorry, no matching recipes were found.");
     }
 
     //    }

@@ -38,7 +38,7 @@ public class ViewRecipeUI extends JFrame implements RecipeViewBox {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String readRecipe = appController.getRecipeController().getReadingRecipe();
-                String creator = appController.getRecipeController().getCreator(readRecipe);
+                String creator = appController.getRecipeController().getRecipe(readRecipe).getCreator();
                 String user = appController.getLoginControllor().preformGetLoggedInUser();
                 try {
                     appController.getLoginControllor().PreformFollow(user,creator);

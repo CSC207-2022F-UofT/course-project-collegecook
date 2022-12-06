@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import recipe.RecipeReadWriter;
 import recipe.RecipeRepoGateway;
-import review.ReviewDatabaseReadWriter;
 
 import java.io.IOException;
 import java.util.ArrayList;

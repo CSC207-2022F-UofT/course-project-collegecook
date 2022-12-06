@@ -3,8 +3,6 @@ package search;
 import entities.Recipe;
 import entities.RecipeList;
 import recipe.RecipeRepoGateway;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class SearchInteractor implements SearchInputBoundary{
@@ -21,9 +19,8 @@ public class SearchInteractor implements SearchInputBoundary{
         this.recipeRepoGateway = recipeRepoGateway;
     }
 
-
     @Override
-    public void getSearchResults(SearchRequestModel requestModel) throws IOException {
+    public void getSearchResults(SearchRequestModel requestModel) {
         // get all recipes
         RecipeList recipes = recipeRepoGateway.getRecipeList();
 
@@ -41,37 +38,42 @@ public class SearchInteractor implements SearchInputBoundary{
             }
         }
 
-        // if no matching recipes found, return failure view
+        // no matching recipes found, prepare failure view
         if (matchingRecipes.isEmpty()){
             searchOutputBoundary.prepareFailureView("No matching recipes were found");
         }
 
+        // matching recipes found
         // change arraylist to array for sorting
         Recipe[] foundRecipes = new Recipe[matchingRecipes.size()];
         foundRecipes = matchingRecipes.toArray(foundRecipes);
 
-        // sort array, strategy design pattern
-        RecipeSorter recipeSorter = null;
+        // sort array (based on chosen sort type)
+        RecipeSorter recipeSorter = getRecipeSorter(requestModel.getSortType());
+        recipeSorter.sort(foundRecipes, requestModel.isSortByAscending());
 
-        switch (requestModel.getSortType()) {
+        // prepare success view
+        searchOutputBoundary.prepareSuccessView(new SearchResponseModel(foundRecipes,requestModel));
+    }
+
+    /**
+     * helper method to get RecipeSorter based on chosen sort type
+     * @param sortType chosen sort type
+     * @return appropriate RecipeSorter
+     */
+    private RecipeSorter getRecipeSorter(String sortType){
+        switch (sortType) {
             case "r": {
-                recipeSorter = new AverageRatingRecipeSorter();
-                break;
+                return new AverageRatingRecipeSorter();
             }
             case "n": {
-                recipeSorter = new NumReviewsRecipeSorter();
-                break;
-
+                return new NumReviewsRecipeSorter();
             }
             case "t": {
-                recipeSorter = new TimeNeededRecipeSorter();
-                break;
+                return new TimeNeededRecipeSorter();
             }
             default:
-                recipeSorter = new AverageRatingRecipeSorter();
-                break;
+                return new AverageRatingRecipeSorter();
         }
-            recipeSorter.sort(foundRecipes, requestModel.isSortByAscending());
-            searchOutputBoundary.prepareSuccessView(new SearchResponseModel(foundRecipes,requestModel));
     }
 }

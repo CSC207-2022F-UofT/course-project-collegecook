@@ -137,7 +137,7 @@ public class ProfileInteractor implements ProfileInputBoundary{
     }
 
     /**
-     * This helper method is extracted from and for setInfo.
+     * This helper method is refactored from and for setInfo.
      * @param prm A Profile request model.
      * @param p A given Profile.
      */

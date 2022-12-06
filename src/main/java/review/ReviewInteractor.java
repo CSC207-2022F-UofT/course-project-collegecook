@@ -29,6 +29,9 @@ public class ReviewInteractor implements ReviewInputBoundary {
 
         RecipeRepoGateway rrg = RecipeReadWriter.getRecipeRepo();
         this.recipeList = rrg.getRecipeList();
+        if (this.recipeList == null){
+            this.recipeList = new RecipeList();
+        }
     }
 
     /**
@@ -39,11 +42,13 @@ public class ReviewInteractor implements ReviewInputBoundary {
     public static ReviewDatabase loadReviewDatabase() {
         ReviewDatabase database;
         try {
+            databaseReadWriter = new ReviewDatabaseReadWriter();
             database = databaseReadWriter.readFromFile("reviews.sav");
         } catch (IOException e) {
             database = new ReviewDatabase();
             System.out.println("Read reviews.sav failed.....");
-        } catch (ClassNotFoundException e) {
+        }
+        catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
         if (database == null) {
