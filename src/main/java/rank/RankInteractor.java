@@ -47,7 +47,7 @@ public class RankInteractor implements RankInputBoundary{
         User[] totalUsers = new User[users.size()];
         users.toArray(totalUsers);
         // Final array
-        ArrayList<String> finalList = new ArrayList<String>();
+        ArrayList<String> finalList = new ArrayList<>();
         // Return an error if no users have been registered
         if (users.isEmpty()){
             rankOutputBoundary.prepareFailView("There are no users!");
