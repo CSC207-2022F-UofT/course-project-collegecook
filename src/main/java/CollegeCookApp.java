@@ -62,7 +62,7 @@ public class CollegeCookApp {
         WelcomeUI welcomeUI = new WelcomeUI(appController1);
         LoginBox loginBox = new LoginUI(appController1);
         SignUpBox signUpBox = new SignUpUI(appController1);
-        ProfileBox profileBox = new ProfileViewRecipeUI(appController1);
+        ProfileBox profileBox = new ProfileRecipeUI(appController1);
         InfoSetBox infoSetBox = new ProfileInfoUI(appController1);
         InfoViewBox infoViewBox = new ProfileUI(appController1);
         SearchResultsBox searchResultsBox = new SearchSortRecipesResultsUI(appController1);

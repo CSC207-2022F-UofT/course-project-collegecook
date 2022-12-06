@@ -15,7 +15,7 @@ class RecipeListTest {
     void setUp() {
         rl = new RecipeList();
         ArrayList<String> ingredients = new ArrayList<>();
-        rl.add_recipe("name", "procedure",
+        rl.addRecipe("name", "procedure",
                 "cuisine", ingredients, 1, 2, 3, "Brenden");
     }
 
@@ -27,7 +27,7 @@ class RecipeListTest {
     @Test
     void add_recipe() {
         ArrayList<String> ingredients = new ArrayList<>();
-        rl.add_recipe("name2", "procedure",
+        rl.addRecipe("name2", "procedure",
                 "cuisine", ingredients, 1, 2, 3, "Brenden");
         Boolean actual = rl.contain("name2");
         assertTrue(actual);
@@ -37,7 +37,7 @@ class RecipeListTest {
     @Test
     void get_recipe() {
         ArrayList<String> ingredients = new ArrayList<>();
-        Recipe actual = rl.get_recipe("name");
+        Recipe actual = rl.getRecipe("name");
         Recipe expected = new Recipe("name", "procedure",
                 "cuisine", ingredients, 1, 2, 3, "Brenden");
         assertEquals(expected, actual);

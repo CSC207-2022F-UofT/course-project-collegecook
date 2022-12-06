@@ -1,12 +1,13 @@
 package profile;
 
 import entities.Profile;
-import recipe.RecipeReadWriter;
-
 import java.io.*;
 import java.util.ArrayList;
 
 public class ProfileRepoImpl implements ProfileRepoGateway{
+    /**
+     * This class is to read profiles from "Profile.sav" or write profiles into "Profile.sav"
+     */
     private static final String file = "Profile.sav";
     private static ProfileRepoImpl prl;
 
@@ -17,6 +18,10 @@ public class ProfileRepoImpl implements ProfileRepoGateway{
         return prl;
     }
 
+    /**
+     * @return Return an arraylist of profiles stored in the local file.
+     * @throws IOException Will be handled in the UI.
+     */
     @Override
     public ArrayList<Profile> getProfile() throws IOException {
         FileInputStream f1 = new FileInputStream(file);
@@ -30,23 +35,16 @@ public class ProfileRepoImpl implements ProfileRepoGateway{
         return null;
     }
 
+    /**
+     * @param profiles an arraylist of profiles that needs to be saved in the local file.
+     * @throws IOException Will be handled in the UI.
+     */
     @Override
-    public void saveProfile(ArrayList<Profile> pro) throws IOException {
+    public void saveProfile(ArrayList<Profile> profiles) throws IOException {
         FileOutputStream f2 = new FileOutputStream(file);
         ObjectOutputStream outputstream = new ObjectOutputStream(f2);
-        outputstream.writeObject(pro);
+        outputstream.writeObject(profiles);
         f2.close();
     }
 
-    public static void main(String[] arg) throws IOException {
-        ProfileRepoImpl profileRepo = ProfileRepoImpl.getPrl();
-        Profile p = new Profile("Peter");
-//        ArrayList<Profile> ap = new ArrayList<>();
-//        ap.add(p);
-//        profileRepo.saveProfile(ap);
-        for (Profile pp :profileRepo.getProfile()){
-            System.out.println(pp.getUsername());
-        }
-
-    }
 }

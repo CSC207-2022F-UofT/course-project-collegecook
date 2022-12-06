@@ -1,6 +1,5 @@
 package mealplan;
 
-import entities.Mealplan;
 import entities.MealplanList;
 
 import java.io.*;
@@ -14,15 +13,21 @@ public class MealplanGate implements MealplanGateway {
     }
 
     @Override
-    public void saveToFile(MealplanList mealplans) throws IOException {
+    public void saveToFile(MealplanList mealplans){
 
-        OutputStream file = new FileOutputStream(this.filePath);
-        OutputStream buffer = new BufferedOutputStream(file);
-        ObjectOutput output = new ObjectOutputStream(buffer);
+        OutputStream file;
+        try {
+            file = new FileOutputStream(this.filePath);
+            OutputStream buffer = new BufferedOutputStream(file);
+            ObjectOutput output = new ObjectOutputStream(buffer);
 
-        // serialize the Map
-        output.writeObject(mealplans);
-        output.close();
+            // serialize the Map
+            output.writeObject(mealplans);
+            output.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Override

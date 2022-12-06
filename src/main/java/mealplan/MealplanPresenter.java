@@ -10,6 +10,7 @@ public class MealplanPresenter implements MealplanOutputBoundary{
          mealplanBox.setCalories(cal);
     }
 
+
     @Override
     public void setUI (MealplanBox mealplanbox) {
         this.mealplanBox=mealplanbox;
