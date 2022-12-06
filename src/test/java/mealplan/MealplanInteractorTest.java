@@ -52,9 +52,9 @@ public class MealplanInteractorTest {
     void computeRecipeCal(){
         rl = new RecipeList();
         ArrayList<String> ingredients = new ArrayList<>();
-        rl.add_recipe("recipe", "procedure",
+        rl.addRecipe("recipe", "procedure",
                 "cuisine", ingredients, 500, 2, 3, "Brenden");
-        rl.add_recipe("recipe2", "procedure",
+        rl.addRecipe("recipe2", "procedure",
                 "cuisine", ingredients, 500, 2, 3, "Brenden");
         mealplanInteractor.addRecipe("recipe",0);
         mealplanInteractor.addRecipe("recipe2",1);
