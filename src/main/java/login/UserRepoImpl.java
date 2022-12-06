@@ -15,7 +15,10 @@ public class UserRepoImpl implements UserGateWay {
 
 
     public UserRepoImpl(){}
-
+    /**
+     *
+     * @return userRepoImpl. The Singleton Design Pattern is used here to control the initialization of gateway.
+     */
     public static UserRepoImpl getUserRepoImpl(){
         if (userRepoImpl == null){
             userRepoImpl = new UserRepoImpl();
