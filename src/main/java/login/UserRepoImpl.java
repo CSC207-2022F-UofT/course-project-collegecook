@@ -6,6 +6,10 @@ import java.io.*;
 
 public class UserRepoImpl implements UserGateWay {
 
+    /**
+     * This class is used to read user from "user.sav" or write recipe into "user.sav"
+     */
+
     private static final String file = "user.sav";
     private static UserRepoImpl userRepoImpl;
 
@@ -18,7 +22,11 @@ public class UserRepoImpl implements UserGateWay {
         }
         return userRepoImpl;
     }
-
+    /**
+     *to return the UserList in the local file
+     * @return Return the UserList stored in the local file.
+     * @throws IOException
+     */
     @Override
     public UserList getAllUser() throws IOException {
         FileInputStream f = new FileInputStream(file);
@@ -32,6 +40,11 @@ public class UserRepoImpl implements UserGateWay {
         return null;
     }
 
+    /**
+     *
+     * @param userlist The userlist that needs to be stored.
+     * @throws IOException
+     */
     @Override
     public void saveUser(UserList userlist) throws IOException {
         FileOutputStream f2 = new FileOutputStream(file);
