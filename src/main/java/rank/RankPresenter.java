@@ -1,3 +1,5 @@
+
+
 package rank;
 
 
@@ -11,8 +13,8 @@ public class RankPresenter implements RankOutputBoundary{
      * @param rank contains the sorted Users list
      */
     public void prepareSuccessView(RankResponseModel rank){
-        rankResultBox.success(rank.getUsers());}
-        // return "Success! Here are the users ranked by: " + rank.getRank() + "\n" + Arrays.toString(rank.getUsers());}
+        rankResultBox.success(rank.getUsers(), rank.getRank());}
+    // return "Success! Here are the users ranked by: " + rank.getRank() + "\n" + Arrays.toString(rank.getUsers());}
 
     /**
      * A method that contains a fail method that is implemented
@@ -33,4 +35,3 @@ public class RankPresenter implements RankOutputBoundary{
         this.rankResultBox = rankResultBox;
     }
 }
-
