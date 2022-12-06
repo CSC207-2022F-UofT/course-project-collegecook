@@ -1,9 +1,6 @@
 package rank;
-
-import entities.User;
-
 import java.io.IOException;
-import java.util.List;
+
 
 public interface RankInputBoundary {
     /**

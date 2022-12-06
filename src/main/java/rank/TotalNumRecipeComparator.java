@@ -35,18 +35,6 @@ public class TotalNumRecipeComparator implements Comparator<User> {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-//        int totalRecipe1 = 0;
-//        try {
-//            totalRecipe1 = profileInteractor.allCreatedRanking(o1.getUsername());
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        int totalRecipe2 = 0;
-//        try {
-//            totalRecipe2 = profileInteractor.allCreatedRanking(o2.getUsername());
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
         return rep2 - rep1;
     }
 
