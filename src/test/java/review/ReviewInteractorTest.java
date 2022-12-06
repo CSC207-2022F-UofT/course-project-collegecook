@@ -37,7 +37,7 @@ class ReviewInteractorTest {
         ArrayList<String> ingredients = new ArrayList<>();
         ingredients.add("pasta");
         ingredients.add("sauce");
-        list.add_recipe("spaghetti", "Just cook it",
+        list.addRecipe("spaghetti", "Just cook it",
                 "italy", ingredients, 500, 10, 3, "Ben");
         recipeReadWriter.saveRecipe(list);
         ReviewOutputBoundary reviewOutputBoundary = new ReviewOutputBoundary() {

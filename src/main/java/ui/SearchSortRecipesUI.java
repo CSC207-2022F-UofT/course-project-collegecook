@@ -53,36 +53,36 @@ public class SearchSortRecipesUI extends JFrame{
         title.setFont(new Font("Serif", Font.PLAIN, 50));
         searchPanel.add(title);
 
-        nameInput.setAlignmentX(Component.CENTER_ALIGNMENT);
-        searchPanel.add(nameInput);
         nameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         searchPanel.add(nameLabel);
+        nameInput.setAlignmentX(Component.CENTER_ALIGNMENT);
+        searchPanel.add(nameInput);
 
-        cuisineInput.setAlignmentX(Component.CENTER_ALIGNMENT);
-        searchPanel.add(cuisineInput);
         cuisineLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         searchPanel.add(cuisineLabel);
+        cuisineInput.setAlignmentX(Component.CENTER_ALIGNMENT);
+        searchPanel.add(cuisineInput);
 
-        ingredientsInput.setAlignmentX(Component.CENTER_ALIGNMENT);
-        searchPanel.add(ingredientsInput);
         ingredientsLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         searchPanel.add(ingredientsLabel);
+        ingredientsInput.setAlignmentX(Component.CENTER_ALIGNMENT);
+        searchPanel.add(ingredientsInput);
 
-
-        timeInput.setAlignmentX(Component.CENTER_ALIGNMENT);
-        searchPanel.add(timeInput);
         timeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         searchPanel.add(timeLabel);
+        timeInput.setAlignmentX(Component.CENTER_ALIGNMENT);
+        searchPanel.add(timeInput);
 
-        sortTypeInput.setAlignmentX(Component.CENTER_ALIGNMENT);
-        searchPanel.add(sortTypeInput);
         sortTypeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         searchPanel.add(sortTypeLabel);
+        sortTypeInput.setAlignmentX(Component.CENTER_ALIGNMENT);
+        searchPanel.add(sortTypeInput);
 
-        isSortAscendingInput.setAlignmentX(Component.CENTER_ALIGNMENT);
-        searchPanel.add(isSortAscendingInput);
         isSortAscendingLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         searchPanel.add(isSortAscendingLabel);
+        isSortAscendingInput.setAlignmentX(Component.CENTER_ALIGNMENT);
+        searchPanel.add(isSortAscendingInput);
+
 
         searchButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         searchButton.addActionListener(new ActionListener() {
