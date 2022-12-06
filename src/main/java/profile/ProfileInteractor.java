@@ -47,7 +47,6 @@ public class ProfileInteractor implements ProfileInputBoundary{
         }
     }
 
-
     public Profile checkProfile(String username) throws IOException {
         for (Profile p: profileList){
             String expected = p.getUsername();
