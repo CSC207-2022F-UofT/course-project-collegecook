@@ -4,6 +4,7 @@ import entities.*;
 import login.UserRepoImpl;
 import recipe.RecipeReadWriter;
 import recipe.RecipeRepoGateway;
+import review.UpdateAverageRating;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -56,7 +57,7 @@ public class RankInteractor implements RankInputBoundary{
                 // sort based on avg rating
                 Arrays.sort(totalUsers, new AvgRatingComparator());
                 for(User user: users){
-                    AverageRatings averageRatings = new AverageRatings();
+                    AverageRatings averageRatings = UpdateAverageRating.loadRatingDatabase();
                     double userAvgRating1 = averageRatings.getAverageRating(user.getUsername());
                     String returns = userAvgRating1 + "-" + user.getUsername();
                     finalList.add(returns);
