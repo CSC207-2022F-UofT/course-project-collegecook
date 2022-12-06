@@ -1,15 +1,13 @@
 package search;
 
-import entities.Recipe;
-import entities.RecipeList;
-import entities.ReviewDatabase;
-import entities.UserList;
+import entities.*;
 import login.UserGateWay;
 import login.UserRepoImpl;
 import org.junit.jupiter.api.*;
 import recipe.*;
 import review.ReviewDatabaseReadWriter;
 import review.ReviewInteractor;
+
 import static org.junit.jupiter.api.Assertions.*;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,7 +21,6 @@ public class SearchInteractorTest {
     UserList tempUsers;
 
     ReviewDatabaseReadWriter reviewDatabaseReadWriter;
-    ReviewInteractor reviewInteractor;
     ReviewDatabase tempReviews;
 
     static Recipe recipe1;
@@ -41,7 +38,6 @@ public class SearchInteractorTest {
         tempRecipes = recipeRepoGateway.getRecipeList();
 
         reviewDatabaseReadWriter = new ReviewDatabaseReadWriter();
-        reviewInteractor = new ReviewInteractor();
         tempReviews = ReviewInteractor.loadReviewDatabase();
 
         userGateWay = UserRepoImpl.getUserRepoImpl();
@@ -96,7 +92,7 @@ public class SearchInteractorTest {
      * Test sorting an array of Recipes by time needed
      */
     @Test
-    public void sortRecipesTimeNeeded() throws IOException {
+    public void sortRecipesTimeNeeded(){
         // setup objects
         RecipeSorter recipeSorter = new TimeNeededRecipeSorter();
 
@@ -125,35 +121,29 @@ public class SearchInteractorTest {
      */
     @Test
     public void sortRecipesNumReviews() throws IOException {
-        RecipeSorter recipeSorter = new NumReviewsRecipeSorter();
         //setup
+        // create reviews
+        ReviewDatabase reviewDatabase = new ReviewDatabase();
+        reviewDatabase.addReview(new Review("lei", recipe1, 4));
+        reviewDatabase.addReview(new Review("joe", recipe1, 5));
+        reviewDatabase.addReview(new Review("ang", recipe1, 4));
+        reviewDatabase.addReview(new Review("ang", recipe2, 5));
+        reviewDatabase.addReview(new Review("lei", recipe2, 3));
+        reviewDatabase.addReview(new Review("lei", recipe3, 3));
+        reviewDatabaseReadWriter.saveToFile("reviews.sav", reviewDatabase);
+
         Recipe[] recipes = new Recipe[3];
         recipes[0] = recipe1; // 3 reviews
         recipes[1] = recipe2; // 2 reviews
         recipes[2] = recipe3; // 1 review
 
-        // create reviews
-        reviewInteractor.createReview("lei", "apple pie", 4);
-        reviewInteractor.createReview("joe", recipe1.getRecipeName(), 5);
-        reviewInteractor.createReview("ang", recipe1.getRecipeName(), 4);
-        reviewInteractor.createReview("ang", recipe2.getRecipeName(), 5);
-        reviewInteractor.createReview("lei", recipe2.getRecipeName(), 3);
-        reviewInteractor.createReview("lei", recipe3.getRecipeName(), 3);
-
-        //expected: recipe3, recipe2, recipe1
-        Recipe[] expectedResults = new Recipe[3];
-        expectedResults[0] = recipe3; // 1 review
-        expectedResults[1] = recipe2; // 2 reviews
-        expectedResults[2] = recipe1; // 3 reviews
-
-
-        RecipeList myRecipeList = recipeRepoGateway.getRecipeList();
-        ReviewDatabase myReviews = ReviewInteractor.loadReviewDatabase();
+        // sort recipes
+        RecipeSorter recipeSorter = new NumReviewsRecipeSorter();
         recipeSorter.sort(recipes, true);
 
-        assertEquals(expectedResults[0].getRecipeName(), recipes[0].getRecipeName());
-        assertEquals(expectedResults[1].getRecipeName(), recipes[1].getRecipeName());
-        assertEquals(expectedResults[2].getRecipeName(), recipes[2].getRecipeName());
+        assertEquals(recipe3.getRecipeName(), recipes[0].getRecipeName());
+        assertEquals(recipe2.getRecipeName(), recipes[1].getRecipeName());
+        assertEquals(recipe1.getRecipeName(), recipes[2].getRecipeName());
     }
 
     /**
@@ -167,12 +157,15 @@ public class SearchInteractorTest {
         recipes[1] = recipe2; // average rating 4
         recipes[2] = recipe3; // average rating 3
 
-        reviewInteractor.createReview("lei", recipe1.getRecipeName(), 4);
-        reviewInteractor.createReview("joe", recipe1.getRecipeName(), 5);
-        reviewInteractor.createReview("ang", recipe1.getRecipeName(), 4); // recipe1 # of ratings = 3
-        reviewInteractor.createReview("ang", recipe2.getRecipeName(), 5);
-        reviewInteractor.createReview("lei", recipe2.getRecipeName(), 3); // recipe2 # of ratings = 2
-        reviewInteractor.createReview("lei", recipe3.getRecipeName(), 3); // recipe3 # of rating = 1
+        // create reviews
+        ReviewDatabase reviewDatabase = new ReviewDatabase();
+        reviewDatabase.addReview(new Review("lei", recipe1, 4));
+        reviewDatabase.addReview(new Review("joe", recipe1, 5));
+        reviewDatabase.addReview(new Review("ang", recipe1, 4));
+        reviewDatabase.addReview(new Review("ang", recipe2, 5));
+        reviewDatabase.addReview(new Review("lei", recipe2, 3));
+        reviewDatabase.addReview(new Review("lei", recipe3, 3));
+        reviewDatabaseReadWriter.saveToFile("reviews.sav", reviewDatabase);
 
         // sort recipes
         RecipeSorter recipeSorter = new NumReviewsRecipeSorter();
@@ -201,12 +194,14 @@ public class SearchInteractorTest {
         recipes[1] = recipe2; // average rating 5
         recipes[2] = recipe3; // no reviews
 
-        reviewInteractor.createReview("lei", recipe1.getRecipeName(), 4);
-        reviewInteractor.createReview("joe", recipe1.getRecipeName(), 5);
-        reviewInteractor.createReview("ang", recipe1.getRecipeName(), 4); // recipe1 # of reviews = 3
-        reviewInteractor.createReview("ang", recipe2.getRecipeName(), 5);
-        reviewInteractor.createReview("lei", recipe2.getRecipeName(), 3); // recipe2 # of reviews = 2/ recipe3 # of reviews = 0
-
+        // create reviews
+        ReviewDatabase reviewDatabase = new ReviewDatabase();
+        reviewDatabase.addReview(new Review("lei", recipe1, 4));
+        reviewDatabase.addReview(new Review("joe", recipe1, 5));
+        reviewDatabase.addReview(new Review("ang", recipe1, 4));
+        reviewDatabase.addReview(new Review("ang", recipe2, 5));
+        reviewDatabase.addReview(new Review("lei", recipe2, 3));
+        reviewDatabaseReadWriter.saveToFile("reviews.sav", reviewDatabase);
         //expected = recipe2, recipe1, recipe3
         Recipe[] expectedResults = new Recipe[3];
         expectedResults[0] = recipe1;
