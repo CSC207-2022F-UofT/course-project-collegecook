@@ -19,8 +19,8 @@ public class AvgRatingComparator implements Comparator<User> {
             double userAvgRating1 = averageRatings.getAverageRating(o1.getUsername());
             double userAvgRating2 = averageRatings.getAverageRating(o2.getUsername());
             double userAvgDiff = userAvgRating2 - userAvgRating1;
-            if(userAvgDiff<0){return -1;}
-            else if(userAvgDiff>0){return 1;}
+            if(userAvgDiff<0){return 1;}
+            else if(userAvgDiff>0){return -1;}
             else {
                 return 0; }
 
