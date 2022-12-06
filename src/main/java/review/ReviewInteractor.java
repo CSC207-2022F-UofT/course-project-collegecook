@@ -26,14 +26,9 @@ public class ReviewInteractor implements ReviewInputBoundary {
     }
 
     private void getReviewsHelper() {
-        try {
 
-            RecipeRepoGateway rrg = RecipeReadWriter.getRecipeRepo();
-            this.recipeList = rrg.getRecipeList();
-        } catch (IOException e) {
-            recipeList = new RecipeList();
-            System.out.println("Read file failed.....");
-        }
+        RecipeRepoGateway rrg = RecipeReadWriter.getRecipeRepo();
+        this.recipeList = rrg.getRecipeList();
     }
 
     /**
@@ -69,7 +64,7 @@ public class ReviewInteractor implements ReviewInputBoundary {
     @Override
     public void createReview(String username, String recipeName, int rating) {
         getReviewsHelper();
-        Recipe recipe = recipeList.get_recipe(recipeName);
+        Recipe recipe = recipeList.getRecipe(recipeName);
         Review review = new Review(username, recipe, rating);
         createHelper(username, review);
     }
@@ -87,7 +82,7 @@ public class ReviewInteractor implements ReviewInputBoundary {
     @Override
     public void createReview(String username, String recipeName, String content, int rating) {
         getReviewsHelper();
-        Recipe recipe = recipeList.get_recipe(recipeName);
+        Recipe recipe = recipeList.getRecipe(recipeName);
         Review review = new Review(username, recipe, content, rating);
         createHelper(username, review);
     }
@@ -106,7 +101,7 @@ public class ReviewInteractor implements ReviewInputBoundary {
     public void readRecipeReviews(String recipeName) {
         getReviewsHelper();
         if (this.recipeList.contain(recipeName)) {
-            Recipe recipe = recipeList.get_recipe(recipeName);
+            Recipe recipe = recipeList.getRecipe(recipeName);
             StringBuilder reviews = new StringBuilder();
             ArrayList<Review> databaseReviews = reviewDatabase.getRecipeReviews(recipe);
             for (Review r: databaseReviews) {
