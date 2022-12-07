@@ -11,7 +11,7 @@ public class RankResponseModelTest {
     User user1 = new User("User1", "CSC207");
     User user2 = new User("User2", "CSC208");
     User user3 = new User("User3", "CSC209");
-    ArrayList<String> users = new ArrayList<String>(){
+    ArrayList<String> users = new ArrayList<>(){
         {
             add(user1.getUsername());
             add(user2.getUsername());

@@ -14,8 +14,8 @@ public class CollegeCookApp {
         
         UserGateWay userGateWay = UserRepoImpl.getUserRepoImpl();
         LoginOutputBound loginOutputBound = new LoginPresenter();
-        UserManager userManager = new UserManager(loginOutputBound, userGateWay);
-        LoginControllor loginControllor = new LoginControllor(userManager);
+        LoginInputBound loginInputBound = new UserManager(loginOutputBound, userGateWay);
+        LoginControllor loginControllor = new LoginControllor(loginInputBound);
 
         // recipe use case setup
         RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();
