@@ -5,18 +5,16 @@ import review.ReviewController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.io.IOException;
 
 public class ViewRecipeUI extends JFrame implements RecipeViewBox {
     JPanel view = new JPanel();
     JLabel all = new JLabel();
-    JLabel user;
     JPanel buttonPanel = new JPanel();
     JButton review = new JButton("Review");
     JButton mealPlan = new JButton("Add to My Meal Plan");
-    JButton folllow = new JButton("Follow");
+    JButton follow = new JButton("Follow");
 
     JButton reviews = new JButton("View Reviews");
     AppController appController;
@@ -25,26 +23,20 @@ public class ViewRecipeUI extends JFrame implements RecipeViewBox {
         this.appController = appController;
         view.setLayout(new BoxLayout(view, BoxLayout.Y_AXIS));
         view.add(all);
-        folllow.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String readRecipe = appController.getRecipeController().getReadingRecipe();
-                String creator = appController.getRecipeController().getRecipe(readRecipe).getCreator();
-                String user = appController.getLoginControllor().preformGetLoggedInUser();
-                try {
-                    appController.getLoginControllor().PreformFollow(user,creator);
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(null,"You have followed the creator.");;
-                }
+        follow.addActionListener(e -> {
+            String readRecipe = appController.getRecipeController().getReadingRecipe();
+            String creator = appController.getRecipeController().getRecipe(readRecipe).getCreator();
+            String user = appController.getLoginControllor().preformGetLoggedInUser();
+            try {
+                appController.getLoginControllor().PreformFollow(user,creator);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null,"You have followed the creator.");
             }
         });
-        mealPlan.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                AddMealplanUI addMealplanUI = new AddMealplanUI(appController,
-                        appController.getRecipeController().getReadingRecipe());
-                addMealplanUI.setVisible(true);
-            }
+        mealPlan.addActionListener(e -> {
+            AddMealplanUI addMealplanUI = new AddMealplanUI(appController,
+                    appController.getRecipeController().getReadingRecipe());
+            addMealplanUI.setVisible(true);
         });
 
         review.addActionListener(e -> {
@@ -60,7 +52,7 @@ public class ViewRecipeUI extends JFrame implements RecipeViewBox {
         buttonPanel.add(review);
         buttonPanel.add(mealPlan);
 
-        buttonPanel.add(folllow);
+        buttonPanel.add(follow);
         buttonPanel.add(reviews);
         view.add(buttonPanel);
         this.add(view);
