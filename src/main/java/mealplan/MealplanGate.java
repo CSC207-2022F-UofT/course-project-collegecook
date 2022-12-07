@@ -3,7 +3,9 @@ package mealplan;
 import entities.MealplanList;
 
 import java.io.*;
-
+/**
+ * This class is used to read recipe from "mealplan.sav" or write recipe into "mealplan.sav"
+ */
 public class MealplanGate implements MealplanGateway {
     String filePath;
     private static MealplanGate mealplanGate;
@@ -12,6 +14,10 @@ public class MealplanGate implements MealplanGateway {
         this.filePath = "mealplan.sav";
     }
 
+    /**
+     * Save the MealplanList.
+     * @param mealplans The MealplanList that the user wants to store.
+     */
     @Override
     public void saveToFile(MealplanList mealplans){
 
@@ -30,6 +36,10 @@ public class MealplanGate implements MealplanGateway {
 
     }
 
+    /**
+     * Get the stored MealplanList
+     * @return The MealplanList stored in the database.
+     */
     @Override
     public MealplanList readFromFile() throws IOException, ClassNotFoundException {
         InputStream file = new FileInputStream(this.filePath);
@@ -42,7 +52,10 @@ public class MealplanGate implements MealplanGateway {
         return mealplans;
     }
 
-    // Static method to create instance of Singleton class
+    /**
+     * Construct the RecipeReadWriter
+     * @return mealplangate. The Singleton Design Pattern is used here to control the initialization of gateway.
+     */
     public static MealplanGate getInstance()
     {
         if (mealplanGate == null)
