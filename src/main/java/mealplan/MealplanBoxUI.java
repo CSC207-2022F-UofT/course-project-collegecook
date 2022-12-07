@@ -23,7 +23,7 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
     List<JButton> listOfBreakfast = new ArrayList<>();
     List<JButton> listOfLunch = new ArrayList<>();
     List<JButton> listOfDinner = new ArrayList<>();
-    public MealplanBoxUI(AppController appController) throws IOException {
+    public MealplanBoxUI(AppController appController){
         this.appController= appController;
 
         JButton button_b = new JButton( new AbstractAction("delete") {
@@ -82,11 +82,8 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
         JButton button_save = new JButton( new AbstractAction("Save") {
             @Override
             public void actionPerformed( ActionEvent e ) {
-                try {
-                    appController.getMealplanController().saveMealplan();
-                } catch (IOException ex) {
-                    System.out.println("Unable to save meal plan.");
-                }
+                appController.getMealplanController().saveMealplan();
+
             }
         });
 

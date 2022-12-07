@@ -73,7 +73,7 @@ public class RecipeInteractor implements RecipeInputBoundary {
         return this.recipeList;
     }
 
-<<<<<<<<< Temporary merge branch 1
+
     /**
      * Get the recipe according to the given name.
      * @param recipeName A String, which is a name of the recipe.

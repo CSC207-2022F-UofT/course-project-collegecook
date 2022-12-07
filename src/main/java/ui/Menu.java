@@ -79,11 +79,7 @@ public class Menu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MealplanBoxUI mealplanBoxUI = null;
-                try {
-                    mealplanBoxUI = new MealplanBoxUI(appController);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+                mealplanBoxUI = new MealplanBoxUI(appController);
                 mealplanBoxUI.setVisible(true);
             }
         });
