@@ -3,8 +3,6 @@ import rank.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class RankUI extends JFrame{
@@ -26,14 +24,11 @@ public class RankUI extends JFrame{
 
 
         read.setAlignmentX(Component.CENTER_ALIGNMENT);
-        read.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    rankController.sorting(ranking.getText());
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+        read.addActionListener(e -> {
+            try {
+                rankController.sorting(ranking.getText());
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
             }
         });
         view.add(read);

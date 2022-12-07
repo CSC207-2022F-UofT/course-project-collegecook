@@ -56,7 +56,7 @@ public class RankInteractor implements RankInputBoundary{
             case "average rating": {
                 // sort based on avg rating
                 Arrays.sort(totalUsers, new AvgRatingComparator());
-                for(User user: users){
+                for(User user: totalUsers){
                     AverageRatings averageRatings = UpdateAverageRating.loadRatingDatabase();
                     double userAvgRating1 = averageRatings.getAverageRating(user.getUsername());
                     String returns = userAvgRating1 + "-" + user.getUsername();
