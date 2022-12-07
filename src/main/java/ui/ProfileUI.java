@@ -10,7 +10,8 @@ import java.io.IOException;
 public class ProfileUI extends JFrame implements InfoViewBox {
 
     JPanel p_panel = new JPanel();
-    JButton recipeButton = new JButton("View Your Related Recipes");
+    JButton createdButton = new JButton("View Your Created Recipes");
+    JButton reviewedButton = new JButton("View Your Reviewed Recipes");
     JButton infoButton = new JButton("information");
     JLabel infoLabel;
     ProfileController pc;
@@ -20,13 +21,25 @@ public class ProfileUI extends JFrame implements InfoViewBox {
     public ProfileUI(AppController appController) {
         this.pc = appController.getProfileController();
         this.username = appController.getLoginControllor().preformGetLoggedInUser();
-        p_panel.setLayout(new BorderLayout());
-        p_panel.add(recipeButton, BorderLayout.NORTH);
-        p_panel.add(infoButton, BorderLayout.CENTER);
+        p_panel.setLayout(new BoxLayout(p_panel, BoxLayout.Y_AXIS));
 
-        recipeButton.addActionListener(e -> {
-            ProfileRecipeUI pvrUI = new ProfileRecipeUI(appController);
-            pvrUI.setVisible(true);
+        createdButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        p_panel.add(createdButton);
+
+        reviewedButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        p_panel.add(reviewedButton);
+
+        infoButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        p_panel.add(infoButton);
+
+        createdButton.addActionListener(e -> {
+            ProfileCreatedUI profileCreatedUI = new ProfileCreatedUI(appController);
+            profileCreatedUI.setVisible(true);
+        });
+
+        reviewedButton.addActionListener(e -> {
+            ProfileReviewUI profileReviewUI = new ProfileReviewUI(appController);
+            profileReviewUI.setVisible(true);
         });
 
         infoButton.addActionListener(e -> {
@@ -58,11 +71,14 @@ public class ProfileUI extends JFrame implements InfoViewBox {
 
     @Override
     public void viewInfoSuccess(String result) {
-        infoLabel = new JLabel(result);
-        infoLabel.setText("<html>" + result.replaceAll("<","&lt;").replaceAll(">", "&gt;").
-                replaceAll("\n", "<br/>") + "</html>");
-        infoLabel.setFont(new Font("Monaco", Font.PLAIN, 15));
-        p_panel.add(infoLabel, BorderLayout.SOUTH);
+        if (infoLabel == null) {
+            infoLabel = new JLabel(result);
+            infoLabel.setText("<html>" + result.replaceAll("<", "&lt;").replaceAll(">", "&gt;").
+                    replaceAll("\n", "<br/>") + "</html>");
+            infoLabel.setFont(new Font("Monaco", Font.PLAIN, 15));
+            infoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+            p_panel.add(infoLabel);
+        }
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.pack();

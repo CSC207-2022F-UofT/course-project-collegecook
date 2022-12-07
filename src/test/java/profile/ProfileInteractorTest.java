@@ -56,7 +56,7 @@ public class ProfileInteractorTest {
 
             @Override
             public void viewCreated(String result) {
-                ArrayList<Profile> profileList = null;
+                ArrayList<Profile> profileList;
                 try{
                     profileList = prg.getProfile();
                 } catch (IOException e) {
@@ -74,7 +74,7 @@ public class ProfileInteractorTest {
 
             @Override
             public void noCreated() {
-                ArrayList<Profile> profileList = null;
+                ArrayList<Profile> profileList;
                 try {
                     profileList = prg.getProfile();
                 } catch (IOException e) {
@@ -98,7 +98,12 @@ public class ProfileInteractorTest {
             }
 
             @Override
-            public void setUI(ProfileBox pb) {
+            public void setUI(ProfileReviewBox prb) {
+
+            }
+
+            @Override
+            public void setUI(ProfileCreateBox pcb) {
 
             }
 
@@ -131,7 +136,7 @@ public class ProfileInteractorTest {
 
             @Override
             public void viewCreated(String result) {
-                ArrayList<Profile> profileList = null;
+                ArrayList<Profile> profileList;
                 try{
                     profileList = prg.getProfile();
                 } catch (IOException e) {
@@ -149,7 +154,7 @@ public class ProfileInteractorTest {
 
             @Override
             public void noCreated() {
-                ArrayList<Profile> profileList = null;
+                ArrayList<Profile> profileList;
                 try {
                     profileList = prg.getProfile();
                 } catch (IOException e) {
@@ -173,7 +178,12 @@ public class ProfileInteractorTest {
             }
 
             @Override
-            public void setUI(ProfileBox profileBox) {
+            public void setUI(ProfileReviewBox prb) {
+
+            }
+
+            @Override
+            public void setUI(ProfileCreateBox pcb) {
 
             }
 
@@ -201,7 +211,7 @@ public class ProfileInteractorTest {
         ProfileOutputBoundary output = new ProfileOutputBoundary() {
             @Override
             public void viewReviewed(String result) {
-                ArrayList<Profile> profileList = null;
+                ArrayList<Profile> profileList;
                 try {
                     profileList = prg.getProfile();
                 } catch (IOException e) {
@@ -219,7 +229,7 @@ public class ProfileInteractorTest {
 
             @Override
             public void noReviewed() {
-                ArrayList<Profile> profileList = null;
+                ArrayList<Profile> profileList;
                 try {
                     profileList = prg.getProfile();
                 } catch (IOException e) {
@@ -253,7 +263,12 @@ public class ProfileInteractorTest {
             }
 
             @Override
-            public void setUI(ProfileBox pb) {
+            public void setUI(ProfileReviewBox prb) {
+
+            }
+
+            @Override
+            public void setUI(ProfileCreateBox pcb) {
 
             }
 
@@ -305,7 +320,12 @@ public class ProfileInteractorTest {
             }
 
             @Override
-            public void setUI(ProfileBox pb) {
+            public void setUI(ProfileReviewBox prb) {
+
+            }
+
+            @Override
+            public void setUI(ProfileCreateBox pcb) {
 
             }
 
@@ -374,7 +394,12 @@ public class ProfileInteractorTest {
             }
 
             @Override
-            public void setUI(ProfileBox pb) {
+            public void setUI(ProfileReviewBox prb) {
+
+            }
+
+            @Override
+            public void setUI(ProfileCreateBox pcb) {
 
             }
 
@@ -424,7 +449,7 @@ public class ProfileInteractorTest {
 
             @Override
             public void viewInfo(String result) {
-                ArrayList<Profile> profileList = null;
+                ArrayList<Profile> profileList;
                 try {
                     profileList = prg.getProfile();
                 } catch (IOException e) {
@@ -439,7 +464,12 @@ public class ProfileInteractorTest {
             }
 
             @Override
-            public void setUI(ProfileBox pb) {
+            public void setUI(ProfileReviewBox prb) {
+
+            }
+
+            @Override
+            public void setUI(ProfileCreateBox pcb) {
 
             }
 
@@ -496,7 +526,12 @@ public class ProfileInteractorTest {
             }
 
             @Override
-            public void setUI(ProfileBox pb) {
+            public void setUI(ProfileReviewBox prb) {
+
+            }
+
+            @Override
+            public void setUI(ProfileCreateBox pcb) {
 
             }
 
