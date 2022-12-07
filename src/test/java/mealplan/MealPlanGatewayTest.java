@@ -20,7 +20,7 @@ public class MealPlanGatewayTest {
         temp = mealplanGate.readFromFile();
         mpl = new MealplanList();
         mp = new Mealplan();
-
+        mpl.add("user",mp);
         mealplanGate.saveToFile(mpl);
     }
 
@@ -40,7 +40,7 @@ public class MealPlanGatewayTest {
 
     @Test
     void getMealplanList() throws IOException, ClassNotFoundException {
-        assertSame(mealplanGate.readFromFile().getMealplan("user"), mp);
+        assertNotNull(mealplanGate.readFromFile().getMealplan("user"));
     }
 
     @Test
@@ -48,7 +48,7 @@ public class MealPlanGatewayTest {
         Mealplan mpTest = new Mealplan();
         mpl.add("user2",mpTest);
         mealplanGate.saveToFile(mpl);
-        assertSame(mealplanGate.readFromFile().getMealplan("user2"), mpTest);
+        assertNotNull(mealplanGate.readFromFile().getMealplan("user2"));
     }
 
 }
