@@ -1,9 +1,9 @@
 package rank;
 
-import entities.User;
+
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class RankResponseModel {
     String rank;
@@ -15,7 +15,7 @@ public class RankResponseModel {
      * a list of all the sorted users based on the rank.
      *
      * @param rank contains the variable used to sort Users
-     * @param rank contains the sorted list of users
+     * @param users contains the sorted list of users
      */
     public RankResponseModel(String rank, ArrayList<String> users) {
         this.rank = rank;

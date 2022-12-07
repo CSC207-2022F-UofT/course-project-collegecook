@@ -13,8 +13,11 @@ public class UserList implements Serializable {
         this.AllUser = new ArrayList<>();
     }
 
-    //Used refactoring to factor out check method to make sure no users has same username when creating new account
-
+    /**
+     * Method to make sure no users has same username when creating new account
+     * @param username string username of a user that needs to be checked
+     * @return Return true if there are no matching usernames, false of the username already exits
+     */
     public boolean CheckAllUser(String username) {
         for (User person : AllUser) {
             if (Objects.equals(person.getUsername(), username)) {
@@ -23,13 +26,22 @@ public class UserList implements Serializable {
         }return true;
     }
 
-    // method to add user to the allUsers when user created the account,need to check if the username already in the list
+    /**
+     * To add a user to the allUser list when user created the account and the username is not already in the list
+     * @param username string username of a new user account
+     * @param password string password of a new user account
+     */
     public void AddAllUser(String username, String password) {
 
         User CollegeCook = new User(username, password);
         AllUser.add(CollegeCook);
     }
 
+    /**
+     * To check if UserList has certain user
+     * @param username string username that needs to be checked
+     * @return return true if the user is in the UserList,false if it is not.
+     */
     public Boolean contains(String username) {
         for (User person : AllUser) {
             if (Objects.equals(person.getUsername(),username)){
@@ -37,6 +49,12 @@ public class UserList implements Serializable {
             }
         }return false;
     }
+
+    /**
+     * To get a user from the UserList
+     * @param username string username of the user that need to return
+     * @return return the user with the username
+     */
 
     public User getUser(String username) {
         for (User person : AllUser) {
@@ -47,7 +65,13 @@ public class UserList implements Serializable {
         return null;
     }
 
+
+    /**
+     * To get a UserList
+     * @return a list of users that has an account
+     */
     public List<User> getAllUser() {
         return AllUser;
     }
+
 }

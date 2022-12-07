@@ -1,6 +1,6 @@
 package rank;
 
-import entities.User;
+
 
 import java.util.ArrayList;
 

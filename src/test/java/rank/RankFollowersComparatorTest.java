@@ -4,7 +4,7 @@ import entities.User;
 import org.junit.jupiter.api.Test;
 
 
-import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -25,11 +25,11 @@ public class RankFollowersComparatorTest {
         user2.addFollowers(user4);
         User[] users = {user2,user1,user3};
         Arrays.sort(users, new TotalFollowersComparator());
-        ArrayList<String> expected = new ArrayList<String>();
+        ArrayList<String> expected = new ArrayList<>();
         expected.add(user1.getUsername());
         expected.add(user2.getUsername());
         expected.add(user3.getUsername());
-        ArrayList<String> actualList  = new ArrayList<String>();
+        ArrayList<String> actualList  = new ArrayList<>();
         for (User user : users) {
             actualList.add(user.getUsername());
         }
