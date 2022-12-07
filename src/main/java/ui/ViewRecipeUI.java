@@ -25,15 +25,6 @@ public class ViewRecipeUI extends JFrame implements RecipeViewBox {
         this.appController = appController;
         view.setLayout(new BoxLayout(view, BoxLayout.Y_AXIS));
         view.add(all);
-        this.add(view);
-    }
-    @Override
-    public void success(String result){
-        all.setText(result);
-        all.setText("<html>" + result.replaceAll("<", "&lt;").replaceAll(">", "&gt;").
-                    replaceAll("\n", "<br/>") + "</html>");
-        all.setAlignmentX(Component.CENTER_ALIGNMENT);
-        all.setFont(new Font("Monaco", Font.PLAIN, 15));
         folllow.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -47,7 +38,7 @@ public class ViewRecipeUI extends JFrame implements RecipeViewBox {
                 }
             }
         });
-         mealPlan.addActionListener(new ActionListener() {
+        mealPlan.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 AddMealplanUI addMealplanUI = new AddMealplanUI(appController,
@@ -72,6 +63,16 @@ public class ViewRecipeUI extends JFrame implements RecipeViewBox {
         buttonPanel.add(folllow);
         buttonPanel.add(reviews);
         view.add(buttonPanel);
+        this.add(view);
+    }
+    @Override
+    public void success(String result){
+        all.setText(result);
+        all.setText("<html>" + result.replaceAll("<", "&lt;").replaceAll(">", "&gt;").
+                    replaceAll("\n", "<br/>") + "</html>");
+        all.setAlignmentX(Component.CENTER_ALIGNMENT);
+        all.setFont(new Font("Monaco", Font.PLAIN, 15));
+
         this.add(view);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.pack();

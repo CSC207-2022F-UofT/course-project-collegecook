@@ -7,10 +7,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import mealplan.MealplanBox;
 import ui.AppController;
 
 
-public class MealplanBoxUI extends JFrame implements MealplanBox{
+public class MealplanBoxUI extends JFrame implements MealplanBox {
     AppController appController;
 
     JPanel panel_b = new JPanel();
