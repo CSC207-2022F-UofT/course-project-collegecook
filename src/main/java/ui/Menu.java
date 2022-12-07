@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 public class Menu extends JFrame {
     JPanel menu = new JPanel();
     JButton create_recipe = new JButton("Create Recipe");
-    JButton search_recipe = new JButton("Search Recipe");
+    JButton search_recipe = new JButton("View Recipe");
     JButton searchSortRecipe = new JButton("Search and Sort for Recipes");
     JButton mealPlan = new JButton("My Meal Plan");
     JButton ranking = new JButton("Ranking");
