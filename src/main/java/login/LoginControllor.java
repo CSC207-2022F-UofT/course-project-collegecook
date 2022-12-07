@@ -5,49 +5,74 @@ import entities.UserList;
 import java.io.IOException;
 
 public class LoginControllor {
-    UserManager userManager;
+    LoginInputBound loginInputBound;
 
-    public LoginControllor(UserManager userManager) {
-        this.userManager = userManager;
+    public LoginControllor(LoginInputBound loginInputBound) {
+        this.loginInputBound = loginInputBound;
     }
 
+    /**
+     *
+     * @param username The username of the user.
+     * @param password The password of the user.
+
+     * This method is used to collect input and create the new user account
+     */
     public void PerformCreateAllUser(String username, String password){
-        userManager.CheckAllUser(username,password);
-
+        loginInputBound.CheckAllUser(username,password);
     }
+
+    /**
+     *
+     * @param username The username of the user.
+     * @param password The password of the user.
+
+     * This method is used to collect input and login the user
+     */
     public void PerformLogin(String username,String password){
-        userManager.Login(username,password);
-    }
-
-    public void PerformLogout(String username){
-        userManager.Logout(username);
+        loginInputBound.Login(username,password);
     }
 
 
+    /**
+     *
+     * @param username The username of the user.
+     * @param other The username of the other user the user want to follow.
+     * This method is used to follow other user
+     */
     public void PreformFollow(String username, String other) throws IOException {
-        if (userManager.CheckFollow(username,other)){
-            userManager.follow(username,other);
+        if (loginInputBound.CheckFollow(username,other)){
+            loginInputBound.follow(username,other);
         }
     }
 
 
-
+    /**
+     *
+     * @param username The username of the user.
+     * @param other The username of the other user the user want to unfollow.
+     * This method is used to unfollow other user
+     */
     public void PreformUnFollow(String username, String other){
-        if(userManager.CheckUnFollow(username,other)){
-            userManager.Unfollow(username,other);}
+        if(loginInputBound.CheckUnFollow(username,other)){
+            loginInputBound.Unfollow(username,other);}
              }
 
+    /**
+     * @return the user that is currently logged in
+     * This method is used to return the user that is currently logged in
+     */
     public String preformGetLoggedInUser(){
-        return userManager.getLoggedInUser();
+        return loginInputBound.getLoggedInUser();
     }
 
-    public static void main(String[] arg){
+/*    public static void main(String[] arg){
         UserGateWay userGateWay = UserRepoImpl.getUserRepoImpl();
         LoginOutputBound loginOutputBound = new LoginPresenter();
-        UserManager userManager1 = new UserManager(loginOutputBound, userGateWay);
-        LoginControllor loginControllor = new LoginControllor(userManager1);
+        LoginInputBound loginInputBound1 = new UserManager(loginOutputBound, userGateWay);
+        LoginControllor loginControllor = new LoginControllor(loginInputBound1);
         loginControllor.PerformLogin("Brenden", "12345");
-    }
+    }*/
     }
 
 

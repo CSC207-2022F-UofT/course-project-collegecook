@@ -35,11 +35,6 @@ public class LoginPresenter implements LoginOutputBound{
     }
 
 
-    @Override
-    public void LogoutFail() {
-        System.out.println("You have logged out");
-
-    }
 
     @Override
     public void FollowedSuccess() {
@@ -65,11 +60,6 @@ public class LoginPresenter implements LoginOutputBound{
 
     }
 
-    @Override
-    public void AddProfile() {
-        System.out.println("Please Check Username");
-
-    }
 
     public void setUI(LoginBox loginBox){
         this.loginBox = loginBox;
