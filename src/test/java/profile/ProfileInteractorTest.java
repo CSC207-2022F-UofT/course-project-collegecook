@@ -20,7 +20,7 @@ public class ProfileInteractorTest {
 
     @BeforeEach
     void setUp() throws IOException {
-        prg = ProfileRepoImpl.getPrl();
+        prg = ProfileRepoImpl.getProfileRepoImpl();
         tempProfile = prg.getProfile();
         ArrayList<Profile> profileList = new ArrayList<>();
         Profile profile = new Profile("Allison");

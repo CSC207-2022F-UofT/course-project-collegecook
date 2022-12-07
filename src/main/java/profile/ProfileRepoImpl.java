@@ -9,13 +9,13 @@ public class ProfileRepoImpl implements ProfileRepoGateway{
      * This class is to read profiles from "Profile.sav" or write profiles into "Profile.sav"
      */
     private static final String file = "Profile.sav";
-    private static ProfileRepoImpl prl;
+    private static ProfileRepoImpl profileRepoImpl;
 
-    public static ProfileRepoImpl getPrl(){
-        if (prl == null){
-            prl = new ProfileRepoImpl();
+    public static ProfileRepoImpl getProfileRepoImpl(){
+        if (profileRepoImpl == null){
+            profileRepoImpl = new ProfileRepoImpl();
         }
-        return prl;
+        return profileRepoImpl;
     }
 
     /**

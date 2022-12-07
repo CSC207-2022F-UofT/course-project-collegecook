@@ -17,7 +17,7 @@ public class ProfileRepoImplTest {
 
     @BeforeEach
     void setUp() throws IOException {
-        pri = ProfileRepoImpl.getPrl();
+        pri = ProfileRepoImpl.getProfileRepoImpl();
         pl = pri.getProfile();
         temp = pri.getProfile();
         Profile p = new Profile("Allison");
@@ -34,8 +34,8 @@ public class ProfileRepoImplTest {
     }
 
     @Test
-    void testGetPrl(){
-        assertSame(pri, ProfileRepoImpl.getPrl());
+    void testGetProfileRepoImpl(){
+        assertSame(pri, ProfileRepoImpl.getProfileRepoImpl());
     }
 
     @Test
