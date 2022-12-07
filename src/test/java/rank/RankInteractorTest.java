@@ -27,15 +27,13 @@ public class RankInteractorTest {
     RankInteractor rankInteractor = new RankInteractor(rankOutputBoundary);
 
 
-    public RankInteractorTest() throws IOException {
-    }
 
     @Test
     public void TestallCreateInteractor() throws IOException {
         RankOutputBoundary rankOutputBoundary = new RankPresenter();
         RankInteractor rankInteractor = new RankInteractor(rankOutputBoundary);
         int actual = rankInteractor.allCreatedRanking("user1");
-        int expected = 5;
+        int expected = 3;
         assertEquals(expected, actual);
     }
 
@@ -46,9 +44,9 @@ public class RankInteractorTest {
         RankRequestModel rankRequestModel = new RankRequestModel(ranking);
         RankResponseModel returned = rankInteractor.sortUsers(rankRequestModel);
         int actual = returned.getUsers().size();
-        int expected = 15;
+        int expected = 18;
         String actual1 = returned.getUsers().get(0);
-        String expected1 = "3-Brenden";
+        String expected1 = "3-Mary";
         assertEquals(expected, actual);
         assertEquals(actual1,expected1);
     }
@@ -60,9 +58,9 @@ public class RankInteractorTest {
         RankRequestModel rankRequestModel = new RankRequestModel(ranking);
         RankResponseModel returned = rankInteractor.sortUsers(rankRequestModel);
         int actual = returned.getUsers().size();
-        int expected = 15;
+        int expected = 18;
         String actual1 = returned.getUsers().get(0);
-        String expected1 = "5-user1";
+        String expected1 = "4-user3";
         assertEquals(expected, actual);
         assertEquals(actual1,expected1);
     }
