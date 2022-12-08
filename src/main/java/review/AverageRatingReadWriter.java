@@ -11,7 +11,7 @@ public class AverageRatingReadWriter implements ReadWriter<AverageRatings> {
      * @param filePath the file to write the records to
      * @param ratings  stores the map of ratings to be serialized
      */
-    public void saveToFile(String filePath, Object ratings) throws IOException {
+    public void saveToFile(String filePath, AverageRatings ratings) throws IOException {
 
         OutputStream file = new FileOutputStream(filePath);
         OutputStream buffer = new BufferedOutputStream(file);

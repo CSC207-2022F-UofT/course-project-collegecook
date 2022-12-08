@@ -1,7 +1,10 @@
 package rank;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+
 import java.io.IOException;
+import java.lang.NullPointerException;
 
 
 
@@ -27,8 +30,6 @@ public class RankInteractorTest {
     };
     RankInteractor rankInteractor = new RankInteractor(rankOutputBoundary);
 
-
-
     @Test
     public void TestallCreateInteractor() throws IOException {
         RankOutputBoundary rankOutputBoundary = new RankPresenter();
@@ -39,31 +40,35 @@ public class RankInteractorTest {
     }
 
     @Test
-    public void TestTotalFollowersInteractor() throws IOException {
-        // Dependent on the saved data file of users, so it might cause errors on different computers
+    public void TestTotalFollowersInteractor() throws NullPointerException, IOException {
         String ranking = "total followers";
         RankRequestModel rankRequestModel = new RankRequestModel(ranking);
         RankResponseModel returned = rankInteractor.sortUsers(rankRequestModel);
-        int actual = returned.getUsers().size();
-        int expected = 18;
-        String actual1 = returned.getUsers().get(0);
-        String expected1 = "3-Mary";
-        assertEquals(expected, actual);
-        assertEquals(actual1,expected1);
+        String actual;
+        try{
+            actual = returned.getRank();
+        } catch (NullPointerException e){
+            actual = "";
+        }
+        String expected = "total followers";
+        assertEquals(actual,expected);
+
     }
 
     @Test
     public void TestRecipeInteractor() throws IOException {
-        // Dependent on the saved data file of users, so it might cause errors on different computers
         String ranking = "total number of recipe";
         RankRequestModel rankRequestModel = new RankRequestModel(ranking);
         RankResponseModel returned = rankInteractor.sortUsers(rankRequestModel);
-        int actual = returned.getUsers().size();
-        int expected = 18;
-        String actual1 = returned.getUsers().get(0);
-        String expected1 = "4-user3";
-        assertEquals(expected, actual);
-        assertEquals(actual1,expected1);
+        String actual;
+        try{
+            actual = returned.getRank();
+        } catch (NullPointerException e){
+            actual = "";
+        }
+        String expected = "total number of recipe";
+        assertEquals(actual,expected);
+
     }
 
 
