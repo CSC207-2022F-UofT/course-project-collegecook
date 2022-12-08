@@ -10,10 +10,10 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LoginControllorTest {
-    LoginController loginController;
+    UserController userController;
     @BeforeEach
     void setup() {
-        LoginInputBound loginInputBound = new LoginInputBound() {
+        UserInputBound userInputBound = new UserInputBound() {
             @Override
             public void CheckAllUser(String username, String password) {assertTrue(true);}
 
@@ -35,7 +35,7 @@ class LoginControllorTest {
             @Override
             public String getLoggedInUser() {return null;}
         };
-        loginController = new LoginController(loginInputBound);
+        userController = new UserController(userInputBound);
     }
 
     @AfterEach
@@ -44,27 +44,27 @@ class LoginControllorTest {
 
     @Test
      void performCreateAllUser() {
-        loginController.PerformCreateAllUser("a","12345");
+        userController.PerformCreateAllUser("a","12345");
     }
 
     @Test
     void performLogin() {
-        loginController.PerformLogin("a","12345");
+        userController.PerformLogin("a","12345");
     }
 
     @Test
     void preformFollow() throws IOException {
-        loginController.PerformCreateAllUser("b","12345");
-        loginController.PreformFollow("a","b");
+        userController.PerformCreateAllUser("b","12345");
+        userController.PreformFollow("a","b");
     }
 
     @Test
     void preformUnFollow() {
-        loginController.PreformUnFollow("a","b");
+        userController.PreformUnFollow("a","b");
     }
 
     @Test
     void preformGetLoggedInUser() {
-        assertNull(loginController.preformGetLoggedInUser());
+        assertNull(userController.preformGetLoggedInUser());
     }
 }

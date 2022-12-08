@@ -1,6 +1,6 @@
 package login;
 
-public interface LoginBox {
+public interface UserSignInBox {
     void loginSuccess();
     void loginFailed();
 }

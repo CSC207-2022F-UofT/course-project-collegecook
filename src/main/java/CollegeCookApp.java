@@ -13,9 +13,9 @@ public class CollegeCookApp {
         // login use case setup
         
         UserGateWay userGateWay = UserRepoImpl.getUserRepoImpl();
-        LoginOutputBound loginOutputBound = new LoginPresenter();
-        LoginInputBound loginInputBound = new UserManager(loginOutputBound, userGateWay);
-        LoginController loginController = new LoginController(loginInputBound);
+        UserOutputBound userOutputBound = new UserPresenter();
+        UserInputBound userInputBound = new UserManager(userOutputBound, userGateWay);
+        UserController userController = new UserController(userInputBound);
 
         // recipe use case setup
         RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();
@@ -48,17 +48,17 @@ public class CollegeCookApp {
         
         MealplanOutputBoundary mealplanOutputBoundary= new MealplanPresenter();
         MealplanGateway mrg = MealplanGate.getInstance();
-        MealplanInputBoundary mealplanInputBoundary = new MealplanInteractor(mealplanOutputBoundary, loginController.preformGetLoggedInUser(),mrg);
+        MealplanInputBoundary mealplanInputBoundary = new MealplanInteractor(mealplanOutputBoundary, userController.preformGetLoggedInUser(),mrg);
         MealplanController mealplanController = new MealplanController(mealplanInputBoundary,profileInputBoundary,recipeInputBoundary);
 
-        AppController appController1 = new AppController(recipeController, loginController,
+        AppController appController1 = new AppController(recipeController, userController,
                 profileController, mealplanController, searchController, rankController, reviewController);
 
         // UI
         RecipeCreateBox recipeCreateBox = new CreateRecipeUI(appController1);
         RecipeViewBox recipeViewBox = new ViewRecipeUI(appController1);
         WelcomeUI welcomeUI = new WelcomeUI(appController1);
-        LoginBox loginBox = new LoginUI(appController1);
+        UserSignInBox userSignInBox = new UserUI(appController1);
         SignUpBox signUpBox = new SignUpUI(appController1);
         ProfileCreateBox profileCreateBox = new ProfileCreatedUI(appController1);
         ProfileReviewBox profileReviewBox = new ProfileReviewUI(appController1);
@@ -71,9 +71,9 @@ public class CollegeCookApp {
 
         // set corresponding view
         MealplanBox mealplanBox = new MealplanBoxUI(appController1);
-        loginOutputBound.setUI(loginBox);
-        loginOutputBound.setUI(signUpBox);
-        loginOutputBound.setUI(recipeViewBox);
+        userOutputBound.setUI(userSignInBox);
+        userOutputBound.setUI(signUpBox);
+        userOutputBound.setUI(recipeViewBox);
         recipeOutputBoundary.setUI(recipeCreateBox);
         recipeOutputBoundary.setUI(recipeViewBox);
         profileOutputBoundary.setUI(profileCreateBox);

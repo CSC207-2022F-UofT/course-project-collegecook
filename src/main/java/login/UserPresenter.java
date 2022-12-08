@@ -4,20 +4,20 @@ package login;
 import recipe.RecipeViewBox;
 
 
-public class LoginPresenter implements LoginOutputBound{
+public class UserPresenter implements UserOutputBound {
 
-    LoginBox loginBox;
+    UserSignInBox userSignInBox;
     SignUpBox signUpBox;
     RecipeViewBox recipeViewBox;
 
     @Override
     public void LoginSuccess() {
-        loginBox.loginSuccess();
+        userSignInBox.loginSuccess();
     }
 
     @Override
     public void LoginFailed() {
-        loginBox.loginFailed();
+        userSignInBox.loginFailed();
 
 
     }
@@ -61,8 +61,8 @@ public class LoginPresenter implements LoginOutputBound{
     }
 
 
-    public void setUI(LoginBox loginBox){
-        this.loginBox = loginBox;
+    public void setUI(UserSignInBox userSignInBox){
+        this.userSignInBox = userSignInBox;
     }
     public void setUI(SignUpBox signUpBox){
         this.signUpBox = signUpBox;

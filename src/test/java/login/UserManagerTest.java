@@ -1,6 +1,5 @@
 package login;
 
-import entities.RecipeList;
 import entities.User;
 import entities.UserList;
 import org.junit.jupiter.api.AfterEach;
@@ -9,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import recipe.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,7 +32,7 @@ class UserManagerTest {
 
     @Test
     void checkAllUser() {
-        LoginOutputBound loginOutputBound = new LoginOutputBound() {
+        UserOutputBound userOutputBound = new UserOutputBound() {
             @Override
             public void LoginSuccess() {
 
@@ -94,7 +92,7 @@ class UserManagerTest {
 
 
             @Override
-            public void setUI(LoginBox loginBox) {
+            public void setUI(UserSignInBox loginBox) {
 
             }
 
@@ -108,7 +106,7 @@ class UserManagerTest {
 
             }
         };
-        UserManager userManager = new UserManager(loginOutputBound,userGateWay);
+        UserManager userManager = new UserManager(userOutputBound,userGateWay);
         userManager.CheckAllUser("a","12345");
         userManager.CheckAllUser("a","12345");
 
@@ -119,7 +117,7 @@ class UserManagerTest {
 
     @Test
     void login() {
-        LoginOutputBound loginOutputBound = new LoginOutputBound() {
+        UserOutputBound userOutputBound = new UserOutputBound() {
             @Override
             public void LoginSuccess() {
                 UserList userList = null;
@@ -183,7 +181,7 @@ class UserManagerTest {
 
 
             @Override
-            public void setUI(LoginBox loginBox) {
+            public void setUI(UserSignInBox loginBox) {
 
             }
 
@@ -197,7 +195,7 @@ class UserManagerTest {
 
             }
         };
-        UserManager userManager = new UserManager(loginOutputBound,userGateWay);
+        UserManager userManager = new UserManager(userOutputBound,userGateWay);
         userManager.CheckAllUser("a","12345");
         User c = new User("c","12345");
         userManager.Login(c.getUsername(),"12345");
@@ -212,7 +210,7 @@ class UserManagerTest {
 
 
     @Test
-    void checkFollow() throws IOException { LoginOutputBound loginOutputBound = new LoginOutputBound() {
+    void checkFollow() throws IOException { UserOutputBound userOutputBound = new UserOutputBound() {
         @Override
         public void LoginSuccess() {
 
@@ -254,7 +252,7 @@ class UserManagerTest {
         }
 
         @Override
-        public void setUI(LoginBox loginBox) {
+        public void setUI(UserSignInBox loginBox) {
 
         }
 
@@ -268,7 +266,7 @@ class UserManagerTest {
 
         }
     };
-        UserManager userManager = new UserManager(loginOutputBound,userGateWay);
+        UserManager userManager = new UserManager(userOutputBound,userGateWay);
         userManager.CheckAllUser("a","12345");
         userManager.CheckAllUser("b","12345");
         Boolean expected = true;
@@ -280,7 +278,7 @@ class UserManagerTest {
 
     @Test
     void follow()throws IOException {
-        LoginOutputBound loginOutputBound = new LoginOutputBound() {
+        UserOutputBound userOutputBound = new UserOutputBound() {
             @Override
             public void LoginSuccess() {
 
@@ -322,7 +320,7 @@ class UserManagerTest {
             }
 
             @Override
-            public void setUI(LoginBox loginBox) {
+            public void setUI(UserSignInBox loginBox) {
 
             }
 
@@ -336,7 +334,7 @@ class UserManagerTest {
 
             }
         };
-        UserManager userManager = new UserManager(loginOutputBound,userGateWay);
+        UserManager userManager = new UserManager(userOutputBound,userGateWay);
         userManager.CheckAllUser("a","12345");
         userManager.CheckAllUser("b","12345");
         User c = new User("c","12345");
@@ -350,7 +348,8 @@ class UserManagerTest {
     }
 
     @Test
-    void checkUnFollow() throws IOException {LoginOutputBound loginOutputBound = new LoginOutputBound() {
+    void checkUnFollow() throws IOException {
+        UserOutputBound userOutputBound = new UserOutputBound() {
         @Override
         public void LoginSuccess() {
 
@@ -392,7 +391,7 @@ class UserManagerTest {
         }
 
         @Override
-        public void setUI(LoginBox loginBox) {
+        public void setUI(UserSignInBox loginBox) {
 
         }
 
@@ -406,7 +405,7 @@ class UserManagerTest {
 
         }
     };
-        UserManager userManager = new UserManager(loginOutputBound,userGateWay);
+        UserManager userManager = new UserManager(userOutputBound,userGateWay);
         userManager.CheckAllUser("a","12345");
         userManager.CheckAllUser("b","12345");
         userManager.follow("a","b");
@@ -416,7 +415,8 @@ class UserManagerTest {
     }
 
     @Test
-    void unfollow() throws IOException {LoginOutputBound loginOutputBound = new LoginOutputBound() {
+    void unfollow() throws IOException {
+        UserOutputBound userOutputBound = new UserOutputBound() {
         @Override
         public void LoginSuccess() {
 
@@ -458,7 +458,7 @@ class UserManagerTest {
         }
 
         @Override
-        public void setUI(LoginBox loginBox) {
+        public void setUI(UserSignInBox loginBox) {
 
         }
 
@@ -472,7 +472,7 @@ class UserManagerTest {
 
         }
     };
-        UserManager userManager = new UserManager(loginOutputBound,userGateWay);
+        UserManager userManager = new UserManager(userOutputBound,userGateWay);
         userManager.CheckAllUser("a","12345");
         userManager.CheckAllUser("b","12345");
         User c = new User("c","12345");
