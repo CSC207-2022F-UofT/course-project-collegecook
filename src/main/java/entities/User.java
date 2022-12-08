@@ -10,11 +10,11 @@ public class User implements Serializable {
      * This is the class of User, which is an entity.
      */
 
-    private String username;
-    private String password;
+    private final String username;
+    private final String password;
 
-    private List<User> followers;
-    private List<User> followed;
+    private final List<User> followers;
+    private final List<User> followed;
 
     /**
      * Constructor for class User

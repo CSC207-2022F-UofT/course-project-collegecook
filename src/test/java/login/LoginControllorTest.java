@@ -1,10 +1,8 @@
 package login;
 
-import login.LoginInputBound;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import recipe.RecipeController;
 
 import java.io.IOException;
 
@@ -12,10 +10,10 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LoginControllorTest {
-    LoginControllor loginControllor;
+    UserController userController;
     @BeforeEach
     void setup() {
-        LoginInputBound loginInputBound = new LoginInputBound() {
+        UserInputBound userInputBound = new UserInputBound() {
             @Override
             public void CheckAllUser(String username, String password) {assertTrue(true);}
 
@@ -37,7 +35,7 @@ class LoginControllorTest {
             @Override
             public String getLoggedInUser() {return null;}
         };
-        loginControllor = new LoginControllor(loginInputBound);
+        userController = new UserController(userInputBound);
     }
 
     @AfterEach
@@ -46,27 +44,27 @@ class LoginControllorTest {
 
     @Test
      void performCreateAllUser() {
-        loginControllor.PerformCreateAllUser("a","12345");
+        userController.PerformCreateAllUser("a","12345");
     }
 
     @Test
     void performLogin() {
-        loginControllor.PerformLogin("a","12345");
+        userController.PerformLogin("a","12345");
     }
 
     @Test
     void preformFollow() throws IOException {
-        loginControllor.PerformCreateAllUser("b","12345");
-        loginControllor.PreformFollow("a","b");
+        userController.PerformCreateAllUser("b","12345");
+        userController.PreformFollow("a","b");
     }
 
     @Test
     void preformUnFollow() {
-        loginControllor.PreformUnFollow("a","b");
+        userController.PreformUnFollow("a","b");
     }
 
     @Test
     void preformGetLoggedInUser() {
-        assertNull(loginControllor.preformGetLoggedInUser());
+        assertNull(userController.preformGetLoggedInUser());
     }
 }

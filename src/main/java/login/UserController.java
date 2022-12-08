@@ -3,11 +3,11 @@ package login;
 
 import java.io.IOException;
 
-public class LoginControllor {
-    LoginInputBound loginInputBound;
+public class UserController {
+    UserInputBound userInputBound;
 
-    public LoginControllor(LoginInputBound loginInputBound) {
-        this.loginInputBound = loginInputBound;
+    public UserController(UserInputBound userInputBound) {
+        this.userInputBound = userInputBound;
     }
 
     /**
@@ -18,7 +18,7 @@ public class LoginControllor {
      * This method is used to collect input and create the new user account
      */
     public void PerformCreateAllUser(String username, String password){
-        loginInputBound.CheckAllUser(username,password);
+        userInputBound.CheckAllUser(username,password);
     }
 
     /**
@@ -29,7 +29,7 @@ public class LoginControllor {
      * This method is used to collect input and login the user
      */
     public void PerformLogin(String username,String password){
-        loginInputBound.Login(username,password);
+        userInputBound.Login(username,password);
     }
 
 
@@ -40,8 +40,8 @@ public class LoginControllor {
      * This method is used to follow other user
      */
     public void PreformFollow(String username, String other) throws IOException {
-        if (loginInputBound.CheckFollow(username,other)){
-            loginInputBound.follow(username,other);
+        if (userInputBound.CheckFollow(username,other)){
+            userInputBound.follow(username,other);
         }
     }
 
@@ -53,8 +53,8 @@ public class LoginControllor {
      * This method is used to unfollow other user
      */
     public void PreformUnFollow(String username, String other){
-        if(loginInputBound.CheckUnFollow(username,other)){
-            loginInputBound.Unfollow(username,other);}
+        if(userInputBound.CheckUnFollow(username,other)){
+            userInputBound.Unfollow(username,other);}
              }
 
     /**
@@ -62,16 +62,9 @@ public class LoginControllor {
      * This method is used to return the user that is currently logged in
      */
     public String preformGetLoggedInUser(){
-        return loginInputBound.getLoggedInUser();
+        return userInputBound.getLoggedInUser();
     }
 
-/*    public static void main(String[] arg){
-        UserGateWay userGateWay = UserRepoImpl.getUserRepoImpl();
-        LoginOutputBound loginOutputBound = new LoginPresenter();
-        LoginInputBound loginInputBound1 = new UserManager(loginOutputBound, userGateWay);
-        LoginControllor loginControllor = new LoginControllor(loginInputBound1);
-        loginControllor.PerformLogin("Brenden", "12345");
-    }*/
     }
 
 

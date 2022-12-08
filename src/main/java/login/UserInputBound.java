@@ -2,7 +2,7 @@ package login;
 
 import java.io.IOException;
 
-public interface LoginInputBound {
+public interface UserInputBound {
     void CheckAllUser(String username,String password);
     void Login(String username, String password);
     boolean CheckFollow(String username, String other);

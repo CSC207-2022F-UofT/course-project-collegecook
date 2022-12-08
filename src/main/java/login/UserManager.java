@@ -6,17 +6,17 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-public class UserManager implements LoginInputBound {
+public class UserManager implements UserInputBound {
     private UserList AllUser;
 
     private final UserGateWay urg;
 
-    final login.LoginOutputBound LoginOutputBound;
+    final UserOutputBound UserOutputBound;
     private String loggedInUser;
 
-    public UserManager(login.LoginOutputBound loginOutputBound, UserGateWay userGateWay) {
+    public UserManager(UserOutputBound userOutputBound, UserGateWay userGateWay) {
         this.urg = userGateWay;
-        this.LoginOutputBound = loginOutputBound;
+        this.UserOutputBound = userOutputBound;
         try {
             AllUser = urg.getAllUser();
         } catch (IOException e) {
@@ -38,11 +38,12 @@ public class UserManager implements LoginInputBound {
             AllUser.AddAllUser(username,password);
             try {
                 urg.saveUser(AllUser);
-                LoginOutputBound.CreatAccountSuccess();
+                UserOutputBound.CreatAccountSuccess();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else{LoginOutputBound.CreatAccountFail();}
+        }else{
+            UserOutputBound.CreatAccountFail();}
     }
 
     /**
@@ -57,17 +58,17 @@ public class UserManager implements LoginInputBound {
     public void Login(String username, String password){
         List<User> allUser = AllUser.getAllUser();
         if (allUser.size() == 0){
-            LoginOutputBound.LoginFailed();
+            UserOutputBound.LoginFailed();
         }
         else {
             for (User person : AllUser.getAllUser()) {
                 if (Objects.equals(person.getUsername(), username) && Objects.equals(person.getPassword(), password)) {
                     this.loggedInUser = username;
-                    LoginOutputBound.LoginSuccess();
+                    UserOutputBound.LoginSuccess();
                     return;
                 }
             }
-            LoginOutputBound.LoginFailed();
+            UserOutputBound.LoginFailed();
         }
     }
 
@@ -84,10 +85,10 @@ public class UserManager implements LoginInputBound {
         for(User person :AllUser.getAllUser()){
             if(Objects.equals(person.getUsername(), username)){
                 if(!AllUser.contains(other)){
-                    LoginOutputBound.FollowedFail();
+                    UserOutputBound.FollowedFail();
                     return false;
                 }else if (person.getFollowed().contains(AllUser.getUser(other))){
-                    LoginOutputBound.FollowedFail();
+                    UserOutputBound.FollowedFail();
                     return false;}
                 }
             }return true;
@@ -111,7 +112,7 @@ public class UserManager implements LoginInputBound {
                 person.addFollowed(AllUser.getUser(other));
                 AllUser.getUser(other).addFollowers(person);
                 urg.saveUser(AllUser);
-                LoginOutputBound.FollowedSuccess();
+                UserOutputBound.FollowedSuccess();
             }
         }
     }
@@ -128,7 +129,7 @@ public class UserManager implements LoginInputBound {
     public boolean CheckUnFollow(String username, String other) {
         for (User person : AllUser.getAllUser()) {
             if (!AllUser.contains(other)) {
-                LoginOutputBound.UnFollowedFail();
+                UserOutputBound.UnFollowedFail();
                 return false;
             }
             if (Objects.equals(person.getUsername(), username)) {
@@ -137,7 +138,7 @@ public class UserManager implements LoginInputBound {
                 }
             }
         }
-        LoginOutputBound.UnFollowedFail();
+        UserOutputBound.UnFollowedFail();
         return false;
     }
     /**
@@ -154,7 +155,7 @@ public class UserManager implements LoginInputBound {
             if(Objects.equals(person.getUsername(), username)){
                 person.RemoveFollowed(AllUser.getUser(other));
                 AllUser.getUser(other).RemoveFollowers(person);
-                LoginOutputBound.UnFollowedSuccess();
+                UserOutputBound.UnFollowedSuccess();
             }
         }
     }

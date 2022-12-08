@@ -1,7 +1,6 @@
 package ui;
 
 import login.*;
-import recipe.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -62,7 +61,7 @@ public class SignUpUI extends JFrame implements SignUpBox {
     public void createSuccess(){
         JOptionPane.showMessageDialog(null,
                 "Successfully created a new account");
-        LoginUI loginUI = new LoginUI(appController);
+        UserUI loginUI = new UserUI(appController);
         loginUI.setVisible(true);
     }
 

@@ -22,7 +22,7 @@ public class WelcomeUI extends JFrame {
         login.setAlignmentX(Component.CENTER_ALIGNMENT);
         login.addActionListener(e -> {
             dispose();
-            LoginUI loginUI = new LoginUI(appController);
+            UserUI loginUI = new UserUI(appController);
             loginUI.setVisible(true);
         });
 

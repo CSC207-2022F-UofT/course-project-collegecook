@@ -1,7 +1,6 @@
 package ui;
 
 import login.*;
-import recipe.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 
-public class LoginUI extends JFrame implements LoginBox{
+public class UserUI extends JFrame implements UserSignInBox {
     JPanel login = new JPanel();
     JButton loginButton = new JButton("Login");
     JPasswordField passwordField = new JPasswordField(15);
@@ -23,7 +22,7 @@ public class LoginUI extends JFrame implements LoginBox{
     AppController appController;
 
 
-    public LoginUI(AppController appController){
+    public UserUI(AppController appController){
         this.appController = appController;
         login.setLayout(new BoxLayout(login, BoxLayout.Y_AXIS));
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
