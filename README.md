@@ -12,7 +12,8 @@ recipes.
     <img width="500" src="https://github.com/CSC207-2022F-UofT/course-project-collegecook/blob/main/images/giphy.gif" alt="Menu">
 </p>
 
-
++ Create Recipe: Create and view recipes
++ Create Review: Create and view reviews
 + Search and Sort: The program provides the function of filtering recipes for users to conveniently search for recipes they 
 are interested in, and sort by a given sort type (average rating, number of ratings, time needed) in ascending or descending order
 + Meal Plan: Users can also add recipes to their weekly meal plans, which include breakfast lunch and dinner options. 
@@ -30,7 +31,7 @@ The program strictly follows the clean architecture and SOLID Principles. There 
 + **Iterator Design Pattern**: It's used on RecipeList to make it iterable
 + **Strategy Design Pattern**: It's used on sorting recipes and ranking users.
 + **Simple Factory Design Pattern**: It's used on review Database.
-+ **Depency Injection Design Pattern**: It's used throughout the program to decrease dependency
++ **Dependancy Injection Design Pattern**: It's used throughout the program to decrease dependency
 
 ## Program Guideline
 To run the program, just run ```CollegeCookApp.java```.
