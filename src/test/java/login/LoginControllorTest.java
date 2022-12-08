@@ -1,10 +1,8 @@
 package login;
 
-import login.LoginInputBound;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import recipe.RecipeController;
 
 import java.io.IOException;
 
@@ -12,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LoginControllorTest {
-    LoginControllor loginControllor;
+    LoginController loginController;
     @BeforeEach
     void setup() {
         LoginInputBound loginInputBound = new LoginInputBound() {
@@ -37,7 +35,7 @@ class LoginControllorTest {
             @Override
             public String getLoggedInUser() {return null;}
         };
-        loginControllor = new LoginControllor(loginInputBound);
+        loginController = new LoginController(loginInputBound);
     }
 
     @AfterEach
@@ -46,27 +44,27 @@ class LoginControllorTest {
 
     @Test
      void performCreateAllUser() {
-        loginControllor.PerformCreateAllUser("a","12345");
+        loginController.PerformCreateAllUser("a","12345");
     }
 
     @Test
     void performLogin() {
-        loginControllor.PerformLogin("a","12345");
+        loginController.PerformLogin("a","12345");
     }
 
     @Test
     void preformFollow() throws IOException {
-        loginControllor.PerformCreateAllUser("b","12345");
-        loginControllor.PreformFollow("a","b");
+        loginController.PerformCreateAllUser("b","12345");
+        loginController.PreformFollow("a","b");
     }
 
     @Test
     void preformUnFollow() {
-        loginControllor.PreformUnFollow("a","b");
+        loginController.PreformUnFollow("a","b");
     }
 
     @Test
     void preformGetLoggedInUser() {
-        assertNull(loginControllor.preformGetLoggedInUser());
+        assertNull(loginController.preformGetLoggedInUser());
     }
 }

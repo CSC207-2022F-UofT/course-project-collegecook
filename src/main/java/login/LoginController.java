@@ -3,10 +3,10 @@ package login;
 
 import java.io.IOException;
 
-public class LoginControllor {
+public class LoginController {
     LoginInputBound loginInputBound;
 
-    public LoginControllor(LoginInputBound loginInputBound) {
+    public LoginController(LoginInputBound loginInputBound) {
         this.loginInputBound = loginInputBound;
     }
 

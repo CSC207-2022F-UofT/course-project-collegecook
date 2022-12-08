@@ -15,7 +15,7 @@ public class CollegeCookApp {
         UserGateWay userGateWay = UserRepoImpl.getUserRepoImpl();
         LoginOutputBound loginOutputBound = new LoginPresenter();
         LoginInputBound loginInputBound = new UserManager(loginOutputBound, userGateWay);
-        LoginControllor loginControllor = new LoginControllor(loginInputBound);
+        LoginController loginController = new LoginController(loginInputBound);
 
         // recipe use case setup
         RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();
@@ -48,10 +48,10 @@ public class CollegeCookApp {
         
         MealplanOutputBoundary mealplanOutputBoundary= new MealplanPresenter();
         MealplanGateway mrg = MealplanGate.getInstance();
-        MealplanInputBoundary mealplanInputBoundary = new MealplanInteractor(mealplanOutputBoundary,loginControllor.preformGetLoggedInUser(),mrg);
+        MealplanInputBoundary mealplanInputBoundary = new MealplanInteractor(mealplanOutputBoundary, loginController.preformGetLoggedInUser(),mrg);
         MealplanController mealplanController = new MealplanController(mealplanInputBoundary,profileInputBoundary,recipeInputBoundary);
 
-        AppController appController1 = new AppController(recipeController, loginControllor,
+        AppController appController1 = new AppController(recipeController, loginController,
                 profileController, mealplanController, searchController, rankController, reviewController);
 
         // UI
