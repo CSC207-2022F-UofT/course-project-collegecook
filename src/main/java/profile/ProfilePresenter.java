@@ -4,7 +4,8 @@ public class ProfilePresenter implements ProfileOutputBoundary{
     /**
      * This class connects the output boundary and three interface boxes that are for the UI layer.
      */
-    ProfileBox profileBox;
+    ProfileCreateBox profileCreateBox;
+    ProfileReviewBox profileReviewBox;
     InfoViewBox infoViewBox;
     InfoSetBox infoSetBox;
 
@@ -15,7 +16,7 @@ public class ProfilePresenter implements ProfileOutputBoundary{
      */
     @Override
     public void viewCreated(String result) {
-        profileBox.hasCreated(result);
+        profileCreateBox.hasCreated(result);
     }
 
     /**
@@ -24,7 +25,7 @@ public class ProfilePresenter implements ProfileOutputBoundary{
      */
     @Override
     public void noCreated() {
-        profileBox.noCreated();
+        profileCreateBox.noCreated();
     }
 
     /**
@@ -34,7 +35,7 @@ public class ProfilePresenter implements ProfileOutputBoundary{
      */
     @Override
     public void viewReviewed(String result) {
-        profileBox.hasReviewed(result);
+        profileReviewBox.hasReviewed(result);
     }
 
     /**
@@ -43,7 +44,7 @@ public class ProfilePresenter implements ProfileOutputBoundary{
      */
     @Override
     public void noReviewed() {
-        profileBox.noReviewed();
+        profileReviewBox.noReviewed();
     }
 
     /**
@@ -67,11 +68,20 @@ public class ProfilePresenter implements ProfileOutputBoundary{
 
     /**
      * Set up a ProfileBox interface, which will be implemented in the UI layer.
-     * @param profileBox A InfoSetBox interface.
+     * @param profileCreateBox A ProfileCreateBox interface.
      */
     @Override
-    public void setUI(ProfileBox profileBox) {
-        this.profileBox = profileBox;
+    public void setUI(ProfileCreateBox profileCreateBox) {
+        this.profileCreateBox = profileCreateBox;
+    }
+
+    /**
+     * Set up a ProfileBox interface, which will be implemented in the UI layer.
+     * @param profileReviewBox A ProfileReviewBox interface.
+     */
+    @Override
+    public void setUI(ProfileReviewBox profileReviewBox) {
+        this.profileReviewBox = profileReviewBox;
     }
 
     /**

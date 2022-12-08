@@ -38,8 +38,8 @@ class ProfileTest {
 
     @Test
     void testSoutReviewed() {
-        String expected = "Reviewer: Allison" + System.lineSeparator() + "Rating: 5/5" +
-                System.lineSeparator() + "\"" + "Taste good!" + "\"" + "\n";
+        String expected = "Reviewer: Allison" + System.lineSeparator() + "Recipe: name" + System.lineSeparator() +
+                "Rating: 5/5" + System.lineSeparator() + "\"" + "Taste good!" + "\"" + "\n";
         String actual = p.soutReviewed();
         assertEquals(expected, actual);
     }

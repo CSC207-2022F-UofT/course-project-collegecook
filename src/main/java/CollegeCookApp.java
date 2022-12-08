@@ -60,7 +60,8 @@ public class CollegeCookApp {
         WelcomeUI welcomeUI = new WelcomeUI(appController1);
         LoginBox loginBox = new LoginUI(appController1);
         SignUpBox signUpBox = new SignUpUI(appController1);
-        ProfileBox profileBox = new ProfileRecipeUI(appController1);
+        ProfileCreateBox profileCreateBox = new ProfileCreatedUI(appController1);
+        ProfileReviewBox profileReviewBox = new ProfileReviewUI(appController1);
         InfoSetBox infoSetBox = new ProfileInfoUI(appController1);
         InfoViewBox infoViewBox = new ProfileUI(appController1);
         SearchResultsBox searchResultsBox = new SearchSortRecipesResultsUI(appController1);
@@ -75,16 +76,16 @@ public class CollegeCookApp {
         loginOutputBound.setUI(recipeViewBox);
         recipeOutputBoundary.setUI(recipeCreateBox);
         recipeOutputBoundary.setUI(recipeViewBox);
-        profileOutputBoundary.setUI(profileBox);
+        profileOutputBoundary.setUI(profileCreateBox);
+        profileOutputBoundary.setUI(profileReviewBox);
         profileOutputBoundary.setUI(infoSetBox);
         profileOutputBoundary.setUI(infoViewBox);
         rankOutputBoundary.setUI(rankResultBox);
         reviewOutputBoundary.setUI(reviewCreateBox);
         reviewOutputBoundary.setUI(reviewViewBox);
-
-        ProfileUI profileUI = new ProfileUI(appController1);
         mealplanOutputBoundary.setUI(mealplanBox);
         searchOutputBoundary.setUI(searchResultsBox);
+
         welcomeUI.setVisible(true);
     }
 }
