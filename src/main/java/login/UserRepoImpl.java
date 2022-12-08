@@ -1,6 +1,5 @@
 package login;
 
-import entities.User;
 import entities.UserList;
 import java.io.*;
 
@@ -28,7 +27,7 @@ public class UserRepoImpl implements UserGateWay {
     /**
      *to return the UserList in the local file
      * @return Return the UserList stored in the local file.
-     * @throws IOException
+     * @throws IOException The IOException for serialization and readWriter
      */
     @Override
     public UserList getAllUser() throws IOException {
@@ -46,7 +45,7 @@ public class UserRepoImpl implements UserGateWay {
     /**
      *
      * @param userlist The userlist that needs to be stored.
-     * @throws IOException
+     * @throws IOException The IOException for serialization and readWriter
      */
     @Override
     public void saveUser(UserList userlist) throws IOException {
@@ -57,14 +56,4 @@ public class UserRepoImpl implements UserGateWay {
 
     }
 
-    /*public static void main(String[] arg) throws IOException {
-        UserList userlist= new UserList();
-        User user = new User("Brenden", "12345");
-        userlist.AddAllUser("Brenden", "12345");
-        UserGateWay userGateWay = UserRepoImpl.getUserRepoImpl();
-        userGateWay.saveUser(userlist);
-        System.out.println(userGateWay.getAllUser().CheckAllUser("Brenden"));
-
-
-    }*/
 }

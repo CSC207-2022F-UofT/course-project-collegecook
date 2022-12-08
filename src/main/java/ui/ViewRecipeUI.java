@@ -1,6 +1,7 @@
 package ui;
 
-import recipe.*;
+import recipe.RecipeController;
+import recipe.RecipeViewBox;
 import review.ReviewController;
 
 import javax.swing.*;
@@ -25,7 +26,7 @@ public class ViewRecipeUI extends JFrame implements RecipeViewBox {
         view.add(all);
         follow.addActionListener(e -> {
             String readRecipe = appController.getRecipeController().getReadingRecipe();
-            String creator = appController.getRecipeController().getRecipe(readRecipe).getCreator();
+            String creator = appController.getRecipeController().getCreator(readRecipe);
             String user = appController.getLoginControllor().preformGetLoggedInUser();
             try {
                 appController.getLoginControllor().PreformFollow(user,creator);

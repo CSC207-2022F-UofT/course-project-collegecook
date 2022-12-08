@@ -1,7 +1,5 @@
 package recipe;
 
-import entities.Recipe;
-
 import java.util.ArrayList;
 
 
@@ -55,15 +53,6 @@ public class RecipeController {
      * @return Return the name of the recipe that the user is currently reading.
      */
     public String getReadingRecipe(){return recipeInputBoundary.getReadingRecipe();}
-
-    /**
-     * Get the recipe according to the given name.
-     * @param name name is the name of the recipe
-     * @return Return the recipe according to the given name.
-     */
-    public Recipe getRecipe(String name){
-        return recipeInputBoundary.getRecipe(name);
-    }
 
     /**
      * Get the creator of the recipe.
