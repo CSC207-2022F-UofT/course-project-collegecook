@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class AverageRatings implements Serializable {
     private static final long serialVersionUID = -1278800023380566318L;
-    private HashMap<String, Double> ratings = new HashMap<String, Double>();
+    private final HashMap<String, Double> ratings = new HashMap<>();
 
     /**
      * Add the average rating of a User's reviews.

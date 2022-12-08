@@ -122,9 +122,13 @@ public class MealplanInteractor implements MealplanInputBoundary{
      * Save the current mealplan by adding the user and the mealplan to the hashmap mealplans. Then save the mealplans
      * through gateway.
      */
-    public void saveMealplan() throws IOException {
+    public void saveMealplan(){
         mealplans.add(username, mealplan);
-        mrg.saveToFile(mealplans);
+        try {
+            mrg.saveToFile(mealplans);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public String getUsername() {
