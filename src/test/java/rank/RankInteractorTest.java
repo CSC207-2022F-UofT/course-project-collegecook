@@ -1,4 +1,5 @@
 package rank;
+import login.UserRepoImpl;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
 
@@ -39,29 +40,27 @@ public class RankInteractorTest {
 
     @Test
     public void TestTotalFollowersInteractor() throws IOException {
-        // Dependent on the saved data file of users, so it might cause errors on different computers
         String ranking = "total followers";
         RankRequestModel rankRequestModel = new RankRequestModel(ranking);
         RankResponseModel returned = rankInteractor.sortUsers(rankRequestModel);
         int actual = returned.getUsers().size();
-        int expected = 18;
-        String actual1 = returned.getUsers().get(0);
-        String expected1 = "3-Mary";
-        assertEquals(expected, actual);
+        int expected = UserRepoImpl.getUserRepoImpl().getAllUser().getAllUser().size();
+        boolean actual1 = UserRepoImpl.getUserRepoImpl().getAllUser().CheckAllUser(returned.getUsers().get(0));
+        boolean expected1 = true;
         assertEquals(actual1,expected1);
+        assertEquals(actual,expected);
     }
 
     @Test
     public void TestRecipeInteractor() throws IOException {
-        // Dependent on the saved data file of users, so it might cause errors on different computers
         String ranking = "total number of recipe";
         RankRequestModel rankRequestModel = new RankRequestModel(ranking);
         RankResponseModel returned = rankInteractor.sortUsers(rankRequestModel);
         int actual = returned.getUsers().size();
-        int expected = 18;
-        String actual1 = returned.getUsers().get(0);
-        String expected1 = "4-user3";
-        assertEquals(expected, actual);
+        int expected = UserRepoImpl.getUserRepoImpl().getAllUser().getAllUser().size();
+        Boolean actual1 = UserRepoImpl.getUserRepoImpl().getAllUser().CheckAllUser(returned.getUsers().get(0));
+        Boolean expected1 = true;
+        assertEquals(actual,expected);
         assertEquals(actual1,expected1);
     }
 
