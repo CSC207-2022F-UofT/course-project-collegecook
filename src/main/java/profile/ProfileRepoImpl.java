@@ -4,18 +4,18 @@ import entities.Profile;
 import java.io.*;
 import java.util.ArrayList;
 
-public class ProfileRepoImpl implements ProfileRepoGateway{
+public class ProfileRepoImpl implements ProfileRepoGateway {
     /**
      * This class is to read profiles from "Profile.sav" or write profiles into "Profile.sav"
      */
     private static final String file = "Profile.sav";
-    private static ProfileRepoImpl prl;
+    private static ProfileRepoImpl profileRepoImpl;
 
-    public static ProfileRepoImpl getPrl(){
-        if (prl == null){
-            prl = new ProfileRepoImpl();
+    public static ProfileRepoImpl getProfileRepoImpl() {
+        if (profileRepoImpl == null) {
+            profileRepoImpl = new ProfileRepoImpl();
         }
-        return prl;
+        return profileRepoImpl;
     }
 
     /**
@@ -26,9 +26,9 @@ public class ProfileRepoImpl implements ProfileRepoGateway{
     public ArrayList<Profile> getProfile() throws IOException {
         FileInputStream f1 = new FileInputStream(file);
         ObjectInputStream inputStream = new ObjectInputStream(f1);
-        try{
+        try {
             return (ArrayList<Profile>) inputStream.readObject();
-        } catch (ClassNotFoundException e){
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         f1.close();
@@ -47,4 +47,10 @@ public class ProfileRepoImpl implements ProfileRepoGateway{
         f2.close();
     }
 
+//    public static void main(String[] args) throws IOException {
+//        ArrayList<Profile> profileList = new ArrayList<>();
+//        ProfileRepoImpl prl = ProfileRepoImpl.getProfileRepoImpl();
+//        prl.saveProfile(profileList);
+//    }
 }
+
