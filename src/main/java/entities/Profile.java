@@ -13,7 +13,7 @@ public class Profile implements Serializable {
     private int age;
     private float height;
     private float weight;
-    private String username;
+    private final String username;
     private String gender;
 
     /**

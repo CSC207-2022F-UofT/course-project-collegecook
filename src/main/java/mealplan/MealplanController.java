@@ -40,7 +40,7 @@ public class MealplanController {
         mealplanInputBoundary.deleteMealplan(meal);
     }
 
-    public void saveMealplan() throws IOException {
+    public void saveMealplan(){
         mealplanInputBoundary.saveMealplan();
     }
 

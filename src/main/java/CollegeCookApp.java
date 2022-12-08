@@ -7,17 +7,15 @@ import review.*;
 import search.*;
 import ui.*;
 
-import java.io.IOException;
-
 public class CollegeCookApp {
-    public static void main(String[] arg) throws IOException {
+    public static void main(String[] arg){
         // Interface adapter layer setup
         // login use case setup
         
         UserGateWay userGateWay = UserRepoImpl.getUserRepoImpl();
         LoginOutputBound loginOutputBound = new LoginPresenter();
-        UserManager userManager = new UserManager(loginOutputBound, userGateWay);
-        LoginControllor loginControllor = new LoginControllor(userManager);
+        LoginInputBound loginInputBound = new UserManager(loginOutputBound, userGateWay);
+        LoginControllor loginControllor = new LoginControllor(loginInputBound);
 
         // recipe use case setup
         RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();

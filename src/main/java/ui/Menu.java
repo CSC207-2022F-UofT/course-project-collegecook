@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 /**
  * Main menu screen once a user is logged in
@@ -14,7 +13,7 @@ import java.io.IOException;
 public class Menu extends JFrame {
     JPanel menu = new JPanel();
     JButton create_recipe = new JButton("Create Recipe");
-    JButton search_recipe = new JButton("Search Recipe");
+    JButton search_recipe = new JButton("View Recipe");
     JButton searchSortRecipe = new JButton("Search and Sort for Recipes");
     JButton mealPlan = new JButton("My Meal Plan");
     JButton ranking = new JButton("Ranking");
@@ -79,11 +78,7 @@ public class Menu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MealplanBoxUI mealplanBoxUI = null;
-                try {
-                    mealplanBoxUI = new MealplanBoxUI(appController);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+                mealplanBoxUI = new MealplanBoxUI(appController);
                 mealplanBoxUI.setVisible(true);
             }
         });
@@ -131,19 +126,4 @@ public class Menu extends JFrame {
     }
 
 
-    public static void main(String[] args){
-//        UserGateWay userGateWay = UserRepoImpl.getUserRepoImpl();
-//        LoginOutputBound loginOutputBound = new LoginPresenter();
-//        UserManager userManager = new UserManager(loginOutputBound, userGateWay);
-//        LoginControllor loginControllor = new LoginControllor(userManager);
-//
-//        RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();
-//        RecipeRepoGateway recipeRepoGateway = RecipeReadWriter.getRecipeRepo();
-//        RecipeInputBoundary recipeInputBoundary = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
-//        RecipeController recipeController = new RecipeController(recipeInputBoundary);
-//
-//        AppController appController1 = new AppController(recipeController, loginControllor);
-//        Menu m = new Menu(appController1);
-//        m.setVisible(true);
-    }
 }

@@ -19,24 +19,23 @@ public class RecipeList implements Serializable, Iterable<Recipe>{
 
     /**
      *
-     * @param recipeName
-     * @return
+     * @param recipeName The name of the recipe
+     * @return The recipe with respect to the recipeName.
      */
     public Recipe getRecipe(String recipeName){
 
         return all_recipe.get(recipeName);
     }
 
+    /**
+     *
+     * @param recipeName The name of the recipe/
+     * @return Whether the recipeList contains the recipe.
+     */
     public Boolean contain(String recipeName){
         return all_recipe.containsKey(recipeName);
     }
 
-
-    /**
-     *
-     * @return Return RecipeIterator. Iterator Design Pattern is used here to make the RecipeList iterable. When
-     * iterating through the RecipeList, user can get each Recipe in it.
-     */
     @Override
     public Iterator<Recipe> iterator() {
         return new RecipeIterator();

@@ -102,6 +102,13 @@ public class ReviewInteractor implements ReviewInputBoundary {
         }
         UpdateAverageRating.updateAverage(username, reviewDatabase);
     }
+
+    /**
+     * Get a list of strings containing the reviews for the given recipe.
+     * Pass on this list to the ReviewOutputBoundary.
+     *
+     * @param recipeName the name of the recipe to get the reviews from
+     */
     @Override
     public void readRecipeReviews(String recipeName) {
         getReviewsHelper();

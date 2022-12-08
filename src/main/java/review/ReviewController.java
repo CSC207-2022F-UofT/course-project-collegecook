@@ -30,7 +30,7 @@ public class ReviewController {
     }
 
     /**
-     * Requests a ReviewInteractor class to create a new review,
+     * Requests the ReviewInputBoundary to create a new review,
      * with the given username, recipe name, content and rating (must
      * be between 1 and 5, inclusive).
      *
@@ -39,11 +39,16 @@ public class ReviewController {
      * @param content the content of the review
      * @param rating the review's rating.
      */
-
-
     public void performCreateReview(String username, String recipeName, String content, int rating) {
         reviewInputBoundary.createReview(username, recipeName, content, rating);
     }
+
+    /**
+     * Requests the ReviewInputBoundary to get the reviews for
+     * the given recipe.
+     *
+     * @param recipeName the name of the recipe to get the reviews from
+     */
 
     public void performViewReviews(String recipeName) {
         reviewInputBoundary.readRecipeReviews(recipeName);

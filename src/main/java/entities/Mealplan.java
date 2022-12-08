@@ -29,7 +29,7 @@ public class Mealplan implements Serializable {
      * @param meal which meal is being cleared of,  0 is breakfast, 1 is lunch, and 2 is dinner.
      */
     public void deleteMealPlan(int meal){
-        mealplan.set(meal, new ArrayList<String>());
+        mealplan.set(meal, new ArrayList<>());
     }
 
     public ArrayList<ArrayList<String>> returnMealPlan(){

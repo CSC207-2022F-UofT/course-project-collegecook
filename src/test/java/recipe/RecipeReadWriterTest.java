@@ -66,7 +66,7 @@ class RecipeReadWriterTest {
         ObjectOutputStream outputStream = new ObjectOutputStream(f2);
         outputStream.writeObject("");
         f2.close();
-        assertTrue(recipeReadWriter.getRecipeList() != null);
+        assertNotNull(recipeReadWriter.getRecipeList());
     }
 
 

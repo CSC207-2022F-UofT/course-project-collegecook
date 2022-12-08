@@ -14,7 +14,7 @@ public class RecipeReadWriter implements RecipeRepoGateway{
     private RecipeReadWriter(){}
 
     /**
-     *
+     * Construct the RecipeReadWriter
      * @return RecipeReadWriter. The Singleton Design Pattern is used here to control the initialization of gateway.
      */
     public static RecipeReadWriter getRecipeRepo(){
@@ -24,7 +24,10 @@ public class RecipeReadWriter implements RecipeRepoGateway{
         return recipeReadWriter;
     }
 
-
+    /**
+     * Get the stored RecipeList
+     * @return The RecipeList stored in the database.
+     */
     @Override
     public RecipeList getRecipeList(){
         try{
@@ -36,7 +39,10 @@ public class RecipeReadWriter implements RecipeRepoGateway{
         }
     }
 
-
+    /**
+     * Save the recipe.
+     * @param recipeList The RecipeList that the user wants to store.
+     */
     @Override
     public void saveRecipe(RecipeList recipeList){
         try {
