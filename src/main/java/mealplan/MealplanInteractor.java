@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
 public class MealplanInteractor implements MealplanInputBoundary{
     private Mealplan mealplan;
     private final String username;
