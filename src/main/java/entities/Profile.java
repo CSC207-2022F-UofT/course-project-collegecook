@@ -128,7 +128,7 @@ public class Profile implements Serializable {
     public String soutReviewed() {
         StringBuilder result = new StringBuilder();
         for (Review r : reviewed){
-            result.append(r.toString()).append("\n");
+            result.append("Reviewer: ").append(r.getUser()).append(System.lineSeparator()).append("Recipe: ").append(r.getRecipe().getRecipeName()).append(System.lineSeparator()).append("Rating: ").append(r.getRating()).append("/5").append(System.lineSeparator()).append("\"").append(r.getContent()).append("\"").append(System.lineSeparator());
         }
         return result.toString();
     }
