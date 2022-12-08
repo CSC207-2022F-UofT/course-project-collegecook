@@ -8,7 +8,7 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RankInteractorTest {
-
+    UserRepoImpl userRepo = new UserRepoImpl();
     RankOutputBoundary rankOutputBoundary = new RankOutputBoundary() {
         @Override
         public void prepareSuccessView(RankResponseModel rank) {
@@ -44,10 +44,7 @@ public class RankInteractorTest {
         RankRequestModel rankRequestModel = new RankRequestModel(ranking);
         RankResponseModel returned = rankInteractor.sortUsers(rankRequestModel);
         int actual = returned.getUsers().size();
-        int expected = UserRepoImpl.getUserRepoImpl().getAllUser().getAllUser().size();
-        boolean actual1 = UserRepoImpl.getUserRepoImpl().getAllUser().CheckAllUser(returned.getUsers().get(0));
-        boolean expected1 = true;
-        assertEquals(actual1,expected1);
+        int expected = userRepo.getAllUser().getAllUser().size();
         assertEquals(actual,expected);
     }
 
@@ -57,11 +54,8 @@ public class RankInteractorTest {
         RankRequestModel rankRequestModel = new RankRequestModel(ranking);
         RankResponseModel returned = rankInteractor.sortUsers(rankRequestModel);
         int actual = returned.getUsers().size();
-        int expected = UserRepoImpl.getUserRepoImpl().getAllUser().getAllUser().size();
-        Boolean actual1 = UserRepoImpl.getUserRepoImpl().getAllUser().CheckAllUser(returned.getUsers().get(0));
-        Boolean expected1 = true;
+        int expected = userRepo.getAllUser().getAllUser().size();
         assertEquals(actual,expected);
-        assertEquals(actual1,expected1);
     }
 
 
