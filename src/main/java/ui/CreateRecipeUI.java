@@ -1,14 +1,15 @@
 package ui;
 
 
-import recipe.*;
+import recipe.RecipeController;
+import recipe.RecipeCreateBox;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class CreateRecipeUI extends JFrame implements RecipeCreateBox{
+public class CreateRecipeUI extends JFrame implements RecipeCreateBox {
     RecipeController recipeController;
 
     JPanel check = new JPanel();

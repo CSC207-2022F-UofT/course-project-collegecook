@@ -1,8 +1,8 @@
 package login;
 
-import recipe.RecipeCreateBox;
+
 import recipe.RecipeViewBox;
-import ui.SignUpUI;
+
 
 public class LoginPresenter implements LoginOutputBound{
 

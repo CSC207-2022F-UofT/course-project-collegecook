@@ -1,6 +1,5 @@
 package login;
 
-import entities.UserList;
 
 import java.io.IOException;
 
