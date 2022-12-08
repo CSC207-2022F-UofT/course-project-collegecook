@@ -1,14 +1,12 @@
-package mealplan;
+package ui;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import mealplan.MealplanBox;
-import ui.AppController;
 
 
 public class MealplanBoxUI extends JFrame implements MealplanBox {
@@ -89,7 +87,7 @@ public class MealplanBoxUI extends JFrame implements MealplanBox {
         });
 
         ArrayList<ArrayList<String>>  mealplan =
-                appController.getMealplanController().mealplanInputBoundary.getMealplan().returnMealPlan();
+                appController.getMealplanController().returnMealplan();
 
         for (String recipe: mealplan.get(0)){
             JButton button_m = new JButton( new AbstractAction(recipe) {
