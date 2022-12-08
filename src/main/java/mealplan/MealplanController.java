@@ -3,11 +3,19 @@ import entities.*;
 import recipe.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import profile.*;
 public class MealplanController {
     MealplanInputBoundary mealplanInputBoundary;
     ProfileInputBoundary profileInputBoundary;
     RecipeInputBoundary recipeInputBoundary;
+
+    /**
+     * @param mealplanInputBoundary Mealplan use case interactor.
+     * @param profileInputBoundary Profile use case interactor.
+     * @param recipeInputBoundary Recipe use case interactor.
+     */
     public MealplanController(MealplanInputBoundary mealplanInputBoundary, ProfileInputBoundary profileInputBoundary,
                               RecipeInputBoundary recipeInputBoundary) {
         this.mealplanInputBoundary = mealplanInputBoundary;
@@ -15,6 +23,12 @@ public class MealplanController {
         this.recipeInputBoundary = recipeInputBoundary;
     }
 
+    /**
+     * Get the profile of the currently-logged in user using profile interactor. Calculate and pass the total calories
+     * from the user's mealplan and the recommended calories based on profile to the presenter,which calls a method in
+     * the UI to show the calories.
+     * @param username the username of the currently logged-in user
+     */
 
     public void getCalories(String username){
         Profile profile;
@@ -42,6 +56,10 @@ public class MealplanController {
 
     public void saveMealplan(){
         mealplanInputBoundary.saveMealplan();
+    }
+
+    public ArrayList<ArrayList<String>>  returnMealplan(){
+        return mealplanInputBoundary.getMealplan().returnMealPlan();
     }
 
 

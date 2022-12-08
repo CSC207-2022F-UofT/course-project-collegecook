@@ -1,7 +1,5 @@
 package ui;
 
-import mealplan.MealplanBoxUI;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
