@@ -7,8 +7,7 @@ import entities.RecipeList;
 public interface RecipeInputBoundary {
 
     /**
-     *
-     * @param recipeRequestModel A requestModel which includes all the input, such as recipe name, procedure, ...
+     * An interface that the iteractor should implement.
      */
     void createRecipe (RecipeRequestModel recipeRequestModel);
 

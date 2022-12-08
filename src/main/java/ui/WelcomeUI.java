@@ -1,12 +1,7 @@
 package ui;
 
-import login.*;
-import recipe.*;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class WelcomeUI extends JFrame {
     JPanel welcome = new JPanel();
@@ -25,25 +20,19 @@ public class WelcomeUI extends JFrame {
         welcome.add(new JLabel(""));
 
         login.setAlignmentX(Component.CENTER_ALIGNMENT);
-        login.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                LoginUI loginUI = new LoginUI(appController);
-                loginUI.setVisible(true);
-            }
+        login.addActionListener(e -> {
+            dispose();
+            LoginUI loginUI = new LoginUI(appController);
+            loginUI.setVisible(true);
         });
 
         welcome.add(login);
         signUp.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        signUp.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                SignUpUI signUpUI = new SignUpUI(appController);
-                signUpUI.setVisible(true);
-            }
+        signUp.addActionListener(e -> {
+            dispose();
+            SignUpUI signUpUI = new SignUpUI(appController);
+            signUpUI.setVisible(true);
         });
         welcome.add(signUp);
 

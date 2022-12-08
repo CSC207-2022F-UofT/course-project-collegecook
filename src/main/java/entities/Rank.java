@@ -1,6 +1,6 @@
 package entities;
 
-import entities.User;
+
 
 import java.util.Comparator;
 import java.util.List;

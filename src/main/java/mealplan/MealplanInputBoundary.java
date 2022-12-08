@@ -13,7 +13,7 @@ public interface MealplanInputBoundary {
 
     void deleteMealplan(int meal);
 
-    void saveMealplan() throws IOException;
+    void saveMealplan() ;
 
     String getUsername();
 

@@ -7,10 +7,8 @@ import review.*;
 import search.*;
 import ui.*;
 
-import java.io.IOException;
-
 public class CollegeCookApp {
-    public static void main(String[] arg) throws IOException {
+    public static void main(String[] arg){
         // Interface adapter layer setup
         // login use case setup
         
