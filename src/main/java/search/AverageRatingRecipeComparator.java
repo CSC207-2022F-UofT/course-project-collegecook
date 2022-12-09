@@ -34,9 +34,9 @@ public class AverageRatingRecipeComparator implements Comparator<Recipe> {
         }
         // calculate average rating for each recipe from its reviews
         else{
-            int r1avgRating = (reviews1.stream().mapToInt(Review::getRating).sum())/ reviews1.size();
-            int r2avgRating = (reviews2.stream().mapToInt(Review::getRating).sum())/ reviews2.size();
-            return r1avgRating - r2avgRating;
+            double r1avgRating = (reviews1.stream().mapToDouble(Review::getRating).sum())/ reviews1.size();
+            double r2avgRating = (reviews2.stream().mapToDouble(Review::getRating).sum())/ reviews2.size();
+            return (int) Math.signum(r1avgRating - r2avgRating);
         }
     }
 }

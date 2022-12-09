@@ -4,12 +4,11 @@ import java.util.ArrayList;
 
 public class SearchRequestModel {
     private final String name;
-    private String cuisine;
-    private ArrayList<String> ingredients;
-    private int timeInMin;
-    private String sortType;
-
-    private boolean sortByAscending;
+    private final String cuisine;
+    private final ArrayList<String> ingredients;
+    private final int timeInMin;
+    private final String sortType;
+    private final boolean sortByAscending;
 
     /**
      * Input data to search for matching recipes with
@@ -29,26 +28,50 @@ public class SearchRequestModel {
         this.sortByAscending = sortByAscending;
     }
 
+    /**
+     * Get the name/keyword of search criteria
+     * @return name/keyword of search criteria
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Get cuisine of search criteria
+     * @return cuisine of search criteria
+     */
     public String getCuisine() {
         return cuisine;
     }
 
+    /**
+     * Get ingredients of search criteria
+     * @return ingredients of search criteria
+     */
     public ArrayList<String> getIngredients() {
         return ingredients;
     }
 
+    /**
+     * Get time in minutes of search criteria
+     * @return time in minutes of search criteria
+     */
     public int getTimeInMin() {
         return timeInMin;
     }
 
+    /**
+     * Get sort type of search criteria
+     * @return sort type of search criteria
+     */
     public String getSortType() {
         return sortType;
     }
 
+    /**
+     * Get whether to sort resulting recipes by ascending/descending order
+     * @return true if sort by ascending order
+     */
     public boolean isSortByAscending() {
         return sortByAscending;
     }

@@ -3,8 +3,8 @@ package search;
 import entities.Recipe;
 
 public class SearchResponseModel {
-    Recipe[] matchingRecipes;
-    SearchRequestModel searchRequestModel;
+    private final Recipe[] matchingRecipes;
+    private final SearchRequestModel searchRequestModel;
 
     /**
      * Transiently stores data for presenter
