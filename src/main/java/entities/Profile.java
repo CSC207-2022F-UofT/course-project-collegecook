@@ -129,7 +129,9 @@ public class Profile implements Serializable {
     public String reviewedInformation() {
         StringBuilder result = new StringBuilder();
         for (Review r : reviewed){
-            result.append("Reviewer: ").append(r.getUser()).append(System.lineSeparator()).append("Recipe: ").append(r.getRecipe().getRecipeName()).append(System.lineSeparator()).append("Rating: ").append(r.getRating()).append("/5").append(System.lineSeparator()).append("\"").append(r.getContent()).append("\"").append(System.lineSeparator());
+            result.append("Recipe: ").append(r.getRecipe().getRecipeName()).append(System.lineSeparator()).
+                    append("Rating: ").append(r.getRating()).append("/5").append(System.lineSeparator()).append("\"").
+                    append(r.getContent()).append("\"").append(System.lineSeparator()).append(System.lineSeparator());
         }
         return result.toString();
     }
@@ -141,7 +143,7 @@ public class Profile implements Serializable {
     public String createdInformation() {
         StringBuilder result = new StringBuilder();
         for (Recipe r : created){
-            result.append(r.toString());
+            result.append(r.toString()).append(System.lineSeparator());
         }
         return result.toString();
     }
