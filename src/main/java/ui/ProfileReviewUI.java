@@ -6,6 +6,7 @@ import profile.ProfileReviewBox;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.Objects;
 
 public class ProfileReviewUI extends JFrame implements ProfileReviewBox {
     JPanel reviewedPanel = new JPanel();
@@ -43,19 +44,28 @@ public class ProfileReviewUI extends JFrame implements ProfileReviewBox {
 
     @Override
     public void hasReviewed(String result) {
+        JLabel temp = new JLabel(result);
+        temp.setText("<html>" + result.replaceAll("<", "&lt;").replaceAll(">", "&gt;").
+                replaceAll("\n", "<br/>") + "</html>");
         if (reviewedView == null) {
-            reviewedView = new JLabel(result);
-            reviewedView.setText("<html>" + result.replaceAll("<", "&lt;").replaceAll(">", "&gt;").
-                    replaceAll("\n", "<br/>") + "</html>");
-            reviewedView.setFont(new Font("Monaco", Font.PLAIN, 15));
-            reviewedView.setAlignmentX(Component.CENTER_ALIGNMENT);
-            reviewedPanel.add(reviewedView);
-            //reviewedPanel.add(reviewedView, BorderLayout.AFTER_LAST_LINE);
+            createReviewedView(result);
+        } else if (!Objects.equals(reviewedView.getText(), temp.getText())) {
+            reviewedView.setText("");
+            createReviewedView(result);
         }
 
         this.add(reviewedPanel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.pack();
         this.setVisible(true);
+    }
+
+    private void createReviewedView(String result) {
+        reviewedView = new JLabel(result);
+        reviewedView.setText("<html>" + result.replaceAll("<", "&lt;").replaceAll(">", "&gt;").
+                replaceAll("\n", "<br/>") + "</html>");
+        reviewedView.setFont(new Font("Monaco", Font.PLAIN, 15));
+        reviewedView.setAlignmentX(Component.CENTER_ALIGNMENT);
+        reviewedPanel.add(reviewedView);
     }
 }

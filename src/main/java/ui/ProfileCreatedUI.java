@@ -6,6 +6,7 @@ import profile.ProfileCreateBox;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.Objects;
 
 public class ProfileCreatedUI extends JFrame implements ProfileCreateBox {
     JPanel createdPanel = new JPanel();
@@ -42,19 +43,29 @@ public class ProfileCreatedUI extends JFrame implements ProfileCreateBox {
 
     @Override
     public void hasCreated(String result) {
+        JLabel temp = new JLabel(result);
+        temp.setText("<html>" + result.replaceAll("<", "&lt;").replaceAll(">", "&gt;").
+                replaceAll("\n", "<br/>") + "</html>");
         if (createdView == null) {
-            createdView = new JLabel(result);
-            createdView.setText("<html>" + result.replaceAll("<", "&lt;").replaceAll(">", "&gt;").
-                    replaceAll("\n", "<br/>") + "</html>");
-            createdView.setFont(new Font("Monaco", Font.PLAIN, 15));
-            createdView.setAlignmentX(Component.CENTER_ALIGNMENT);
-            createdPanel.add(createdView);
+            CreateCreatedView(result);
+        } else if (!Objects.equals(createdView.getText(), temp.getText())) {
+            createdView.setText("");
+            CreateCreatedView(result);
         }
 
         this.add(createdPanel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.pack();
         this.setVisible(true);
+    }
+
+    private void CreateCreatedView(String result) {
+        createdView = new JLabel(result);
+        createdView.setText("<html>" + result.replaceAll("<", "&lt;").replaceAll(">", "&gt;").
+                replaceAll("\n", "<br/>") + "</html>");
+        createdView.setFont(new Font("Monaco", Font.PLAIN, 15));
+        createdView.setAlignmentX(Component.CENTER_ALIGNMENT);
+        createdPanel.add(createdView);
     }
 
 }

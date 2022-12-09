@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class ReviewInteractor implements ReviewInputBoundary {
 
     private RecipeList recipeList;
-    private ReviewDatabase reviewDatabase;
+    private final ReviewDatabase reviewDatabase;
     final ReviewOutputBoundary reviewOutputBoundary;
     private static ReviewDatabaseReadWriter databaseReadWriter;
 

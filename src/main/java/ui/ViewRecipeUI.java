@@ -1,6 +1,5 @@
 package ui;
 
-import recipe.RecipeController;
 import recipe.RecipeViewBox;
 import review.ReviewController;
 

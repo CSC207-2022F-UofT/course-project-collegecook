@@ -1,6 +1,7 @@
 package profile;
 
 import entities.Profile;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -20,19 +21,17 @@ public class ProfileRepoImpl implements ProfileRepoGateway {
 
     /**
      * @return Return an arraylist of profiles stored in the local file.
-     * @throws IOException Will be handled in the UI.
      */
     @Override
-    public ArrayList<Profile> getProfile() throws IOException {
-        FileInputStream f1 = new FileInputStream(file);
-        ObjectInputStream inputStream = new ObjectInputStream(f1);
+    public ArrayList<Profile> getProfile() {
+
         try {
+            FileInputStream f1 = new FileInputStream(file);
+            ObjectInputStream inputStream = new ObjectInputStream(f1);
             return (ArrayList<Profile>) inputStream.readObject();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException | ClassCastException | IOException e) {
+            return new ArrayList<>();
         }
-        f1.close();
-        return null;
     }
 
     /**
@@ -47,10 +46,5 @@ public class ProfileRepoImpl implements ProfileRepoGateway {
         f2.close();
     }
 
-//    public static void main(String[] args) throws IOException {
-//        ArrayList<Profile> profileList = new ArrayList<>();
-//        ProfileRepoImpl prl = ProfileRepoImpl.getProfileRepoImpl();
-//        prl.saveProfile(profileList);
-//    }
 }
 

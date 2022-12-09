@@ -9,6 +9,11 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProfileTest {
+    /**
+     * This test covers 100% profile class in the entity package,
+     * 100% methods, and 100% lines.
+     */
+
     Profile p;
     ArrayList<Recipe> created = new ArrayList<>();
     ArrayList<Review> reviewed = new ArrayList<>();
@@ -37,15 +42,15 @@ class ProfileTest {
     }
 
     @Test
-    void testSoutReviewed() {
-        String expected = "Reviewer: Allison" + System.lineSeparator() + "Recipe: name" + System.lineSeparator() +
-                "Rating: 5/5" + System.lineSeparator() + "\"" + "Taste good!" + "\"" + "\n";
-        String actual = p.soutReviewed();
+    void testReviewedInformation() {
+        String expected = "Recipe: name" + System.lineSeparator() +
+                "Rating: 5/5" + System.lineSeparator() + "\"" + "Taste good!" + "\"" + "\n" + "\n";
+        String actual = p.reviewedInformation();
         assertEquals(expected, actual);
     }
 
     @Test
-    void testSoutCreated() {
+    void testCreatedInformation() {
         String expected = "Recipe: name\n"  +
                 "Creator: Brenden\n" +
                 "Procedure: procedure\n" +
@@ -53,8 +58,8 @@ class ProfileTest {
                 "Ingredients: [food]\n" +
                 "Calories: 1\n" +
                 "Time Required: 2 minutes \n" +
-                "Difficulty (out of 5): 3\n";
-        String actual = p.soutCreated();
+                "Difficulty (out of 5): 3\n" + "\n";
+        String actual = p.createdInformation();
         assertEquals(expected, actual);
     }
 
@@ -92,10 +97,10 @@ class ProfileTest {
     }
 
     @Test
-    void testSoutInfo(){
+    void testInfoDetail(){
         String expected = "Age: 20" + "\n" + "Height: " + 163.0 + "cm \n" + "Weight: " + 45.0 + "kg \n" +
                 "Gender: Female" + "\n";
-        assertEquals(expected, p.soutInfo());
+        assertEquals(expected, p.infoDetail());
     }
 
 }
