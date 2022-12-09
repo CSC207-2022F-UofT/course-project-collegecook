@@ -81,7 +81,7 @@ public class ProfileInteractorTest {
                 for (Profile p: profileList){
                     if (p.getUsername().equals("Allison")){
                         if (!p.getCreated().isEmpty()){
-                            String expected = p.soutCreated();
+                            String expected = p.createdInformation();
                             assertEquals(result, expected);
                         }
                     }
@@ -161,7 +161,7 @@ public class ProfileInteractorTest {
                 for (Profile p: profileList){
                     if (p.getUsername().equals("Allison")){
                         if (!p.getCreated().isEmpty()){
-                            String expected = p.soutCreated();
+                            String expected = p.createdInformation();
                             assertEquals(result, expected);
                         }
                     }
@@ -236,7 +236,7 @@ public class ProfileInteractorTest {
                 for (Profile p : profileList) {
                     if (p.getUsername().equals("Allison")) {
                         if (!p.getReviewed().isEmpty()) {
-                            String expected = p.soutReviewed();
+                            String expected = p.reviewedInformation();
                             assertEquals(result, expected);
                         }
                     }
@@ -316,7 +316,7 @@ public class ProfileInteractorTest {
                 for (Profile p : profileList) {
                     if (p.getUsername().equals("Allison")) {
                         if (!p.getReviewed().isEmpty()) {
-                            String expected = p.soutReviewed();
+                            String expected = p.reviewedInformation();
                             assertEquals(result, expected);
                         }
                     }
@@ -613,7 +613,7 @@ public class ProfileInteractorTest {
                 }
                 for (Profile p : profileList) {
                     if (p.getUsername().equals("Allison")) {
-                        String expected = p.soutInfo();
+                        String expected = p.infoDetail();
                         assertEquals(expected, result);
                     }
                 }

@@ -45,7 +45,7 @@ class ProfileTest {
     void testSoutReviewed() {
         String expected = "Reviewer: Allison" + System.lineSeparator() + "Recipe: name" + System.lineSeparator() +
                 "Rating: 5/5" + System.lineSeparator() + "\"" + "Taste good!" + "\"" + "\n";
-        String actual = p.soutReviewed();
+        String actual = p.reviewedInformation();
         assertEquals(expected, actual);
     }
 
@@ -59,7 +59,7 @@ class ProfileTest {
                 "Calories: 1\n" +
                 "Time Required: 2 minutes \n" +
                 "Difficulty (out of 5): 3\n";
-        String actual = p.soutCreated();
+        String actual = p.createdInformation();
         assertEquals(expected, actual);
     }
 
@@ -100,7 +100,7 @@ class ProfileTest {
     void testSoutInfo(){
         String expected = "Age: 20" + "\n" + "Height: " + 163.0 + "cm \n" + "Weight: " + 45.0 + "kg \n" +
                 "Gender: Female" + "\n";
-        assertEquals(expected, p.soutInfo());
+        assertEquals(expected, p.infoDetail());
     }
 
 }
