@@ -178,7 +178,7 @@ public class SearchInteractorTest {
 
         Recipe[] recipes = new Recipe[3];
         recipes[0] = recipe1; // average rating 4.3
-        recipes[1] = recipe2; // average rating 5
+        recipes[1] = recipe2; // average rating 4
         recipes[2] = recipe3; // no reviews
 
         // create reviews
@@ -194,8 +194,8 @@ public class SearchInteractorTest {
         recipeSorter.sort(recipes, true);
 
         assertEquals(recipes[0].getRecipeName(), recipe3.getRecipeName());
-        assertEquals(recipes[1].getRecipeName(), recipe1.getRecipeName());
-        assertEquals(recipes[2].getRecipeName(), recipe2.getRecipeName());
+        assertEquals(recipes[1].getRecipeName(), recipe2.getRecipeName());
+        assertEquals(recipes[2].getRecipeName(), recipe1.getRecipeName());
     }
 
     /**
