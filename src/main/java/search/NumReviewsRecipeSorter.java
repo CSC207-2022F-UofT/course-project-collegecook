@@ -14,6 +14,7 @@ public class NumReviewsRecipeSorter implements RecipeSorter{
     @Override
     public void sort(Recipe[] recipes, boolean sortByAscending) {
 
+        // sort by ascending or descending based on sortByAscending
         if (sortByAscending) {
             Arrays.sort(recipes, new NumReviewsComparator());
         }

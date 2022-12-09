@@ -5,14 +5,11 @@ import entities.Review;
 import entities.ReviewDatabase;
 import recipe.RecipeController;
 import review.ReviewInteractor;
-import search.SearchController;
 import search.SearchRequestModel;
 import search.SearchResponseModel;
 import search.SearchResultsBox;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -34,12 +31,7 @@ public class SearchSortRecipesResultsUI extends JFrame implements SearchResultsB
         for (Recipe recipe: searchResponseModel.getMatchingRecipes()){
             JButton recipeButton = new JButton(recipe.getRecipeName());
             searchResultsPanel.add(recipeButton);
-            recipeButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    recipeController.performReadRecipe(recipe.getRecipeName());
-                }
-            });
+            recipeButton.addActionListener(e -> recipeController.performReadRecipe(recipe.getRecipeName()));
             if (Objects.equals(searchCriteria.getSortType(), "t")) {
                 searchResultsPanel.add(new JLabel(recipe.getTime() + " minutes"));
             }

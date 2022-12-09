@@ -3,7 +3,7 @@ package search;
 import java.util.ArrayList;
 
 public class SearchRequestModel {
-    private String name;
+    private final String name;
     private String cuisine;
     private ArrayList<String> ingredients;
     private int timeInMin;
@@ -33,44 +33,20 @@ public class SearchRequestModel {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getCuisine() {
         return cuisine;
-    }
-
-    public void setCuisine(String cuisine) {
-        this.cuisine = cuisine;
     }
 
     public ArrayList<String> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(ArrayList<String> ingredients) {
-        this.ingredients = ingredients;
-    }
-
     public int getTimeInMin() {
         return timeInMin;
     }
 
-    public void setTimeInMin(int timeInMin) {
-        this.timeInMin = timeInMin;
-    }
-
     public String getSortType() {
         return sortType;
-    }
-
-    public void setSortType(String sortType) {
-        this.sortType = sortType;
-    }
-
-    public void setSortByAscending(boolean sortByAscending) {
-        this.sortByAscending = sortByAscending;
     }
 
     public boolean isSortByAscending() {

@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
+// Test cases for SearchInteractor
 public class SearchInteractorTest {
 
     RecipeRepoGateway recipeRepoGateway;
@@ -29,8 +30,8 @@ public class SearchInteractorTest {
 
 
     /**
-     * Saves current recipe, review, and user database data in temporary objects
-     * Initializes recipes, users for use in test cases
+     * Saves current recipe, review, and user database data in temporary objects to be restored later.
+     * Creates recipes and users for use in test cases
      */
     @BeforeEach
     void setup() throws IOException {
@@ -215,9 +216,11 @@ public class SearchInteractorTest {
         assertEquals(recipes[2].getRecipeName(), expectedResults[2].getRecipeName());
     }
 
-    // test getSearchResults for recipes that contain ingredients, sorted by time needed in ascending order
+    /**
+     * Test getSearchResults for recipes that contain ingredients, sorted by time needed in ascending order
+     */
     @Test
-    public void getSearchResultsWithMatchingIngredientsSortAscendingTimeNeeded() throws IOException {
+    public void getSearchResultsWithMatchingIngredientsSortAscendingTimeNeeded() {
         RecipeList recipes = new RecipeList();
         recipes.addRecipe(recipe1.getRecipeName(), recipe1.getProcedure(), recipe1.getCuisine(), recipe1.getIngredients(), recipe1.getCalories(), recipe1.getTime(), recipe1.getDifficulty(), "bob");
         recipes.addRecipe(recipe2.getRecipeName(), recipe2.getProcedure(), recipe2.getCuisine(), recipe2.getIngredients(), recipe2.getCalories(), recipe2.getTime(), recipe2.getDifficulty(), "cat");
@@ -269,7 +272,7 @@ public class SearchInteractorTest {
      *  - sorted in descending order by time needed
      */
     @Test
-    public void getSearchResultsMultipleCriteriaOneResultDescendingOrder() throws IOException {
+    public void getSearchResultsMultipleCriteriaOneResultDescendingOrder(){
         // set up recipes and save to recipe database
         RecipeList recipes = new RecipeList();
         recipes.addRecipe(recipe1.getRecipeName(), recipe1.getProcedure(), recipe1.getCuisine(), recipe1.getIngredients(), recipe1.getCalories(), recipe1.getTime(), recipe1.getDifficulty(), "bob"); // within time limit, has flour
@@ -278,7 +281,6 @@ public class SearchInteractorTest {
         recipeRepoGateway.saveRecipe(recipes);
 
         // create presenter with custom test results (instead of showing UI)
-        // expected: recipe1, recipe2
         SearchOutputBoundary searchPresenter = new SearchOutputBoundary() {
             @Override
             public void setUI(SearchResultsBox searchResultsBox) {
@@ -317,8 +319,9 @@ public class SearchInteractorTest {
         searchInteractor.getSearchResults(searchRequestModel);
     }
 
+    // Test getSearchResults for list of empty ingredients
     @Test
-    public void getSearchResultsEmptyIngredients() throws IOException {
+    public void getSearchResultsEmptyIngredients(){
         RecipeList recipes = new RecipeList();
         recipes.addRecipe(recipe1.getRecipeName(), recipe1.getProcedure(), recipe1.getCuisine(), recipe1.getIngredients(), recipe1.getCalories(), recipe1.getTime(), recipe1.getDifficulty(), "bob"); // within time limit
         recipes.addRecipe(recipe2.getRecipeName(), recipe2.getProcedure(), recipe2.getCuisine(), recipe2.getIngredients(), recipe2.getCalories(), recipe2.getTime(), recipe2.getDifficulty(), "cat"); // within time limit

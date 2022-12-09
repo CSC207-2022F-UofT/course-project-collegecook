@@ -1,6 +1,13 @@
 package search;
 
+// Use Case layer
+// SearchPresenter implements this interface
 public interface SearchOutputBoundary {
+
+    /**
+     * Sets up SearchResultsBox interface
+     * @param searchResultsBox interface to show search results
+     */
     void setUI(SearchResultsBox searchResultsBox);
 
     /**

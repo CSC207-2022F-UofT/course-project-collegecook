@@ -3,8 +3,6 @@ package ui;
 import search.*;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -85,30 +83,27 @@ public class SearchSortRecipesUI extends JFrame{
 
 
         searchButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        searchButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // turn inputted ingredient string into array of ingredients with no leading/trailing whitespace
-                String[] inputIngredients = ingredientsInput.getText().split(",");
-                String[] trimmedInputIngredients = new String[inputIngredients.length];
-                for (int i = 0; i < inputIngredients.length; i++)
-                    trimmedInputIngredients[i] = inputIngredients[i].trim();
+        searchButton.addActionListener(e -> {
+            // turn inputted ingredient string into array of ingredients with no leading/trailing whitespace
+            String[] inputIngredients = ingredientsInput.getText().split(",");
+            String[] trimmedInputIngredients = new String[inputIngredients.length];
+            for (int i = 0; i < inputIngredients.length; i++)
+                trimmedInputIngredients[i] = inputIngredients[i].trim();
 
-                try {
-                    searchController.getSearchResults(
-                            nameInput.getText(),
-                            cuisineInput.getText(),
-                            ingredientsInput.getText().isEmpty() ? new ArrayList<>(List.of()) : (new ArrayList<>(Arrays.asList(trimmedInputIngredients))),
-                            timeInput.getText().isEmpty() ? 0 : Integer.parseInt(timeInput.getText()),
-                            sortTypeInput.getText(),
-                            isSortAscendingInput.isSelected()
-                    );
-                } catch (IOException ex) {
-                    System.out.println("something went wrong");
-                    throw new RuntimeException(ex);
-                }
-
+            try {
+                searchController.getSearchResults(
+                        nameInput.getText(),
+                        cuisineInput.getText(),
+                        ingredientsInput.getText().isEmpty() ? new ArrayList<>(List.of()) : (new ArrayList<>(Arrays.asList(trimmedInputIngredients))),
+                        timeInput.getText().isEmpty() ? 0 : Integer.parseInt(timeInput.getText()),
+                        sortTypeInput.getText(),
+                        isSortAscendingInput.isSelected()
+                );
+            } catch (IOException ex) {
+                System.out.println("something went wrong");
+                throw new RuntimeException(ex);
             }
+
         });
         searchPanel.add(searchButton);
 
