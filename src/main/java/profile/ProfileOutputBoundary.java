@@ -47,9 +47,15 @@ public interface ProfileOutputBoundary {
 
     /**
      * Set up a ProfileBox interface.
-     * @param profileBox A profileBox interface.
+     * @param profileReviewBox A ProfileReviewBox interface.
      */
-    void setUI(ProfileBox profileBox);
+    void setUI(ProfileReviewBox profileReviewBox);
+
+    /**
+     * Set up a ProfileBox interface.
+     * @param profileCreateBox A ProfileCreateBox interface.
+     */
+    void setUI(ProfileCreateBox profileCreateBox);
 
     /**
      * Set up a InfoSetBox interface.

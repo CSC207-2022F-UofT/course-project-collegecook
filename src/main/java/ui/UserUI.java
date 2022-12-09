@@ -1,7 +1,6 @@
 package ui;
 
 import login.*;
-import recipe.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 
-public class LoginUI extends JFrame implements LoginBox{
+public class UserUI extends JFrame implements UserSignInBox {
     JPanel login = new JPanel();
     JButton loginButton = new JButton("Login");
     JPasswordField passwordField = new JPasswordField(15);
@@ -23,7 +22,7 @@ public class LoginUI extends JFrame implements LoginBox{
     AppController appController;
 
 
-    public LoginUI(AppController appController){
+    public UserUI(AppController appController){
         this.appController = appController;
         login.setLayout(new BoxLayout(login, BoxLayout.Y_AXIS));
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -70,20 +69,4 @@ public class LoginUI extends JFrame implements LoginBox{
     }
 
 
-
-    public static void main(String[] args){
-//        UserGateWay userGateWay = UserRepoImpl.getUserRepoImpl();
-//        LoginOutputBound loginOutputBound = new LoginPresenter();
-//        UserManager userManager = new UserManager(loginOutputBound, userGateWay);
-//        LoginControllor loginControllor = new LoginControllor(userManager);
-//
-//        RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();
-//        RecipeRepoGateway recipeRepoGateway = RecipeReadWriter.getRecipeRepo();
-//        RecipeInputBoundary recipeInputBoundary = new RecipeInteractor(recipeOutputBoundary, recipeRepoGateway);
-//        RecipeController recipeController = new RecipeController(recipeInputBoundary);
-//
-//        AppController appController1 = new AppController(recipeController, loginControllor);
-//        LoginUI m = new LoginUI(appController1);
-//        m.setVisible(true);
-    }
 }

@@ -20,7 +20,7 @@ public class ReviewDatabaseReadWriter implements ReadWriter<ReviewDatabase> {
      * @param filePath the file to write the records to
      * @param reviews  stores the list of users to be serialized
      */
-    public void saveToFile(String filePath, Object reviews) throws IOException {
+    public void saveToFile(String filePath, ReviewDatabase reviews) throws IOException {
 
         OutputStream file = new FileOutputStream(filePath);
         OutputStream buffer = new BufferedOutputStream(file);

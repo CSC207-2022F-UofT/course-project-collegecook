@@ -70,10 +70,5 @@ class RecipeControllerTest {
     }
 
     @Test
-    void getRecipe() {
-        assertNull(recipeController.getRecipe("Test"));
-    }
-
-    @Test
     void getCreator(){assertNull(recipeController.getCreator("Test"));}
 }

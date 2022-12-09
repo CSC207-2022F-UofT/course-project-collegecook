@@ -1,23 +1,23 @@
 package login;
 
-import recipe.RecipeCreateBox;
+
 import recipe.RecipeViewBox;
-import ui.SignUpUI;
 
-public class LoginPresenter implements LoginOutputBound{
 
-    LoginBox loginBox;
+public class UserPresenter implements UserOutputBound {
+
+    UserSignInBox userSignInBox;
     SignUpBox signUpBox;
     RecipeViewBox recipeViewBox;
 
     @Override
     public void LoginSuccess() {
-        loginBox.loginSuccess();
+        userSignInBox.loginSuccess();
     }
 
     @Override
     public void LoginFailed() {
-        loginBox.loginFailed();
+        userSignInBox.loginFailed();
 
 
     }
@@ -35,11 +35,6 @@ public class LoginPresenter implements LoginOutputBound{
     }
 
 
-    @Override
-    public void LogoutFail() {
-        System.out.println("You have logged out");
-
-    }
 
     @Override
     public void FollowedSuccess() {
@@ -65,14 +60,9 @@ public class LoginPresenter implements LoginOutputBound{
 
     }
 
-    @Override
-    public void AddProfile() {
-        System.out.println("Please Check Username");
 
-    }
-
-    public void setUI(LoginBox loginBox){
-        this.loginBox = loginBox;
+    public void setUI(UserSignInBox userSignInBox){
+        this.userSignInBox = userSignInBox;
     }
     public void setUI(SignUpBox signUpBox){
         this.signUpBox = signUpBox;

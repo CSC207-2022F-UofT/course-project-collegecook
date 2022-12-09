@@ -1,22 +1,21 @@
 package ui;
 
-import recipe.*;
+import recipe.RecipeController;
+import recipe.RecipeViewBox;
 import review.ReviewController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.io.IOException;
 
 public class ViewRecipeUI extends JFrame implements RecipeViewBox {
     JPanel view = new JPanel();
-    JLabel all;
-    JLabel user;
+    JLabel all = new JLabel();
     JPanel buttonPanel = new JPanel();
     JButton review = new JButton("Review");
     JButton mealPlan = new JButton("Add to My Meal Plan");
-    JButton folllow = new JButton("Follow");
+    JButton follow = new JButton("Follow");
 
     JButton reviews = new JButton("View Reviews");
     AppController appController;
@@ -24,37 +23,21 @@ public class ViewRecipeUI extends JFrame implements RecipeViewBox {
     public ViewRecipeUI(AppController appController){
         this.appController = appController;
         view.setLayout(new BoxLayout(view, BoxLayout.Y_AXIS));
-    }
-    @Override
-    public void success(String result){
-        if (all == null) {
-            all = new JLabel(result);
-            all.setText("<html>" + result.replaceAll("<", "&lt;").replaceAll(">", "&gt;").
-                    replaceAll("\n", "<br/>") + "</html>");
-            all.setAlignmentX(Component.CENTER_ALIGNMENT);
-            all.setFont(new Font("Monaco", Font.PLAIN, 15));
-            view.add(all);
-        }
-        folllow.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String readRecipe = appController.getRecipeController().getReadingRecipe();
-                String creator = appController.getRecipeController().getRecipe(readRecipe).getCreator();
-                String user = appController.getLoginControllor().preformGetLoggedInUser();
-                try {
-                    appController.getLoginControllor().PreformFollow(user,creator);
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(null,"You have followed the creator.");
-                }
+        view.add(all);
+        follow.addActionListener(e -> {
+            String readRecipe = appController.getRecipeController().getReadingRecipe();
+            String creator = appController.getRecipeController().getCreator(readRecipe);
+            String user = appController.getLoginControllor().preformGetLoggedInUser();
+            try {
+                appController.getLoginControllor().PreformFollow(user,creator);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null,"You have followed the creator.");
             }
         });
-         mealPlan.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                AddMealplanUI addMealplanUI = new AddMealplanUI(appController,
-                        appController.getRecipeController().getReadingRecipe());
-                addMealplanUI.setVisible(true);
-            }
+        mealPlan.addActionListener(e -> {
+            AddMealplanUI addMealplanUI = new AddMealplanUI(appController,
+                    appController.getRecipeController().getReadingRecipe());
+            addMealplanUI.setVisible(true);
         });
 
         review.addActionListener(e -> {
@@ -70,9 +53,19 @@ public class ViewRecipeUI extends JFrame implements RecipeViewBox {
         buttonPanel.add(review);
         buttonPanel.add(mealPlan);
 
-        buttonPanel.add(folllow);
+        buttonPanel.add(follow);
         buttonPanel.add(reviews);
         view.add(buttonPanel);
+        this.add(view);
+    }
+    @Override
+    public void success(String result){
+        all.setText(result);
+        all.setText("<html>" + result.replaceAll("<", "&lt;").replaceAll(">", "&gt;").
+                    replaceAll("\n", "<br/>") + "</html>");
+        all.setAlignmentX(Component.CENTER_ALIGNMENT);
+        all.setFont(new Font("Monaco", Font.PLAIN, 15));
+
         this.add(view);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.pack();

@@ -1,6 +1,8 @@
 package rank;
 
-import entities.User;
+
+
+import java.util.ArrayList;
 
 public interface RankResultBox {
     /**
@@ -8,7 +10,7 @@ public interface RankResultBox {
      *
      * @param users contains the sorted list of userss
      */
-    void success(User[] users);
+    void success(ArrayList<String> users, String rank);
 
     /**
      * A method outputs the successfully sorted list of users

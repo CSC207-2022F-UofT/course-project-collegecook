@@ -7,17 +7,15 @@ import review.*;
 import search.*;
 import ui.*;
 
-import java.io.IOException;
-
 public class CollegeCookApp {
-    public static void main(String[] arg) throws IOException {
+    public static void main(String[] arg){
         // Interface adapter layer setup
         // login use case setup
         
         UserGateWay userGateWay = UserRepoImpl.getUserRepoImpl();
-        LoginOutputBound loginOutputBound = new LoginPresenter();
-        UserManager userManager = new UserManager(loginOutputBound, userGateWay);
-        LoginControllor loginControllor = new LoginControllor(userManager);
+        UserOutputBound userOutputBound = new UserPresenter();
+        UserInputBound userInputBound = new UserManager(userOutputBound, userGateWay);
+        UserController userController = new UserController(userInputBound);
 
         // recipe use case setup
         RecipeOutputBoundary recipeOutputBoundary = new RecipePresenter();
@@ -50,19 +48,20 @@ public class CollegeCookApp {
         
         MealplanOutputBoundary mealplanOutputBoundary= new MealplanPresenter();
         MealplanGateway mrg = MealplanGate.getInstance();
-        MealplanInputBoundary mealplanInputBoundary = new MealplanInteractor(mealplanOutputBoundary,loginControllor.preformGetLoggedInUser(),mrg);
+        MealplanInputBoundary mealplanInputBoundary = new MealplanInteractor(mealplanOutputBoundary, userController.preformGetLoggedInUser(),mrg);
         MealplanController mealplanController = new MealplanController(mealplanInputBoundary,profileInputBoundary,recipeInputBoundary);
 
-        AppController appController1 = new AppController(recipeController, loginControllor,
+        AppController appController1 = new AppController(recipeController, userController,
                 profileController, mealplanController, searchController, rankController, reviewController);
 
         // UI
         RecipeCreateBox recipeCreateBox = new CreateRecipeUI(appController1);
         RecipeViewBox recipeViewBox = new ViewRecipeUI(appController1);
         WelcomeUI welcomeUI = new WelcomeUI(appController1);
-        LoginBox loginBox = new LoginUI(appController1);
+        UserSignInBox userSignInBox = new UserUI(appController1);
         SignUpBox signUpBox = new SignUpUI(appController1);
-        ProfileBox profileBox = new ProfileRecipeUI(appController1);
+        ProfileCreateBox profileCreateBox = new ProfileCreatedUI(appController1);
+        ProfileReviewBox profileReviewBox = new ProfileReviewUI(appController1);
         InfoSetBox infoSetBox = new ProfileInfoUI(appController1);
         InfoViewBox infoViewBox = new ProfileUI(appController1);
         SearchResultsBox searchResultsBox = new SearchSortRecipesResultsUI(appController1);
@@ -72,21 +71,21 @@ public class CollegeCookApp {
 
         // set corresponding view
         MealplanBox mealplanBox = new MealplanBoxUI(appController1);
-        loginOutputBound.setUI(loginBox);
-        loginOutputBound.setUI(signUpBox);
-        loginOutputBound.setUI(recipeViewBox);
+        userOutputBound.setUI(userSignInBox);
+        userOutputBound.setUI(signUpBox);
+        userOutputBound.setUI(recipeViewBox);
         recipeOutputBoundary.setUI(recipeCreateBox);
         recipeOutputBoundary.setUI(recipeViewBox);
-        profileOutputBoundary.setUI(profileBox);
+        profileOutputBoundary.setUI(profileCreateBox);
+        profileOutputBoundary.setUI(profileReviewBox);
         profileOutputBoundary.setUI(infoSetBox);
         profileOutputBoundary.setUI(infoViewBox);
         rankOutputBoundary.setUI(rankResultBox);
         reviewOutputBoundary.setUI(reviewCreateBox);
         reviewOutputBoundary.setUI(reviewViewBox);
-
-        ProfileUI profileUI = new ProfileUI(appController1);
         mealplanOutputBoundary.setUI(mealplanBox);
         searchOutputBoundary.setUI(searchResultsBox);
+
         welcomeUI.setVisible(true);
     }
 }

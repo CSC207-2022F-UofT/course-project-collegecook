@@ -14,6 +14,15 @@ public class MealplanInteractor implements MealplanInputBoundary{
     private MealplanList mealplans;
     final MealplanOutputBoundary mealplanout;
 
+    /**
+     *Tries to read saved mealplans from the database, and create a new list of empty mealplans if there is nothing
+     * saved in the databse; If saved mealplans are successfully retrieved from database, tries to look up the
+     * corresponding mealplan of the currently logged-in user.
+     *
+     * @param mealplanout The presenter that is responsible updating the Mealplan UI
+     * @param username The string of username of the currently logged-in user
+     * @param mrg A gateway that connects to the saved mealplans
+     */
     public MealplanInteractor(MealplanOutputBoundary mealplanout, String username, MealplanGateway mrg){
         this.mealplanout = mealplanout;
         this.username = username;
@@ -94,7 +103,7 @@ public class MealplanInteractor implements MealplanInputBoundary{
     }
     /**
      * Pass the total calories from the user's mealplan and the recommended calories based on profile to the presenter,
-     * which calls a
+     * which calls a method in the UI to show the calories.
      * @param pro the profile associated with the current user, containing information including gender, height, weight,
      * and age.
      * @param recipeList a list of all stored recipes.
@@ -122,9 +131,13 @@ public class MealplanInteractor implements MealplanInputBoundary{
      * Save the current mealplan by adding the user and the mealplan to the hashmap mealplans. Then save the mealplans
      * through gateway.
      */
-    public void saveMealplan() throws IOException {
+    public void saveMealplan(){
         mealplans.add(username, mealplan);
-        mrg.saveToFile(mealplans);
+        try {
+            mrg.saveToFile(mealplans);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public String getUsername() {

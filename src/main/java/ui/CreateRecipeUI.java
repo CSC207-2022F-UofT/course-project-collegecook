@@ -1,18 +1,17 @@
 package ui;
 
-import login.*;
-import recipe.*;
+
+import recipe.RecipeController;
+import recipe.RecipeCreateBox;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class CreateRecipeUI extends JFrame implements RecipeCreateBox{
+public class CreateRecipeUI extends JFrame implements RecipeCreateBox {
     RecipeController recipeController;
-    RecipeOutputBoundary recipeOutputBoundary;
+
     JPanel check = new JPanel();
     JTextField name = new JTextField(40);
     JTextArea procedure = new JTextArea(5, 40);
@@ -24,10 +23,10 @@ public class CreateRecipeUI extends JFrame implements RecipeCreateBox{
     JLabel nameQ = new JLabel("What's the name of the recipe?");
     JLabel procedureQ = new JLabel("What's the procedure of the recipe?");
     JLabel cuisineQ = new JLabel("What's the cuisine type?");
-    JLabel ingredientsQ = new JLabel("What are the ingredients");
-    JLabel caloriesQ = new JLabel("What is the total calories?");
-    JLabel timeQ = new JLabel("What is the total time required?");
-    JLabel difficultyQ = new JLabel("What is the difficulty(out of 5)?");
+    JLabel ingredientsQ = new JLabel("What are the ingredients? (Use comma to separate)");
+    JLabel caloriesQ = new JLabel("What is the total calories? (Enter an integer)");
+    JLabel timeQ = new JLabel("What is the total time required? (Enter an integer)");
+    JLabel difficultyQ = new JLabel("What is the difficulty? (1 - 5)");
 
     JButton create = new JButton("Create");
 
@@ -73,26 +72,27 @@ public class CreateRecipeUI extends JFrame implements RecipeCreateBox{
 
 
         create.setAlignmentX(Component.CENTER_ALIGNMENT);
-        create.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try{
-                    Integer.parseInt(calories.getText());
-                    Integer.parseInt(time.getText());
-                    Integer.parseInt(difficulty.getText());
-                }catch (NumberFormatException e1){
-                    JOptionPane.showMessageDialog(null,
-                            "Pleas enter an INTEGER for calories, time, difficulty!");
-                }
-
+        create.addActionListener(e -> {
+            try{
+                Integer.parseInt(calories.getText());
+                Integer.parseInt(time.getText());
+                int diff = Integer.parseInt(difficulty.getText());
+                String[] difficultyList = {"1", "2", "3", "4", "5"};
+                String temp = difficultyList[diff - 1];
+                dispose();
                 String ingredient = ingredients.getText();
                 String[] ingredients_list = ingredient.split(",");
                 ArrayList<String> ingredients = new ArrayList<>(Arrays.asList(ingredients_list));
                 recipeController.performCreateRecipe(name.getText(), procedure.getText(), cuisine.getText(),
                         ingredients, Integer.parseInt(calories.getText()), Integer.parseInt(time.getText()),
-                        Integer.parseInt(difficulty.getText()),
+                        Integer.parseInt(temp),
                         appController.getLoginControllor().preformGetLoggedInUser());
+
+            }catch (NumberFormatException | ArrayIndexOutOfBoundsException e1){
+                JOptionPane.showMessageDialog(null,
+                        "Pleas follow the instructions!");
             }
+
         });
         check.add(create);
 

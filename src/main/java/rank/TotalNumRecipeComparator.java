@@ -1,9 +1,12 @@
 package rank;
 
-import entities.Profile;
+
 import entities.User;
 
+
+import java.io.IOException;
 import java.util.Comparator;
+
 
 public class TotalNumRecipeComparator implements Comparator<User> {
     /**
@@ -14,11 +17,21 @@ public class TotalNumRecipeComparator implements Comparator<User> {
      */
     @Override
     public int compare(User o1, User o2) {
-        Profile profile1 = new Profile(o1.getUsername());
-        Profile profile2 = new Profile(o2.getUsername());
-        int userTotalrecipe1 = profile1.getCreated().size();
-        int userTotalrecipe2 = profile2.getCreated().size();
-        return userTotalrecipe2 - userTotalrecipe1;
+        RankOutputBoundary rankOutputBoundary = new RankPresenter();
+        RankInteractor rankInteractor = new RankInteractor(rankOutputBoundary);
+        int rep1;
+        try {
+            rep1 = rankInteractor.allCreatedRanking(o1.getUsername());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        int rep2;
+        try {
+            rep2 = rankInteractor.allCreatedRanking(o2.getUsername());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return rep2 - rep1;
     }
 
 }

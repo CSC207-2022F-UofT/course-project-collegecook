@@ -64,6 +64,10 @@ public class Recipe implements Serializable{
         return recipe_name.equals(recipe.recipe_name);
     }
 
+    /**
+     *
+     * @return The hashcode of the recipe_name
+     */
     @Override
     public int hashCode() {
         return Objects.hash(recipe_name);

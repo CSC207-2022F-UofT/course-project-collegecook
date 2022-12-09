@@ -1,16 +1,15 @@
-package mealplan;
+package ui;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ui.AppController;
+import mealplan.MealplanBox;
 
 
-public class MealplanBoxUI extends JFrame implements MealplanBox{
+public class MealplanBoxUI extends JFrame implements MealplanBox {
     AppController appController;
 
     JPanel panel_b = new JPanel();
@@ -23,7 +22,7 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
     List<JButton> listOfBreakfast = new ArrayList<>();
     List<JButton> listOfLunch = new ArrayList<>();
     List<JButton> listOfDinner = new ArrayList<>();
-    public MealplanBoxUI(AppController appController) throws IOException {
+    public MealplanBoxUI(AppController appController){
         this.appController= appController;
 
         JButton button_b = new JButton( new AbstractAction("delete") {
@@ -82,16 +81,13 @@ public class MealplanBoxUI extends JFrame implements MealplanBox{
         JButton button_save = new JButton( new AbstractAction("Save") {
             @Override
             public void actionPerformed( ActionEvent e ) {
-                try {
-                    appController.getMealplanController().saveMealplan();
-                } catch (IOException ex) {
-                    System.out.println("Unable to save meal plan.");
-                }
+                appController.getMealplanController().saveMealplan();
+
             }
         });
 
         ArrayList<ArrayList<String>>  mealplan =
-                appController.getMealplanController().mealplanInputBoundary.getMealplan().returnMealPlan();
+                appController.getMealplanController().returnMealplan();
 
         for (String recipe: mealplan.get(0)){
             JButton button_m = new JButton( new AbstractAction(recipe) {

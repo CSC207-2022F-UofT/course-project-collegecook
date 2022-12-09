@@ -1,7 +1,5 @@
 package recipe;
 
-import entities.Recipe;
-
 import java.util.ArrayList;
 
 
@@ -13,7 +11,7 @@ public class RecipeController {
     RecipeInputBoundary recipeInputBoundary;
 
     /**
-     *
+     * Construct the RecipeController.
      * @param recipeInputBoundary An interface to get access of the RecipeInteractor. It is injected here to follow
      *                            the Dependency Rule.
      */
@@ -22,7 +20,7 @@ public class RecipeController {
     }
 
     /**
-     *
+     * Create a recipeRequestModel and
      * @param recipe_name The name of the recipe.
      * @param procedure The procedure of the recipe
      * @param cuisine The cuisine type of the recipe
@@ -42,7 +40,7 @@ public class RecipeController {
     }
 
     /**
-     *
+     * Showing the recipe.
      * @param recipeName The name of the recipe that the user want to read
      * This method is used to read the recipe by passing the name got from the UI to the recipeInputBoundary
      */
@@ -51,19 +49,16 @@ public class RecipeController {
     }
 
     /**
-     *
+     * Get the name of the recipe that the user is reading.
      * @return Return the name of the recipe that the user is currently reading.
      */
     public String getReadingRecipe(){return recipeInputBoundary.getReadingRecipe();}
 
     /**
-     *
-     * @param name name is the name of the recipe
-     * @return Return the recipe according to the given name.
+     * Get the creator of the recipe.
+     * @param recipe The name of the recipe.
+     * @return The creator of the recipe.
      */
-    public Recipe getRecipe(String name){
-        return recipeInputBoundary.getRecipe(name);
-    }
     public String getCreator(String recipe){return recipeInputBoundary.getCreator(recipe);}
 
 

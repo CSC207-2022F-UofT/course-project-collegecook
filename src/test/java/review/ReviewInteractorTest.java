@@ -23,6 +23,7 @@ class ReviewInteractorTest {
     AverageRatingReadWriter ratingReadWriter;
 
     AverageRatings currentRatings;
+    Boolean currentRecipeIsBurger;
 
     @BeforeEach
     void setUp() throws IOException, ClassNotFoundException {
@@ -46,10 +47,14 @@ class ReviewInteractorTest {
             }
 
             @Override
-            public void readSuccessView(String reviews) {}
+            public void readSuccessView(String reviews) {
+                assertEquals(reviews, System.lineSeparator() + ReviewSimpleFactory.createReview());
+            }
 
             @Override
-            public void readFailureView() {}
+            public void readFailureView() {
+                assertTrue(currentRecipeIsBurger);
+            }
             @Override
             public void setUI(ReviewCreateBox reviewCreateBox){}
             @Override
@@ -74,6 +79,7 @@ class ReviewInteractorTest {
         temp = null;
         ratingReadWriter = null;
         currentRatings = null;
+        currentRecipeIsBurger = null;
     }
 
     @Test
@@ -92,6 +98,15 @@ class ReviewInteractorTest {
         ArrayList<Review> actual = readWriter.readFromFile("reviews.sav").getUserReviews("bob");
         Review review = ReviewSimpleFactory.createReview();
         assertTrue(actual.contains(review));
+
+    }
+
+    @Test
+    void TestreadRecipereviews() {
+        interactor.createReview("bob", "spaghetti", "tasted terrible", 1);
+        interactor.readRecipeReviews("spaghetti");
+        currentRecipeIsBurger = true;
+        interactor.readRecipeReviews("burger");
 
     }
 

@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ProfileInteractor implements ProfileInputBoundary{
-    private final ProfileRepoGateway prg =  ProfileRepoImpl.getPrl();
+    private final ProfileRepoGateway prg =  ProfileRepoImpl.getProfileRepoImpl();
     private final RecipeRepoGateway rrg = RecipeReadWriter.getRecipeRepo();
     private ArrayList<Profile> profileList;
     final ProfileOutputBoundary outputBoundary;
