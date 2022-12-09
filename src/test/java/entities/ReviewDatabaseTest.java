@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ReviewDatabaseTest {
-    static ArrayList<Recipe> recipes = new ArrayList<Recipe>();
-    static ArrayList<Review> reviews = new ArrayList<Review>();
+    static ArrayList<Recipe> recipes = new ArrayList<>();
+    static ArrayList<Review> reviews = new ArrayList<>();
     static ReviewDatabase database = new ReviewDatabase();
 
     @BeforeAll
