@@ -13,9 +13,9 @@ public class AverageRatingRecipeSorter implements RecipeSorter{
     @Override
     public void sort(Recipe[] recipes, boolean sortByAscending) {
         if (sortByAscending) {
-            Arrays.sort(recipes, new AverageRatingComparator());
+            Arrays.sort(recipes, new AverageRatingRecipeComparator());
         }
-        else{Arrays.sort(recipes, Collections.reverseOrder(new AverageRatingComparator()));}
+        else{Arrays.sort(recipes, Collections.reverseOrder(new AverageRatingRecipeComparator()));}
 
     }
 
