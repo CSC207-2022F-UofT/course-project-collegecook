@@ -47,10 +47,5 @@ public class ProfileRepoImpl implements ProfileRepoGateway {
         f2.close();
     }
 
-//    public static void main(String[] args) throws IOException {
-//        ArrayList<Profile> profileList = new ArrayList<>();
-//        ProfileRepoImpl prl = ProfileRepoImpl.getProfileRepoImpl();
-//        prl.saveProfile(profileList);
-//    }
 }
 

@@ -11,6 +11,14 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ProfileRepoImplTest {
+    /**
+     * This test covers 100% ProfileRepoImp class in the entity package,
+     * 100% methods, and 74% lines.
+     * The line coverage doesn't reach 100% because a method in ProfileRepoImpl will catch
+     * IOException if any. But this testing actually could not generate an IOException,
+     * since a list of profiles will always be gotten from the local file.
+     */
+
     ProfileRepoImpl pri;
     ArrayList<Profile> pl;
     ArrayList<Profile> temp;

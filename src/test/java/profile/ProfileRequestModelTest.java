@@ -7,6 +7,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ProfileRequestModelTest {
+    /**
+     * This test covers 100% ProfileRequestModel class in the profile package,
+     * 100% methods, and 100% lines.
+     */
+
     ProfileRequestModel prm;
 
     @BeforeEach

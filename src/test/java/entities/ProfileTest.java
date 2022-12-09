@@ -9,6 +9,11 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProfileTest {
+    /**
+     * This test covers 100% profile class in the entity package,
+     * 100% methods, and 100% lines.
+     */
+
     Profile p;
     ArrayList<Recipe> created = new ArrayList<>();
     ArrayList<Review> reviewed = new ArrayList<>();

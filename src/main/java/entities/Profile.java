@@ -3,6 +3,7 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+
 public class Profile implements Serializable {
     /**
      * This is the class of Recipe, which is an entity.
