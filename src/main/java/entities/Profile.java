@@ -3,6 +3,7 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+
 public class Profile implements Serializable {
     /**
      * This is the class of Recipe, which is an entity.
@@ -125,10 +126,12 @@ public class Profile implements Serializable {
      * A method that returns all information of the reviewed recipes of the user in this profile.
      * @return Return a string which contains all the recipes reviewed by the user.
      */
-    public String soutReviewed() {
+    public String reviewedInformation() {
         StringBuilder result = new StringBuilder();
         for (Review r : reviewed){
-            result.append("Reviewer: ").append(r.getUser()).append(System.lineSeparator()).append("Recipe: ").append(r.getRecipe().getRecipeName()).append(System.lineSeparator()).append("Rating: ").append(r.getRating()).append("/5").append(System.lineSeparator()).append("\"").append(r.getContent()).append("\"").append(System.lineSeparator());
+            result.append("Recipe: ").append(r.getRecipe().getRecipeName()).append(System.lineSeparator()).
+                    append("Rating: ").append(r.getRating()).append("/5").append(System.lineSeparator()).append("\"").
+                    append(r.getContent()).append("\"").append(System.lineSeparator()).append(System.lineSeparator());
         }
         return result.toString();
     }
@@ -137,10 +140,10 @@ public class Profile implements Serializable {
      * A method that returns all information of the created recipes of the user in this profile.
      * @return Return a string which contains all the recipes created by the user.
      */
-    public String soutCreated() {
+    public String createdInformation() {
         StringBuilder result = new StringBuilder();
         for (Recipe r : created){
-            result.append(r.toString());
+            result.append(r.toString()).append(System.lineSeparator());
         }
         return result.toString();
     }
@@ -149,7 +152,7 @@ public class Profile implements Serializable {
      * A method that returns all information of the user in this profile.
      * @return Return a string that contains the age, height, weight, and gender of the user in this profile.
      */
-    public String soutInfo(){
+    public String infoDetail(){
         return "Age: " + age + "\n" +
                 "Height: " + height + "cm \n" +
                 "Weight: " + weight + "kg \n" +

@@ -7,34 +7,39 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ProfileRequestModelTest {
-    ProfileRequestModel prm;
+    /**
+     * This test covers 100% ProfileRequestModel class in the profile package,
+     * 100% methods, and 100% lines.
+     */
+
+    ProfileRequestModel profileRequestModel;
 
     @BeforeEach
     void setUp() {
-        prm = new ProfileRequestModel(20, 163, 45, "Female");
+        profileRequestModel = new ProfileRequestModel(20, 163, 45, "Female");
     }
 
     @AfterEach
     void tearDown(){
-        prm = null;
+        profileRequestModel = null;
     }
 
     @Test
     void testGetAgePrm(){
-        assertEquals(20, prm.getAge());
+        assertEquals(20, profileRequestModel.getAge());
     }
 
     @Test
     void testGetHeightPrm(){
-        assertEquals(163, prm.getHeight());
+        assertEquals(163, profileRequestModel.getHeight());
     }
     @Test
     void testGetWeightPrm(){
-        assertEquals(45, prm.getWeight());
+        assertEquals(45, profileRequestModel.getWeight());
     }
     @Test
     void testGetGenderPrm(){
-        assertEquals("Female", prm.getGender());
+        assertEquals("Female", profileRequestModel.getGender());
     }
 
 }

@@ -9,8 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ProfileInteractor implements ProfileInputBoundary{
-    private final ProfileRepoGateway prg =  ProfileRepoImpl.getProfileRepoImpl();
-    private final RecipeRepoGateway rrg = RecipeReadWriter.getRecipeRepo();
+    private final ProfileRepoGateway profileRepo =  ProfileRepoImpl.getProfileRepoImpl();
+    private final RecipeRepoGateway recipeRepo = RecipeReadWriter.getRecipeRepo();
     private ArrayList<Profile> profileList;
     final ProfileOutputBoundary outputBoundary;
 
@@ -22,7 +22,7 @@ public class ProfileInteractor implements ProfileInputBoundary{
         this.outputBoundary = outputBoundary;
 
         try{
-            profileList = prg.getProfile();
+            profileList = profileRepo.getProfile();
         }
         catch(IOException e ){
             profileList = new ArrayList<>();
@@ -38,7 +38,7 @@ public class ProfileInteractor implements ProfileInputBoundary{
      * @throws IOException Will be handled in the UI.
      */
     public void allCreated(String username) throws IOException {
-        RecipeList allRecipe = rrg.getRecipeList();
+        RecipeList allRecipe = recipeRepo.getRecipeList();
         ArrayList<Recipe> recipeList = new ArrayList<>();
         for (Recipe r: allRecipe){
             if (r.getCreator().equals(username)){
@@ -51,7 +51,7 @@ public class ProfileInteractor implements ProfileInputBoundary{
             outputBoundary.noCreated();
         }
         else{
-            String result = p.soutCreated();
+            String result = p.createdInformation();
             outputBoundary.viewCreated(result);
         }
     }
@@ -71,7 +71,7 @@ public class ProfileInteractor implements ProfileInputBoundary{
         }
         Profile new_p = new Profile(username);
         profileList.add(new_p);
-        prg.saveProfile(profileList);
+        profileRepo.saveProfile(profileList);
         return new_p;
     }
 
@@ -90,7 +90,7 @@ public class ProfileInteractor implements ProfileInputBoundary{
             outputBoundary.noReviewed();
         }
         else{
-            String result = p.soutReviewed();
+            String result = p.reviewedInformation();
             outputBoundary.viewReviewed(result);
         }
     }
@@ -103,7 +103,7 @@ public class ProfileInteractor implements ProfileInputBoundary{
      */
     public void viewInfo(String username) throws IOException {
         Profile p = checkProfile(username);
-        String result = p.soutInfo();
+        String result = p.infoDetail();
         outputBoundary.viewInfo(result);
     }
 
@@ -132,7 +132,7 @@ public class ProfileInteractor implements ProfileInputBoundary{
     public void setInfo(String username, ProfileRequestModel prm) throws IOException {
         Profile p = checkProfile(username);
         setAll(prm, p);
-        prg.saveProfile(profileList);
+        profileRepo.saveProfile(profileList);
         outputBoundary.setInfoResult();
     }
 
