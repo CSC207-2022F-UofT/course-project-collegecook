@@ -8,7 +8,7 @@ import review.ReviewInteractor;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class AverageRatingComparator implements Comparator<Recipe> {
+public class AverageRatingRecipeComparator implements Comparator<Recipe> {
     /**
      * Compares its two arguments for order.
      * <p>
@@ -16,8 +16,8 @@ public class AverageRatingComparator implements Comparator<Recipe> {
      * as r1 is less than, equal to, or greater than r2 in terms
      * of average rating.
      *
-     * @param r1 the first Review to compare
-     * @param r2 the second Review to compare
+     * @param r1 the first Recipe to compare
+     * @param r2 the second Recipe to compare
      * @return a negative integer, zero, or a positive integer
      * as r1 is less than, equal to, or greater than r2
      */
@@ -28,14 +28,15 @@ public class AverageRatingComparator implements Comparator<Recipe> {
         ArrayList<Review> reviews1 = reviewDatabase.getRecipeReviews(r1);
         ArrayList<Review> reviews2 = reviewDatabase.getRecipeReviews(r2);
 
+        // if one of the recipes has no reviews, return the difference between the number of reviews
         if (reviews1.isEmpty() || reviews2.isEmpty()){
             return reviews1.size() - reviews2.size();
         }
+        // calculate average rating for each recipe from its reviews
         else{
             int r1avgRating = (reviews1.stream().mapToInt(Review::getRating).sum())/ reviews1.size();
             int r2avgRating = (reviews2.stream().mapToInt(Review::getRating).sum())/ reviews2.size();
             return r1avgRating - r2avgRating;
-
         }
     }
 }

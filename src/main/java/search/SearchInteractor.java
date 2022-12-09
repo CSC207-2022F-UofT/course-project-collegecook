@@ -5,6 +5,7 @@ import entities.RecipeList;
 import recipe.RecipeRepoGateway;
 import java.util.ArrayList;
 
+//Use Case layer
 public class SearchInteractor implements SearchInputBoundary{
 
     final SearchOutputBoundary searchOutputBoundary;
@@ -19,6 +20,10 @@ public class SearchInteractor implements SearchInputBoundary{
         this.recipeRepoGateway = recipeRepoGateway;
     }
 
+    /**
+     * Searches for recipes that match the given search criteria, in the chosen sort type and order
+     * @param requestModel the given search criteria (keyword, cuisine, ingredients, time), sort type, and whether to sort by ascending
+     */
     @Override
     public void getSearchResults(SearchRequestModel requestModel) {
         // get all recipes

@@ -1,5 +1,6 @@
 package search;
 
+// Interface Adaptor layer
 public class SearchPresenter implements SearchOutputBoundary{
     SearchResultsBox searchResultsBox;
 

@@ -2,8 +2,6 @@ package search;
 
 import entities.Recipe;
 
-import java.util.ArrayList;
-
 public class SearchResponseModel {
     Recipe[] matchingRecipes;
     SearchRequestModel searchRequestModel;
@@ -22,8 +20,4 @@ public class SearchResponseModel {
     }
 
     public SearchRequestModel getSearchRequestModel() {return searchRequestModel;}
-    public void setSearchRequestModel(SearchRequestModel searchRequestModel){this.searchRequestModel = searchRequestModel;}
-    public void setMatchingRecipes(Recipe[] matchingRecipes) {
-        this.matchingRecipes = matchingRecipes;
-    }
 }

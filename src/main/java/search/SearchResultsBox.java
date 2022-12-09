@@ -1,7 +1,5 @@
 package search;
 
-import entities.Recipe;
-
 public interface SearchResultsBox {
     /**
      * show success view with matching recipes
