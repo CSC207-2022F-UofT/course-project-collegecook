@@ -102,19 +102,12 @@ public class SearchInteractorTest {
         recipes[1] = recipe2; // time needed = 10
         recipes[2] = recipe3; // time needed = 30
 
-
-        // expected: recipe3, recipe1, recipe2
-        Recipe[] expectedResults = new Recipe[3];
-        expectedResults[0] = recipe2; // time needed = 10
-        expectedResults[1] = recipe1; // time needed = 20
-        expectedResults[2] = recipe3; // time needed = 30
-
         // sort by time needed, smallest to largest
         recipeSorter.sort(recipes, true);
 
-        assertEquals(expectedResults[0].getRecipeName(), recipes[0].getRecipeName());
-        assertEquals(expectedResults[1].getRecipeName(), recipes[1].getRecipeName());
-        assertEquals(expectedResults[2].getRecipeName(), recipes[2].getRecipeName());
+        assertEquals(recipes[0].getRecipeName(), recipe2.getRecipeName());
+        assertEquals(recipes[1].getRecipeName(), recipe1.getRecipeName());
+        assertEquals(recipes[2].getRecipeName(), recipe3.getRecipeName());
     }
 
     /**
@@ -163,23 +156,18 @@ public class SearchInteractorTest {
         reviewDatabase.addReview(new Review("lei", recipe1, 4));
         reviewDatabase.addReview(new Review("joe", recipe1, 5));
         reviewDatabase.addReview(new Review("ang", recipe1, 4));
-        reviewDatabase.addReview(new Review("ang", recipe2, 5));
-        reviewDatabase.addReview(new Review("lei", recipe2, 3));
-        reviewDatabase.addReview(new Review("lei", recipe3, 3));
+        reviewDatabase.addReview(new Review("ang", recipe2, 5)); // average rating 4.3
+        reviewDatabase.addReview(new Review("lei", recipe2, 3)); // average rating 4
+        reviewDatabase.addReview(new Review("lei", recipe3, 3)); // average rating 3
         reviewDatabaseReadWriter.saveToFile("reviews.sav", reviewDatabase);
 
         // sort recipes
-        RecipeSorter recipeSorter = new NumReviewsRecipeSorter();
+        RecipeSorter recipeSorter = new AverageRatingRecipeSorter();
         recipeSorter.sort(recipes, true);
 
-        Recipe[] expectedResults = new Recipe[3];
-        expectedResults[0] = recipe3;
-        expectedResults[1] = recipe2;
-        expectedResults[2] = recipe1;
-
-        assertEquals(recipes[0].getRecipeName(), expectedResults[0].getRecipeName());
-        assertEquals(recipes[1].getRecipeName(), expectedResults[1].getRecipeName());
-        assertEquals(recipes[2].getRecipeName(), expectedResults[2].getRecipeName());
+        assertEquals(recipes[0].getRecipeName(), recipe3.getRecipeName());
+        assertEquals(recipes[1].getRecipeName(), recipe2.getRecipeName());
+        assertEquals(recipes[2].getRecipeName(), recipe1.getRecipeName());
     }
 
     /**
@@ -188,11 +176,9 @@ public class SearchInteractorTest {
     @Test
     public void sortRecipesAvgRatingNoReviews() throws IOException {
 
-        RecipeSorter recipeSorter = new NumReviewsRecipeSorter();
-
         Recipe[] recipes = new Recipe[3];
         recipes[0] = recipe1; // average rating 4.3
-        recipes[1] = recipe2; // average rating 5
+        recipes[1] = recipe2; // average rating 4
         recipes[2] = recipe3; // no reviews
 
         // create reviews
@@ -203,17 +189,13 @@ public class SearchInteractorTest {
         reviewDatabase.addReview(new Review("ang", recipe2, 5));
         reviewDatabase.addReview(new Review("lei", recipe2, 3));
         reviewDatabaseReadWriter.saveToFile("reviews.sav", reviewDatabase);
-        //expected = recipe2, recipe1, recipe3
-        Recipe[] expectedResults = new Recipe[3];
-        expectedResults[0] = recipe1;
-        expectedResults[1] = recipe2;
-        expectedResults[2] = recipe3;
 
-        recipeSorter.sort(recipes, false);
+        RecipeSorter recipeSorter = new AverageRatingRecipeSorter();
+        recipeSorter.sort(recipes, true);
 
-        assertEquals(recipes[0].getRecipeName(), expectedResults[0].getRecipeName());
-        assertEquals(recipes[1].getRecipeName(), expectedResults[1].getRecipeName());
-        assertEquals(recipes[2].getRecipeName(), expectedResults[2].getRecipeName());
+        assertEquals(recipes[0].getRecipeName(), recipe3.getRecipeName());
+        assertEquals(recipes[1].getRecipeName(), recipe2.getRecipeName());
+        assertEquals(recipes[2].getRecipeName(), recipe1.getRecipeName());
     }
 
     /**
@@ -235,9 +217,9 @@ public class SearchInteractorTest {
 
             @Override
             public void prepareSuccessView(SearchResponseModel searchResults) {
-                assertEquals(searchResults.matchingRecipes.length, 2);
-                assertEquals(searchResults.matchingRecipes[0], recipe2);
-                assertEquals(searchResults.matchingRecipes[1], recipe1);
+                assertEquals(searchResults.getMatchingRecipes().length, 2);
+                assertEquals(searchResults.getMatchingRecipes()[0], recipe2);
+                assertEquals(searchResults.getMatchingRecipes()[1], recipe1);
             }
 
             @Override
@@ -289,8 +271,8 @@ public class SearchInteractorTest {
 
             @Override
             public void prepareSuccessView(SearchResponseModel searchResults) {
-                assertEquals(1, searchResults.matchingRecipes.length);
-                assertEquals(recipe1, searchResults.matchingRecipes[0]);
+                assertEquals(1, searchResults.getMatchingRecipes().length);
+                assertEquals(recipe1, searchResults.getMatchingRecipes()[0]);
             }
 
             @Override
@@ -335,9 +317,9 @@ public class SearchInteractorTest {
 
             @Override
             public void prepareSuccessView(SearchResponseModel searchResults) {
-                assertEquals(2, searchResults.matchingRecipes.length);
-                assertEquals(recipe1, searchResults.matchingRecipes[0]);
-                assertEquals(recipe2, searchResults.matchingRecipes[1]);
+                assertEquals(2, searchResults.getMatchingRecipes().length);
+                assertEquals(recipe1, searchResults.getMatchingRecipes()[0]);
+                assertEquals(recipe2, searchResults.getMatchingRecipes()[1]);
             }
 
             @Override
